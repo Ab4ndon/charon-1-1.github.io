@@ -272,7 +272,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200709215614854.png" alt="image-20200709215614854" style="zoom:67%;">
 <p>点进去，它提示你输入0xCTF网站的IP即可得到flag，菜鸡的我还去百度了一下什么是网站的IP<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></p>
 <p>其实就类似127.0.0.1这类的，我查了一下有没有能查询某个指定网站IP的工具，找了一个在线查询的，输入网站的URL后得到网站的IP：<code>39.106.164.8</code></p>
-<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required></p>
+<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required=""></p>
 <p>**maxlength=“4”**说明输入的字符串最大长度为4，而我们的IP地址显然超过了，所以输不进去。想了一下利用Burpsuite抓一波包再改包：</p>
 <p>先输入一个4个字符以内的IP。如我输入的是1234，抓包后将IP改为<code>39.106.164.8</code>，再发包即可</p>
 <hr>
