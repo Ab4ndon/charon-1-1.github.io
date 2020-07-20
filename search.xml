@@ -379,7 +379,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 &nbsp;（平仄平平仄，平平仄仄平。）<br>
 &nbsp;雷峰夕照晚，自适意悠长。<br>
 &nbsp;（平平平仄仄，仄仄仄平平。）</p>
-<img src="/2020/07/20/%E8%AF%97%E8%AF%8D/image-20200720192927094.png" alt="image-20200720192927094" style="zoom: 33%;"><script>
+<script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
             if (!el.dataset.src) { return; }
