@@ -239,6 +239,33 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>但是让我很苦恼的是那种拼接方式去构造payload的方式我可能还不太理解，在本题中尝试了好多次也没成功，这个坑先留着，以后来填，或者大佬们评论区指点一波</p>
 <p>）</p>
 <hr>
+<h4 id="17-RCE-bypass-pro">17.RCE_bypass_pro</h4>
+<img src="/2020/07/05/0xctf/image-20200720210307946.png" alt="image-20200720210307946" style="zoom:50%;">
+<p>这道题是RCE的pro版本，料到了绕过有难度。点进去一看，我敲！这么多过滤条件！（手动滑稽_）</p>
+<p>稍微理解一下源码：首先要以<code>GET</code>方式传一个<code>ip</code>参数，然后那一长串用于过滤的令人头皮发麻的正则表达式，emmm，怎么说呢，没能完全看懂，但大致能晓得它过滤掉了哪些东西。</p>
+<p>先稍微试一试水，我构造了这样一个<code>payload:?ip=d;sort${IFS}fl\ag.php</code></p>
+<p>失败，回显  <strong>fxck your symbol!</strong></p>
+<p>又仔细看了看，好吧，疏忽了，<code>{}</code>、<code>/</code>貌似都被过滤了，额，<code>{}</code>好解决，空格用<code>$IFS</code>也可以替代，但是flag咋搞呢？</p>
+<p>百度了一波，大概要么编码解决，要么用拼接（哎，终究逃不过拼接<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span>）</p>
+<p>尝试一波拼接 <img src="/2020/07/05/0xctf/image-20200720214759811.png" alt="image-20200720214759811" style="zoom:67%;"></p>
+<p>再次失败，不过这次回显的是  <strong>no flag</strong>,对照源码，应该是咱们的flag没成功绕过，还是被过滤了。</p>
+<p>继续百度，我恰巧看到一篇博客里提到了<code>if(preg_match("/.*f.*l.*a.*g.*/", $ip)</code>这个正则表达式，他说这个过滤的话采用一般的拼接不起作用，得换换顺序，因为一旦 f l a g顺序显示，就歇菜了。</p>
+<p>OK,那将a,b换换吧，重新构造payload:<img src="/2020/07/05/0xctf/image-20200720215305374.png" alt="image-20200720215305374" style="zoom: 67%;"></p>
+<p>成功！！<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">😎</span></p>
+<p>然后我又尝试了一下其他的payload，应该不止这一种解法。继续逛百度，居然发现一道和这道题很像的题<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8">😲</span></p>
+<p>去找了找它的wp，由于题目还是有点差异，有些wp中的解法并没成功（也可能是我太菜了<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8">😵</span>），但是经过我的尝试，还是发现了几种骚姿势：</p>
+<ul>
+<li>
+<img src="/2020/07/05/0xctf/image-20200720220319905.png" alt="image-20200720220319905">
+</li>
+<li>
+<p><img src="/2020/07/05/0xctf/image-20200720220434968.png" alt="image-20200720220434968"></p>
+</li>
+</ul>
+<p>第二个实在是太骚了，运行后：</p>
+<img src="/2020/07/05/0xctf/image-20200720220938545.png" alt="image-20200720220938545" style="zoom:80%;">
+<p>菜鸡的我流下了伤心的泪水<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
+<hr>
 <p>未完待续<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8">😸</span></p>
 <script>
         document.querySelectorAll('.github-emoji')
