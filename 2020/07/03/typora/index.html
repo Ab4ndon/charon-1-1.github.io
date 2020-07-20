@@ -35,9 +35,11 @@
 
   
 
+<link rel="alternate" href="/atom.xml" title="Charon的博客" type="application/atom+xml">
 </head>
-
 </html>
+
+<script type="text/javascript"> // 浏览器搞笑标题 var OriginTitle = document.title; var titleTime; document.addEventListener('visibilitychange', function () {     if (location.href != "https://www.xxxzhy.com/"){//主页不变         if (document.hidden) {             //$('[rel="icon"]').attr('href', "/funny.ico");             document.title = '/(ㄒoㄒ)/你弄丢了charon';             clearTimeout(titleTime);         }else {             //$('[rel="icon"]').attr('href', "/favicon.ico");             document.title = '(ฅ>ω<*ฅ) 噫又好啦~' + OriginTitle;             titleTime = setTimeout(function () {                 document.title = OriginTitle;             }, 2000);         }     } }); </script>
 
 <body>
   <div id="app">
@@ -701,6 +703,8 @@
 
 
 <script src="/js/dz.js"></script>
+
+
 
 
 
