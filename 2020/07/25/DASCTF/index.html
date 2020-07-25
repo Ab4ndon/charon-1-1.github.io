@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    诗和远方 |  Charon的博客
+    DASCTF 《Ezfileinclude》 wp |  Charon的博客
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -51,7 +51,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-诗词"
+  id="post-DASCTF"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -62,18 +62,18 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  诗和远方
+  DASCTF 《Ezfileinclude》 wp
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/07/20/%E8%AF%97%E8%AF%8D/" class="article-date">
-  <time datetime="2020-07-20T11:25:19.000Z" itemprop="datePublished">2020-07-20</time>
+      <a href="/2020/07/25/DASCTF/" class="article-date">
+  <time datetime="2020-07-25T08:57:02.000Z" itemprop="datePublished">2020-07-25</time>
 </a> 
   <div class="article-category">
-    <a class="article-category-link" href="/categories/%E8%AF%97%E8%AF%8D/">诗词</a>
+    <a class="article-category-link" href="/categories/CTF/">CTF</a>
   </div>
   
 <div class="word_count">
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">166</span>
+            <span class="post-count">1.1k</span>
         </span>
     </span>
 
@@ -90,32 +90,53 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">4 min</span>
         </span>
     </span>
 </div>
  
     </div>
       
-    <div class="tocbot"></div>
-
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>迁客骚人，多会于此。我可能是后者​,​h​h​h<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8">😏</span></p>
+  <p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，遭受了五个小时的吊打。</p>
 <a id="more"></a>
-<h4 id="西湖">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖</h4>
-<p>&nbsp;六月西湖好，风光小处藏。<br>
-&nbsp;（仄仄平平仄，平平仄仄平。）<br>
-&nbsp;苏堤夹岸绿，曲院满池芳。<br>
-&nbsp;（平平平仄仄，仄仄仄平平。）<br>
-&nbsp;花港观鱼醉，扁舟水上忙。<br>
-&nbsp;（平仄平平仄，平平仄仄平。）<br>
-&nbsp;雷峰夕照晚，自适意悠长。<br>
-&nbsp;（平平平仄仄，仄仄仄平平。）</p>
+<p><img src="/2020/07/25/DASCTF/image-20200725170156404.png" alt="image-20200725170156404"></p>
+<p>没错，就是这么残忍。直接把我0封了。<img src="/2020/07/25/DASCTF/image-20200725180746269.png" alt="image-20200725180746269"></p>
+<img src="/2020/07/25/DASCTF/image-20200725180804349.png" alt="image-20200725180804349" style="zoom:67%;">
+<p>后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历程。</p>
+<p>打开靶机，页面显示的是一张图片<img src="/2020/07/25/DASCTF/image-20200725180822011.png" alt="image-20200725180822011" style="zoom:67%;"></p>
+<p>查看源码，没太多有用的信息，唯一比较特殊的话是这找图片的url:<code>**image.php?t=1595643210&amp;f=Z3F5LmpwZw==**</code></p>
+<p>看到f=后面那一串东西，一下子想到了base64编码，尝试解一波码，解出来<code>gqy.jpg</code>，先留着，说不定有用。</p>
+<p>试了一下image.php,回显：<strong>you miss some parameters</strong>（你漏掉了一些参数）奥，可能后面的t,f也得跟着，复制粘贴上去，再回车，页面回显：<strong>what’s your time ?</strong></p>
+<p>作为一个萌新，我一度怀疑这是不是什么CTF黑话，特意百度了一波 <em><strong>CTF what’s your time?</strong></em>  好吧，并不是，想了想，可能是要给time这个参数赋值，盲猜可能是URL中的t参数，试着把t参数删掉，回车，回显提醒漏掉参数，给t赋值为time试试？还是问我时间！<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8">😩</span>但是时间一直是变化的呀，，，怎么搞呢？关键在于那个t后面的一串数字是啥，我又去百度了一波CTF中的数字编码，没啥结果。卡住。</p>
+<p>求助大佬（emmm，应该不算犯规吧）大佬说那一串数字是<strong>unix时间戳</strong>，百度了一波，相当于那一串数字其实表示的是一个时间</p>
+<img src="/2020/07/25/DASCTF/image-20200725172909110.png" alt="image-20200725172909110" style="zoom:67%;">
+<p>还是那个问题，该怎么传当前时间？？？当前时间一直在变化的呀。</p>
+<p>此处贴出大佬的方法：</p>
+<img src="/2020/07/25/DASCTF/image-20200725173059630.png" alt="image-20200725173059630" style="zoom:80%;">
+<p>python脚本，，，好吧，我是靠<code>.py</code>这个后缀猜的<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></p>
+<p>菜鸡的我再次流下了伤心的类水，咱也不会写python脚本呀（一打开我满是灰尘的pycharm还出错了，大家还是支持正版吧<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>）</p>
+<p>不会脚本，只能靠手速了，按照大佬的指导，先转换一个10秒后的时间戳。等到时候再发（妙啊）</p>
+<p>一顿操作猛如虎，以为flag呼之欲出了，结果出来的是一堆乱码，淦！</p>
+<img src="/2020/07/25/DASCTF/image-20200725173839845.png" alt="image-20200725173839845" style="zoom:50%;">
+<p>搞了半天居然没用。。。</p>
+<p>后来大佬提示我去看看攻防世界 warmup 这道题的wp,<strong>目录穿越，flag在根目录</strong>，去找了一波wp学习了一下，感觉两个题的确蛮像的，不过那个题源码有提示，这个题看不了源码。我模仿那道题的wp试了试 <code>?file=index.php?/../../../../../../flag</code>不行，又试了试它的各种变形体，失败。我感觉应该没啥问题呀（<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8">⬅</span>菜鸡的蜜汁自信）</p>
+<p>去问大佬这个姿势错在哪,大佬说不是file=而是f=,我照做了，吧上面那个payload里的file改成了f,还是不行呀。</p>
+<p>再次寻求help,大佬让我看看时间对不对，一惊，<strong>还得用时间？</strong> （不是说没卵用的吗，，手动狗头，，）</p>
+<p>原来每次都必须t=当前时间戳&amp;f=xxx(这边就解释了为啥是f而不是file了，我还是后来才醒悟)  好吧好吧，先去转换一个20秒后的时间戳，打开手机读秒，我感觉到了胜利的曙光<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8">😁</span></p>
+<p>一回车，妈耶，还是不行呀，奥，那个f=xxx，xxx应该像他原来url里那样用base64编一下码的，害，这脑子。去在线编码网站把<code>index.php?/../../../../../../flag</code> base64编码一下，编码完发现它居然后面没有两个==, 我不会又被在线编码网站给制裁了吧？<img src="/2020/07/25/DASCTF/image-20200725180857115.png" alt="image-20200725180857115">将信将疑地将它复制过去，又开始手动传时间（卑微.jpg），居然成功得到了flag!</p>
+<p>一波三折，跌宕起伏，柳暗花明。</p>
+<hr>
+<p><strong>参赛体验：</strong></p>
+<p>1.有机会一定学习一下python脚本，手速传时间实在是卑微</p>
+<p>2.多刷题！多刷题！多刷题！多涨涨见识才能触类旁通</p>
+<p>第一次参赛，纪念一下吧<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></p>
+<p>![img](file:///D:\QQ\消息记录\2829493640\Image\C2C\D23C29CEC199D89A9596D78DDDEC0302.png)</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -200,12 +221,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/07/20/%E8%AF%97%E8%AF%8D/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/07/25/DASCTF/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%94%9F%E6%B4%BB/" rel="tag">生活</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
 
     </footer>
   </div>
@@ -213,19 +234,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/07/25/DASCTF/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            DASCTF 《Ezfileinclude》 wp
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/07/05/0xctf/" class="article-nav-link">
+      <a href="/2020/07/20/%E8%AF%97%E8%AF%8D/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">0xCTF web题 writeup</div>
+        <div class="article-nav-title">诗和远方</div>
       </a>
     
   </nav>
