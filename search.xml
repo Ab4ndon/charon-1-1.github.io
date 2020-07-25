@@ -489,7 +489,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
           });
       </script>]]></content>
       <categories>
-        <category>CTF</category>
+        <category>学习</category>
       </categories>
       <tags>
         <tag>web</tag>
