@@ -265,8 +265,37 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>第二个实在是太骚了，运行后：</p>
 <img src="/2020/07/05/0xctf/image-20200720220938545.png" alt="image-20200720220938545" style="zoom:80%;">
 <p>菜鸡的我流下了伤心的泪水<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
+<h2 id=""></h2>
+<h4 id="18-EZupload-2">18.EZupload-2</h4>
+<img src="/2020/07/05/0xctf/image-20200731115817516.png" alt="image-20200731115817516" style="zoom:67%;">
+<p>依旧是一道文件上传，首先尝试一波上传shell.php,(让自己死心），回显不允许的文件类型。</p>
+<p>未完待续<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8">😸</span>又尝试了一波双写绕过，加.绕过，都不行，想了一下可能是得上传图片马，首先制作一个图片马：</p>
+<p>首先桌面新建一个shell.php文件，写入一句话木马。</p>
+<p>然后打开cmd,用<code>cd desktop</code>定位到桌面,<code>copy 1.jpg/b+shell.php/a 3.jpg</code>（前提是你桌面上有1.jpg这张图和shell.php）</p>
+<p>用记事本打开3.jpg，将乱码拉倒最后，如果最后有一句话木马就说明制作成功了。（必要的情况下可以把乱码删掉，乱码太多后续可能解析不了）</p>
+<p>图片马制作成功，然后也上传成功，但是菜刀和蚁剑都连不上，几番百度，也没发现问题。后来去问大佬，大佬说图片马没办法像php那样被解析，有两种方法：</p>
+<ul>
+<li>
+<p>文件包含</p>
+</li>
+<li>
+<p>.htaccess</p>
+<p>似乎豁然开朗，但是我之前上传.htaccess文件的时候它显示不允许的文件类型，大佬说抓包改一下文件类型就可以了（奥，我想起来，之前做那个靶场训练的时候好像遇到过这种题）</p>
+<p>此处我当时踩了一个大坑，我的.htaccess文件命名成了1.htaccess，但是其实是不能有文件名的，那个文件直接命名成.htaccess就可</p>
+<p>然后关于.htaccess的内容，第一种写法：<code>SetHandler application/x-httpd-php</code></p>
+<p>然后还有一种更精准的写法：</p>
+<figure class="highlight plain"><table><tbody><tr><td class="code"><pre><span class="line">&lt;FilesMatch "shell.jpg"&gt;</span><br><span class="line"> SetHandler application/x-httpd-php</span><br><span class="line">&lt;/FilesMatch&gt;</span><br></pre></td></tr></tbody></table></figure>
+<p>（当然这种写法你的图片马的文件名得是shell.jpg）</p>
+<img src="/2020/07/05/0xctf/image-20200731122831238.png" alt="image-20200731122831238" style="zoom:67%;">
+</li>
+</ul>
+<p>把上面那个文件类型改成<code>image/jpeg</code> 再发包就可了</p>
+<img src="/2020/07/05/0xctf/image-20200731123111676.png" alt="image-20200731123111676" style="zoom:67%;">
+<p>上传成功！</p>
+<p>接着再上传之前的图片木马，上传成功后回显一个地址，访问一波。</p>
+<img src="/2020/07/05/0xctf/image-20200731124839807.png" alt="image-20200731124839807" style="zoom:50%;">
+<p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8">😙</span></p>
 <hr>
-<p>未完待续<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8">😸</span></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -398,13 +427,13 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
     <content><![CDATA[<p>迁客骚人，多会于此。我可能是后者​,​h​h​h<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8">😏</span></p>
 <a id="more"></a>
 <h4 id="西湖">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖</h4>
-<p>&nbsp;六月西湖好，风光小处藏。<br>
+<p><strong>&nbsp;六月西湖好，风光小处藏。</strong><br>
 &nbsp;（仄仄平平仄，平平仄仄平。）<br>
-&nbsp;苏堤夹岸绿，曲院满池芳。<br>
+<strong>&nbsp;苏堤夹岸绿，曲院满池芳。</strong><br>
 &nbsp;（平平平仄仄，仄仄仄平平。）<br>
-&nbsp;花港观鱼醉，扁舟水上忙。<br>
+<strong>&nbsp;花港观鱼醉，扁舟水上忙。</strong><br>
 &nbsp;（平仄平平仄，平平仄仄平。）<br>
-&nbsp;雷峰夕照晚，自适意悠长。<br>
+<strong>&nbsp;雷峰夕照晚，自适意悠长。</strong><br>
 &nbsp;（平平平仄仄，仄仄仄平平。）</p>
 <script>
         document.querySelectorAll('.github-emoji')
