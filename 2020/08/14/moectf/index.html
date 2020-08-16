@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    DASCTF 《Ezfileinclude》 wp |  Charon的博客
+    MoeCTF wp |  Charon的博客
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -51,7 +51,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-DASCTF"
+  id="post-moectf"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -62,15 +62,15 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  DASCTF 《Ezfileinclude》 wp
+  MoeCTF wp
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/07/25/DASCTF/" class="article-date">
-  <time datetime="2020-07-25T08:57:02.000Z" itemprop="datePublished">2020-07-25</time>
+      <a href="/2020/08/14/moectf/" class="article-date">
+  <time datetime="2020-08-14T05:57:53.000Z" itemprop="datePublished">2020-08-14</time>
 </a> 
   <div class="article-category">
     <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">1.1k</span>
+            <span class="post-count">951</span>
         </span>
     </span>
 
@@ -97,46 +97,84 @@
  
     </div>
       
+    <div class="tocbot"></div>
+
 
 
 
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，遭受了五个小时的吊打。</p>
+  <img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
+<p>MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8">😉</span>，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！</p>
 <a id="more"></a>
-<p><img src="/2020/07/25/DASCTF/image-20200725170156404.png" alt="image-20200725170156404"></p>
-<p>没错，就是这么残忍。直接把我0封了。<img src="/2020/07/25/DASCTF/image-20200725180746269.png" alt="image-20200725180746269"></p>
-<img src="/2020/07/25/DASCTF/image-20200725180804349.png" alt="image-20200725180804349" style="zoom:67%;">
-<p>后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历程。</p>
-<p>打开靶机，页面显示的是一张图片<img src="/2020/07/25/DASCTF/image-20200725180822011.png" alt="image-20200725180822011" style="zoom:67%;"></p>
-<p>查看源码，没太多有用的信息，唯一比较特殊的话是这找图片的url:<code>**image.php?t=1595643210&amp;f=Z3F5LmpwZw==**</code></p>
-<p>看到f=后面那一串东西，一下子想到了base64编码，尝试解一波码，解出来<code>gqy.jpg</code>，先留着，说不定有用。</p>
-<p>试了一下image.php,回显：<strong>you miss some parameters</strong>（你漏掉了一些参数）奥，可能后面的t,f也得跟着，复制粘贴上去，再回车，页面回显：<strong>what’s your time ?</strong></p>
-<p>作为一个萌新，我一度怀疑这是不是什么CTF黑话，特意百度了一波 <em><strong>CTF what’s your time?</strong></em>  好吧，并不是，想了想，可能是要给time这个参数赋值，盲猜可能是URL中的t参数，试着把t参数删掉，回车，回显提醒漏掉参数，给t赋值为time试试？还是问我时间！<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8">😩</span>但是时间一直是变化的呀，，，怎么搞呢？关键在于那个t后面的一串数字是啥，我又去百度了一波CTF中的数字编码，没啥结果。卡住。</p>
-<p>求助大佬（emmm，应该不算犯规吧）大佬说那一串数字是<strong>unix时间戳</strong>，百度了一波，相当于那一串数字其实表示的是一个时间</p>
-<img src="/2020/07/25/DASCTF/image-20200725172909110.png" alt="image-20200725172909110" style="zoom:67%;">
-<p>还是那个问题，该怎么传当前时间？？？当前时间一直在变化的呀。</p>
-<p>此处贴出大佬的方法：</p>
-<img src="/2020/07/25/DASCTF/image-20200725173059630.png" alt="image-20200725173059630" style="zoom:80%;">
-<p>python脚本，，，好吧，我是靠<code>.py</code>这个后缀猜的<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></p>
-<p>菜鸡的我再次流下了伤心的类水，咱也不会写python脚本呀（一打开我满是灰尘的pycharm还出错了，大家还是支持正版吧<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>）</p>
-<p>不会脚本，只能靠手速了，按照大佬的指导，先转换一个10秒后的时间戳。等到时候再发（妙啊）</p>
-<p>一顿操作猛如虎，以为flag呼之欲出了，结果出来的是一堆乱码，淦！</p>
-<img src="/2020/07/25/DASCTF/image-20200725173839845.png" alt="image-20200725173839845" style="zoom:50%;">
-<p>搞了半天居然没用。。。</p>
-<p>后来大佬提示我去看看攻防世界 warmup 这道题的wp,<strong>目录穿越，flag在根目录</strong>，去找了一波wp学习了一下，感觉两个题的确蛮像的，不过那个题源码有提示，这个题看不了源码。我模仿那道题的wp试了试 <code>?file=index.php?/../../../../../../flag</code>不行，又试了试它的各种变形体，失败。我感觉应该没啥问题呀（<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8">⬅</span>菜鸡的蜜汁自信）</p>
-<p>去问大佬这个姿势错在哪,大佬说不是file=而是f=,我照做了，吧上面那个payload里的file改成了f,还是不行呀。</p>
-<p>再次寻求help,大佬让我看看时间对不对，一惊，<strong>还得用时间？</strong> （不是说没卵用的吗，，手动狗头，，）</p>
-<p>原来每次都必须t=当前时间戳&amp;f=xxx(这边就解释了为啥是f而不是file了，我还是后来才醒悟)  好吧好吧，先去转换一个20秒后的时间戳，打开手机读秒，我感觉到了胜利的曙光<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8">😁</span></p>
-<p>一回车，妈耶，还是不行呀，奥，那个f=xxx，xxx应该像他原来url里那样用base64编一下码的，害，这脑子。去在线编码网站把<code>index.php?/../../../../../../flag</code> base64编码一下，编码完发现它居然后面没有两个==, 我不会又被在线编码网站给制裁了吧？<img src="/2020/07/25/DASCTF/image-20200725180857115.png" alt="image-20200725180857115">将信将疑地将它复制过去，又开始手动传时间（卑微.jpg），居然成功得到了flag!</p>
-<p>一波三折，跌宕起伏，柳暗花明。</p>
+<h4 id="1-GET">1.GET</h4>
+<p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
 <hr>
-<p><strong>参赛体验：</strong></p>
-<p>1.有机会一定学习一下python脚本，手速传时间实在是卑微</p>
-<p>2.多刷题！多刷题！多刷题！多涨涨见识才能触类旁通</p>
-<p>第一次参赛，纪念一下吧<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></p>
-<p><img src="/2020/07/25/DASCTF/image-20200725181614351.png" alt="image-20200725181614351"></p>
+<h4 id="2-POST">2.POST</h4>
+<p>这是一道简单的post传参的题，利用hackbar（火狐浏览器的插件，不了解的话可自行百度一下，安装啥的不难的）即可传参，或者利用bp应该也是一样的。</p>
+<img src="/2020/08/14/moectf/image-20200814140353992.png" alt="image-20200814140353992" style="zoom:50%;">
+<hr>
+<h4 id="3-小饼干">3.小饼干</h4>
+<p>进入页面发现是一个空页面，这时候想到利用bp抓包，观察</p>
+<img src="/2020/08/14/moectf/image-20200814140801922.png" alt="image-20200814140801922" style="zoom: 67%;">
+<p>发现类似flag的东西。复制提交，发现就是正确的flag</p>
+<hr>
+<h4 id="4-Introduction">4.Introduction</h4>
+<p>这个题点进去的话就是很正常的对<strong>moectf</strong>的介绍，点进去源码也没看到flag     (好吧，是我眼瞎，后来才发现flag就在源码里)  尝试抓包，也没找到</p>
+<img src="/2020/08/14/moectf/image-20200814142428514.png" alt="image-20200814142428514" style="zoom: 67%;">
+<p>考的是眼力<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f47f.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f47f.png?v8">👿</span></p>
+<hr>
+<h4 id="5-一句话木马">5.一句话木马</h4>
+<p>进入题目，发现源码就是一句话木马</p>
+<img src="/2020/08/14/moectf/image-20200814142846791.png" alt="image-20200814142846791">
+<p>话不多说，直接掏出俺的<strong>蚁剑</strong></p>
+<img src="/2020/08/14/moectf/image-20200814143147631.png" alt="image-20200814143147631" style="zoom: 50%;">
+<p>这边的话要注意的就是连接密码一定别忘记，<strong>密码就是post后面单引号里的内容</strong>。</p>
+<img src="/2020/08/14/moectf/image-20200814143913525.png" alt="image-20200814143913525" style="zoom: 50%;">
+<p>连接成功！一般情况下flag就在根目录/下，去到这道题的根目录下的确发现了flag。</p>
+<hr>
+<h4 id="6-ezmath">6.ezmath</h4>
+<p>等待填坑</p>
+<hr>
+<h4 id="7-三心二意">7.三心二意</h4>
+<p>等待填坑</p>
+<hr>
+<h4 id="8-俄罗斯头套">8.俄罗斯头套</h4>
+<img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
+<p>点进去后发现这样一句话，觉得应该得<strong>burpsuits</strong>伪造一波ip地址</p>
+<p><img src="/2020/08/14/moectf/image-20200814145154603.png" alt="image-20200814145154603"></p>
+<p>抓包后添加 <strong>X-Forwarded-For</strong>头，伪造一波ip地址，send一下，得到如下页面</p>
+<img src="/2020/08/14/moectf/image-20200814145736400.png" alt="image-20200814145736400" style="zoom:50%;">
+<p>然后注意到response里说我得是从https://www.baidu.com来的，根据之前的做题经验的话，再添加一个<strong>Referer</strong>头即可，如下：</p>
+<img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
+<p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
+<img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
+<p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
+<p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
+<img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
+<p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
+<hr>
+<h4 id="9-Moe-include">9.Moe include</h4>
+<p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
+<p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
+<p>让我别点，那一定得点一下了<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8">😝</span></p>
+<img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
+<p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
+<p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
+<img src="/2020/08/14/moectf/image-20200816141033076.png" alt="image-20200816141033076" style="zoom:67%;">
+<p>看到注释：<strong>你知道php伪协议吗？</strong></p>
+<p>不知道的话可以参考参考这篇博客：[<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html" target="_blank" rel="noopener">php伪协议总结</a>](<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html" target="_blank" rel="noopener">https://www.cnblogs.com/zzjdbk/p/13030717.html</a>)</p>
+<p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
+<p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
+<p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">😎</span></p>
+<hr>
+<h4 id="10-Moe-unserialize">10.Moe unserialize</h4>
+<p>等待填坑</p>
+<hr>
+<h4 id="11-EzXXE">11.EzXXE</h4>
+<p>等待填坑</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -221,12 +259,12 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/07/25/DASCTF/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/08/14/moectf/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>  
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/web/" rel="tag">web</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ctf/" rel="tag">ctf</a></li></ul>
 
     </footer>
   </div>
@@ -234,19 +272,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/08/14/moectf/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            MoeCTF wp
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/07/20/%E8%AF%97%E8%AF%8D/" class="article-nav-link">
+      <a href="/2020/07/25/DASCTF/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">诗和远方</div>
+        <div class="article-nav-title">DASCTF 《Ezfileinclude》 wp</div>
       </a>
     
   </nav>

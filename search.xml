@@ -265,7 +265,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>第二个实在是太骚了，运行后：</p>
 <img src="/2020/07/05/0xctf/image-20200720220938545.png" alt="image-20200720220938545" style="zoom:80%;">
 <p>菜鸡的我流下了伤心的泪水<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
-<h2 id=""></h2>
+<hr>
 <h4 id="18-EZupload-2">18.EZupload-2</h4>
 <img src="/2020/07/05/0xctf/image-20200731115817516.png" alt="image-20200731115817516" style="zoom:67%;">
 <p>依旧是一道文件上传，首先尝试一波上传shell.php,(让自己死心），回显不允许的文件类型。</p>
@@ -522,6 +522,105 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
       </categories>
       <tags>
         <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MoeCTF wp</title>
+    <url>/2020/08/14/moectf/</url>
+    <content><![CDATA[<img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
+<p>MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8">😉</span>，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！</p>
+<a id="more"></a>
+<h4 id="1-GET">1.GET</h4>
+<p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
+<hr>
+<h4 id="2-POST">2.POST</h4>
+<p>这是一道简单的post传参的题，利用hackbar（火狐浏览器的插件，不了解的话可自行百度一下，安装啥的不难的）即可传参，或者利用bp应该也是一样的。</p>
+<img src="/2020/08/14/moectf/image-20200814140353992.png" alt="image-20200814140353992" style="zoom:50%;">
+<hr>
+<h4 id="3-小饼干">3.小饼干</h4>
+<p>进入页面发现是一个空页面，这时候想到利用bp抓包，观察</p>
+<img src="/2020/08/14/moectf/image-20200814140801922.png" alt="image-20200814140801922" style="zoom: 67%;">
+<p>发现类似flag的东西。复制提交，发现就是正确的flag</p>
+<hr>
+<h4 id="4-Introduction">4.Introduction</h4>
+<p>这个题点进去的话就是很正常的对<strong>moectf</strong>的介绍，点进去源码也没看到flag     (好吧，是我眼瞎，后来才发现flag就在源码里)  尝试抓包，也没找到</p>
+<img src="/2020/08/14/moectf/image-20200814142428514.png" alt="image-20200814142428514" style="zoom: 67%;">
+<p>考的是眼力<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f47f.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f47f.png?v8">👿</span></p>
+<hr>
+<h4 id="5-一句话木马">5.一句话木马</h4>
+<p>进入题目，发现源码就是一句话木马</p>
+<img src="/2020/08/14/moectf/image-20200814142846791.png" alt="image-20200814142846791">
+<p>话不多说，直接掏出俺的<strong>蚁剑</strong></p>
+<img src="/2020/08/14/moectf/image-20200814143147631.png" alt="image-20200814143147631" style="zoom: 50%;">
+<p>这边的话要注意的就是连接密码一定别忘记，<strong>密码就是post后面单引号里的内容</strong>。</p>
+<img src="/2020/08/14/moectf/image-20200814143913525.png" alt="image-20200814143913525" style="zoom: 50%;">
+<p>连接成功！一般情况下flag就在根目录/下，去到这道题的根目录下的确发现了flag。</p>
+<hr>
+<h4 id="6-ezmath">6.ezmath</h4>
+<p>等待填坑</p>
+<hr>
+<h4 id="7-三心二意">7.三心二意</h4>
+<p>等待填坑</p>
+<hr>
+<h4 id="8-俄罗斯头套">8.俄罗斯头套</h4>
+<img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
+<p>点进去后发现这样一句话，觉得应该得<strong>burpsuits</strong>伪造一波ip地址</p>
+<p><img src="/2020/08/14/moectf/image-20200814145154603.png" alt="image-20200814145154603"></p>
+<p>抓包后添加 <strong>X-Forwarded-For</strong>头，伪造一波ip地址，send一下，得到如下页面</p>
+<img src="/2020/08/14/moectf/image-20200814145736400.png" alt="image-20200814145736400" style="zoom:50%;">
+<p>然后注意到response里说我得是从https://www.baidu.com来的，根据之前的做题经验的话，再添加一个<strong>Referer</strong>头即可，如下：</p>
+<img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
+<p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
+<img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
+<p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
+<p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
+<img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
+<p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
+<hr>
+<h4 id="9-Moe-include">9.Moe include</h4>
+<p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
+<p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
+<p>让我别点，那一定得点一下了<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8">😝</span></p>
+<img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
+<p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
+<p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
+<img src="/2020/08/14/moectf/image-20200816141033076.png" alt="image-20200816141033076" style="zoom:67%;">
+<p>看到注释：<strong>你知道php伪协议吗？</strong></p>
+<p>不知道的话可以参考参考这篇博客：[<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html" target="_blank" rel="noopener">php伪协议总结</a>](<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html" target="_blank" rel="noopener">https://www.cnblogs.com/zzjdbk/p/13030717.html</a>)</p>
+<p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
+<p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
+<p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">😎</span></p>
+<hr>
+<h4 id="10-Moe-unserialize">10.Moe unserialize</h4>
+<p>等待填坑</p>
+<hr>
+<h4 id="11-EzXXE">11.EzXXE</h4>
+<p>等待填坑</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>ctf</tag>
       </tags>
   </entry>
 </search>
