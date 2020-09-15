@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Charon的博客</title>
+  <title>Ab4ndon的博客</title>
   
   <subtitle>习于冷，志于成冰</subtitle>
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-16T06:27:44.726Z</updated>
+  <updated>2020-09-15T08:25:32.856Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,25 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>YCBCTF wp</title>
+    <link href="http://yoursite.com/2020/09/10/YCBCTF/"/>
+    <id>http://yoursite.com/2020/09/10/YCBCTF/</id>
+    <published>2020-09-10T14:44:54.000Z</published>
+    <updated>2020-09-15T08:25:32.856Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题&lt;span class=&quot;github-emoji&quot; style=&quot;display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain&quot; data-src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8&quot;&gt;😭&lt;/span&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="CTF" scheme="http://yoursite.com/tags/CTF/"/>
+    
+  </entry>
   
   <entry>
     <title>MoeCTF wp</title>
