@@ -80,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">951</span>
+            <span class="post-count">1.9k</span>
         </span>
     </span>
 
@@ -89,7 +89,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">3 分钟</span>
+            <span class="post-count">7 分钟</span>
         </span>
     </span>
 </div>
@@ -137,7 +137,44 @@
 <p>等待填坑</p>
 <hr>
 <h4 id="7-三心二意">7.三心二意</h4>
-<p>等待填坑</p>
+<p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">$a = $_GET[<span class="string">'a'</span>];</span><br><span class="line">$b = $_POST[<span class="string">'b'</span>];</span><br><span class="line">$c = $_REQUEST[<span class="string">'c'</span>];</span><br><span class="line">$d = $_COOKIE[<span class="string">'d'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>($a, $b, $c, $d)) {</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">if</span> (is_numeric($a) <span class="keyword">and</span> $a == <span class="keyword">false</span>) {</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'A is OK!'</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">'&lt;br/&gt;'</span>;</span><br><span class="line">        <span class="keyword">if</span> (!is_numeric($b) <span class="keyword">and</span> $b == <span class="number">0x125e591</span>) {</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'B is OK!'</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">'&lt;br/&gt;'</span>;</span><br><span class="line">            <span class="keyword">if</span> ($c != <span class="number">240610708</span> <span class="keyword">and</span> md5($c) == md5(<span class="number">240610708</span>)) {</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">'C is OK!'</span>;</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">'&lt;br/&gt;'</span>;</span><br><span class="line">                <span class="keyword">if</span> (strlen($d) &lt; <span class="number">7</span> <span class="keyword">and</span> $d != <span class="number">0</span> <span class="keyword">and</span> $d ** <span class="number">2</span> == <span class="number">0</span>) {</span><br><span class="line">                    <span class="keyword">include</span>(<span class="string">'/flag'</span>);</span><br><span class="line">                } <span class="keyword">else</span> {</span><br><span class="line">                    <span class="keyword">echo</span> <span class="string">"D is not wanted.&lt;br/&gt;"</span>;</span><br><span class="line">                    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">                }</span><br><span class="line">            } <span class="keyword">else</span> {</span><br><span class="line">                <span class="keyword">echo</span> <span class="string">"C is not wanted.&lt;br/&gt;"</span>;</span><br><span class="line">                highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">            }</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"Too young too simple.&lt;br/&gt;"</span>;</span><br><span class="line">            highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">        }</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"A is not wanted.&lt;br/&gt;"</span>;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span></p>
+<ul>
+<li><code>is_numeric($a) and $a == false</code></li>
+</ul>
+<p>此处涉及到**is_numeric()**这个php函数,<strong>is_numeric()</strong> 函数用于检测变量是否为数字或数字字符串,如果指定的变量是数字和数字字符串则返回 TRUE，否则返回 FALSE。</p>
+<p>也就是说上面这个语句要求a参数是一个数字或字符串，且==false，那挺简单的，0或者null都可以，尝试?a=0,回车一下发现没反应，仔细看源码才发现他要a,b,c,d四个变量都存在才行。</p>
+<ul>
+<li>
+<p><code>!is_numeric($b) and $b == 0x125e591</code></p>
+<p>这个语句的要求是b变量不是数字或字符串并且b==0x125e591，关于0x125e591，我也不太清楚他是个啥，看起来像16进制，百度一波</p>
+<img src="/2020/08/14/moectf/image-20200921134750652.png" alt="image-20200921134750652" style="zoom:50%;">
+<p>好家伙！直接给我转换出来了。没错了，0x125e591是16进制，转成10进制就是19260817。</p>
+<blockquote>
+<p>php有两种比较方式,一种是“= =”一种是“= = =”</p>
+<p>“= =”：会把两端变量类型转换成相同的，再进行比较。</p>
+<p>“= = =”：会先判断两端变量类型是否相同，再进行比较。</p>
+<p>这里明确说明，<strong>在两个相等的符号中，一个字符串与一个数字相比较时，字符串会转换成数值</strong>。</p>
+<p>当一个字符串被当作一个数值来取值，其结果和类型如下:如果该字符串没有包含’.’,’e’,’E’并且其数值值在整形的范围之内，该字符串被当作int来取值。其他所有情况下都被作为float来取值，<strong>该字符串的 开始部分 决定了它的值，如果该字符串以合法的数值开始，则使用该数值， 否则其值为0 。</strong></p>
+<p>在进行比较运算时，如果遇到了 0e 这类字符串，PHP会将它解析为 科学计数法</p>
+<p>在进行比较运算时，如果遇到了 0x 这类字符串，PHP会将它解析为 十六进制 。</p>
+</blockquote>
+<p>然后经过大佬指点和我的测试，我发现只需要在19260817后面加上字母就行了<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8">😸</span></p>
+</li>
+<li>
+<p><code>$c != 240610708 and md5($c) == md5(240610708)</code></p>
+<p>这个的话主要是md5值的知识，上网一查，md5(‘240610708’)等于md5(‘QNKCDZO’)，于是直接吧c赋值成后面那个字符串。</p>
+</li>
+<li>
+<p><code>strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0</code></p>
+<p>这个一开始是真的不会，后来还是一个学弟教我的，害。</p>
+<p>考点应该是<strong>md5()函数无法处理数组，如果传入的为数组，会返回NULL</strong>（之前应该遇到过，忘记了。。。）</p>
+<p>所以此处将d赋值成<code>d[]=0</code>,妙啊。</p>
+</li>
+</ul>
+<p>再贴一道与这道题很像的题：（来自CNSS）</p>
+<figure class="highlight php"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">$a = $_GET[<span class="string">'a'</span>];</span><br><span class="line">$b = $_POST[<span class="string">'b'</span>];</span><br><span class="line">$c = $_REQUEST[<span class="string">'c'</span>];</span><br><span class="line">$d = $_COOKIE[<span class="string">'d'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == <span class="number">114514</span>) {</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">"A is ok!"</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>($b) &amp;&amp; $b != <span class="number">0</span> &amp;&amp; $b ** <span class="number">2</span> == <span class="number">0</span>) {</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">"B is ok!"</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>($c) &amp;&amp; <span class="keyword">isset</span>($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"C is ok!"</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">"Here is your flag:"</span>;</span><br><span class="line">            <span class="keyword">include</span>(<span class="string">'/flag'</span>);</span><br><span class="line">        } <span class="keyword">else</span> {</span><br><span class="line">            <span class="keyword">die</span>((<span class="keyword">isset</span>($c) &amp;&amp; <span class="keyword">isset</span>($d)) ? <span class="string">"Try to search something?"</span> : <span class="string">"C and D is wanted."</span>);</span><br><span class="line">        }</span><br><span class="line">    } <span class="keyword">else</span> {</span><br><span class="line">        <span class="keyword">die</span>(<span class="keyword">isset</span>($b) ? <span class="string">"You need to try again."</span> : <span class="string">"B is wanted."</span>);</span><br><span class="line">    }</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">    <span class="keyword">die</span>(<span class="keyword">isset</span>($a) ? <span class="string">"Please try another a."</span> : <span class="string">"A is wanted."</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
 <hr>
 <h4 id="8-俄罗斯头套">8.俄罗斯头套</h4>
 <img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
