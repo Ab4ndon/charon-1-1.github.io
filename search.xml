@@ -68,7 +68,7 @@
     <url>/2020/07/05/0xctf/</url>
     <content><![CDATA[<p>最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打:sob::sob:,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.</p>
 <a id="more"></a>
-<h5 id="1-soeasy">1.soeasy</h5>
+<h4 id="1-soeasy">1.soeasy</h4>
 <p><img src="/2020/07/05/0xctf/image-20200705164040950.jpg" alt="1"></p>
 <p>这个题还是蛮简单的，查看源码,稍微找找就能得到flag</p>
 <p>稍微总结一下查看源码的方法吧：</p>
@@ -78,21 +78,21 @@
 <p>d.<code>ctrl+U</code></p>
 <p>e.在网址前面加上<code>view-source:</code>(火狐反正支持这种方式)</p>
 <hr>
-<h5 id="2-GET">2.GET</h5>
+<h4 id="2-GET">2.GET</h4>
 <p><img src="/2020/07/05/0xctf/image-20200705165429119.jpg" alt="image-20200705165429119"></p>
 <p>稍微判断一下这是一个通过Get方式传参的问题（如果不了解的话提前去了解一下PHP语言，熟悉一下基本语法）</p>
 <p>Get方式传参直接在URL后面写上参数并为其赋值即可，本题要传的的参数为0x,值为0xfxxker,故在网址栏应该这么写：</p>
 <p><img src="/2020/07/05/0xctf/image-20200705165907235.png" alt="image-20200705165907235"></p>
 <p>回车一下就得到了flag.</p>
 <hr>
-<h5 id="3-POST">3.POST</h5>
+<h4 id="3-POST">3.POST</h4>
 <p><img src="/2020/07/05/0xctf/image-20200705170036059.png" alt="image-20200705170036059"></p>
 <p>本题考察的是POST方式传参，我是用火狐插件hackbar来解的（关于hackbar的下载安装并不难，不必装最新版，最新版需要付费，下个旧版就行了，然后关闭自动更新。具体去百度一下）</p>
 <p>F12查看源码，然后点Hackbar, <code>laod URL</code>,勾选<code>post date</code>，在下面的框里输入参数并为其赋值，点击<code>Execute</code>就能成功传参，然后flag就有了</p>
 <p>当然，用Burpsuit也一样能做，在这不赘述了</p>
 <img src="/2020/07/05/0xctf/image-20200705170922230.png" alt="image-20200705170922230" style="zoom: 33%;">
 <hr>
-<h5 id="4-XFF-Referer">4.XFF&amp;Referer</h5>
+<h4 id="4-XFF-Referer">4.XFF&amp;Referer</h4>
 <p>打开页面只有一句话“只有本地IP才能访问”，刷过攻防世界的新手区的题的话应该会有印象，其实就是伪造一个Ip，然后就可以了</p>
 <p>首先利用Burpsuit抓个包，右击发送到repeater,然后在header里面Add一个新的头：<code>X-Forwarded-For</code> , 值为127.0.0.1</p>
 <img src="/2020/07/05/0xctf/image-20200705171807465.png" alt="image-20200705171807465" style="zoom:50%;">
@@ -100,7 +100,7 @@
 <p>这时同样的方法，在headers中再添加一个名为<code>Refere</code>r的头，值为<code>http://0xctf.ctf</code>,send一下，响应中就出现了flag</p>
 <img src="/2020/07/05/0xctf/image-20200705172430570.png" alt="image-20200705172430570" style="zoom: 50%;">
 <hr>
-<h5 id="5-ezmd5">5.ezmd5</h5>
+<h4 id="5-ezmd5">5.ezmd5</h4>
 <img src="/2020/07/05/0xctf/image-20200705173020907.png" alt="image-20200705173020907" style="zoom: 80%;">
 <p>核心是那个if 语句，它要求参数a,b 的值相同但是MD5相同，这里可以利用绕过。（绕过蛮有意思的，当时做这题的时候查了查，觉得有篇博文讲的还蛮好的，在这安利一下：<a href="https://blog.csdn.net/qq_19980431/article/details/83018232" target="_blank" rel="noopener">CTF中常见php-MD5()函数漏洞</a>）</p>
 <blockquote>
@@ -125,7 +125,7 @@
 <p>所以可以将a,b赋值成上面所列的由md5加密后以OE开头的两个不同的值，再采用get方式传参即可。</p>
 <p><img src="/2020/07/05/0xctf/image-20200705173943800.png" alt="image-20200705173943800"></p>
 <hr>
-<h5 id="6-ezmd5-2">6.ezmd5-2</h5>
+<h4 id="6-ezmd5-2">6.ezmd5-2</h4>
 <img src="/2020/07/05/0xctf/image-20200705182529614.png" alt="image-20200705182529614" style="zoom:80%;">
 <p>与上一题其实蛮类似的，只不过它的限制又变大了，这次是“===”严格相等，不仅值要相等，类型也要相同</p>
 <p><strong>PHP中md5的函数特性</strong></p>
@@ -134,7 +134,7 @@
 <p>[1] !== [2] &amp;&amp; md5([1]) === md5([2])<br>
 所以GET传入<code>a[]=1&amp;b[]=2</code>就能够绕过了。</p>
 <hr>
-<h5 id="7-跳转">7.跳转</h5>
+<h4 id="7-跳转">7.跳转</h4>
 <p>点开页面只有一句话“flag is not here”,抓一下包看一下响应，发现有个比较特别的响应头,<code>location: youcanfindme.php</code>,</p>
 <p>虽然有所发现，但是一开始不知道怎么用，尝试在原来的URL后加了个<code>youcanfindme.php</code>,发现页面没变化，一筹莫展。</p>
 <p>后来向大佬求助，我应该再抓一次包的，加了<code>youcanfindme.php</code>后的页面抓包后状态码变成了302（暂时性转移），响应里多了个<code>0xctf: MHhDVEZ7MWY5NGIwMzZiY2NkOTA5Nzg2Yzc3MTVkZTg1NGJmMTh9</code>的头，很可疑，很像flag，但是一般flag不是这种形式啊。原来他用了Base64编码，需要先解码（百度上有很多在线解码的）。解码后就出来一个flag。</p>
@@ -143,7 +143,7 @@
 <p><img src="/2020/07/05/0xctf/image-20200705184218489.png" alt="image-20200705184218489" style="zoom:50%;"><img src="/2020/07/05/0xctf/image-20200705184247594.png" alt="image-20200705184247594"></p>
 <img src="/2020/07/05/0xctf/image-20200705184247594.png" alt="image-20200705184247594" style="zoom:50%;">
 <hr>
-<h5 id="8-我爱吃饼干">8.我爱吃饼干</h5>
+<h4 id="8-我爱吃饼干">8.我爱吃饼干</h4>
 <p>点进页面，也是只有一句话<code>You are guest now, only admin can see flag</code></p>
 <p>抓个包看看吧</p>
 <p>抓包后发现响应头里有这样一个头<code>Set-Cookie: Cookie=eyJ1c2VybmFtZSI6Imd1ZXN0In0%3D</code></p>
@@ -160,22 +160,22 @@
 <p>此时大佬缓缓打出一个:question:方法对了，但是居然解不出来？</p>
 <p>我又重新试了一遍，不行，发现我的base64编码出来的字符串和大佬的不一样，我换了一个在线解码的网站，再解了一次，把字符串作为cookie的值，成功解出flag。（什么？我居然被在线解码网站给克制了:angry:）</p>
 <hr>
-<h5 id="9-eztrick">9.eztrick</h5>
+<h4 id="9-eztrick">9.eztrick</h4>
 <img src="/2020/07/05/0xctf/image-20200706183947270.png" alt="image-20200706183947270">
 <p>起初我是把它当绕过来做的，试了试绕过空格的一些方法，都失败了。</p>
 <p>后来大佬告诉我不是空格，而是URL编码显示空字符，让我试试<code>？%E%280%AC=xxx</code>的形式，我试了一下<code>？%E%280%AC=%E%280%AC</code>，成功得到flag</p>
 <p><img src="/2020/07/05/0xctf/image-20200706184647653.png" alt="image-20200706184647653"></p>
 <hr>
-<h5 id="10">10.$$</h5>
+<h4 id="10">10.$$</h4>
 <p><img src="/2020/07/05/0xctf/image-20200706184747544.png" alt="image-20200706184747544"></p>
 <p>这题考察变量覆盖   此处安利一篇博客：<a href="https://www.jianshu.com/p/a4d782e91852" target="_blank" rel="noopener">变量覆盖漏洞</a></p>
 <p>准确说是考察由$$引起的变量覆盖，根据题意，在url后面加上<code>？ctf=0xctf</code>,使其满足if 条件语句即可</p>
 <hr>
-<h5 id="11-extract">11.extract</h5>
+<h4 id="11-extract">11.extract</h4>
 <p><img src="/2020/07/05/0xctf/image-20200706185409318.png" alt="image-20200706185409318"></p>
 <p>这题考察由extract（）函数引起的变量覆盖问题，（关于extract（）函数，可自行百度或者阅读上面的博文:arrow_up:）直接在url后面加上<code>？ctf=0xctf</code>,使其满足if 条件语句即可</p>
 <hr>
-<h5 id="12-parse-str">12.parse_str</h5>
+<h4 id="12-parse-str">12.parse_str</h4>
 <p><img src="/2020/07/05/0xctf/image-20200706185724337.png" alt="image-20200706185724337"></p>
 <p>这题考察的是由parse_str()函数引起的变量覆盖，主要是通过变量覆盖使得Leon1===Leon2</p>
 <p>之前在学习变量覆盖的时候见过几道这方面的例题，这道题中的<code>$_SERVER["QUERY_STRING"]</code>是我没见到过的，去百度了一下：</p>
@@ -208,7 +208,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>其实对于解题来说并没有太大影响</p>
 <p>所以直接在url后面添加<code>？Leon1=abc&amp;Leon2=abc</code>即可</p>
 <hr>
-<h5 id="13-ezupload">13.ezupload</h5>
+<h4 id="13-ezupload">13.ezupload</h4>
 <p><img src="/2020/07/05/0xctf/image-20200708184237017.png" alt="image-20200708184237017"></p>
 <p>页面很简单，易得这是一道考察文件上传的题</p>
 <p>上传了一张图片，得到一句话</p>
@@ -232,7 +232,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>找了找也没找到flag，，，，实在是菜啊:sob:</p>
 <p>问了大佬，<strong>flag一般在根目录下</strong>，点开那个<code>/</code>文件夹，在最下面发现了flag文件，点开即可得到flag。</p>
 <hr>
-<h5 id="14-一键getflag">14.一键getflag</h5>
+<h4 id="14-一键getflag">14.一键getflag</h4>
 <img src="/2020/07/05/0xctf/image-20200709215614854.png" alt="image-20200709215614854" style="zoom:67%;">
 <p>点进去，它提示你输入0xCTF网站的IP即可得到flag，菜鸡的我还去百度了一下什么是网站的IP:cold_sweat:</p>
 <p>其实就类似127.0.0.1这类的，我查了一下有没有能查询某个指定网站IP的工具，找了一个在线查询的，输入网站的URL后得到网站的IP：<code>39.106.164.8</code></p>
@@ -240,7 +240,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>**maxlength=“4”**说明输入的字符串最大长度为4，而我们的IP地址显然超过了，所以输不进去。想了一下利用Burpsuite抓一波包再改包：</p>
 <p>先输入一个4个字符以内的IP。如我输入的是1234，抓包后将IP改为<code>39.106.164.8</code>，再发包即可</p>
 <hr>
-<h5 id="15-未完成的留言板">15.未完成的留言板</h5>
+<h4 id="15-未完成的留言板">15.未完成的留言板</h4>
 <img src="/2020/07/05/0xctf/image-20200711132555655.png" alt="image-20200711132555655" style="zoom:80%;">
 <p>点进去，看一下，是一个留言板</p>
 <img src="/2020/07/05/0xctf/image-20200711132711291.png" alt="image-20200711132711291" style="zoom: 33%;">
@@ -271,7 +271,7 @@ include($_GET['action']);
 <img src="/2020/07/05/0xctf/image-20200711140844022.png" alt="image-20200711140844022" style="zoom: 33%;">
 <p>base64解码后即可得到flag</p>
 <hr>
-<h5 id="16-RCE-bypass">16.RCE bypass</h5>
+<h4 id="16-RCE-bypass">16.RCE bypass</h4>
 <img src="/2020/07/05/0xctf/image-20200716214515665.png" alt="image-20200716214515665" style="zoom:67%;">
 <p>这道题前前后后花了些时间，一开始无从下手，题目标题是RCE绕过，关于RCE绕过的姿势也了解了一些（此处安利一篇博客：<a href="https://cloud.tencent.com/developer/article/1599149" target="_blank" rel="noopener">《RCE的Bypass与骚姿势总结》</a>），但完全无从下手。前期试了试get方式传一个cmd参数，我试了一下<code>？cmd=1</code>,并没有什么用。后来大佬建议我去了解一下php system 函数，了解了一波后，再结合刚学的Linux命令，想起来攻防世界里的一句话木马那道题当时有个wp就是采用system+cat来解决的。我踌躇满志地打开hackbar, load Url,post date:<code>shell=system('ls');</code>，然而又是啥都没。一番挣扎尝试后再次求助大佬，经过大佬的点播与提示，上述php语句中有两句话应该好好理解：</p>
 <pre><code class="language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
@@ -315,7 +315,7 @@ include($_GET['action']);
 <p>但是让我很苦恼的是那种拼接方式去构造payload的方式我可能还不太理解，在本题中尝试了好多次也没成功，这个坑先留着，以后来填，或者大佬们评论区指点一波</p>
 <p>）</p>
 <hr>
-<h5 id="17-RCE-bypass-pro"><strong>17.RCE_bypass_pro</strong></h5>
+<h4 id="17-RCE-bypass-pro"><strong>17.RCE_bypass_pro</strong></h4>
 <img src="/2020/07/05/0xctf/image-20200720210307946.png" alt="image-20200720210307946" style="zoom:50%;">
 <p>这道题是RCE的pro版本，料到了绕过有难度。点进去一看，我敲！这么多过滤条件！（手动滑稽_）</p>
 <p>稍微理解一下源码：首先要以<code>GET</code>方式传一个<code>ip</code>参数，然后那一长串用于过滤的令人头皮发麻的正则表达式，emmm，怎么说呢，没能完全看懂，但大致能晓得它过滤掉了哪些东西。</p>
@@ -342,10 +342,10 @@ include($_GET['action']);
 <img src="/2020/07/05/0xctf/image-20200720220938545.png" alt="image-20200720220938545" style="zoom:80%;">
 <p>菜鸡的我流下了伤心的泪水<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
 <hr>
-<h5 id="18-EZupload-2">18.EZupload-2</h5>
+<h4 id="18-EZupload-2">18.EZupload-2</h4>
 <img src="/2020/07/05/0xctf/image-20200731115817516.png" alt="image-20200731115817516" style="zoom:67%;">
 <p>依旧是一道文件上传，首先尝试一波上传shell.php,(让自己死心），回显不允许的文件类型。</p>
-<p>未完待续<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8">😸</span>又尝试了一波双写绕过，加.绕过，都不行，想了一下可能是得上传图片马，首先制作一个图片马：</p>
+<p>又尝试了一波双写绕过，加.绕过，都不行，想了一下可能是得上传图片马，首先制作一个图片马：</p>
 <p>首先桌面新建一个shell.php文件，写入一句话木马。</p>
 <p>然后打开cmd,用<code>cd desktop</code>定位到桌面,<code>copy 1.jpg/b+shell.php/a 3.jpg</code>（前提是你桌面上有1.jpg这张图和shell.php）</p>
 <p>用记事本打开3.jpg，将乱码拉倒最后，如果最后有一句话木马就说明制作成功了。（必要的情况下可以把乱码删掉，乱码太多后续可能解析不了）</p>
@@ -375,6 +375,7 @@ include($_GET['action']);
 <img src="/2020/07/05/0xctf/image-20200731124839807.png" alt="image-20200731124839807" style="zoom:50%;">
 <p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8">😙</span></p>
 <hr>
+<p>未完待续<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8">😸</span></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
