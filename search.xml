@@ -236,7 +236,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200709215614854.png" alt="image-20200709215614854" style="zoom:67%;">
 <p>点进去，它提示你输入0xCTF网站的IP即可得到flag，菜鸡的我还去百度了一下什么是网站的IP:cold_sweat:</p>
 <p>其实就类似127.0.0.1这类的，我查了一下有没有能查询某个指定网站IP的工具，找了一个在线查询的，输入网站的URL后得到网站的IP：<code>39.106.164.8</code></p>
-<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required></p>
+<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required=""></p>
 <p>**maxlength=“4”**说明输入的字符串最大长度为4，而我们的IP地址显然超过了，所以输不进去。想了一下利用Burpsuite抓一波包再改包：</p>
 <p>先输入一个4个字符以内的IP。如我输入的是1234，抓包后将IP改为<code>39.106.164.8</code>，再发包即可</p>
 <hr>
@@ -248,21 +248,16 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200711132823635.png" alt="image-20200711132823635" style="zoom:33%;">
 <p>因为题目说flag在fl4g.php，所以我把这个放到URL后面试了一下，跳转出来的还是留言板界面。</p>
 <p>查看了一下源码，再抓包看了看，并没有看出什么端倪。于是我查看了提示，提示为：LFI，即本地文件包含，所以本题考查PHP伪协议与本地文件包含漏洞。通过对知识与例题的学习，我尝试了一下用php://filter去读取一下fl4g.php文件，构造如下payload:</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">
-http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-language-php"><code class="language-language-php">http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>失败，后来又尝试了一下用php://input的方式写入一句话木马，也失败了（可能是我姿势不对吧:joy:）</p>
 <p>继而求助大佬，大佬一针见血地指出了我的问题，上面那个payload里的file参数在本题中并不存在</p>
 <p>（的确，由于我是模仿的其他题目的解法，并没完全理解，此处就照搬了file参数</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php"><?
-include($_GET['file']);
-?>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-language-php"><code class="language-language-php">include($_GET['file']);
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>这样的php语句说明file是参数，而本题是action为参数</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php"><?
-include($_GET['action']);
-?>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-language-php"><code class="language-language-php">include($_GET['action']);
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>从点击回复后的url中便可看出<img src="/2020/07/05/0xctf/image-20200711135546090.png" alt="image-20200711135546090" style="zoom:80%;"></p>
 <p>所以将上述payload中的file参数修改为action 即可，不不不，事情没有这么简单，我尝试了一下，直接404，好吧，貌似是index.php中并没有action 这个参数，所以应该在action.php 的基础上再去使用php://filter语句，故修改payload为：</p>
 <pre class="line-numbers language-language-php"><code class="language-language-php">http://ctf.caoyi.site:30002/web8/action.php?action=php://filter/read=convert.base64-encode/resource=fl4g.php
