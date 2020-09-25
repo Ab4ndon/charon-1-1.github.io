@@ -29,8 +29,9 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4ndon" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-</head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4ndon" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
 
 
 <body>
@@ -410,14 +411,14 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    402
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    1 分
                 </div>
                 
 
@@ -466,7 +467,7 @@
 <hr>
 <h4 id="7-三心二意">7.三心二意</h4>
 <p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
-<pre><code class="language-php">&lt;?php
+<pre class="line-numbers language-language-php"><code class="language-language-php"><?php
 $a = $_GET['a'];
 $b = $_POST['b'];
 $c = $_REQUEST['c'];
@@ -477,33 +478,33 @@ if (!isset($a, $b, $c, $d)) {
 } else {
     if (is_numeric($a) and $a == false) {
         echo 'A is OK!';
-        echo '&lt;br/&gt;';
+        echo '<br/>';
         if (!is_numeric($b) and $b == 0x125e591) {
             echo 'B is OK!';
-            echo '&lt;br/&gt;';
+            echo '<br/>';
             if ($c != 240610708 and md5($c) == md5(240610708)) {
                 echo 'C is OK!';
-                echo '&lt;br/&gt;';
-                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) {
+                echo '<br/>';
+                if (strlen($d) < 7 and $d != 0 and $d ** 2 == 0) {
                     include('/flag');
                 } else {
-                    echo "D is not wanted.&lt;br/&gt;";
+                    echo "D is not wanted.<br/>";
                     highlight_file(__FILE__);
                 }
             } else {
-                echo "C is not wanted.&lt;br/&gt;";
+                echo "C is not wanted.<br/>";
                 highlight_file(__FILE__);
             }
         } else {
-            echo "Too young too simple.&lt;br/&gt;";
+            echo "Too young too simple.<br/>";
             highlight_file(__FILE__);
         }
     } else {
-        echo "A is not wanted.&lt;br/&gt;";
+        echo "A is not wanted.<br/>";
         highlight_file(__FILE__);
     }
 } 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧:cry:</p>
 <ul>
 <li><code>is_numeric($a) and $a == false</code></li>
@@ -541,23 +542,23 @@ if (!isset($a, $b, $c, $d)) {
 </li>
 </ul>
 <p>再贴一道与这道题很像的题：（来自CNSS）</p>
-<pre><code class="language-php">&lt;?php
+<pre class="line-numbers language-language-php"><code class="language-language-php"><?php
 highlight_file(__FILE__);
 $a = $_GET['a'];
 $b = $_POST['b'];
 $c = $_REQUEST['c'];
 $d = $_COOKIE['d'];
 
-if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
+if (isset($a) && !is_numeric($a) && $a == 114514) {
     echo "A is ok!";
-    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) {
+    if (isset($b) && $b != 0 && $b ** 2 == 0) {
         echo "B is ok!";
-        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {
+        if (isset($c) && isset($d) && $c !== $d && md5($c) === md5($d)) {
             echo "C is ok!";
             echo "Here is your flag:";
             include('/flag');
         } else {
-            die((isset($c) &amp;&amp; isset($d)) ? "Try to search something?" : "C and D is wanted.");
+            die((isset($c) && isset($d)) ? "Try to search something?" : "C and D is wanted.");
         }
     } else {
         die(isset($b) ? "You need to try again." : "B is wanted.");
@@ -565,7 +566,7 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
 } else {
     die(isset($a) ? "Please try another a." : "A is wanted.");
 } 
-</code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <hr>
 <h4 id="8-俄罗斯头套">8.俄罗斯头套</h4>
 <img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
@@ -1359,7 +1360,7 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.6k</span>&nbsp;字
+                class="white-color">8k</span>&nbsp;字
             
             
             
@@ -1530,9 +1531,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>
