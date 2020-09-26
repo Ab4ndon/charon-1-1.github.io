@@ -38,7 +38,7 @@ body {
     background: linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35) ) 0% 0% /     cover, url("http://kongcm.cn/medias/featureimages/1.jpg"), url("https://x.jpg") 0px 0px;
     background-attachment: fixed;
     margin: 0;
-
+    color: #7F95D1;
     overflow-x: hidden;
     overflow-y: auto;
 }

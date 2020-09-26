@@ -1,69 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>DASCTF 《Ezfileinclude》 wp</title>
-    <url>/2020/07/25/DASCTF/</url>
-    <content><![CDATA[<p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，遭受了五个小时的吊打。</p>
-<a id="more"></a>
-<p><img src="/2020/07/25/DASCTF/image-20200725170156404.png" alt="image-20200725170156404"></p>
-<p>没错，就是这么残忍。直接把我0封了。<img src="/2020/07/25/DASCTF/image-20200725180746269.png" alt="image-20200725180746269"></p>
-<img src="/2020/07/25/DASCTF/image-20200725180804349.png" alt="image-20200725180804349" style="zoom:67%;">
-<p>后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历程。</p>
-<p>打开靶机，页面显示的是一张图片<img src="/2020/07/25/DASCTF/image-20200725180822011.png" alt="image-20200725180822011" style="zoom:67%;"></p>
-<p>查看源码，没太多有用的信息，唯一比较特殊的话是这找图片的url:<code>**image.php?t=1595643210&amp;f=Z3F5LmpwZw==**</code></p>
-<p>看到f=后面那一串东西，一下子想到了base64编码，尝试解一波码，解出来<code>gqy.jpg</code>，先留着，说不定有用。</p>
-<p>试了一下image.php,回显：<strong>you miss some parameters</strong>（你漏掉了一些参数）奥，可能后面的t,f也得跟着，复制粘贴上去，再回车，页面回显：<strong>what’s your time ?</strong></p>
-<p>作为一个萌新，我一度怀疑这是不是什么CTF黑话，特意百度了一波 <em><strong>CTF what’s your time?</strong></em>  好吧，并不是，想了想，可能是要给time这个参数赋值，盲猜可能是URL中的t参数，试着把t参数删掉，回车，回显提醒漏掉参数，给t赋值为time试试？还是问我时间！<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8">😩</span>但是时间一直是变化的呀，，，怎么搞呢？关键在于那个t后面的一串数字是啥，我又去百度了一波CTF中的数字编码，没啥结果。卡住。</p>
-<p>求助大佬（emmm，应该不算犯规吧）大佬说那一串数字是<strong>unix时间戳</strong>，百度了一波，相当于那一串数字其实表示的是一个时间</p>
-<img src="/2020/07/25/DASCTF/image-20200725172909110.png" alt="image-20200725172909110" style="zoom:67%;">
-<p>还是那个问题，该怎么传当前时间？？？当前时间一直在变化的呀。</p>
-<p>此处贴出大佬的方法：</p>
-<img src="/2020/07/25/DASCTF/image-20200725173059630.png" alt="image-20200725173059630" style="zoom:80%;">
-<p>python脚本，，，好吧，我是靠<code>.py</code>这个后缀猜的<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></p>
-<p>菜鸡的我再次流下了伤心的类水，咱也不会写python脚本呀（一打开我满是灰尘的pycharm还出错了，大家还是支持正版吧<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>）</p>
-<p>不会脚本，只能靠手速了，按照大佬的指导，先转换一个10秒后的时间戳。等到时候再发（妙啊）</p>
-<p>一顿操作猛如虎，以为flag呼之欲出了，结果出来的是一堆乱码，淦！</p>
-<img src="/2020/07/25/DASCTF/image-20200725173839845.png" alt="image-20200725173839845" style="zoom:50%;">
-<p>搞了半天居然没用。。。</p>
-<p>后来大佬提示我去看看攻防世界 warmup 这道题的wp,<strong>目录穿越，flag在根目录</strong>，去找了一波wp学习了一下，感觉两个题的确蛮像的，不过那个题源码有提示，这个题看不了源码。我模仿那道题的wp试了试 <code>?file=index.php?/../../../../../../flag</code>不行，又试了试它的各种变形体，失败。我感觉应该没啥问题呀（<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8">⬅</span>菜鸡的蜜汁自信）</p>
-<p>去问大佬这个姿势错在哪,大佬说不是file=而是f=,我照做了，吧上面那个payload里的file改成了f,还是不行呀。</p>
-<p>再次寻求help,大佬让我看看时间对不对，一惊，<strong>还得用时间？</strong> （不是说没卵用的吗，，手动狗头，，）</p>
-<p>原来每次都必须t=当前时间戳&amp;f=xxx(这边就解释了为啥是f而不是file了，我还是后来才醒悟)  好吧好吧，先去转换一个20秒后的时间戳，打开手机读秒，我感觉到了胜利的曙光<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8">😁</span></p>
-<p>一回车，妈耶，还是不行呀，奥，那个f=xxx，xxx应该像他原来url里那样用base64编一下码的，害，这脑子。去在线编码网站把<code>index.php?/../../../../../../flag</code> base64编码一下，编码完发现它居然后面没有两个==, 我不会又被在线编码网站给制裁了吧？<img src="/2020/07/25/DASCTF/image-20200725180857115.png" alt="image-20200725180857115">将信将疑地将它复制过去，又开始手动传时间（卑微.jpg），居然成功得到了flag!</p>
-<p>一波三折，跌宕起伏，柳暗花明。</p>
-<hr>
-<p><strong>参赛体验：</strong></p>
-<p>1.有机会一定学习一下python脚本，手速传时间实在是卑微</p>
-<p>2.多刷题！多刷题！多刷题！多涨涨见识才能触类旁通</p>
-<p>第一次参赛，纪念一下吧<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></p>
-<p><img src="/2020/07/25/DASCTF/image-20200725181614351.png" alt="image-20200725181614351"></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>0xCTF web题 writeup</title>
     <url>/2020/07/05/0xctf/</url>
     <content><![CDATA[<p>最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打:sob::sob:,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.</p>
@@ -129,8 +66,8 @@
 <img src="/2020/07/05/0xctf/image-20200705182529614.png" alt="image-20200705182529614" style="zoom:80%;">
 <p>与上一题其实蛮类似的，只不过它的限制又变大了，这次是“===”严格相等，不仅值要相等，类型也要相同</p>
 <p><strong>PHP中md5的函数特性</strong></p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">md5([1,2,3]) == md5([4,5,6]) == NULL
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">md5([1,2,3]) == md5([4,5,6]) == NULL
+</code></pre>
 <p>[1] !== [2] &amp;&amp; md5([1]) === md5([2])<br>
 所以GET传入<code>a[]=1&amp;b[]=2</code>就能够绕过了。</p>
 <hr>
@@ -248,20 +185,20 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200711132823635.png" alt="image-20200711132823635" style="zoom:33%;">
 <p>因为题目说flag在fl4g.php，所以我把这个放到URL后面试了一下，跳转出来的还是留言板界面。</p>
 <p>查看了一下源码，再抓包看了看，并没有看出什么端倪。于是我查看了提示，提示为：LFI，即本地文件包含，所以本题考查PHP伪协议与本地文件包含漏洞。通过对知识与例题的学习，我尝试了一下用php://filter去读取一下fl4g.php文件，构造如下payload:</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
+</code></pre>
 <p>失败，后来又尝试了一下用php://input的方式写入一句话木马，也失败了（可能是我姿势不对吧:joy:）</p>
 <p>继而求助大佬，大佬一针见血地指出了我的问题，上面那个payload里的file参数在本题中并不存在</p>
 <p>（的确，由于我是模仿的其他题目的解法，并没完全理解，此处就照搬了file参数</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">include($_GET['file']);
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">include($_GET['file']);
+</code></pre>
 <p>这样的php语句说明file是参数，而本题是action为参数</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">include($_GET['action']);
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">include($_GET['action']);
+</code></pre>
 <p>从点击回复后的url中便可看出<img src="/2020/07/05/0xctf/image-20200711135546090.png" alt="image-20200711135546090" style="zoom:80%;"></p>
 <p>所以将上述payload中的file参数修改为action 即可，不不不，事情没有这么简单，我尝试了一下，直接404，好吧，貌似是index.php中并没有action 这个参数，所以应该在action.php 的基础上再去使用php://filter语句，故修改payload为：</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">http://ctf.caoyi.site:30002/web8/action.php?action=php://filter/read=convert.base64-encode/resource=fl4g.php
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">http://ctf.caoyi.site:30002/web8/action.php?action=php://filter/read=convert.base64-encode/resource=fl4g.php
+</code></pre>
 <p>访问一下，一串base64编码后的字符串一闪而过，然后页面又变成了留言板界面，此时想到的是抓包，使用Burpsuite抓包后发现可疑字符串</p>
 <img src="/2020/07/05/0xctf/image-20200711140844022.png" alt="image-20200711140844022" style="zoom: 33%;">
 <p>base64解码后即可得到flag</p>
@@ -269,13 +206,13 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <h4 id="16-RCE-bypass">16.RCE bypass</h4>
 <img src="/2020/07/05/0xctf/image-20200716214515665.png" alt="image-20200716214515665" style="zoom:67%;">
 <p>这道题前前后后花了些时间，一开始无从下手，题目标题是RCE绕过，关于RCE绕过的姿势也了解了一些（此处安利一篇博客：<a href="https://cloud.tencent.com/developer/article/1599149" target="_blank" rel="noopener">《RCE的Bypass与骚姿势总结》</a>），但完全无从下手。前期试了试get方式传一个cmd参数，我试了一下<code>？cmd=1</code>,并没有什么用。后来大佬建议我去了解一下php system 函数，了解了一波后，再结合刚学的Linux命令，想起来攻防世界里的一句话木马那道题当时有个wp就是采用system+cat来解决的。我踌躇满志地打开hackbar, load Url,post date:<code>shell=system('ls');</code>，然而又是啥都没。一番挣扎尝试后再次求助大佬，经过大佬的点播与提示，上述php语句中有两句话应该好好理解：</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
+</code></pre>
 <p>这句话y中用到了三目运算符？：，如果问号前面的条件成立的话，那么它就执行问号与冒号之间的语句，否则执行冒号后面的语句.</p>
 <p>那么这句话的意思就是如果以get方式传入了参数的话，那么他就把这个传入的cmd参数赋值给 $cmd,如果没有传入cmd这个参数的话，那么 cmd就为空。</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">if($cmd)
+<pre><code class="language-php">if($cmd)
 {   system("$cmd"); }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <p>这个语句表明php用system 函数把cmd这个参数当做系统命令执行，所以其实之前尝试的<code>shell=system('ls');</code>可以以在url 里将cmd 赋值为ls 来代替实现，</p>
 <img src="/2020/07/05/0xctf/image-20200716221117992.png" alt="image-20200716221117992" style="zoom:67%;">
 <p>此时页面中出现了flag.php和index.php的提示，此时想到利用cmd=cat flag.php的方式来读取文件，但是cat,flag被禁用了，第一时间想到的是用姿势绕过，但大佬说duck不必，<strong>cat被ban了可以用tac，tac被ban 了可以用head，head被ban了还可以用其他的</strong>。一语惊醒梦中人呐，之前在学习Linux命令的时候，的确很多命令都可以完成文件的读取工作。</p>
@@ -398,6 +335,103 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
       </tags>
   </entry>
   <entry>
+    <title>DASCTF 《Ezfileinclude》 wp</title>
+    <url>/2020/07/25/DASCTF/</url>
+    <content><![CDATA[<p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，遭受了五个小时的吊打。</p>
+<a id="more"></a>
+<p><img src="/2020/07/25/DASCTF/image-20200725170156404.png" alt="image-20200725170156404"></p>
+<p>没错，就是这么残忍。直接把我0封了。<img src="/2020/07/25/DASCTF/image-20200725180746269.png" alt="image-20200725180746269"></p>
+<img src="/2020/07/25/DASCTF/image-20200725180804349.png" alt="image-20200725180804349" style="zoom:67%;">
+<p>后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历程。</p>
+<p>打开靶机，页面显示的是一张图片<img src="/2020/07/25/DASCTF/image-20200725180822011.png" alt="image-20200725180822011" style="zoom:67%;"></p>
+<p>查看源码，没太多有用的信息，唯一比较特殊的话是这找图片的url:<code>**image.php?t=1595643210&amp;f=Z3F5LmpwZw==**</code></p>
+<p>看到f=后面那一串东西，一下子想到了base64编码，尝试解一波码，解出来<code>gqy.jpg</code>，先留着，说不定有用。</p>
+<p>试了一下image.php,回显：<strong>you miss some parameters</strong>（你漏掉了一些参数）奥，可能后面的t,f也得跟着，复制粘贴上去，再回车，页面回显：<strong>what’s your time ?</strong></p>
+<p>作为一个萌新，我一度怀疑这是不是什么CTF黑话，特意百度了一波 <em><strong>CTF what’s your time?</strong></em>  好吧，并不是，想了想，可能是要给time这个参数赋值，盲猜可能是URL中的t参数，试着把t参数删掉，回车，回显提醒漏掉参数，给t赋值为time试试？还是问我时间！<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8">😩</span>但是时间一直是变化的呀，，，怎么搞呢？关键在于那个t后面的一串数字是啥，我又去百度了一波CTF中的数字编码，没啥结果。卡住。</p>
+<p>求助大佬（emmm，应该不算犯规吧）大佬说那一串数字是<strong>unix时间戳</strong>，百度了一波，相当于那一串数字其实表示的是一个时间</p>
+<img src="/2020/07/25/DASCTF/image-20200725172909110.png" alt="image-20200725172909110" style="zoom:67%;">
+<p>还是那个问题，该怎么传当前时间？？？当前时间一直在变化的呀。</p>
+<p>此处贴出大佬的方法：</p>
+<img src="/2020/07/25/DASCTF/image-20200725173059630.png" alt="image-20200725173059630" style="zoom:80%;">
+<p>python脚本，，，好吧，我是靠<code>.py</code>这个后缀猜的<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></p>
+<p>菜鸡的我再次流下了伤心的类水，咱也不会写python脚本呀（一打开我满是灰尘的pycharm还出错了，大家还是支持正版吧<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>）</p>
+<p>不会脚本，只能靠手速了，按照大佬的指导，先转换一个10秒后的时间戳。等到时候再发（妙啊）</p>
+<p>一顿操作猛如虎，以为flag呼之欲出了，结果出来的是一堆乱码，淦！</p>
+<img src="/2020/07/25/DASCTF/image-20200725173839845.png" alt="image-20200725173839845" style="zoom:50%;">
+<p>搞了半天居然没用。。。</p>
+<p>后来大佬提示我去看看攻防世界 warmup 这道题的wp,<strong>目录穿越，flag在根目录</strong>，去找了一波wp学习了一下，感觉两个题的确蛮像的，不过那个题源码有提示，这个题看不了源码。我模仿那道题的wp试了试 <code>?file=index.php?/../../../../../../flag</code>不行，又试了试它的各种变形体，失败。我感觉应该没啥问题呀（<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8">⬅</span>菜鸡的蜜汁自信）</p>
+<p>去问大佬这个姿势错在哪,大佬说不是file=而是f=,我照做了，吧上面那个payload里的file改成了f,还是不行呀。</p>
+<p>再次寻求help,大佬让我看看时间对不对，一惊，<strong>还得用时间？</strong> （不是说没卵用的吗，，手动狗头，，）</p>
+<p>原来每次都必须t=当前时间戳&amp;f=xxx(这边就解释了为啥是f而不是file了，我还是后来才醒悟)  好吧好吧，先去转换一个20秒后的时间戳，打开手机读秒，我感觉到了胜利的曙光<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8">😁</span></p>
+<p>一回车，妈耶，还是不行呀，奥，那个f=xxx，xxx应该像他原来url里那样用base64编一下码的，害，这脑子。去在线编码网站把<code>index.php?/../../../../../../flag</code> base64编码一下，编码完发现它居然后面没有两个==, 我不会又被在线编码网站给制裁了吧？<img src="/2020/07/25/DASCTF/image-20200725180857115.png" alt="image-20200725180857115">将信将疑地将它复制过去，又开始手动传时间（卑微.jpg），居然成功得到了flag!</p>
+<p>一波三折，跌宕起伏，柳暗花明。</p>
+<hr>
+<p><strong>参赛体验：</strong></p>
+<p>1.有机会一定学习一下python脚本，手速传时间实在是卑微</p>
+<p>2.多刷题！多刷题！多刷题！多涨涨见识才能触类旁通</p>
+<p>第一次参赛，纪念一下吧<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></p>
+<p><img src="/2020/07/25/DASCTF/image-20200725181614351.png" alt="image-20200725181614351"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>YCBCTF wp</title>
+    <url>/2020/09/10/YCBCTF/</url>
+    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
+<a id="more"></a>
+<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
+<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
+<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span>。</p>
+<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <tags>
+        <tag>CTF</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MoeCTF wp</title>
     <url>/2020/08/14/moectf/</url>
     <content><![CDATA[<img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
@@ -434,7 +468,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <hr>
 <h4 id="7-三心二意">7.三心二意</h4>
 <p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php"><?php
+<pre><code class="language-php">&lt;?php
 $a = $_GET['a'];
 $b = $_POST['b'];
 $c = $_REQUEST['c'];
@@ -445,33 +479,33 @@ if (!isset($a, $b, $c, $d)) {
 } else {
     if (is_numeric($a) and $a == false) {
         echo 'A is OK!';
-        echo '<br/>';
+        echo '&lt;br/&gt;';
         if (!is_numeric($b) and $b == 0x125e591) {
             echo 'B is OK!';
-            echo '<br/>';
+            echo '&lt;br/&gt;';
             if ($c != 240610708 and md5($c) == md5(240610708)) {
                 echo 'C is OK!';
-                echo '<br/>';
-                if (strlen($d) < 7 and $d != 0 and $d ** 2 == 0) {
+                echo '&lt;br/&gt;';
+                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) {
                     include('/flag');
                 } else {
-                    echo "D is not wanted.<br/>";
+                    echo "D is not wanted.&lt;br/&gt;";
                     highlight_file(__FILE__);
                 }
             } else {
-                echo "C is not wanted.<br/>";
+                echo "C is not wanted.&lt;br/&gt;";
                 highlight_file(__FILE__);
             }
         } else {
-            echo "Too young too simple.<br/>";
+            echo "Too young too simple.&lt;br/&gt;";
             highlight_file(__FILE__);
         }
     } else {
-        echo "A is not wanted.<br/>";
+        echo "A is not wanted.&lt;br/&gt;";
         highlight_file(__FILE__);
     }
 } 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧:cry:</p>
 <ul>
 <li><code>is_numeric($a) and $a == false</code></li>
@@ -509,23 +543,23 @@ if (!isset($a, $b, $c, $d)) {
 </li>
 </ul>
 <p>再贴一道与这道题很像的题：（来自CNSS）</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php"><?php
+<pre><code class="language-php">&lt;?php
 highlight_file(__FILE__);
 $a = $_GET['a'];
 $b = $_POST['b'];
 $c = $_REQUEST['c'];
 $d = $_COOKIE['d'];
 
-if (isset($a) && !is_numeric($a) && $a == 114514) {
+if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
     echo "A is ok!";
-    if (isset($b) && $b != 0 && $b ** 2 == 0) {
+    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) {
         echo "B is ok!";
-        if (isset($c) && isset($d) && $c !== $d && md5($c) === md5($d)) {
+        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {
             echo "C is ok!";
             echo "Here is your flag:";
             include('/flag');
         } else {
-            die((isset($c) && isset($d)) ? "Try to search something?" : "C and D is wanted.");
+            die((isset($c) &amp;&amp; isset($d)) ? "Try to search something?" : "C and D is wanted.");
         }
     } else {
         die(isset($b) ? "You need to try again." : "B is wanted.");
@@ -533,7 +567,7 @@ if (isset($a) && !is_numeric($a) && $a == 114514) {
 } else {
     die(isset($a) ? "Please try another a." : "A is wanted.");
 } 
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <hr>
 <h4 id="8-俄罗斯头套">8.俄罗斯头套</h4>
 <img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
@@ -607,10 +641,10 @@ if (isset($a) && !is_numeric($a) && $a == 114514) {
 <ul>
 <li>
 <h4 id="首先，测试一下图片的插入-arrow-down-small">首先，测试一下图片的插入:arrow_down_small:</h4>
-<p><img src="/2020/07/03/typora/wallhaven-ox7695.jpg" alt></p>
+<p><img src="/2020/07/03/typora/wallhaven-ox7695.jpg" alt=""></p>
 </li>
 <li>
-<p><img src="/2020/07/03/typora/wallhaven-49e9zx.jpg" alt></p>
+<p><img src="/2020/07/03/typora/wallhaven-49e9zx.jpg" alt=""></p>
 </li>
 </ul>
 <p><strong>美汁儿汁儿</strong>:call_me_hand:</p>
@@ -625,12 +659,12 @@ if (isset($a) && !is_numeric($a) && $a == 114514) {
 <p><code>printf("hello world!");</code></p>
 </li>
 </ul>
-<pre class="line-numbers language-language-c"><code class="language-language-c">#include <stdio.h>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
 int main()
 {
 	printf("welcome!");
 }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+</code></pre>
 <ul>
 <li>
 <h4 id="再整个表？听说Typora这个功能很强啊-black-flag">再整个表？听说Typora这个功能很强啊 <span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8">🏴</span></h4>
@@ -698,40 +732,6 @@ int main()
       </script>]]></content>
       <tags>
         <tag>Typora</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>YCBCTF wp</title>
-    <url>/2020/09/10/YCBCTF/</url>
-    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
-<a id="more"></a>
-<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
-<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
-<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span>。</p>
-<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <tags>
-        <tag>CTF</tag>
       </tags>
   </entry>
   <entry>

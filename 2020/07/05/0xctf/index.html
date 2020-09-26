@@ -26,12 +26,12 @@
     <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
     <link rel="stylesheet" type="text/css" href="/css/matery.css">
     <link rel="stylesheet" type="text/css" href="/css/my.css">
-
+    
     <script src="/libs/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4ndon" type="application/atom+xml">
-<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4ndon" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
 
 
 <body>
@@ -496,8 +496,8 @@
 <img src="/2020/07/05/0xctf/image-20200705182529614.png" alt="image-20200705182529614" style="zoom:80%;">
 <p>与上一题其实蛮类似的，只不过它的限制又变大了，这次是“===”严格相等，不仅值要相等，类型也要相同</p>
 <p><strong>PHP中md5的函数特性</strong></p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">md5([1,2,3]) == md5([4,5,6]) == NULL
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">md5([1,2,3]) == md5([4,5,6]) == NULL
+</code></pre>
 <p>[1] !== [2] &amp;&amp; md5([1]) === md5([2])<br>
 所以GET传入<code>a[]=1&amp;b[]=2</code>就能够绕过了。</p>
 <hr>
@@ -615,20 +615,20 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200711132823635.png" alt="image-20200711132823635" style="zoom:33%;">
 <p>因为题目说flag在fl4g.php，所以我把这个放到URL后面试了一下，跳转出来的还是留言板界面。</p>
 <p>查看了一下源码，再抓包看了看，并没有看出什么端倪。于是我查看了提示，提示为：LFI，即本地文件包含，所以本题考查PHP伪协议与本地文件包含漏洞。通过对知识与例题的学习，我尝试了一下用php://filter去读取一下fl4g.php文件，构造如下payload:</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
+</code></pre>
 <p>失败，后来又尝试了一下用php://input的方式写入一句话木马，也失败了（可能是我姿势不对吧:joy:）</p>
 <p>继而求助大佬，大佬一针见血地指出了我的问题，上面那个payload里的file参数在本题中并不存在</p>
 <p>（的确，由于我是模仿的其他题目的解法，并没完全理解，此处就照搬了file参数</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">include($_GET['file']);
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">include($_GET['file']);
+</code></pre>
 <p>这样的php语句说明file是参数，而本题是action为参数</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">include($_GET['action']);
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">include($_GET['action']);
+</code></pre>
 <p>从点击回复后的url中便可看出<img src="/2020/07/05/0xctf/image-20200711135546090.png" alt="image-20200711135546090" style="zoom:80%;"></p>
 <p>所以将上述payload中的file参数修改为action 即可，不不不，事情没有这么简单，我尝试了一下，直接404，好吧，貌似是index.php中并没有action 这个参数，所以应该在action.php 的基础上再去使用php://filter语句，故修改payload为：</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">http://ctf.caoyi.site:30002/web8/action.php?action=php://filter/read=convert.base64-encode/resource=fl4g.php
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">http://ctf.caoyi.site:30002/web8/action.php?action=php://filter/read=convert.base64-encode/resource=fl4g.php
+</code></pre>
 <p>访问一下，一串base64编码后的字符串一闪而过，然后页面又变成了留言板界面，此时想到的是抓包，使用Burpsuite抓包后发现可疑字符串</p>
 <img src="/2020/07/05/0xctf/image-20200711140844022.png" alt="image-20200711140844022" style="zoom: 33%;">
 <p>base64解码后即可得到flag</p>
@@ -636,13 +636,13 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <h4 id="16-RCE-bypass">16.RCE bypass</h4>
 <img src="/2020/07/05/0xctf/image-20200716214515665.png" alt="image-20200716214515665" style="zoom:67%;">
 <p>这道题前前后后花了些时间，一开始无从下手，题目标题是RCE绕过，关于RCE绕过的姿势也了解了一些（此处安利一篇博客：<a href="https://cloud.tencent.com/developer/article/1599149" target="_blank" rel="noopener">《RCE的Bypass与骚姿势总结》</a>），但完全无从下手。前期试了试get方式传一个cmd参数，我试了一下<code>？cmd=1</code>,并没有什么用。后来大佬建议我去了解一下php system 函数，了解了一波后，再结合刚学的Linux命令，想起来攻防世界里的一句话木马那道题当时有个wp就是采用system+cat来解决的。我踌躇满志地打开hackbar, load Url,post date:<code>shell=system('ls');</code>，然而又是啥都没。一番挣扎尝试后再次求助大佬，经过大佬的点播与提示，上述php语句中有两句话应该好好理解：</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<pre><code class="language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
+</code></pre>
 <p>这句话y中用到了三目运算符？：，如果问号前面的条件成立的话，那么它就执行问号与冒号之间的语句，否则执行冒号后面的语句.</p>
 <p>那么这句话的意思就是如果以get方式传入了参数的话，那么他就把这个传入的cmd参数赋值给 $cmd,如果没有传入cmd这个参数的话，那么 cmd就为空。</p>
-<pre class="line-numbers language-language-php"><code class="language-language-php">if($cmd)
+<pre><code class="language-php">if($cmd)
 {   system("$cmd"); }
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+</code></pre>
 <p>这个语句表明php用system 函数把cmd这个参数当做系统命令执行，所以其实之前尝试的<code>shell=system('ls');</code>可以以在url 里将cmd 赋值为ls 来代替实现，</p>
 <img src="/2020/07/05/0xctf/image-20200716221117992.png" alt="image-20200716221117992" style="zoom:67%;">
 <p>此时页面中出现了flag.php和index.php的提示，此时想到利用cmd=cat flag.php的方式来读取文件，但是cat,flag被禁用了，第一时间想到的是用姿势绕过，但大佬说duck不必，<strong>cat被ban了可以用tac，tac被ban 了可以用head，head被ban了还可以用其他的</strong>。一语惊醒梦中人呐，之前在学习Linux命令的时候，的确很多命令都可以完成文件的读取工作。</p>
@@ -1491,7 +1491,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">8k</span>&nbsp;字
+                class="white-color">9.6k</span>&nbsp;字
             
             
             
@@ -1590,6 +1590,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 </footer>
 
 <div class="progress-bar"></div>
+<script src="/js/prism/prism.js" async></script>
 
 
     <!-- 搜索遮罩框 -->
@@ -1662,9 +1663,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>
