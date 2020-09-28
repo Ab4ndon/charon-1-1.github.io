@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2020-09-15T08:25:32.856Z</updated>
+  <updated>2020-09-26T03:15:42.858Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>hexo matery主题代码高亮问题</title>
+    <link href="http://kongcm.cn/2020/09/26/hexo/"/>
+    <id>http://kongcm.cn/2020/09/26/hexo/</id>
+    <published>2020-09-26T03:09:24.000Z</published>
+    <updated>2020-09-26T03:15:42.858Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;转载自大佬们的博客:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.jianshu.com/p/f395d92a1110&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo博客：六、prism代码高亮&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="hexo" scheme="http://kongcm.cn/tags/hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>YCBCTF wp</title>
@@ -104,7 +131,7 @@
     <link href="http://kongcm.cn/2020/07/05/0xctf/"/>
     <id>http://kongcm.cn/2020/07/05/0xctf/</id>
     <published>2020-07-05T08:31:31.000Z</published>
-    <updated>2020-09-25T05:37:50.236Z</updated>
+    <updated>2020-09-28T08:33:56.085Z</updated>
     
     <summary type="html">
     

