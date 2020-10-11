@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2020-09-26T03:15:42.858Z</updated>
+  <updated>2020-10-11T05:56:30.169Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -17,11 +17,30 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>阿里云CDN加速域名解析冲突问题</title>
+    <link href="http://kongcm.cn/2020/10/11/ALi/"/>
+    <id>http://kongcm.cn/2020/10/11/ALi/</id>
+    <published>2020-10-11T05:35:58.000Z</published>
+    <updated>2020-10-11T05:56:30.169Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="CDN 解析冲突" scheme="http://kongcm.cn/tags/CDN-%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81/"/>
+    
+  </entry>
+  
+  <entry>
     <title>hexo matery主题代码高亮问题</title>
     <link href="http://kongcm.cn/2020/09/26/hexo/"/>
     <id>http://kongcm.cn/2020/09/26/hexo/</id>
     <published>2020-09-26T03:09:24.000Z</published>
-    <updated>2020-09-26T03:15:42.858Z</updated>
+    <updated>2020-10-11T05:58:48.227Z</updated>
     
     <summary type="html">
     
@@ -39,7 +58,7 @@
     
     
     
-      <category term="hexo" scheme="http://kongcm.cn/tags/hexo/"/>
+      <category term="hexo 代码高亮 matery" scheme="http://kongcm.cn/tags/hexo-%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE-matery/"/>
     
   </entry>
   

@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="hexo matery主题代码高亮问题, Ab4ndon">
+    <meta name="keywords" content="阿里云CDN加速域名解析冲突问题, Ab4ndon">
     <meta name="description" content="记录学习，记录生活。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>hexo matery主题代码高亮问题 | Ab4ndon</title>
+    <title>阿里云CDN加速域名解析冲突问题 | Ab4ndon</title>
     <link rel="icon" type="image/jpeg" href="/medias/touxiang.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -247,12 +247,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/9.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">hexo matery主题代码高亮问题</h1>
+                    <h1 class="description center-align post-title">阿里云CDN加速域名解析冲突问题</h1>
                 </div>
             </div>
         </div>
@@ -372,8 +372,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/hexo-%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE-matery/">
-                                <span class="chip bg-color">hexo 代码高亮 matery</span>
+                            <a href="/tags/CDN-%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81/">
+                                <span class="chip bg-color">CDN 解析冲突</span>
                             </a>
                         
                     </div>
@@ -388,7 +388,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-09-26
+                    2020-10-11
                 </div>
                 
 
@@ -402,7 +402,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    85
+                    470
                 </div>
                 
 
@@ -424,9 +424,14 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>转载自大佬们的博客:</p>
-<p><a href="https://www.jianshu.com/p/f395d92a1110" target="_blank" rel="noopener">Hexo博客：六、prism代码高亮</a></p>
-<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008" target="_blank" rel="noopener">个人博客搭建笔记----hexo主题代码高亮</a></p>
+                <p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
+<a id="more"></a>
+<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
+<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
+<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
+<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
+<hr>
+<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -470,7 +475,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://kongcm.cn/2020/09/26/hexo/">http://kongcm.cn/2020/09/26/hexo/</a>
+                    <a href="http://kongcm.cn/2020/10/11/ALi/">http://kongcm.cn/2020/10/11/ALi/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -508,8 +513,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/hexo-%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE-matery/">
-                                    <span class="chip bg-color">hexo 代码高亮 matery</span>
+                                <a href="/tags/CDN-%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81/">
+                                    <span class="chip bg-color">CDN 解析冲突</span>
                                 </a>
                             
                         </div>
@@ -940,9 +945,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2020/10/11/ALi/">
                     <div class="card-image">
@@ -962,9 +968,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-10-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -973,6 +979,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -991,30 +998,29 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/10/YCBCTF/">
+                <a href="/2020/09/26/hexo/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="YCBCTF wp">
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="hexo matery主题代码高亮问题">
                         
-                        <span class="card-title">YCBCTF wp</span>
+                        <span class="card-title">hexo matery主题代码高亮问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            “羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题😭
+                            转载自大佬们的博客:
+Hexo博客：六、prism代码高亮
+个人博客搭建笔记----hexo主题代码高亮
 
-尝试访问一波index.php，页面出现eval post cmd,貌似是一句话木马。
-
-尝试用蚁剑连接一下，密码试一下cmd,连接成功！
-
-并没有找到flag.php
+        document.querySelectorAll('.github-emoji')
+          .forE
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-26
                             </span>
                         <span class="publish-author">
                             
@@ -1027,8 +1033,8 @@
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CTF/">
-                        <span class="chip bg-color">CTF</span>
+                    <a href="/tags/hexo-%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE-matery/">
+                        <span class="chip bg-color">hexo 代码高亮 matery</span>
                     </a>
                     
                 </div>
