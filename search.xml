@@ -432,6 +432,40 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
       </tags>
   </entry>
   <entry>
+    <title>阿里云CDN加速域名解析冲突问题</title>
+    <url>/2020/10/11/ALi/</url>
+    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
+<a id="more"></a>
+<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
+<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
+<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
+<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
+<hr>
+<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <tags>
+        <tag>CDN 解析冲突</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo matery主题代码高亮问题</title>
     <url>/2020/09/26/hexo/</url>
     <content><![CDATA[<p>转载自大佬们的博客:</p>
@@ -492,110 +526,6 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
       </script>]]></content>
       <tags>
         <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>尝试用typora写博客</title>
-    <url>/2020/07/03/typora/</url>
-    <content><![CDATA[<p>​	昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢:question:</p>
-<a id="more"></a>
-<p>​	在大佬的安利之下，我发现了 <strong>Trpora</strong> 这个强大的软件，今天就用它来写这篇博客。（第一次使用，用意不在内容，而是想测试一下各种花里胡哨的东西​ :smile:）</p>
-<p>​	话不多说，测试开始</p>
-<p>:boxing_glove:</p>
-<ul>
-<li>
-<h4 id="首先，测试一下图片的插入-arrow-down-small">首先，测试一下图片的插入:arrow_down_small:</h4>
-<p><img src="/2020/07/03/typora/wallhaven-ox7695.jpg" alt=""></p>
-</li>
-<li>
-<p><img src="/2020/07/03/typora/wallhaven-49e9zx.jpg" alt=""></p>
-</li>
-</ul>
-<p><strong>美汁儿汁儿</strong>:call_me_hand:</p>
-<ul>
-<li>
-<h4 id="接着测试一下超链接">接着测试一下超链接</h4>
-<p><a href="http://www.baidu.com" target="_blank" rel="noopener">百度</a></p>
-<p>ojbk:sunglasses:</p>
-</li>
-<li>
-<h4 id="搞点代码恰恰-grey-question">搞点代码恰恰:grey_question:</h4>
-<p><code>printf("hello world!");</code></p>
-</li>
-</ul>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-int main()
-{
-	printf("welcome!");
-}
-</code></pre>
-<ul>
-<li>
-<h4 id="再整个表？听说Typora这个功能很强啊-black-flag">再整个表？听说Typora这个功能很强啊 <span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8">🏴</span></h4>
-<p><code>ctrl+T</code> 插入表格</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>不知道该制个啥表，先空着吧，网上复制一个去(这功能tql)</p>
-<p>好家伙，找半天，没找到合适的，，，，以后再说吧</p>
-</li>
-<li>
-<h4 id="引用点东西水一水字数-cold-sweat">引用点东西水一水字数<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></h4>
-<blockquote>
-<p>​		寂坐时，常想到晚明张岱。他写湖心亭：“崇祯五年十二月，余住西湖。大雪三日，湖中人鸟声俱绝。是日更定矣，余拿一小舟，拥毳衣炉火，独往湖心亭看雪。雾淞沆砀，天与云、与山、与水，上下一白。湖上影子，惟长堤一痕，湖心亭一点，与余舟一芥，舟中人两三粒而已。”</p>
-<p>​		深夜独自到湖上看大雪，他显然不觉寂寞——寂寞可能是美学的必要。但是，国破家亡、人事全非、当他在为自己写墓志铭的时候呢？</p>
-<p>​		蜀人张岱，陶庵其号也。少为纨绔子弟，极爱繁华，好精舍，好美婢，好娈童，好鲜衣，好美食，好骏马，好华灯，好烟火，好梨园，好鼓吹，好古董，好花鸟，兼以茶淫橘虐，书蠹诗魔，劳碌半生，皆成梦幻。年至五十，国破家亡，避迹山居。所存者，破床碎几，折鼎病琴与残书数帙，缺砚一方而已。布衣疏莨，常至断炊。回首二十年前，真如隔世。</p>
-<p>​		有一种寂寞，身边添一个可谈的人，一条知心的狗，或许就可以消减。有一种寂寞，茫茫天地之间“余舟一芥”的无边无际无着落，或许只能各自孤独面对，素颜修行吧。</p>
-<p>​																																							——龙应台《寂寞》</p>
-</blockquote>
-<hr>
-<p>OK，测试暂且到这吧，以后常用的大概就这些了。U1S1，Typora的确是个宝藏软件<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8">🖕</span></p>
-</li>
-</ul>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <tags>
-        <tag>Typora</tag>
       </tags>
   </entry>
   <entry>
@@ -838,16 +768,86 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
       </tags>
   </entry>
   <entry>
-    <title>阿里云CDN加速域名解析冲突问题</title>
-    <url>/2020/10/11/ALi/</url>
-    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
+    <title>尝试用typora写博客</title>
+    <url>/2020/07/03/typora/</url>
+    <content><![CDATA[<p>​	昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢:question:</p>
 <a id="more"></a>
-<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
-<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
-<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
-<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
+<p>​	在大佬的安利之下，我发现了 <strong>Trpora</strong> 这个强大的软件，今天就用它来写这篇博客。（第一次使用，用意不在内容，而是想测试一下各种花里胡哨的东西​ :smile:）</p>
+<p>​	话不多说，测试开始</p>
+<p>:boxing_glove:</p>
+<ul>
+<li>
+<h4 id="首先，测试一下图片的插入-arrow-down-small">首先，测试一下图片的插入:arrow_down_small:</h4>
+<p><img src="/2020/07/03/typora/wallhaven-ox7695.jpg" alt=""></p>
+</li>
+<li>
+<p><img src="/2020/07/03/typora/wallhaven-49e9zx.jpg" alt=""></p>
+</li>
+</ul>
+<p><strong>美汁儿汁儿</strong>:call_me_hand:</p>
+<ul>
+<li>
+<h4 id="接着测试一下超链接">接着测试一下超链接</h4>
+<p><a href="http://www.baidu.com" target="_blank" rel="noopener">百度</a></p>
+<p>ojbk:sunglasses:</p>
+</li>
+<li>
+<h4 id="搞点代码恰恰-grey-question">搞点代码恰恰:grey_question:</h4>
+<p><code>printf("hello world!");</code></p>
+</li>
+</ul>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main()
+{
+	printf("welcome!");
+}
+</code></pre>
+<ul>
+<li>
+<h4 id="再整个表？听说Typora这个功能很强啊-black-flag">再整个表？听说Typora这个功能很强啊 <span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8">🏴</span></h4>
+<p><code>ctrl+T</code> 插入表格</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>不知道该制个啥表，先空着吧，网上复制一个去(这功能tql)</p>
+<p>好家伙，找半天，没找到合适的，，，，以后再说吧</p>
+</li>
+<li>
+<h4 id="引用点东西水一水字数-cold-sweat">引用点东西水一水字数<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></h4>
+<blockquote>
+<p>​		寂坐时，常想到晚明张岱。他写湖心亭：“崇祯五年十二月，余住西湖。大雪三日，湖中人鸟声俱绝。是日更定矣，余拿一小舟，拥毳衣炉火，独往湖心亭看雪。雾淞沆砀，天与云、与山、与水，上下一白。湖上影子，惟长堤一痕，湖心亭一点，与余舟一芥，舟中人两三粒而已。”</p>
+<p>​		深夜独自到湖上看大雪，他显然不觉寂寞——寂寞可能是美学的必要。但是，国破家亡、人事全非、当他在为自己写墓志铭的时候呢？</p>
+<p>​		蜀人张岱，陶庵其号也。少为纨绔子弟，极爱繁华，好精舍，好美婢，好娈童，好鲜衣，好美食，好骏马，好华灯，好烟火，好梨园，好鼓吹，好古董，好花鸟，兼以茶淫橘虐，书蠹诗魔，劳碌半生，皆成梦幻。年至五十，国破家亡，避迹山居。所存者，破床碎几，折鼎病琴与残书数帙，缺砚一方而已。布衣疏莨，常至断炊。回首二十年前，真如隔世。</p>
+<p>​		有一种寂寞，身边添一个可谈的人，一条知心的狗，或许就可以消减。有一种寂寞，茫茫天地之间“余舟一芥”的无边无际无着落，或许只能各自孤独面对，素颜修行吧。</p>
+<p>​																																							——龙应台《寂寞》</p>
+</blockquote>
 <hr>
-<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
+<p>OK，测试暂且到这吧，以后常用的大概就这些了。U1S1，Typora的确是个宝藏软件<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8">🖕</span></p>
+</li>
+</ul>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -868,7 +868,192 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
           });
       </script>]]></content>
       <tags>
-        <tag>CDN 解析冲突</tag>
+        <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DSLinearList</title>
+    <url>/2021/03/11/DSLinearList/</url>
+    <content><![CDATA[<h4 id="【数据结构】线性表基本运算的实现">【数据结构】线性表基本运算的实现</h4>
+<p>关于数据结构中线性表的顺序表示的基本运算的实现。</p>
+<a id="more"></a>
+<pre><code class="language-c">/*
+  author:Ab4nd0n
+  Time:2021-3-11
+*/
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define ERROR 0
+#define OK 1
+#define Overflow 2
+#define Underflow 3
+#define NotPresent 4
+#define Duplicate 5
+
+typedef int ElemType;
+typedef struct
+{
+    int n;              //元素个数
+    int maxlength;      //最大允许长度
+    ElemType *element;  //指针变量
+} SeqList;
+
+typedef int Status; //自定义类型
+
+//初始化
+/*
+为顺序表L动态分配一维数组
+若动态分配一维数组失败则返回ERROR（0）
+*/
+Status Init(SeqList *L,int mSize)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=mSize;
+    L-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    if(!L-&gt;element)  
+    {
+        return ERROR;
+    }
+    return OK;
+}
+
+//顺序表的查找(查找元素ai的值,直接定位下标)
+/*
+首先判断传入的下标i是否越界（0~n-1）
+若未越界，则取出element[i]的值传给x返回
+
+算法复杂度为O(1)
+*/
+Status Find(SeqList *L,int i)
+{
+    int x;
+    if(i&lt;0||i&gt;L-&gt;n-1)
+    {
+        return ERROR;
+    }
+    return x=L-&gt;element[i]
+
+}
+
+//顺序表的插入(在ai之后插入，即ai+1的位置)
+/*
+判断下标i是否越界 （-1~n-1）
+判断顺序表存储空间是否已满
+将元素ai+1~an-1依次向后移动一个位置
+将要插入元素赋值给element[i+1]
+表长+1
+
+算法复杂度为O(n)
+*/
+Status Insert (SeqList *L, int i,ElemType x)
+{
+    int j;
+     if(i&lt;-1||i&gt;L-&gt;n-1)  //注意此处i的范围 是&lt;-1 不是0  ！！！
+    {
+        return ERROR;
+    }
+    if(L-&gt;n==L-&gt;maxlength)   //判满
+    {
+        return ERROR;
+    }
+    for(j=L-&gt;n-1;j&gt;i;j--)       //通过循环将下标i+1到n-1的元素后移（从后往前）
+    {
+        L-&gt;element[j+1]=L-&gt;element[j];   //注意是j的值给j+1（从后往前）
+    }
+    L-&gt;element[i+1]=x; //把插入的 元素放到下标为 i+1 的位置
+    L-&gt;n=L-&gt;n+1;      //表长加1
+    return OK;
+
+}
+
+//顺序表的删除
+/*
+判断下标是否越界（0~n-1）
+判断顺序表是否为空
+将元素ai+1~an-1依次前移一个位置
+表长-1
+
+算法复杂度为O(n)
+*/
+Status Delete(SeqList *L,int i)
+{
+    int j;
+    if(i&lt;0||i&gt;L-&gt;n-1)  return ERROR;  //此处i&lt;0!!!注意和插入区分
+    if(!L-&gt;n)  return ERROR;    //判空
+    for(j=i+1;j&lt;L-&gt;n;j++)
+    {
+        L-&gt;element[j-1]=L-&gt;element[j];  //从前往后逐个前移元素，j的值给j-1
+    }
+    L-&gt;n--;    //表长-1
+    return OK;
+    
+}
+
+//顺序表的输出
+Status Output(SeqList *L)
+{
+    int i;
+    if(!L-&gt;n)   return ERROR;   //判空
+    for(i=0;i&lt;L-&gt;n;i++)
+    {
+        printf("%d",L-&gt;element[i]);
+    }
+    printf("\n\n");
+     return OK;
+}
+
+//顺序表的销毁
+void Destroy(SeqList *L)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=0;
+    free(L-&gt;element);
+    printf("Sucessfuly Destroy!\n");
+}
+
+
+int main()
+{
+    int i,k;
+    SeqList List;
+    k=Init(&amp;List,10); //因为Init函数的形参是指针变量（地址），所以这里要用取地址符！！！
+    printf("%d\n\n",k);   //测试返回值为 1
+    for(i=0;i&lt;10;i++)
+    {
+        Insert(&amp;List,i-1,i);  //执行插入操作
+    }
+    Output(&amp;List);    // 0123456789
+    Delete(&amp;List,2);
+    Output(&amp;List);    // 013456789
+    Destroy(&amp;List);   // Sucessfuly Destroy!
+}
+</code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构 C语言</tag>
       </tags>
   </entry>
 </search>

@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="阿里云CDN加速域名解析冲突问题, Ab4nd0n">
+    <meta name="keywords" content="DSLinearList, Ab4nd0n">
     <meta name="description" content="记录学习，记录生活。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>阿里云CDN加速域名解析冲突问题 | Ab4nd0n</title>
+    <title>DSLinearList | Ab4nd0n</title>
     <link rel="icon" type="image/jpeg" href="/medias/touxiang.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -247,12 +247,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/22.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">阿里云CDN加速域名解析冲突问题</h1>
+                    <h1 class="description center-align post-title">DSLinearList</h1>
                 </div>
             </div>
         </div>
@@ -372,14 +372,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/CDN-%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81/">
-                                <span class="chip bg-color">CDN 解析冲突</span>
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-C%E8%AF%AD%E8%A8%80/">
+                                <span class="chip bg-color">数据结构 C语言</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -388,28 +397,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-10-11
+                    2021-03-11
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-10-11
+                    2021-03-11
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    470
+                    806
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -424,14 +433,162 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
+                <h4 id="【数据结构】线性表基本运算的实现">【数据结构】线性表基本运算的实现</h4>
+<p>关于数据结构中线性表的顺序表示的基本运算的实现。</p>
 <a id="more"></a>
-<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
-<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
-<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
-<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
-<hr>
-<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
+<pre><code class="language-c">/*
+  author:Ab4nd0n
+  Time:2021-3-11
+*/
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define ERROR 0
+#define OK 1
+#define Overflow 2
+#define Underflow 3
+#define NotPresent 4
+#define Duplicate 5
+
+typedef int ElemType;
+typedef struct
+{
+    int n;              //元素个数
+    int maxlength;      //最大允许长度
+    ElemType *element;  //指针变量
+} SeqList;
+
+typedef int Status; //自定义类型
+
+//初始化
+/*
+为顺序表L动态分配一维数组
+若动态分配一维数组失败则返回ERROR（0）
+*/
+Status Init(SeqList *L,int mSize)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=mSize;
+    L-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    if(!L-&gt;element)  
+    {
+        return ERROR;
+    }
+    return OK;
+}
+
+//顺序表的查找(查找元素ai的值,直接定位下标)
+/*
+首先判断传入的下标i是否越界（0~n-1）
+若未越界，则取出element[i]的值传给x返回
+
+算法复杂度为O(1)
+*/
+Status Find(SeqList *L,int i)
+{
+    int x;
+    if(i&lt;0||i&gt;L-&gt;n-1)
+    {
+        return ERROR;
+    }
+    return x=L-&gt;element[i]
+
+}
+
+//顺序表的插入(在ai之后插入，即ai+1的位置)
+/*
+判断下标i是否越界 （-1~n-1）
+判断顺序表存储空间是否已满
+将元素ai+1~an-1依次向后移动一个位置
+将要插入元素赋值给element[i+1]
+表长+1
+
+算法复杂度为O(n)
+*/
+Status Insert (SeqList *L, int i,ElemType x)
+{
+    int j;
+     if(i&lt;-1||i&gt;L-&gt;n-1)  //注意此处i的范围 是&lt;-1 不是0  ！！！
+    {
+        return ERROR;
+    }
+    if(L-&gt;n==L-&gt;maxlength)   //判满
+    {
+        return ERROR;
+    }
+    for(j=L-&gt;n-1;j&gt;i;j--)       //通过循环将下标i+1到n-1的元素后移（从后往前）
+    {
+        L-&gt;element[j+1]=L-&gt;element[j];   //注意是j的值给j+1（从后往前）
+    }
+    L-&gt;element[i+1]=x; //把插入的 元素放到下标为 i+1 的位置
+    L-&gt;n=L-&gt;n+1;      //表长加1
+    return OK;
+
+}
+
+//顺序表的删除
+/*
+判断下标是否越界（0~n-1）
+判断顺序表是否为空
+将元素ai+1~an-1依次前移一个位置
+表长-1
+
+算法复杂度为O(n)
+*/
+Status Delete(SeqList *L,int i)
+{
+    int j;
+    if(i&lt;0||i&gt;L-&gt;n-1)  return ERROR;  //此处i&lt;0!!!注意和插入区分
+    if(!L-&gt;n)  return ERROR;    //判空
+    for(j=i+1;j&lt;L-&gt;n;j++)
+    {
+        L-&gt;element[j-1]=L-&gt;element[j];  //从前往后逐个前移元素，j的值给j-1
+    }
+    L-&gt;n--;    //表长-1
+    return OK;
+    
+}
+
+//顺序表的输出
+Status Output(SeqList *L)
+{
+    int i;
+    if(!L-&gt;n)   return ERROR;   //判空
+    for(i=0;i&lt;L-&gt;n;i++)
+    {
+        printf("%d",L-&gt;element[i]);
+    }
+    printf("\n\n");
+     return OK;
+}
+
+//顺序表的销毁
+void Destroy(SeqList *L)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=0;
+    free(L-&gt;element);
+    printf("Sucessfuly Destroy!\n");
+}
+
+
+int main()
+{
+    int i,k;
+    SeqList List;
+    k=Init(&amp;List,10); //因为Init函数的形参是指针变量（地址），所以这里要用取地址符！！！
+    printf("%d\n\n",k);   //测试返回值为 1
+    for(i=0;i&lt;10;i++)
+    {
+        Insert(&amp;List,i-1,i);  //执行插入操作
+    }
+    Output(&amp;List);    // 0123456789
+    Delete(&amp;List,2);
+    Output(&amp;List);    // 013456789
+    Destroy(&amp;List);   // Sucessfuly Destroy!
+}
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -475,7 +632,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://kongcm.cn/2020/10/11/ALi/">http://kongcm.cn/2020/10/11/ALi/</a>
+                    <a href="http://kongcm.cn/2021/03/11/DSLinearList/">http://kongcm.cn/2021/03/11/DSLinearList/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -513,8 +670,8 @@
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/CDN-%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81/">
-                                    <span class="chip bg-color">CDN 解析冲突</span>
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-C%E8%AF%AD%E8%A8%80/">
+                                    <span class="chip bg-color">数据结构 C语言</span>
                                 </a>
                             
                         </div>
@@ -945,9 +1102,10 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/03/11/DSLinearList/">
                     <div class="card-image">
@@ -974,9 +1132,9 @@
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-11
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-11
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -989,6 +1147,7 @@
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1007,29 +1166,26 @@
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/09/26/hexo/">
+                <a href="/2020/10/11/ALi/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="hexo matery主题代码高亮问题">
+                        <img src="/medias/featureimages/20.jpg" class="responsive-img" alt="阿里云CDN加速域名解析冲突问题">
                         
-                        <span class="card-title">hexo matery主题代码高亮问题</span>
+                        <span class="card-title">阿里云CDN加速域名解析冲突问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            转载自大佬们的博客:
-Hexo博客：六、prism代码高亮
-个人博客搭建笔记----hexo主题代码高亮
+                            自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。
 
-        document.querySelectorAll('.github-emoji')
-          .forE
+首先，你需要将域名进行备案，备案完成后才能进行后
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-09-26
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-11
                             </span>
                         <span class="publish-author">
                             
@@ -1042,8 +1198,8 @@ Hexo博客：六、prism代码高亮
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo-%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE-matery/">
-                        <span class="chip bg-color">hexo 代码高亮 matery</span>
+                    <a href="/tags/CDN-%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81/">
+                        <span class="chip bg-color">CDN 解析冲突</span>
                     </a>
                     
                 </div>
