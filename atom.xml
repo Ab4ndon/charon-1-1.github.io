@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2021-03-11T15:37:19.862Z</updated>
+  <updated>2021-03-12T15:24:58.802Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>DSLinearList</title>
+    <title>【数据结构】单链表的基本运算实现</title>
+    <link href="http://kongcm.cn/2021/03/12/SingleList/"/>
+    <id>http://kongcm.cn/2021/03/12/SingleList/</id>
+    <published>2021-03-12T15:17:40.000Z</published>
+    <updated>2021-03-12T15:24:58.802Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h4 id=&quot;【数据结构】单链表的基本运算实现&quot;&gt;【数据结构】单链表的基本运算实现&lt;/h4&gt;
+&lt;p&gt;关于数据结构中线性表的链接表示的基本运算的实现,把书上单链表的代码敲了一遍，加了些注释。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="数据结构" scheme="http://kongcm.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="数据结构 C语言" scheme="http://kongcm.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-C%E8%AF%AD%E8%A8%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【数据结构】线性表基本运算的实现</title>
     <link href="http://kongcm.cn/2021/03/11/DSLinearList/"/>
     <id>http://kongcm.cn/2021/03/11/DSLinearList/</id>
     <published>2021-03-11T15:33:35.000Z</published>
-    <updated>2021-03-11T15:37:19.862Z</updated>
+    <updated>2021-03-12T15:25:06.429Z</updated>
     
     <summary type="html">
     
