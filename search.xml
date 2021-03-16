@@ -1062,7 +1062,12 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
     <content><![CDATA[<h4 id="【数据结构】单链表的基本运算实现">【数据结构】单链表的基本运算实现</h4>
 <p>关于数据结构中线性表的链接表示的基本运算的实现,把书上单链表的代码敲了一遍，加了些注释。</p>
 <a id="more"></a>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
+<pre><code class="language-c">/*
+  author:Ab4nd0n
+  Time:2021-3-11
+*/
+
+#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 
 #define OK 1
@@ -1262,6 +1267,38 @@ int main()
       </categories>
       <tags>
         <tag>数据结构 C语言</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构疑问</title>
+    <url>/2021/03/16/DSQuestion/</url>
+    <content><![CDATA[<h4 id="1-时间复杂度O-1-与O-n-的区别？">1.时间复杂度O(1)与O(n)的区别？</h4>
+<p><img src="/2021/03/16/DSQuestion/image-20210316215804952.png" alt="image-20210316215804952"></p>
+<p><img src="/2021/03/16/DSQuestion/image-20210316220103135.png" alt="image-20210316220103135"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
       </tags>
   </entry>
 </search>

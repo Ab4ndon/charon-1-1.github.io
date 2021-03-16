@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="【数据结构】单链表的基本运算实现, Ab4nd0n">
+    <meta name="keywords" content="数据结构疑问, Ab4nd0n">
     <meta name="description" content="记录学习，记录生活。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>【数据结构】单链表的基本运算实现 | Ab4nd0n</title>
+    <title>数据结构疑问 | Ab4nd0n</title>
     <link rel="icon" type="image/jpeg" href="/medias/touxiang.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -247,12 +247,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/18.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/24.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">【数据结构】单链表的基本运算实现</h1>
+                    <h1 class="description center-align post-title">数据结构疑问</h1>
                 </div>
             </div>
         </div>
@@ -372,8 +372,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-C%E8%AF%AD%E8%A8%80/">
-                                <span class="chip bg-color">数据结构 C语言</span>
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                <span class="chip bg-color">数据结构</span>
                             </a>
                         
                     </div>
@@ -397,28 +397,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-12
+                    2021-03-16
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-03-12
+                    2021-03-16
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    987
+                    66
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    4 分
+                    1 分
                 </div>
                 
 
@@ -433,190 +433,9 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h4 id="【数据结构】单链表的基本运算实现">【数据结构】单链表的基本运算实现</h4>
-<p>关于数据结构中线性表的链接表示的基本运算的实现,把书上单链表的代码敲了一遍，加了些注释。</p>
-<a id="more"></a>
-<pre><code class="language-c">/*
-  author:Ab4nd0n
-  Time:2021-3-11
-*/
-
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-#define OK 1
-#define ERROR 0
-
-typedef int Status;
-typedef int ElemType;
-
-typedef struct node     //节点的结构体
-{
-    ElemType element;
-    struct node *link;
-}Node;
-
-typedef struct singleList //单链表的结构体
-{
-    Node *first;  //first 头指针，用来存放头结点a0的地址
-    int n;        //表示单链表中元素的个数
-}SingleList;
-
-
-//单链表的初始化
-Status Init(SingleList *L)
-{
-    L-&gt;first=NULL;
-    L-&gt;n=0;
-    return OK;
-}
-
-//单链表的查找
-/*
-判断下标i是否越界 0~n-1
-若未越界，则从头结点开始顺着单链表逐个结点查找
-通过循环让p指向结点ai
-将ai的值通过x返回（传值与传址，这边传进来的是地址，操作完会改变实参x的值）
-*/
-Status Find(SingleList *L,int i,ElemType *x)
-{
-    int j;
-    Node *p;
-    if(i&lt;0||i&gt;L-&gt;n-1)   return ERROR;
-      
-    p=L-&gt;first;          //p指向a0
-    for(j=0;j&lt;i;j++)
-    {
-        p=p-&gt;link;       //执行1次后p指向a1,反复指向下一个结点
-    }
-    *x=p-&gt;element;
-    return OK;
-}
-
-//单链表的插入
-/*
-判断i是否越界 （-1~n-1）
-查找ai,指针p指向此节点
-生成一个新的结点q，将新结点的数据域置为x，指针q指向此结点
-考虑i的取值：若i=-1,表明新结点q插在头结点a0之前，成为新的头结点
-            若i&gt;-1,将q所指向的结点插入p所指的结点之后（注意不要断链）
-单链表元素个数+1
-*/
-Status Insert(SingleList  *L,int i,ElemType x)
-{
-    Node *p,*q;
-    int j;
-    if(i&lt;-1||i&gt;L-&gt;n-1)
-    {
-        return  ERROR;
-    }
-    p=L-&gt;first;          //p指向头指针
-    for(j=0;j&lt;i;j++)     //从头开始查找ai
-    {
-        p=p-&gt;link;
-    }
-    q=(Node*)malloc(sizeof(Node));      //生成新节点q
-    q-&gt;element=x;
-
-    if(i&gt;-1)            //讨论i=-1和i&gt;-1的情况
-    {
-        q-&gt;link=p-&gt;link;
-        p-&gt;link=q;
-    }
-    else
-    {
-        q-&gt;link=L-&gt;first; //新节点插在头节点a0之前，成为新的头节点
-        L-&gt;first=q;
-    }
-    L-&gt;n++;
-    return OK;
-}
-
-//单链表的删除
-/*
-判断i是否越界（0~n-1）、单链表是否为空
-查找元素ai的直接前驱ai-1,并令指针q指向它
-考虑i的取值：若i=0,则从单链表中删除头结点
-            若i&gt;0，则使p指向ai所在的结点，并删除ai
-释放p所指结点的存储空间
-单链表元素个数-1
-*/
-Status Delete(SingleList *L,int i)
-{
-    int j;
-    Node *p,*q;
-    if(!L-&gt;n)  
-      return ERROR;
-    if(i&lt;0||i&gt;L-&gt;n-1)
-      return ERROR;
-    q=L-&gt;first;
-    p=L-&gt;first;
-    for(j=0;j&lt;i-1;j++)
-      q=q-&gt;link;
-    if(i==0)
-      L-&gt;first=L-&gt;first-&gt;link;    //删除的是头节点
-    else
-    {
-        p=q-&gt;link;               //p指向ai
-        q-&gt;link=p-&gt;link;          //ai+1的地址存到ai-1的指针域中
-    }
-    free(p);   //释放p所指结点的存储空间
-    L-&gt;n--;
-    return OK;
-
-}
-
-//单链表的输出
-Status Output(SingleList *L)
-{
-    Node *p;
-    if(!L-&gt;n)
-        return ERROR;
-    p=L-&gt;first;
-    while(p)
-    {
-        printf("%d ",p-&gt;element);
-        p=p-&gt;link;
-    }
-    printf("\n\n");
-    return OK;
-}
-
-//单链表的销毁
-void Destroy(SingleList *L)
-{
-    Node *p;
-    while (L-&gt;first)
-    {
-        p=L-&gt;first-&gt;link;  //保存后继结点地址，防止断链
-        free(L-&gt;first);   //释放first所指结点的存储空间
-        L-&gt;first=p;
-    }
-}
-
-
-int main()
-{
-    int i;
-    int x;
-    SingleList List;
-    i=Init(&amp;List);
-    printf("%d\n\n",i);     // 1
-    for(i=0;i&lt;10;i++)
-    {
-        Insert(&amp;List,i-1,i);
-    }
-    Output(&amp;List);    //0 1 2 3 4 5 6 7 8 9
-    Find(&amp;List,1,&amp;x);
-    printf("The value is : %d\n\n",x);  //1
-    Delete(&amp;List,3);
-    Output(&amp;List);  //0 1 2 4 5 6 7 8 9
-    Destroy(&amp;List);
-
-}
-
-
-</code></pre>
+                <h4 id="1-时间复杂度O-1-与O-n-的区别？">1.时间复杂度O(1)与O(n)的区别？</h4>
+<p><img src="/2021/03/16/DSQuestion/image-20210316215804952.png" alt="image-20210316215804952"></p>
+<p><img src="/2021/03/16/DSQuestion/image-20210316220103135.png" alt="image-20210316220103135"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -660,7 +479,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://kongcm.cn/2021/03/12/SingleList/">http://kongcm.cn/2021/03/12/SingleList/</a>
+                    <a href="http://kongcm.cn/2021/03/16/DSQuestion/">http://kongcm.cn/2021/03/16/DSQuestion/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -698,8 +517,8 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-C%E8%AF%AD%E8%A8%80/">
-                                    <span class="chip bg-color">数据结构 C语言</span>
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                                    <span class="chip bg-color">数据结构</span>
                                 </a>
                             
                         </div>
@@ -1130,9 +949,10 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/03/16/DSQuestion/">
                     <div class="card-image">
@@ -1156,9 +976,9 @@ int main()
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
@@ -1171,6 +991,7 @@ int main()
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -1189,33 +1010,32 @@ int main()
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2021/03/11/DSLinearList/">
+                <a href="/2021/03/12/SingleList/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/3.jpg" class="responsive-img" alt="【数据结构】线性表基本运算的实现">
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="【数据结构】单链表的基本运算实现">
                         
-                        <span class="card-title">【数据结构】线性表基本运算的实现</span>
+                        <span class="card-title">【数据结构】单链表的基本运算实现</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            【数据结构】线性表基本运算的实现
-关于数据结构中线性表的顺序表示的基本运算的实现。
+                            【数据结构】单链表的基本运算实现
+关于数据结构中线性表的链接表示的基本运算的实现,把书上单链表的代码敲了一遍，加了些注释。
 
 /*
   author:Ab4nd0n
   Time:2021-3-11
 */
 
-#include &lt;stdio.h&gt;
-#include &l
+#include &lt;std
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-12
                             </span>
                         <span class="publish-author">
                             
