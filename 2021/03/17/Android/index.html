@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="尝试用typora写博客, Ab4nd0n">
+    <meta name="keywords" content="Android, Ab4nd0n">
     <meta name="description" content="记录学习，记录生活。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>尝试用typora写博客 | Ab4nd0n</title>
+    <title>Android | Ab4nd0n</title>
     <link rel="icon" type="image/jpeg" href="/medias/touxiang.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -247,12 +247,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/19.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">尝试用typora写博客</h1>
+                    <h1 class="description center-align post-title">Android</h1>
                 </div>
             </div>
         </div>
@@ -372,14 +372,23 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Typora/">
-                                <span class="chip bg-color">Typora</span>
+                            <a href="/tags/Android-UI/">
+                                <span class="chip bg-color">Android UI</span>
                             </a>
                         
                     </div>
                     
                 </div>
                 <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/Android/" class="post-category">
+                                Android
+                            </a>
+                        
+                    </div>
                     
                 </div>
             </div>
@@ -388,28 +397,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-07-03
+                    2021-03-17
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-07-20
+                    2021-03-17
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    690
+                    343
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    2 分
+                    1 分
                 </div>
                 
 
@@ -424,84 +433,55 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>​	昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢:question:</p>
+                <p>今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。</p>
 <a id="more"></a>
-<p>​	在大佬的安利之下，我发现了 <strong>Trpora</strong> 这个强大的软件，今天就用它来写这篇博客。（第一次使用，用意不在内容，而是想测试一下各种花里胡哨的东西​ :smile:）</p>
-<p>​	话不多说，测试开始</p>
-<p>:boxing_glove:</p>
-<ul>
-<li>
-<h4 id="首先，测试一下图片的插入-arrow-down-small">首先，测试一下图片的插入:arrow_down_small:</h4>
-<p><img src="/2020/07/03/typora/wallhaven-ox7695.jpg" alt=""></p>
-</li>
-<li>
-<p><img src="/2020/07/03/typora/wallhaven-49e9zx.jpg" alt=""></p>
-</li>
-</ul>
-<p><strong>美汁儿汁儿</strong>:call_me_hand:</p>
-<ul>
-<li>
-<h4 id="接着测试一下超链接">接着测试一下超链接</h4>
-<p><a href="http://www.baidu.com" target="_blank" rel="noopener">百度</a></p>
-<p>ojbk:sunglasses:</p>
-</li>
-<li>
-<h4 id="搞点代码恰恰-grey-question">搞点代码恰恰:grey_question:</h4>
-<p><code>printf("hello world!");</code></p>
-</li>
-</ul>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-int main()
-{
-	printf("welcome!");
-}
+<h4 id="1-边框圆角化">1.边框圆角化</h4>
+<pre><code class="language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"&gt;
+    &lt;!-- 填充的颜色 --&gt;
+    &lt;solid android:color="#EEB422" /&gt;
+    &lt;!-- android:radius 弧形的半径 --&gt;
+    &lt;!-- 设置按钮的四个角为弧形 --&gt;
+    &lt;corners
+        android:radius="20dip" /&gt;
+    &lt;!--也可单独设置--&gt;
+    &lt;!-- &lt;corners --&gt;
+    &lt;!-- android:topLeftRadius="10dp"--&gt;
+    &lt;!-- android:topRightRadius="10dp"--&gt;
+    &lt;!-- android:bottomRightRadius="10dp"--&gt;
+    &lt;!--  android:bottomLeftRadius="10dp"--&gt;
+    &lt;!--   /&gt;  --&gt;
+    **设置文字padding**
+    &lt;!-- padding：Button里面的文字与Button边界的间隔 --&gt;
+    &lt;padding
+        android:left="5dp"
+        android:top="3dp"
+        android:right="5dp"
+        android:bottom="3dp"
+        /&gt;
+&lt;/shape&gt;
 </code></pre>
-<ul>
-<li>
-<h4 id="再整个表？听说Typora这个功能很强啊-black-flag">再整个表？听说Typora这个功能很强啊 <span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8">🏴</span></h4>
-<p><code>ctrl+T</code> 插入表格</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>不知道该制个啥表，先空着吧，网上复制一个去(这功能tql)</p>
-<p>好家伙，找半天，没找到合适的，，，，以后再说吧</p>
-</li>
-<li>
-<h4 id="引用点东西水一水字数-cold-sweat">引用点东西水一水字数<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></h4>
-<blockquote>
-<p>​		寂坐时，常想到晚明张岱。他写湖心亭：“崇祯五年十二月，余住西湖。大雪三日，湖中人鸟声俱绝。是日更定矣，余拿一小舟，拥毳衣炉火，独往湖心亭看雪。雾淞沆砀，天与云、与山、与水，上下一白。湖上影子，惟长堤一痕，湖心亭一点，与余舟一芥，舟中人两三粒而已。”</p>
-<p>​		深夜独自到湖上看大雪，他显然不觉寂寞——寂寞可能是美学的必要。但是，国破家亡、人事全非、当他在为自己写墓志铭的时候呢？</p>
-<p>​		蜀人张岱，陶庵其号也。少为纨绔子弟，极爱繁华，好精舍，好美婢，好娈童，好鲜衣，好美食，好骏马，好华灯，好烟火，好梨园，好鼓吹，好古董，好花鸟，兼以茶淫橘虐，书蠹诗魔，劳碌半生，皆成梦幻。年至五十，国破家亡，避迹山居。所存者，破床碎几，折鼎病琴与残书数帙，缺砚一方而已。布衣疏莨，常至断炊。回首二十年前，真如隔世。</p>
-<p>​		有一种寂寞，身边添一个可谈的人，一条知心的狗，或许就可以消减。有一种寂寞，茫茫天地之间“余舟一芥”的无边无际无着落，或许只能各自孤独面对，素颜修行吧。</p>
-<p>​																																							——龙应台《寂寞》</p>
-</blockquote>
-<hr>
-<p>OK，测试暂且到这吧，以后常用的大概就这些了。U1S1，Typora的确是个宝藏软件<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8">🖕</span></p>
-</li>
-</ul>
+<h4 id="2-背景颜色渐变">2.背景颜色渐变</h4>
+<pre><code class="language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;!--实现应用背景颜色渐变--&gt;
+    &lt;gradient
+        android:startColor="#FFF8DC"
+        android:endColor="#FFE1FF"
+        android:angle="270"/&gt;
+    &lt;corners
+        android:radius="20dip"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"/&gt;
+&lt;/shape&gt;
+
+</code></pre>
+<h4 id="3-Button背景色修改无效">3.Button背景色修改无效</h4>
+<p>找到main/res/values/themes.xml文件</p>
+<p>将其中的<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar"&gt;</code></p>
+<p>修改为<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge"&gt;</code>即可</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -545,7 +525,7 @@ int main()
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://kongcm.cn/2020/07/03/typora/">http://kongcm.cn/2020/07/03/typora/</a>
+                    <a href="http://kongcm.cn/2021/03/17/Android/">http://kongcm.cn/2021/03/17/Android/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -583,8 +563,8 @@ int main()
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Typora/">
-                                    <span class="chip bg-color">Typora</span>
+                                <a href="/tags/Android-UI/">
+                                    <span class="chip bg-color">Android UI</span>
                                 </a>
                             
                         </div>
@@ -1015,49 +995,53 @@ int main()
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/07/05/0xctf/">
+                <a href="/2021/03/17/Android/">
                     <div class="card-image">
                         
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="0xCTF web题 writeup">
                         
-                        <span class="card-title">0xCTF web题 writeup</span>
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="Android">
+                        
+                        <span class="card-title">Android</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打:sob::sob:,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.
+                            今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。
 
-1.soeasy
-
-这个题还是蛮简单的，查看源码,稍微找找
+1.边框圆角化
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape
+    xmlns:android="htt
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-07-05
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-17
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    学习
+                            <a href="/categories/Android/" class="post-category">
+                                    Android
                                 </a>
                             
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CTF-web/">
-                        <span class="chip bg-color">CTF  web</span>
+                    <a href="/tags/Android-UI/">
+                        <span class="chip bg-color">Android UI</span>
                     </a>
                     
                 </div>
@@ -1068,44 +1052,47 @@ int main()
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/03/typora/">
+                <a href="/2021/03/17/GitQues/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="尝试用typora写博客">
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="博客发布时 hexo d 命令报错">
                         
-                        <span class="card-title">尝试用typora写博客</span>
+                        <span class="card-title">博客发布时 hexo d 命令报错</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ​	昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢:question:
-
-​	在大佬的安利之下，我发现了 Trpora 这个强大的
+                            问题描述：
+博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，hexo s正常，但是hexo g后进行hexo d时报错：
+fatal: unable to access ‘https: [//github.com/
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-03
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-17
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Ab4nd0n
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/Git/" class="post-category">
+                                    Git
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/Typora/">
-                        <span class="chip bg-color">Typora</span>
+                    <a href="/tags/Git-Hexo%E9%83%A8%E7%BD%B2/">
+                        <span class="chip bg-color">Git Hexo部署</span>
                     </a>
                     
                 </div>

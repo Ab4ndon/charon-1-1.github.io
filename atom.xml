@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2021-03-17T04:16:21.906Z</updated>
+  <updated>2021-03-17T15:45:46.179Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Android</title>
+    <link href="http://kongcm.cn/2021/03/17/Android/"/>
+    <id>http://kongcm.cn/2021/03/17/Android/</id>
+    <published>2021-03-17T15:38:15.000Z</published>
+    <updated>2021-03-17T15:45:46.179Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Android" scheme="http://kongcm.cn/categories/Android/"/>
+    
+    
+      <category term="Android UI" scheme="http://kongcm.cn/tags/Android-UI/"/>
+    
+  </entry>
   
   <entry>
     <title>博客发布时 hexo d 命令报错</title>
