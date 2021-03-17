@@ -1301,4 +1301,39 @@ int main()
         <tag>数据结构</tag>
       </tags>
   </entry>
+  <entry>
+    <title>博客发布时 hexo d 命令报错</title>
+    <url>/2021/03/17/GitQues/</url>
+    <content><![CDATA[<p>问题描述：</p>
+<p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
+<p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
+<p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
+<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control" target="_blank" rel="noopener">针对github权限导致hexo部署失败的解决方案</a></p>
+<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154" target="_blank" rel="noopener">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>Git</category>
+      </categories>
+      <tags>
+        <tag>Git Hexo部署</tag>
+      </tags>
+  </entry>
 </search>

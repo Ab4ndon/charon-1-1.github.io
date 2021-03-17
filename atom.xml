@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2021-03-16T14:06:40.272Z</updated>
+  <updated>2021-03-17T04:16:21.906Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客发布时 hexo d 命令报错</title>
+    <link href="http://kongcm.cn/2021/03/17/GitQues/"/>
+    <id>http://kongcm.cn/2021/03/17/GitQues/</id>
+    <published>2021-03-17T01:40:45.000Z</published>
+    <updated>2021-03-17T04:16:21.906Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，&lt;code&gt;hexo s&lt;/code&gt;正常，但是&lt;code&gt;hexo g&lt;/code&gt;后进行&lt;code&gt;hexo
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Git" scheme="http://kongcm.cn/categories/Git/"/>
+    
+    
+      <category term="Git Hexo部署" scheme="http://kongcm.cn/tags/Git-Hexo%E9%83%A8%E7%BD%B2/"/>
+    
+  </entry>
   
   <entry>
     <title>数据结构疑问</title>
