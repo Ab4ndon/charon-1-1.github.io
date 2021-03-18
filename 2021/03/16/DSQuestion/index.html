@@ -404,21 +404,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-03-16
+                    2021-03-18
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    66
+                    933
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    1 分
+                    3 分
                 </div>
                 
 
@@ -436,25 +436,40 @@
                 <h4 id="1-时间复杂度O-1-与O-n-的区别？">1.时间复杂度O(1)与O(n)的区别？</h4>
 <p><img src="/2021/03/16/DSQuestion/image-20210316215804952.png" alt="image-20210316215804952"></p>
 <p><img src="/2021/03/16/DSQuestion/image-20210316220103135.png" alt="image-20210316220103135"></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+<h4 id="2-随机存取">2.随机存取</h4>
+<p>根据存储位置是否可计算（是否有一个计算地址的公式）来判断该数据结构是否具备随机存取的特性，如数组知道首地址就可计算后面所有元素的地址</p>
+<h4 id="第四章-数组和特殊矩阵">第四章  数组和特殊矩阵</h4>
+<h5 id="对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？">对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？</h5>
+<p>文件压缩有很多种，包含了稀疏矩阵</p>
+<h5 id="为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除">为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除</h5>
+<p>数组是静态数据结构，本质上没有插入和删除运算</p>
+<h5 id="为什么稀疏矩阵压缩存储后，必会失去随机存取功能？">为什么稀疏矩阵压缩存储后，必会失去随机存取功能？</h5>
+<p>因为在这种矩阵中，非零元素的分布是没有规律的，为了压缩存储，就将每一个非零元素的值和它所在的行、列号做为一个结点存放在一起，这样的结点组成的线性表中叫三元组表，它已不是简单的向量，所以无法用下标直接存取矩阵中的元素（没有一个计算公式）。</p>
+<h5 id="动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？">动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？</h5>
+<p>先申请一块指定大小的内存块区域</p>
+<h5 id="动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？">动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？</h5>
+<img src="/2021/03/16/DSQuestion/image-20210318140952671.png" alt="image-20210318140952671" style="zoom:80%;">
+<p>无论是动态数组还是静态数组，数组长度确定下来后存储空间就确定了，所以静态和动态数组都是静态数据结构</p>
+<p>静态数据结构通常不会去定义插入、删除操作</p>
+<p><img src="/2021/03/16/DSQuestion/image-20210318141309092.png" alt="image-20210318141309092"></p>
+<h5 id="假如数组下标不是从0开始，而是从1开始，会影响到什么？">假如数组下标不是从0开始，而是从1开始，会影响到什么？</h5>
+<p>lacation计算里会出现一个-1计算</p>
+<h5 id="n和t都是未知常数，那O-n-t-复杂度和O-1-有什么区别？稀疏矩阵的快速转置算法中时间复杂度O-n-t-能不能直接写成O-n-？">n和t都是未知常数，那O(n+t)复杂度和O(1)有什么区别？稀疏矩阵的快速转置算法中时间复杂度O(n+t)能不能直接写成O(n)？</h5>
+<p>n、t都是可变的，是<strong>变量</strong>，所以不能写成O(1)，又不知道n、t哪个大，所以不能写成O(n)或者O(t).在某些情况下，如果知道n,t的大小情况的话是可以写成O(较大的那个)</p>
+<h5 id="我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？">我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？</h5>
+<p>更节省空间的暂无</p>
+<p>更易进行矩阵运算的有很多（分块啥的）</p>
+<h5 id="用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？">用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？</h5>
+<h5 id="如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？">如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？</h5>
+<p>可以查查matlab是怎么实现的</p>
+<h5 id="C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？">C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？</h5>
+<img src="/2021/03/16/DSQuestion/image-20210318140758524.png" alt="image-20210318140758524" style="zoom:80%;">
+<h5 id="稀疏矩阵的快速转置算法“快速”的代价是什么？">稀疏矩阵的快速转置算法“快速”的代价是什么？</h5>
+<p>存储空间增加了</p>
+<h5 id="稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗">稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗</h5>
+<p>按书上那么做的话是必要的</p>
+<p><img src="/2021/03/16/DSQuestion/image-20210318152228362.png" alt="image-20210318152228362"></p>
+
             </div>
             <hr/>
 
@@ -1196,7 +1211,7 @@ fatal: unable to access ‘https: [//github.com/
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13k</span>&nbsp;字
+                class="white-color">13.8k</span>&nbsp;字
             
             
             
@@ -1372,9 +1387,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>
