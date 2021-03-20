@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -411,7 +411,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    806
+                    794
                 </div>
                 
 
@@ -435,7 +435,7 @@
             <div id="articleContent">
                 <h4 id="【数据结构】线性表基本运算的实现">【数据结构】线性表基本运算的实现</h4>
 <p>关于数据结构中线性表的顺序表示的基本运算的实现。</p>
-<a id="more"></a>
+<span id="more"></span>
 <pre><code class="language-c">/*
   author:Ab4nd0n
   Time:2021-3-11
@@ -453,11 +453,11 @@
 
 typedef int ElemType;
 typedef struct
-{
+&#123;
     int n;              //元素个数
     int maxlength;      //最大允许长度
     ElemType *element;  //指针变量
-} SeqList;
+&#125; SeqList;
 
 typedef int Status; //自定义类型
 
@@ -467,16 +467,16 @@ typedef int Status; //自定义类型
 若动态分配一维数组失败则返回ERROR（0）
 */
 Status Init(SeqList *L,int mSize)
-{
+&#123;
     L-&gt;n=0;
     L-&gt;maxlength=mSize;
     L-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
     if(!L-&gt;element)  
-    {
+    &#123;
         return ERROR;
-    }
+    &#125;
     return OK;
-}
+&#125;
 
 //顺序表的查找(查找元素ai的值,直接定位下标)
 /*
@@ -486,15 +486,15 @@ Status Init(SeqList *L,int mSize)
 算法复杂度为O(1)
 */
 Status Find(SeqList *L,int i)
-{
+&#123;
     int x;
     if(i&lt;0||i&gt;L-&gt;n-1)
-    {
+    &#123;
         return ERROR;
-    }
+    &#125;
     return x=L-&gt;element[i]
 
-}
+&#125;
 
 //顺序表的插入(在ai之后插入，即ai+1的位置)
 /*
@@ -507,25 +507,25 @@ Status Find(SeqList *L,int i)
 算法复杂度为O(n)
 */
 Status Insert (SeqList *L, int i,ElemType x)
-{
+&#123;
     int j;
      if(i&lt;-1||i&gt;L-&gt;n-1)  //注意此处i的范围 是&lt;-1 不是0  ！！！
-    {
+    &#123;
         return ERROR;
-    }
+    &#125;
     if(L-&gt;n==L-&gt;maxlength)   //判满
-    {
+    &#123;
         return ERROR;
-    }
+    &#125;
     for(j=L-&gt;n-1;j&gt;i;j--)       //通过循环将下标i+1到n-1的元素后移（从后往前）
-    {
+    &#123;
         L-&gt;element[j+1]=L-&gt;element[j];   //注意是j的值给j+1（从后往前）
-    }
+    &#125;
     L-&gt;element[i+1]=x; //把插入的 元素放到下标为 i+1 的位置
     L-&gt;n=L-&gt;n+1;      //表长加1
     return OK;
 
-}
+&#125;
 
 //顺序表的删除
 /*
@@ -537,77 +537,59 @@ Status Insert (SeqList *L, int i,ElemType x)
 算法复杂度为O(n)
 */
 Status Delete(SeqList *L,int i)
-{
+&#123;
     int j;
     if(i&lt;0||i&gt;L-&gt;n-1)  return ERROR;  //此处i&lt;0!!!注意和插入区分
     if(!L-&gt;n)  return ERROR;    //判空
     for(j=i+1;j&lt;L-&gt;n;j++)
-    {
+    &#123;
         L-&gt;element[j-1]=L-&gt;element[j];  //从前往后逐个前移元素，j的值给j-1
-    }
+    &#125;
     L-&gt;n--;    //表长-1
     return OK;
     
-}
+&#125;
 
 //顺序表的输出
 Status Output(SeqList *L)
-{
+&#123;
     int i;
     if(!L-&gt;n)   return ERROR;   //判空
     for(i=0;i&lt;L-&gt;n;i++)
-    {
-        printf("%d",L-&gt;element[i]);
-    }
-    printf("\n\n");
+    &#123;
+        printf(&quot;%d&quot;,L-&gt;element[i]);
+    &#125;
+    printf(&quot;\n\n&quot;);
      return OK;
-}
+&#125;
 
 //顺序表的销毁
 void Destroy(SeqList *L)
-{
+&#123;
     L-&gt;n=0;
     L-&gt;maxlength=0;
     free(L-&gt;element);
-    printf("Sucessfuly Destroy!\n");
-}
+    printf(&quot;Sucessfuly Destroy!\n&quot;);
+&#125;
 
 
 int main()
-{
+&#123;
     int i,k;
     SeqList List;
     k=Init(&amp;List,10); //因为Init函数的形参是指针变量（地址），所以这里要用取地址符！！！
-    printf("%d\n\n",k);   //测试返回值为 1
+    printf(&quot;%d\n\n&quot;,k);   //测试返回值为 1
     for(i=0;i&lt;10;i++)
-    {
+    &#123;
         Insert(&amp;List,i-1,i);  //执行插入操作
-    }
+    &#125;
     Output(&amp;List);    // 0123456789
     Delete(&amp;List,2);
     Output(&amp;List);    // 013456789
     Destroy(&amp;List);   // Sucessfuly Destroy!
-}
+&#125;
 </code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
             </div>
             <hr/>
 
@@ -1345,7 +1327,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.8k</span>&nbsp;字
+                class="white-color">13.5k</span>&nbsp;字
             
             
             
@@ -1524,6 +1506,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

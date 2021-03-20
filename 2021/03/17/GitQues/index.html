@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -404,14 +404,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-03-17
+                    2021-03-20
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    288
+                    309
                 </div>
                 
 
@@ -437,27 +437,13 @@
 <p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
 <p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
 <p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
-<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control" target="_blank" rel="noopener">针对github权限导致hexo部署失败的解决方案</a></p>
-<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154" target="_blank" rel="noopener">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control">针对github权限导致hexo部署失败的解决方案</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
+<hr>
+<p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
+<p><a target="_blank" rel="noopener" href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
+<p>加油，打工人！</p>
+
             </div>
             <hr/>
 
@@ -971,9 +957,9 @@
                             今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。
 
 1.边框圆角化
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;shape
-    xmlns:android="htt
+  
                         
                     </div>
                     <div class="publish-info">
@@ -1194,7 +1180,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.8k</span>&nbsp;字
+                class="white-color">13.5k</span>&nbsp;字
             
             
             
@@ -1373,6 +1359,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

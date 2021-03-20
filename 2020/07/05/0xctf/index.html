@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -434,7 +434,7 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打:sob::sob:,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.</p>
-<a id="more"></a>
+<span id="more"></span>
 <h4 id="1-soeasy">1.soeasy</h4>
 <p><img src="/2020/07/05/0xctf/image-20200705164040950.jpg" alt="1"></p>
 <p>这个题还是蛮简单的，查看源码,稍微找找就能得到flag</p>
@@ -469,7 +469,7 @@
 <hr>
 <h4 id="5-ezmd5">5.ezmd5</h4>
 <img src="/2020/07/05/0xctf/image-20200705173020907.png" alt="image-20200705173020907" style="zoom: 80%;">
-<p>核心是那个if 语句，它要求参数a,b 的值相同但是MD5相同，这里可以利用绕过。（绕过蛮有意思的，当时做这题的时候查了查，觉得有篇博文讲的还蛮好的，在这安利一下：<a href="https://blog.csdn.net/qq_19980431/article/details/83018232" target="_blank" rel="noopener">CTF中常见php-MD5()函数漏洞</a>）</p>
+<p>核心是那个if 语句，它要求参数a,b 的值相同但是MD5相同，这里可以利用绕过。（绕过蛮有意思的，当时做这题的时候查了查，觉得有篇博文讲的还蛮好的，在这安利一下：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19980431/article/details/83018232">CTF中常见php-MD5()函数漏洞</a>）</p>
 <blockquote>
 <p>PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以“0E”开头的，那么PHP将会认为他们相同，都是0。</p>
 <p><strong>以下值在md5加密后以0E开头：</strong></p>
@@ -522,8 +522,8 @@
 <p>比如在网址栏里输入%3D：</p>
 <img src="/2020/07/05/0xctf/image-20200705185957749.png" alt="image-20200705185957749" style="zoom:80%;">
 <p>这里的%3D其实就相当于=</p>
-<p>我实在太菜了，大佬提示到这我还是没能领略，我尝试将原来的%3D替换成=再解码看看，得到<code>{"username":"guest"}</code></p>
-<p>虽然解码正常了。但还是不知道怎么利用这个信息，想想题目那句话“only the admin can see the flag”,我试了一下将<code>{"username":"guest"}</code>中的<code>guest</code> 换成<code>admin</code>，获得一串字符，把这串字符作为请求头cookie 的值，send一波，失败!</p>
+<p>我实在太菜了，大佬提示到这我还是没能领略，我尝试将原来的%3D替换成=再解码看看，得到<code>&#123;&quot;username&quot;:&quot;guest&quot;&#125;</code></p>
+<p>虽然解码正常了。但还是不知道怎么利用这个信息，想想题目那句话“only the admin can see the flag”,我试了一下将<code>&#123;&quot;username&quot;:&quot;guest&quot;&#125;</code>中的<code>guest</code> 换成<code>admin</code>，获得一串字符，把这串字符作为请求头cookie 的值，send一波，失败!</p>
 <p>此时大佬缓缓打出一个:question:方法对了，但是居然解不出来？</p>
 <p>我又重新试了一遍，不行，发现我的base64编码出来的字符串和大佬的不一样，我换了一个在线解码的网站，再解了一次，把字符串作为cookie的值，成功解出flag。（什么？我居然被在线解码网站给克制了:angry:）</p>
 <hr>
@@ -535,7 +535,7 @@
 <hr>
 <h4 id="10">10.$$</h4>
 <p><img src="/2020/07/05/0xctf/image-20200706184747544.png" alt="image-20200706184747544"></p>
-<p>这题考察变量覆盖   此处安利一篇博客：<a href="https://www.jianshu.com/p/a4d782e91852" target="_blank" rel="noopener">变量覆盖漏洞</a></p>
+<p>这题考察变量覆盖   此处安利一篇博客：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a4d782e91852">变量覆盖漏洞</a></p>
 <p>准确说是考察由$$引起的变量覆盖，根据题意，在url后面加上<code>？ctf=0xctf</code>,使其满足if 条件语句即可</p>
 <hr>
 <h4 id="11-extract">11.extract</h4>
@@ -545,22 +545,22 @@
 <h4 id="12-parse-str">12.parse_str</h4>
 <p><img src="/2020/07/05/0xctf/image-20200706185724337.png" alt="image-20200706185724337"></p>
 <p>这题考察的是由parse_str()函数引起的变量覆盖，主要是通过变量覆盖使得Leon1===Leon2</p>
-<p>之前在学习变量覆盖的时候见过几道这方面的例题，这道题中的<code>$_SERVER["QUERY_STRING"]</code>是我没见到过的，去百度了一下：</p>
+<p>之前在学习变量覆盖的时候见过几道这方面的例题，这道题中的<code>$_SERVER[&quot;QUERY_STRING&quot;]</code>是我没见到过的，去百度了一下：</p>
 <blockquote>
 <p>实例：</p>
-<p>1，<a href="http://localhost/aaa/**" target="_blank" rel="noopener">http://localhost/aaa/**</a> (打开aaa中的index.php)<br>
+<p>1，<a target="_blank" rel="noopener" href="http://localhost/aaa/**">http://localhost/aaa/**</a> (打开aaa中的index.php)<br>
 结果：<br>
 $_SERVER[‘QUERY_STRING’] = “”;<br>
 $_SERVER[‘REQUEST_URI’] = “/aaa/”;<br>
 $_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>
 $_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
-<p>**2，**<a href="http://localhost/aaa/?p=222" target="_blank" rel="noopener">http://localhost/aaa/?p=222</a> (附带查询)<br>
+<p>**2，**<a target="_blank" rel="noopener" href="http://localhost/aaa/?p=222">http://localhost/aaa/?p=222</a> (附带查询)<br>
 结果：<br>
 $_SERVER[‘QUERY_STRING’] = “p=222”;<br>
 $_SERVER[‘REQUEST_URI’] = “/aaa/?p=222”;<br>
 $_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>
 $_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
-<p><strong>3，<a href="http://localhost/aaa/index.php?p=222&amp;q=333" target="_blank" rel="noopener">http://localhost/aaa/index.php?p=222&amp;q=333</a></strong><br>
+<p><strong>3，<a target="_blank" rel="noopener" href="http://localhost/aaa/index.php?p=222&amp;q=333">http://localhost/aaa/index.php?p=222&amp;q=333</a></strong><br>
 结果：<br>
 $$_SERVER[‘REQUEST_URI’] = “/aaa/index.php?p=222&amp;q=333”;<br>
 $_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>
@@ -568,7 +568,7 @@ $_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
 <p>由实例可知：<br>
 $_SERVER[“QUERY_STRING”] 获取查询 语句，实例中可知，获取的是?后面的值<br>
 $</p>
-<p>_$SERVER[“REQUEST_URI”]  获取 <a href="http://localhost" target="_blank" rel="noopener">http://localhost</a> 后面的值，包括/<br>
+<p>_$SERVER[“REQUEST_URI”]  获取 <a target="_blank" rel="noopener" href="http://localhost">http://localhost</a> 后面的值，包括/<br>
 $_SERVER[“SCRIPT_NAME”]  获取当前脚本的路径，如：index.php<br>
 $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 </blockquote>
@@ -584,11 +584,11 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p><code>you file: ./sandbox/e5e655202a8c03687b43d65e6351159b/shell3.php</code></p>
 <p>尝试了一下分别把这两段话加到url后面，发现图片能够正常显示，而.php回显的是一个空白页面</p>
 <p><img src="/2020/07/05/0xctf/image-20200708191734385.png" alt="image-20200708191734385"></p>
-<p>后来去找了找这方面的例题，发现一道和这个有点类似的，它说页面回显的是一个空白页面说明一句话木马成功了（对了，上面用的那个.php文件是一句话木马，如<!--?php @eval($_POST['aaa'])?-->，新建一个空白文档，然后输入这句话，另存为.php文件即可生成）</p>
+<p>后来去找了找这方面的例题，发现一道和这个有点类似的，它说页面回显的是一个空白页面说明一句话木马成功了（对了，上面用的那个.php文件是一句话木马，如<?php @eval($_POST['aaa'])?>，新建一个空白文档，然后输入这句话，另存为.php文件即可生成）</p>
 <p>按照网上的解法，接下来把空白页面的url 复制到中国菜刀链接一下即可，我去网上找了找中国菜刀，试了好多次都不行。（当时我十分怀疑我遇到了假的菜刀:cold_sweat:）</p>
 <p>继而去求助大佬，这才知道原来像上面用的那句一句话木马在用菜刀时要输入密码，密码为aaa（密码是一句话木马中post或者get的值，上面那个一句话木马的post的值为aaa,故密码为aaa）.大喜:grin:，以为问题解决了，一试发现还是不行，连接不上。大佬说我可能装了个假菜刀:cold_sweat:此处附上大佬提供的中国菜刀与中国蚁剑的官网网址：</p>
-<p><em>中国菜刀</em>：<a href="http://www.maicaidao.co/" target="_blank" rel="noopener">http://www.maicaidao.co/</a></p>
-<p><em>中国蚁剑</em>：<a href="https://github.com/AntSwordProject/antSword" target="_blank" rel="noopener">https://github.com/AntSwordProject/antSword</a></p>
+<p><em>中国菜刀</em>：<a target="_blank" rel="noopener" href="http://www.maicaidao.co/">http://www.maicaidao.co/</a></p>
+<p><em>中国蚁剑</em>：<a target="_blank" rel="noopener" href="https://github.com/AntSwordProject/antSword">https://github.com/AntSwordProject/antSword</a></p>
 <p>一番波折之后，装上了真·:hocho:,一点添加，依旧没得到想要的结果。大佬建议换成蚁剑试试，成功了！</p>
 <p>下面把正确的解题过程重新梳理一下：</p>
 <p>首先，准备一个一句话木马（.php文件），然后上传，得到一串类似URL的东西，将它添加到原URL 后面，若回显空页面则说明一句话木马已经成功上传（如果404啥的检查一下URL，多试几次）</p>
@@ -603,7 +603,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200709215614854.png" alt="image-20200709215614854" style="zoom:67%;">
 <p>点进去，它提示你输入0xCTF网站的IP即可得到flag，菜鸡的我还去百度了一下什么是网站的IP:cold_sweat:</p>
 <p>其实就类似127.0.0.1这类的，我查了一下有没有能查询某个指定网站IP的工具，找了一个在线查询的，输入网站的URL后得到网站的IP：<code>39.106.164.8</code></p>
-<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required=""></p>
+<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<td><input type="text" name="ip" class="form-control" maxlength="4" required></td></p>
 <p>**maxlength=“4”**说明输入的字符串最大长度为4，而我们的IP地址显然超过了，所以输不进去。想了一下利用Burpsuite抓一波包再改包：</p>
 <p>先输入一个4个字符以内的IP。如我输入的是1234，抓包后将IP改为<code>39.106.164.8</code>，再发包即可</p>
 <hr>
@@ -635,13 +635,13 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <hr>
 <h4 id="16-RCE-bypass">16.RCE bypass</h4>
 <img src="/2020/07/05/0xctf/image-20200716214515665.png" alt="image-20200716214515665" style="zoom:67%;">
-<p>这道题前前后后花了些时间，一开始无从下手，题目标题是RCE绕过，关于RCE绕过的姿势也了解了一些（此处安利一篇博客：<a href="https://cloud.tencent.com/developer/article/1599149" target="_blank" rel="noopener">《RCE的Bypass与骚姿势总结》</a>），但完全无从下手。前期试了试get方式传一个cmd参数，我试了一下<code>？cmd=1</code>,并没有什么用。后来大佬建议我去了解一下php system 函数，了解了一波后，再结合刚学的Linux命令，想起来攻防世界里的一句话木马那道题当时有个wp就是采用system+cat来解决的。我踌躇满志地打开hackbar, load Url,post date:<code>shell=system('ls');</code>，然而又是啥都没。一番挣扎尝试后再次求助大佬，经过大佬的点播与提示，上述php语句中有两句话应该好好理解：</p>
+<p>这道题前前后后花了些时间，一开始无从下手，题目标题是RCE绕过，关于RCE绕过的姿势也了解了一些（此处安利一篇博客：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1599149">《RCE的Bypass与骚姿势总结》</a>），但完全无从下手。前期试了试get方式传一个cmd参数，我试了一下<code>？cmd=1</code>,并没有什么用。后来大佬建议我去了解一下php system 函数，了解了一波后，再结合刚学的Linux命令，想起来攻防世界里的一句话木马那道题当时有个wp就是采用system+cat来解决的。我踌躇满志地打开hackbar, load Url,post date:<code>shell=system('ls');</code>，然而又是啥都没。一番挣扎尝试后再次求助大佬，经过大佬的点播与提示，上述php语句中有两句话应该好好理解：</p>
 <pre><code class="language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
 </code></pre>
 <p>这句话y中用到了三目运算符？：，如果问号前面的条件成立的话，那么它就执行问号与冒号之间的语句，否则执行冒号后面的语句.</p>
 <p>那么这句话的意思就是如果以get方式传入了参数的话，那么他就把这个传入的cmd参数赋值给 $cmd,如果没有传入cmd这个参数的话，那么 cmd就为空。</p>
 <pre><code class="language-php">if($cmd)
-{   system("$cmd"); }
+&#123;   system(&quot;$cmd&quot;); &#125;
 </code></pre>
 <p>这个语句表明php用system 函数把cmd这个参数当做系统命令执行，所以其实之前尝试的<code>shell=system('ls');</code>可以以在url 里将cmd 赋值为ls 来代替实现，</p>
 <img src="/2020/07/05/0xctf/image-20200716221117992.png" alt="image-20200716221117992" style="zoom:67%;">
@@ -670,10 +670,10 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>:cq，退出且不保存(即便有错误)</p>
 </blockquote>
 <p>尝试采用tail代替cat，下面应该把flag绕过就ok了，构造如下payload：<code>?cmd=tail fl''ag.php</code>,发现页面没有出现<strong>爪巴</strong>，估计是成功绕过了。</p>
-<p>大佬友情提醒，文件内容含有&lt;??&gt;的不会在前端输出，需要查看源码。（由于&lt;??&gt;在前端并不显示，所以此处采用的是编码来让其显示，&lt;在html中可用<code>&amp;lt</code>加上<code>；</code>来显示，同理，&gt;用<code>&amp;gt</code>加<code>；</code>来显示，一定别忘了<code>；</code><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，更多的这样的转义符可以去百度一下）</p>
+<p>大佬友情提醒，文件内容含有&lt;??&gt;的不会在前端输出，需要查看源码。（由于&lt;??&gt;在前端并不显示，所以此处采用的是编码来让其显示，&lt;在html中可用<code>&amp;lt</code>加上<code>；</code>来显示，同理，&gt;用<code>&amp;gt</code>加<code>；</code>来显示，一定别忘了<code>；</code>:cry:，更多的这样的转义符可以去百度一下）</p>
 <p>查看一波源码，成功得到flag</p>
 <p>（这里再插几句，关于那个flag的绕过方式，其实fl*这种也很常见,即通配符绕过</p>
-<p>此处再安利一篇博文：<a href="https://www.cnblogs.com/SpouseLJ/p/13223967.html#xcjwjDZd" target="_blank" rel="noopener">《CTF下的命令执行漏洞利用及绕过方法总结》</a>。</p>
+<p>此处再安利一篇博文：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/SpouseLJ/p/13223967.html#xcjwjDZd">《CTF下的命令执行漏洞利用及绕过方法总结》</a>。</p>
 <p>但是让我很苦恼的是那种拼接方式去构造payload的方式我可能还不太理解，在本题中尝试了好多次也没成功，这个坑先留着，以后来填，或者大佬们评论区指点一波</p>
 <p>）</p>
 <hr>
@@ -681,17 +681,17 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200720210307946.png" alt="image-20200720210307946" style="zoom:50%;">
 <p>这道题是RCE的pro版本，料到了绕过有难度。点进去一看，我敲！这么多过滤条件！（手动滑稽_）</p>
 <p>稍微理解一下源码：首先要以<code>GET</code>方式传一个<code>ip</code>参数，然后那一长串用于过滤的令人头皮发麻的正则表达式，emmm，怎么说呢，没能完全看懂，但大致能晓得它过滤掉了哪些东西。</p>
-<p>先稍微试一试水，我构造了这样一个<code>payload:?ip=d;sort${IFS}fl\ag.php</code></p>
+<p>先稍微试一试水，我构造了这样一个<code>payload:?ip=d;sort$&#123;IFS&#125;fl\ag.php</code></p>
 <p>失败，回显  <strong>fxck your symbol!</strong></p>
-<p>又仔细看了看，好吧，疏忽了，<code>{}</code>、<code>/</code>貌似都被过滤了，额，<code>{}</code>好解决，空格用<code>$IFS</code>也可以替代，但是flag咋搞呢？</p>
-<p>百度了一波，大概要么编码解决，要么用拼接（哎，终究逃不过拼接<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span>）</p>
+<p>又仔细看了看，好吧，疏忽了，<code>&#123;&#125;</code>、<code>/</code>貌似都被过滤了，额，<code>&#123;&#125;</code>好解决，空格用<code>$IFS</code>也可以替代，但是flag咋搞呢？</p>
+<p>百度了一波，大概要么编码解决，要么用拼接（哎，终究逃不过拼接:cold_sweat:）</p>
 <p>尝试一波拼接 <img src="/2020/07/05/0xctf/image-20200720214759811.png" alt="image-20200720214759811" style="zoom:67%;"></p>
 <p>再次失败，不过这次回显的是  <strong>no flag</strong>,对照源码，应该是咱们的flag没成功绕过，还是被过滤了。</p>
-<p>继续百度，我恰巧看到一篇博客里提到了<code>if(preg_match("/.*f.*l.*a.*g.*/", $ip)</code>这个正则表达式，他说这个过滤的话采用一般的拼接不起作用，得换换顺序，因为一旦 f l a g顺序显示，就歇菜了。</p>
+<p>继续百度，我恰巧看到一篇博客里提到了<code>if(preg_match(&quot;/.*f.*l.*a.*g.*/&quot;, $ip)</code>这个正则表达式，他说这个过滤的话采用一般的拼接不起作用，得换换顺序，因为一旦 f l a g顺序显示，就歇菜了。</p>
 <p>OK,那将a,b换换吧，重新构造payload:<img src="/2020/07/05/0xctf/image-20200720215305374.png" alt="image-20200720215305374" style="zoom: 67%;"></p>
-<p>成功！！<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">😎</span></p>
-<p>然后我又尝试了一下其他的payload，应该不止这一种解法。继续逛百度，居然发现一道和这道题很像的题<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8">😲</span></p>
-<p>去找了找它的wp，由于题目还是有点差异，有些wp中的解法并没成功（也可能是我太菜了<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8">😵</span>），但是经过我的尝试，还是发现了几种骚姿势：</p>
+<p>成功！！:sunglasses:</p>
+<p>然后我又尝试了一下其他的payload，应该不止这一种解法。继续逛百度，居然发现一道和这道题很像的题:astonished:</p>
+<p>去找了找它的wp，由于题目还是有点差异，有些wp中的解法并没成功（也可能是我太菜了:dizzy_face:），但是经过我的尝试，还是发现了几种骚姿势：</p>
 <ul>
 <li>
 <img src="/2020/07/05/0xctf/image-20200720220319905.png" alt="image-20200720220319905">
@@ -702,7 +702,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 </ul>
 <p>第二个实在是太骚了，运行后：</p>
 <img src="/2020/07/05/0xctf/image-20200720220938545.png" alt="image-20200720220938545" style="zoom:80%;">
-<p>菜鸡的我流下了伤心的泪水<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
+<p>菜鸡的我流下了伤心的泪水:sob::sob::sob:</p>
 <hr>
 <h4 id="18-EZupload-2">18.EZupload-2</h4>
 <img src="/2020/07/05/0xctf/image-20200731115817516.png" alt="image-20200731115817516" style="zoom:67%;">
@@ -722,7 +722,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>此处我当时踩了一个大坑，我的.htaccess文件命名成了1.htaccess，但是其实是不能有文件名的，那个文件直接命名成.htaccess就可</p>
 <p>然后关于.htaccess的内容，第一种写法：<code>SetHandler application/x-httpd-php</code></p>
 <p>然后还有一种更精准的写法：</p>
-<pre><code> &lt;FilesMatch "shell.jpg"&gt;
+<pre><code> &lt;FilesMatch &quot;shell.jpg&quot;&gt;
   SetHandler application/x-httpd-php
  &lt;/FilesMatch&gt;
 </code></pre>
@@ -735,62 +735,44 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>上传成功！</p>
 <p>接着再上传之前的图片木马，上传成功后回显一个地址，访问一波。</p>
 <img src="/2020/07/05/0xctf/image-20200731124839807.png" alt="image-20200731124839807" style="zoom:50%;">
-<p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8">😙</span></p>
+<p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.:kissing_smiling_eyes:</p>
 <hr>
 <h4 id="19-SQL-injection">19.SQL_injection</h4>
 <p>这是一道SQL注入的问题，应该不是很难。之前刷过几道sqllib的题，有空一定好好刷.</p>
 <p>之前我采用的一直是手工注入，这次一开始也是采用的手工注入，但是出了些问题，后来转向sqlmap,由于我之前的sqlmap文件夹貌似又双叒叕被我误删了，这次使用的是kali自带的sqlmap。</p>
 <ul>
-<li>第一步，看是否存在注入点：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' "</code></li>
+<li>第一步，看是否存在注入点：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1' &quot;</code></li>
 </ul>
 <img src="/2020/07/05/0xctf/image-20200928161245282.png" alt="image-20200928161245282" style="zoom: 67%;">
 <p>提示“id”可能是注入点。</p>
 <ul>
-<li>第二步查看数据库名称：<code>kcm@kali:~$ sqlmap -u"http://59.110.157.4:30010/?id=1' " --dbs</code></li>
+<li>第二步查看数据库名称：<code>kcm@kali:~$ sqlmap -u&quot;http://59.110.157.4:30010/?id=1' &quot; --dbs</code></li>
 </ul>
 <img src="/2020/07/05/0xctf/image-20200928161505584.png" alt="image-20200928161505584" style="zoom:67%;">
 <p>显示有两个可用的数据库，一个名为 <strong>information_schema</strong>(信息模式？)，另一个名为<strong>user</strong>.</p>
 <ul>
 <li>
-<p>知道了数据库的名称，接下来就是去查看数据库中的表：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
+<p>知道了数据库的名称，接下来就是去查看数据库中的表：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1' &quot; -D information_schema --tables</code></p>
 <img src="/2020/07/05/0xctf/image-20200928161847157.png" alt="image-20200928161847157" style="zoom:67%;">
 </li>
 </ul>
-<p>自上而下看了半天，没发现flag字眼，暂且搁置，去另一个库康康：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
+<p>自上而下看了半天，没发现flag字眼，暂且搁置，去另一个库康康：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1' &quot; -D information_schema --tables</code></p>
 <img src="/2020/07/05/0xctf/image-20200928162050230.png" alt="image-20200928162050230" style="zoom:67%;">
 <p>只有简简单单的一个表，很可疑啊，觉得有必要深究一下。</p>
 <ul>
 <li>
-<p>查看user数据库中user表的列信息：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user  --columns</code></p>
+<p>查看user数据库中user表的列信息：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1'&quot; -D user -T user  --columns</code></p>
 <img src="/2020/07/05/0xctf/image-20200928162328554.png" alt="image-20200928162328554" style="zoom:67%;">
 <ul>
-<li>最后查看你想看的东西就行了，falg应该是字符串，所以我首先查看的是password里的东西：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user -C password  --dump</code></li>
+<li>最后查看你想看的东西就行了，falg应该是字符串，所以我首先查看的是password里的东西：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1'&quot; -D user -T user -C password  --dump</code></li>
 </ul>
 <img src="/2020/07/05/0xctf/Users/28294/Desktop/无标题.png" alt="无标题" style="zoom:67%;">
-<p>flag手动打码<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8">😜</span></p>
+<p>flag手动打码:stuck_out_tongue_winking_eye:</p>
 </li>
 </ul>
 <hr>
-<p>未完待续<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8">😜</span></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+<p>未完待续:stuck_out_tongue_winking_eye:</p>
+
             </div>
             <hr/>
 
@@ -1301,12 +1283,14 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            迁客骚人，多会于此。我可能是后者​,​h​h​h😏
+                            迁客骚人，多会于此。我可能是后者​,​h​h​h:smirk:
 
-&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖
-&nbsp;六月西湖好，风光小处藏。
-&nbsp;（仄仄平平仄，平平仄仄平。）
-&nb
+           西湖
+ 六月西湖好，风光小处藏。
+ （仄仄平平仄，平平仄仄平。）
+ 苏堤夹岸绿，曲院满池芳。
+ （平平平仄仄，仄仄仄平平。）
+ 花港观鱼醉，扁舟水上忙。
                         
                     </div>
                     <div class="publish-info">
@@ -1525,7 +1509,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.8k</span>&nbsp;字
+                class="white-color">13.5k</span>&nbsp;字
             
             
             
@@ -1704,6 +1688,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

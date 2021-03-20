@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -402,7 +402,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    470
+                    418
                 </div>
                 
 
@@ -425,32 +425,14 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
-<a id="more"></a>
+<span id="more"></span>
 <p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
 <p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
 <p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
 <p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
 <hr>
 <p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
             </div>
             <hr/>
 
@@ -1023,8 +1005,6 @@
 Hexo博客：六、prism代码高亮
 个人博客搭建笔记----hexo主题代码高亮
 
-        document.querySelectorAll('.github-emoji')
-          .forE
                         
                     </div>
                     <div class="publish-info">
@@ -1192,7 +1172,7 @@ Hexo博客：六、prism代码高亮
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.8k</span>&nbsp;字
+                class="white-color">13.5k</span>&nbsp;字
             
             
             
@@ -1371,6 +1351,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

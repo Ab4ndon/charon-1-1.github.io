@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -435,7 +435,7 @@
             <div id="articleContent">
                 <img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
 <p>MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中:wink:，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！</p>
-<a id="more"></a>
+<span id="more"></span>
 <h4 id="1-GET">1.GET</h4>
 <p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
 <hr>
@@ -473,37 +473,37 @@ $b = $_POST['b'];
 $c = $_REQUEST['c'];
 $d = $_COOKIE['d'];
 
-if (!isset($a, $b, $c, $d)) {
+if (!isset($a, $b, $c, $d)) &#123;
     highlight_file(__FILE__);
-} else {
-    if (is_numeric($a) and $a == false) {
+&#125; else &#123;
+    if (is_numeric($a) and $a == false) &#123;
         echo 'A is OK!';
         echo '&lt;br/&gt;';
-        if (!is_numeric($b) and $b == 0x125e591) {
+        if (!is_numeric($b) and $b == 0x125e591) &#123;
             echo 'B is OK!';
             echo '&lt;br/&gt;';
-            if ($c != 240610708 and md5($c) == md5(240610708)) {
+            if ($c != 240610708 and md5($c) == md5(240610708)) &#123;
                 echo 'C is OK!';
                 echo '&lt;br/&gt;';
-                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) {
+                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) &#123;
                     include('/flag');
-                } else {
-                    echo "D is not wanted.&lt;br/&gt;";
+                &#125; else &#123;
+                    echo &quot;D is not wanted.&lt;br/&gt;&quot;;
                     highlight_file(__FILE__);
-                }
-            } else {
-                echo "C is not wanted.&lt;br/&gt;";
+                &#125;
+            &#125; else &#123;
+                echo &quot;C is not wanted.&lt;br/&gt;&quot;;
                 highlight_file(__FILE__);
-            }
-        } else {
-            echo "Too young too simple.&lt;br/&gt;";
+            &#125;
+        &#125; else &#123;
+            echo &quot;Too young too simple.&lt;br/&gt;&quot;;
             highlight_file(__FILE__);
-        }
-    } else {
-        echo "A is not wanted.&lt;br/&gt;";
+        &#125;
+    &#125; else &#123;
+        echo &quot;A is not wanted.&lt;br/&gt;&quot;;
         highlight_file(__FILE__);
-    }
-} 
+    &#125;
+&#125; 
 </code></pre>
 <p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧:cry:</p>
 <ul>
@@ -549,23 +549,23 @@ $b = $_POST['b'];
 $c = $_REQUEST['c'];
 $d = $_COOKIE['d'];
 
-if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
-    echo "A is ok!";
-    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) {
-        echo "B is ok!";
-        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {
-            echo "C is ok!";
-            echo "Here is your flag:";
+if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) &#123;
+    echo &quot;A is ok!&quot;;
+    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) &#123;
+        echo &quot;B is ok!&quot;;
+        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) &#123;
+            echo &quot;C is ok!&quot;;
+            echo &quot;Here is your flag:&quot;;
             include('/flag');
-        } else {
-            die((isset($c) &amp;&amp; isset($d)) ? "Try to search something?" : "C and D is wanted.");
-        }
-    } else {
-        die(isset($b) ? "You need to try again." : "B is wanted.");
-    }
-} else {
-    die(isset($a) ? "Please try another a." : "A is wanted.");
-} 
+        &#125; else &#123;
+            die((isset($c) &amp;&amp; isset($d)) ? &quot;Try to search something?&quot; : &quot;C and D is wanted.&quot;);
+        &#125;
+    &#125; else &#123;
+        die(isset($b) ? &quot;You need to try again.&quot; : &quot;B is wanted.&quot;);
+    &#125;
+&#125; else &#123;
+    die(isset($a) ? &quot;Please try another a.&quot; : &quot;A is wanted.&quot;);
+&#125; 
 </code></pre>
 <hr>
 <h4 id="8-俄罗斯头套">8.俄罗斯头套</h4>
@@ -578,7 +578,7 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
 <img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
 <p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
 <img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
-<p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
+<p>好吧，没完了，不愧是俄罗斯头套:cry:  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
 <p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
 <img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
 <p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
@@ -586,42 +586,24 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
 <h4 id="9-Moe-include">9.Moe include</h4>
 <p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
 <p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
-<p>让我别点，那一定得点一下了<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8">😝</span></p>
+<p>让我别点，那一定得点一下了:stuck_out_tongue_closed_eyes:</p>
 <img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
 <p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
 <p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
 <img src="/2020/08/14/moectf/image-20200816141033076.png" alt="image-20200816141033076" style="zoom:67%;">
 <p>看到注释：<strong>你知道php伪协议吗？</strong></p>
-<p>不知道的话可以参考参考这篇博客：[<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html" target="_blank" rel="noopener">php伪协议总结</a>](<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html" target="_blank" rel="noopener">https://www.cnblogs.com/zzjdbk/p/13030717.html</a>)</p>
+<p>不知道的话可以参考参考这篇博客：[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13030717.html">php伪协议总结</a>](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13030717.html">https://www.cnblogs.com/zzjdbk/p/13030717.html</a>)</p>
 <p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
 <p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
 <img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
-<p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji" style="display:inline;vertical-align:middle;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">😎</span></p>
+<p>然后对得到的字符串进行base64解密即可得到flag.:sunglasses:</p>
 <hr>
 <h4 id="10-Moe-unserialize">10.Moe unserialize</h4>
 <p>等待填坑</p>
 <hr>
 <h4 id="11-EzXXE">11.EzXXE</h4>
 <p>等待填坑</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
             </div>
             <hr/>
 
@@ -1132,13 +1114,13 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            “羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题😭
+                            “羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题:sob:
 
 尝试访问一波index.php，页面出现eval post cmd,貌似是一句话木马。
 
 尝试用蚁剑连接一下，密码试一下cmd,连接成功！
 
-并没有找到flag.php
+并没有找到flag.
                         
                     </div>
                     <div class="publish-info">
@@ -1183,12 +1165,12 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验😢😢，遭受了五个小时的吊打。
+                            今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验:cry::cry:，遭受了五个小时的吊打。
 
 
 没错，就是这么残忍。直接把我0封了。
 
-后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历
+后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下
                         
                     </div>
                     <div class="publish-info">
@@ -1360,7 +1342,7 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.8k</span>&nbsp;字
+                class="white-color">13.5k</span>&nbsp;字
             
             
             
@@ -1539,6 +1521,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>

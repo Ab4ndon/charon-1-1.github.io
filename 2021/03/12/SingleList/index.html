@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 4.2.1"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -411,7 +411,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    987
+                    979
                 </div>
                 
 
@@ -435,7 +435,7 @@
             <div id="articleContent">
                 <h4 id="【数据结构】单链表的基本运算实现">【数据结构】单链表的基本运算实现</h4>
 <p>关于数据结构中线性表的链接表示的基本运算的实现,把书上单链表的代码敲了一遍，加了些注释。</p>
-<a id="more"></a>
+<span id="more"></span>
 <pre><code class="language-c">/*
   author:Ab4nd0n
   Time:2021-3-11
@@ -451,25 +451,25 @@ typedef int Status;
 typedef int ElemType;
 
 typedef struct node     //节点的结构体
-{
+&#123;
     ElemType element;
     struct node *link;
-}Node;
+&#125;Node;
 
 typedef struct singleList //单链表的结构体
-{
+&#123;
     Node *first;  //first 头指针，用来存放头结点a0的地址
     int n;        //表示单链表中元素的个数
-}SingleList;
+&#125;SingleList;
 
 
 //单链表的初始化
 Status Init(SingleList *L)
-{
+&#123;
     L-&gt;first=NULL;
     L-&gt;n=0;
     return OK;
-}
+&#125;
 
 //单链表的查找
 /*
@@ -479,19 +479,19 @@ Status Init(SingleList *L)
 将ai的值通过x返回（传值与传址，这边传进来的是地址，操作完会改变实参x的值）
 */
 Status Find(SingleList *L,int i,ElemType *x)
-{
+&#123;
     int j;
     Node *p;
     if(i&lt;0||i&gt;L-&gt;n-1)   return ERROR;
       
     p=L-&gt;first;          //p指向a0
     for(j=0;j&lt;i;j++)
-    {
+    &#123;
         p=p-&gt;link;       //执行1次后p指向a1,反复指向下一个结点
-    }
+    &#125;
     *x=p-&gt;element;
     return OK;
-}
+&#125;
 
 //单链表的插入
 /*
@@ -503,34 +503,34 @@ Status Find(SingleList *L,int i,ElemType *x)
 单链表元素个数+1
 */
 Status Insert(SingleList  *L,int i,ElemType x)
-{
+&#123;
     Node *p,*q;
     int j;
     if(i&lt;-1||i&gt;L-&gt;n-1)
-    {
+    &#123;
         return  ERROR;
-    }
+    &#125;
     p=L-&gt;first;          //p指向头指针
     for(j=0;j&lt;i;j++)     //从头开始查找ai
-    {
+    &#123;
         p=p-&gt;link;
-    }
+    &#125;
     q=(Node*)malloc(sizeof(Node));      //生成新节点q
     q-&gt;element=x;
 
     if(i&gt;-1)            //讨论i=-1和i&gt;-1的情况
-    {
+    &#123;
         q-&gt;link=p-&gt;link;
         p-&gt;link=q;
-    }
+    &#125;
     else
-    {
+    &#123;
         q-&gt;link=L-&gt;first; //新节点插在头节点a0之前，成为新的头节点
         L-&gt;first=q;
-    }
+    &#125;
     L-&gt;n++;
     return OK;
-}
+&#125;
 
 //单链表的删除
 /*
@@ -542,7 +542,7 @@ Status Insert(SingleList  *L,int i,ElemType x)
 单链表元素个数-1
 */
 Status Delete(SingleList *L,int i)
-{
+&#123;
     int j;
     Node *p,*q;
     if(!L-&gt;n)  
@@ -556,86 +556,68 @@ Status Delete(SingleList *L,int i)
     if(i==0)
       L-&gt;first=L-&gt;first-&gt;link;    //删除的是头节点
     else
-    {
+    &#123;
         p=q-&gt;link;               //p指向ai
         q-&gt;link=p-&gt;link;          //ai+1的地址存到ai-1的指针域中
-    }
+    &#125;
     free(p);   //释放p所指结点的存储空间
     L-&gt;n--;
     return OK;
 
-}
+&#125;
 
 //单链表的输出
 Status Output(SingleList *L)
-{
+&#123;
     Node *p;
     if(!L-&gt;n)
         return ERROR;
     p=L-&gt;first;
     while(p)
-    {
-        printf("%d ",p-&gt;element);
+    &#123;
+        printf(&quot;%d &quot;,p-&gt;element);
         p=p-&gt;link;
-    }
-    printf("\n\n");
+    &#125;
+    printf(&quot;\n\n&quot;);
     return OK;
-}
+&#125;
 
 //单链表的销毁
 void Destroy(SingleList *L)
-{
+&#123;
     Node *p;
     while (L-&gt;first)
-    {
+    &#123;
         p=L-&gt;first-&gt;link;  //保存后继结点地址，防止断链
         free(L-&gt;first);   //释放first所指结点的存储空间
         L-&gt;first=p;
-    }
-}
+    &#125;
+&#125;
 
 
 int main()
-{
+&#123;
     int i;
     int x;
     SingleList List;
     i=Init(&amp;List);
-    printf("%d\n\n",i);     // 1
+    printf(&quot;%d\n\n&quot;,i);     // 1
     for(i=0;i&lt;10;i++)
-    {
+    &#123;
         Insert(&amp;List,i-1,i);
-    }
+    &#125;
     Output(&amp;List);    //0 1 2 3 4 5 6 7 8 9
     Find(&amp;List,1,&amp;x);
-    printf("The value is : %d\n\n",x);  //1
+    printf(&quot;The value is : %d\n\n&quot;,x);  //1
     Delete(&amp;List,3);
     Output(&amp;List);  //0 1 2 4 5 6 7 8 9
     Destroy(&amp;List);
 
-}
+&#125;
 
 
 </code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+
             </div>
             <hr/>
 
@@ -1376,7 +1358,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">13.8k</span>&nbsp;字
+                class="white-color">13.5k</span>&nbsp;字
             
             
             
@@ -1555,6 +1537,6 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"live2d-widget-model-hijiki"},"display":{"position":"left","width":150,"height":300,"hOffset":80,"vOffset":-70},"mobile":{"show":true,"scale":0.5},"log":false,"pluginJsPath":"lib/","pluginRootPath":"live2dw/"});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
 
 </html>
