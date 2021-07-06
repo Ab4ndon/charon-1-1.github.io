@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml">
 </head>
 
 
@@ -291,13 +291,21 @@
         top: 64px;
     }
 
-   .toc-widget {
+   /* .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    } */
+    .toc-widget {
         width: 300px;
         padding-left: 20px;
         background-color: rgb(255, 255, 255,0.7);
         border-radius: 10px;
         box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
     }
+
 
     .toc-widget .toc-title {
         margin: 35px 0 15px 0;
@@ -437,9 +445,11 @@
             <div id="articleContent">
                 <p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，遭受了五个小时的吊打。</p>
 <span id="more"></span>
+
 <p><img src="/2020/07/25/DASCTF/image-20200725170156404.png" alt="image-20200725170156404"></p>
 <p>没错，就是这么残忍。直接把我0封了。<img src="/2020/07/25/DASCTF/image-20200725180746269.png" alt="image-20200725180746269"></p>
 <img src="/2020/07/25/DASCTF/image-20200725180804349.png" alt="image-20200725180804349" style="zoom:67%;">
+
 <p>后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历程。</p>
 <p>打开靶机，页面显示的是一张图片<img src="/2020/07/25/DASCTF/image-20200725180822011.png" alt="image-20200725180822011" style="zoom:67%;"></p>
 <p>查看源码，没太多有用的信息，唯一比较特殊的话是这找图片的url:<code>**image.php?t=1595643210&amp;f=Z3F5LmpwZw==**</code></p>
@@ -448,14 +458,17 @@
 <p>作为一个萌新，我一度怀疑这是不是什么CTF黑话，特意百度了一波 <em><strong>CTF what’s your time?</strong></em>  好吧，并不是，想了想，可能是要给time这个参数赋值，盲猜可能是URL中的t参数，试着把t参数删掉，回车，回显提醒漏掉参数，给t赋值为time试试？还是问我时间！<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8">😩</span>但是时间一直是变化的呀，，，怎么搞呢？关键在于那个t后面的一串数字是啥，我又去百度了一波CTF中的数字编码，没啥结果。卡住。</p>
 <p>求助大佬（emmm，应该不算犯规吧）大佬说那一串数字是<strong>unix时间戳</strong>，百度了一波，相当于那一串数字其实表示的是一个时间</p>
 <img src="/2020/07/25/DASCTF/image-20200725172909110.png" alt="image-20200725172909110" style="zoom:67%;">
+
 <p>还是那个问题，该怎么传当前时间？？？当前时间一直在变化的呀。</p>
 <p>此处贴出大佬的方法：</p>
 <img src="/2020/07/25/DASCTF/image-20200725173059630.png" alt="image-20200725173059630" style="zoom:80%;">
+
 <p>python脚本，，，好吧，我是靠<code>.py</code>这个后缀猜的<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></p>
 <p>菜鸡的我再次流下了伤心的类水，咱也不会写python脚本呀（一打开我满是灰尘的pycharm还出错了，大家还是支持正版吧<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>）</p>
 <p>不会脚本，只能靠手速了，按照大佬的指导，先转换一个10秒后的时间戳。等到时候再发（妙啊）</p>
 <p>一顿操作猛如虎，以为flag呼之欲出了，结果出来的是一堆乱码，淦！</p>
 <img src="/2020/07/25/DASCTF/image-20200725173839845.png" alt="image-20200725173839845" style="zoom:50%;">
+
 <p>搞了半天居然没用。。。</p>
 <p>后来大佬提示我去看看攻防世界 warmup 这道题的wp,<strong>目录穿越，flag在根目录</strong>，去找了一波wp学习了一下，感觉两个题的确蛮像的，不过那个题源码有提示，这个题看不了源码。我模仿那道题的wp试了试 <code>?file=index.php?/../../../../../../flag</code>不行，又试了试它的各种变形体，失败。我感觉应该没啥问题呀（<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8">⬅</span>菜鸡的蜜汁自信）</p>
 <p>去问大佬这个姿势错在哪,大佬说不是file=而是f=,我照做了，吧上面那个payload里的file改成了f,还是不行呀。</p>
@@ -1010,10 +1023,11 @@
                     <div class="summary block-with-text">
                         
                             
+
 MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中:wink:，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！
 
-1.GET
-这是一道简单的get传参的题，直接在url
+
+1.GET这是一道简单的get传参的题，直接在ur
                         
                     </div>
                     <div class="publish-info">
@@ -1064,10 +1078,10 @@ MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡�
                         
                             迁客骚人，多会于此。我可能是后者​,​h​h​h😏
 
-&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖
-&nbsp;六月西湖好，风光小处藏。
-&nbsp;（仄仄平平仄，平平仄仄平。）
-&nb
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖&nbsp;六月西湖好，风光小处藏。&nbsp;（仄仄平平仄，平平仄仄平。）&nb
                         
                     </div>
                     <div class="publish-info">

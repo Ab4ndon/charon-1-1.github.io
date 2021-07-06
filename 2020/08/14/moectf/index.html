@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml">
 </head>
 
 
@@ -291,13 +291,21 @@
         top: 64px;
     }
 
-   .toc-widget {
+   /* .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    } */
+    .toc-widget {
         width: 300px;
         padding-left: 20px;
         background-color: rgb(255, 255, 255,0.7);
         border-radius: 10px;
         box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
     }
+
 
     .toc-widget .toc-title {
         margin: 35px 0 15px 0;
@@ -436,40 +444,41 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
+
 <p>MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中:wink:，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！</p>
 <span id="more"></span>
-<h4 id="1-GET">1.GET</h4>
-<p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
+
+<h4 id="1-GET"><a href="#1-GET" class="headerlink" title="1.GET"></a>1.GET</h4><p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
 <hr>
-<h4 id="2-POST">2.POST</h4>
-<p>这是一道简单的post传参的题，利用hackbar（火狐浏览器的插件，不了解的话可自行百度一下，安装啥的不难的）即可传参，或者利用bp应该也是一样的。</p>
+<h4 id="2-POST"><a href="#2-POST" class="headerlink" title="2.POST"></a>2.POST</h4><p>这是一道简单的post传参的题，利用hackbar（火狐浏览器的插件，不了解的话可自行百度一下，安装啥的不难的）即可传参，或者利用bp应该也是一样的。</p>
 <img src="/2020/08/14/moectf/image-20200814140353992.png" alt="image-20200814140353992" style="zoom:50%;">
+
 <hr>
-<h4 id="3-小饼干">3.小饼干</h4>
-<p>进入页面发现是一个空页面，这时候想到利用bp抓包，观察</p>
+<h4 id="3-小饼干"><a href="#3-小饼干" class="headerlink" title="3.小饼干"></a>3.小饼干</h4><p>进入页面发现是一个空页面，这时候想到利用bp抓包，观察</p>
 <img src="/2020/08/14/moectf/image-20200814140801922.png" alt="image-20200814140801922" style="zoom: 67%;">
+
 <p>发现类似flag的东西。复制提交，发现就是正确的flag</p>
 <hr>
-<h4 id="4-Introduction">4.Introduction</h4>
-<p>这个题点进去的话就是很正常的对<strong>moectf</strong>的介绍，点进去源码也没看到flag     (好吧，是我眼瞎，后来才发现flag就在源码里)  尝试抓包，也没找到</p>
+<h4 id="4-Introduction"><a href="#4-Introduction" class="headerlink" title="4.Introduction"></a>4.Introduction</h4><p>这个题点进去的话就是很正常的对<strong>moectf</strong>的介绍，点进去源码也没看到flag     (好吧，是我眼瞎，后来才发现flag就在源码里)  尝试抓包，也没找到</p>
 <img src="/2020/08/14/moectf/image-20200814142428514.png" alt="image-20200814142428514" style="zoom: 67%;">
+
 <p>考的是眼力:imp:</p>
 <hr>
-<h4 id="5-一句话木马">5.一句话木马</h4>
-<p>进入题目，发现源码就是一句话木马</p>
+<h4 id="5-一句话木马"><a href="#5-一句话木马" class="headerlink" title="5.一句话木马"></a>5.一句话木马</h4><p>进入题目，发现源码就是一句话木马</p>
 <img src="/2020/08/14/moectf/image-20200814142846791.png" alt="image-20200814142846791">
+
 <p>话不多说，直接掏出俺的<strong>蚁剑</strong></p>
 <img src="/2020/08/14/moectf/image-20200814143147631.png" alt="image-20200814143147631" style="zoom: 50%;">
+
 <p>这边的话要注意的就是连接密码一定别忘记，<strong>密码就是post后面单引号里的内容</strong>。</p>
 <img src="/2020/08/14/moectf/image-20200814143913525.png" alt="image-20200814143913525" style="zoom: 50%;">
+
 <p>连接成功！一般情况下flag就在根目录/下，去到这道题的根目录下的确发现了flag。</p>
 <hr>
-<h4 id="6-ezmath">6.ezmath</h4>
-<p>等待填坑</p>
+<h4 id="6-ezmath"><a href="#6-ezmath" class="headerlink" title="6.ezmath"></a>6.ezmath</h4><p>等待填坑</p>
 <hr>
-<h4 id="7-三心二意">7.三心二意</h4>
-<p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
-<pre><code class="language-php">&lt;?php
+<h4 id="7-三心二意"><a href="#7-三心二意" class="headerlink" title="7.三心二意"></a>7.三心二意</h4><p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
+<pre><code class="line-numbers language-php">&lt;?php
 $a = $_GET['a'];
 $b = $_POST['b'];
 $c = $_REQUEST['c'];
@@ -514,10 +523,10 @@ if (!isset($a, $b, $c, $d)) {
 <p>此处涉及到**is_numeric()**这个php函数,<strong>is_numeric()</strong> 函数用于检测变量是否为数字或数字字符串,如果指定的变量是数字和数字字符串则返回 TRUE，否则返回 FALSE。</p>
 <p>也就是说上面这个语句要求a参数是一个数字或字符串，且==false，那挺简单的，0或者null都可以，尝试?a=0,回车一下发现没反应，仔细看源码才发现他要a,b,c,d四个变量都存在才行。</p>
 <ul>
-<li>
-<p><code>!is_numeric($b) and $b == 0x125e591</code></p>
+<li><p><code>!is_numeric($b) and $b == 0x125e591</code></p>
 <p>这个语句的要求是b变量不是数字或字符串并且b==0x125e591，关于0x125e591，我也不太清楚他是个啥，看起来像16进制，百度一波</p>
 <img src="/2020/08/14/moectf/image-20200921134750652.png" alt="image-20200921134750652" style="zoom:50%;">
+
 <p>好家伙！直接给我转换出来了。没错了，0x125e591是16进制，转成10进制就是19260817。</p>
 <blockquote>
 <p>php有两种比较方式,一种是“= =”一种是“= = =”</p>
@@ -530,21 +539,18 @@ if (!isset($a, $b, $c, $d)) {
 </blockquote>
 <p>然后经过大佬指点和我的测试，我发现只需要在19260817后面加上字母就行了:smile_cat:</p>
 </li>
-<li>
-<p><code>$c != 240610708 and md5($c) == md5(240610708)</code></p>
+<li><p><code>$c != 240610708 and md5($c) == md5(240610708)</code></p>
 <p>这个的话主要是md5值的知识，上网一查，md5(‘240610708’)等于md5(‘QNKCDZO’)，于是直接吧c赋值成后面那个字符串。</p>
 </li>
-<li>
-<p><code>strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0</code></p>
+<li><p><code>strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0</code></p>
 <p>这个一开始是真的不会，后来还是一个学弟教我的，害。</p>
 <p>考点应该是<strong>md5()函数无法处理数组，如果传入的为数组，会返回NULL</strong>（之前应该遇到过，忘记了。。。）</p>
 <p>所以此处将d赋值成<code>d[]=0</code>,妙啊。</p>
 <p>所以最终传参如下：</p>
-<img src="/2020/08/14/moectf/image-20200921143630484.png" alt="image-20200921143630484" style="zoom:67%;">
-</li>
+<img src="/2020/08/14/moectf/image-20200921143630484.png" alt="image-20200921143630484" style="zoom:67%;"></li>
 </ul>
 <p>再贴一道与这道题很像的题：（来自CNSS）</p>
-<pre><code class="language-php">&lt;?php
+<pre><code class="line-numbers language-php">&lt;?php
 highlight_file(__FILE__);
 $a = $_GET['a'];
 $b = $_POST['b'];
@@ -570,41 +576,45 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
 } 
 </code></pre>
 <hr>
-<h4 id="8-俄罗斯头套">8.俄罗斯头套</h4>
-<img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
+<h4 id="8-俄罗斯头套"><a href="#8-俄罗斯头套" class="headerlink" title="8.俄罗斯头套"></a>8.俄罗斯头套</h4><img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
+
 <p>点进去后发现这样一句话，觉得应该得<strong>burpsuits</strong>伪造一波ip地址</p>
 <p><img src="/2020/08/14/moectf/image-20200814145154603.png" alt="image-20200814145154603"></p>
 <p>抓包后添加 <strong>X-Forwarded-For</strong>头，伪造一波ip地址，send一下，得到如下页面</p>
 <img src="/2020/08/14/moectf/image-20200814145736400.png" alt="image-20200814145736400" style="zoom:50%;">
-<p>然后注意到response里说我得是从https://www.baidu.com来的，根据之前的做题经验的话，再添加一个<strong>Referer</strong>头即可，如下：</p>
+
+<p>然后注意到response里说我得是从<a href="https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：">https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：</a></p>
 <img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
+
 <p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
 <img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
+
 <p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
 <p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
 <img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
+
 <p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
 <hr>
-<h4 id="9-Moe-include">9.Moe include</h4>
-<p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
+<h4 id="9-Moe-include"><a href="#9-Moe-include" class="headerlink" title="9.Moe include"></a>9.Moe include</h4><p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
 <p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
 <p>让我别点，那一定得点一下了<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8">😝</span></p>
 <img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
+
 <p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
 <p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
 <img src="/2020/08/14/moectf/image-20200816141033076.png" alt="image-20200816141033076" style="zoom:67%;">
+
 <p>看到注释：<strong>你知道php伪协议吗？</strong></p>
-<p>不知道的话可以参考参考这篇博客：[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13030717.html">php伪协议总结</a>](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13030717.html">https://www.cnblogs.com/zzjdbk/p/13030717.html</a>)</p>
+<p>不知道的话可以参考参考这篇博客：<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13030717.html"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13030717.html">php伪协议总结</a></p>
 <p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
 <p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
 <img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
+
 <p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">😎</span></p>
 <hr>
-<h4 id="10-Moe-unserialize">10.Moe unserialize</h4>
-<p>等待填坑</p>
+<h4 id="10-Moe-unserialize"><a href="#10-Moe-unserialize" class="headerlink" title="10.Moe unserialize"></a>10.Moe unserialize</h4><p>等待填坑</p>
 <hr>
-<h4 id="11-EzXXE">11.EzXXE</h4>
-<p>等待填坑</p>
+<h4 id="11-EzXXE"><a href="#11-EzXXE" class="headerlink" title="11.EzXXE"></a>11.EzXXE</h4><p>等待填坑</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1147,11 +1157,18 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
                         
                             “羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题😭
 
+
 尝试访问一波index.php，页面出现eval post cmd,貌似是一句话木马。
+
+
+
 
 尝试用蚁剑连接一下，密码试一下cmd,连接成功！
 
-并没有找到flag.php
+
+
+
+并没有找到f
                         
                     </div>
                     <div class="publish-info">
@@ -1199,9 +1216,11 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
                             今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验😢😢，遭受了五个小时的吊打。
 
 
+
 没错，就是这么残忍。直接把我0封了。
 
-后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历
+
+后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨
                         
                     </div>
                     <div class="publish-info">

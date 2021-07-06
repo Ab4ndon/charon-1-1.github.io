@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml">
 </head>
 
 
@@ -291,13 +291,21 @@
         top: 64px;
     }
 
-   .toc-widget {
+   /* .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    } */
+    .toc-widget {
         width: 300px;
         padding-left: 20px;
         background-color: rgb(255, 255, 255,0.7);
         border-radius: 10px;
         box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
     }
+
 
     .toc-widget .toc-title {
         margin: 35px 0 15px 0;
@@ -435,7 +443,7 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <pre><code class="language-c++">#include &lt;stdio.h&gt;
+                <pre><code class="line-numbers language-c++">#include &lt;stdio.h&gt;
 #include &lt;iostream&gt;
 using namespace std;
 
@@ -534,13 +542,13 @@ void SortableList&lt;T&gt;::MergeSort(int left,int right)
 template &lt;class T&gt;
 void SortableList&lt;T&gt;::Merge(int left, int mid, int right)
 {                                      //a数组为待排序的数组 
-	T* temp =new T[right - left + 1]; //temp数组用来暂时保存排序好的数组 
-	int i = left, j = mid + 1, k = 0; //left 至mid为左半数组 ，mid+1至right为右半数组 
-	while((i &lt;= mid)&amp;&amp;(j &lt;= right))  //对应第一步 当左半数组和右半数组都不为空时 
-		if(l[i] &lt;= l[j])             //输出两个数组中的较小者 
-			temp[k ++] = l[i ++];
-		else
-			temp[k ++] = l[j ++];
+    T* temp =new T[right - left + 1]; //temp数组用来暂时保存排序好的数组 
+    int i = left, j = mid + 1, k = 0; //left 至mid为左半数组 ，mid+1至right为右半数组 
+    while((i &lt;= mid)&amp;&amp;(j &lt;= right))  //对应第一步 当左半数组和右半数组都不为空时 
+        if(l[i] &lt;= l[j])             //输出两个数组中的较小者 
+            temp[k ++] = l[i ++];
+        else
+            temp[k ++] = l[j ++];
     while(i &lt;= mid)                  //当一数组为空时，输出另一数组的剩余元素 
         temp[k ++] = l[i ++];
     while(j &lt;= right)                //当一数组为空时，输出另一数组的剩余元素 
@@ -553,9 +561,9 @@ void SortableList&lt;T&gt;::Merge(int left, int mid, int right)
 template&lt;class T&gt;
 void SortableList&lt;T&gt;::Output()
 {
-	for(int i = 0; i &lt; num; i++)
-		cout &lt;&lt; l[i] &lt;&lt; " ";
-	cout &lt;&lt; endl &lt;&lt; endl;
+    for(int i = 0; i &lt; num; i++)
+        cout &lt;&lt; l[i] &lt;&lt; " ";
+    cout &lt;&lt; endl &lt;&lt; endl;
 }
 
 /********************************** 快  速  排  序 ***********************************/
@@ -563,9 +571,9 @@ void SortableList&lt;T&gt;::Output()
 template&lt;class T&gt;
 void SortableList&lt;T&gt;::Swap(int &amp;a, int &amp;b)
 {
-	int t = a;
-	a = b;
-	b = t;
+    int t = a;
+    a = b;
+    b = t;
 }
 
 template &lt;class T&gt;
@@ -628,15 +636,15 @@ int main()
     cout&lt;&lt;k;
     cout&lt;&lt;j;
      cout &lt;&lt; "排序前："&lt;&lt;endl;
-	// for (int i = 0; i &lt; 5; i++)
-	// 	cout &lt;&lt; a[i] &lt;&lt; ' ';
-	// cout &lt;&lt; endl;
+    // for (int i = 0; i &lt; 5; i++)
+    //     cout &lt;&lt; a[i] &lt;&lt; ' ';
+    // cout &lt;&lt; endl;
     list.Output();
     list.MergeSort();
     cout &lt;&lt; "归并排序后："&lt;&lt;endl;
-	// for (int i = 0; i &lt; 5; i++)
-	// 	cout &lt;&lt; a[i] &lt;&lt; ' ';
-	// cout &lt;&lt; endl;
+    // for (int i = 0; i &lt; 5; i++)
+    //     cout &lt;&lt; a[i] &lt;&lt; ' ';
+    // cout &lt;&lt; endl;
     list.QuickSort();
     list.Output();
     cout &lt;&lt; "快速排序后："&lt;&lt;endl;
@@ -1172,23 +1180,22 @@ int main()
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/07/06/test/">
+                <a href="/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E4%B8%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="test">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="NJUPT算法实验一">
                         
-                        <span class="card-title">test</span>
+                        <span class="card-title">NJUPT算法实验一</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            😄
+                            
 
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { ret
+实验要求：1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。 
+2采用基于“五元中值组取中值分割法”（median-of-m
                         
                     </div>
                     <div class="publish-info">
@@ -1197,8 +1204,12 @@ int main()
                         </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Ab4nd0n
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="post-category">
+                                    算法设计与分析
+                                </a>
+                            
                             
                         </span>
                     </div>
@@ -1206,8 +1217,16 @@ int main()
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%B5%8B%E8%AF%95/">
-                        <span class="chip bg-color">测试</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">算法设计与分析</span>
+                    </a>
+                    
+                    <a href="/tags/NJUPT/">
+                        <span class="chip bg-color">NJUPT</span>
                     </a>
                     
                 </div>
@@ -1235,8 +1254,8 @@ int main()
                         
                             今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。
 
-1.边框圆角化
-&lt;?xml version="1.0" encoding="utf-8"?&gt;
+
+1.边框圆角化&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;shape
     xmlns:android="htt
                         

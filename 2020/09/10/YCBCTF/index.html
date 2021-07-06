@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml">
 </head>
 
 
@@ -291,13 +291,21 @@
         top: 64px;
     }
 
-   .toc-widget {
+   /* .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    } */
+    .toc-widget {
         width: 300px;
         padding-left: 20px;
         background-color: rgb(255, 255, 255,0.7);
         border-radius: 10px;
         box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
     }
+
 
     .toc-widget .toc-title {
         margin: 35px 0 15px 0;
@@ -428,10 +436,17 @@
             <div id="articleContent">
                 <p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
 <span id="more"></span>
+
 <p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
 <img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
+
+
+
 <p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
 <img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
+
+
+
 <p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span>。</p>
 <p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
 <script>
@@ -976,10 +991,10 @@
                         
                             转载自大佬们的博客:
 Hexo博客：六、prism代码高亮
-个人博客搭建笔记----hexo主题代码高亮
+个人博客搭建笔记—-hexo主题代码高亮
 
         document.querySelectorAll('.github-emoji')
-          .forE
+          .forEac
                         
                     </div>
                     <div class="publish-info">
@@ -1025,10 +1040,11 @@ Hexo博客：六、prism代码高亮
                     <div class="summary block-with-text">
                         
                             
+
 MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中:wink:，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！
 
-1.GET
-这是一道简单的get传参的题，直接在url
+
+1.GET这是一道简单的get传参的题，直接在ur
                         
                     </div>
                     <div class="publish-info">

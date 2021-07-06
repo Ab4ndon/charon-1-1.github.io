@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml">
 </head>
 
 
@@ -291,13 +291,21 @@
         top: 64px;
     }
 
-   .toc-widget {
+   /* .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    } */
+    .toc-widget {
         width: 300px;
         padding-left: 20px;
         background-color: rgb(255, 255, 255,0.7);
         border-radius: 10px;
         box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
     }
+
 
     .toc-widget .toc-title {
         margin: 35px 0 15px 0;
@@ -437,8 +445,8 @@
             <div id="articleContent">
                 <p>最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打:sob::sob:,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.</p>
 <span id="more"></span>
-<h4 id="1-soeasy">1.soeasy</h4>
-<p><img src="/2020/07/05/0xctf/image-20200705164040950.jpg" alt="1"></p>
+
+<h4 id="1-soeasy"><a href="#1-soeasy" class="headerlink" title="1.soeasy"></a>1.soeasy</h4><p><img src="/2020/07/05/0xctf/image-20200705164040950.jpg" alt="1"></p>
 <p>这个题还是蛮简单的，查看源码,稍微找找就能得到flag</p>
 <p>稍微总结一下查看源码的方法吧：</p>
 <p>a.鼠标右键，点查看源代码</p>
@@ -447,30 +455,32 @@
 <p>d.<code>ctrl+U</code></p>
 <p>e.在网址前面加上<code>view-source:</code>(火狐反正支持这种方式)</p>
 <hr>
-<h4 id="2-GET">2.GET</h4>
-<p><img src="/2020/07/05/0xctf/image-20200705165429119.jpg" alt="image-20200705165429119"></p>
+<h4 id="2-GET"><a href="#2-GET" class="headerlink" title="2.GET"></a>2.GET</h4><p><img src="/2020/07/05/0xctf/image-20200705165429119.jpg" alt="image-20200705165429119"></p>
 <p>稍微判断一下这是一个通过Get方式传参的问题（如果不了解的话提前去了解一下PHP语言，熟悉一下基本语法）</p>
 <p>Get方式传参直接在URL后面写上参数并为其赋值即可，本题要传的的参数为0x,值为0xfxxker,故在网址栏应该这么写：</p>
 <p><img src="/2020/07/05/0xctf/image-20200705165907235.png" alt="image-20200705165907235"></p>
 <p>回车一下就得到了flag.</p>
 <hr>
-<h4 id="3-POST">3.POST</h4>
-<p><img src="/2020/07/05/0xctf/image-20200705170036059.png" alt="image-20200705170036059"></p>
+<h4 id="3-POST"><a href="#3-POST" class="headerlink" title="3.POST"></a>3.POST</h4><p><img src="/2020/07/05/0xctf/image-20200705170036059.png" alt="image-20200705170036059"></p>
 <p>本题考察的是POST方式传参，我是用火狐插件hackbar来解的（关于hackbar的下载安装并不难，不必装最新版，最新版需要付费，下个旧版就行了，然后关闭自动更新。具体去百度一下）</p>
 <p>F12查看源码，然后点Hackbar, <code>laod URL</code>,勾选<code>post date</code>，在下面的框里输入参数并为其赋值，点击<code>Execute</code>就能成功传参，然后flag就有了</p>
 <p>当然，用Burpsuit也一样能做，在这不赘述了</p>
 <img src="/2020/07/05/0xctf/image-20200705170922230.png" alt="image-20200705170922230" style="zoom: 33%;">
+
+
+
 <hr>
-<h4 id="4-XFF-Referer">4.XFF&amp;Referer</h4>
-<p>打开页面只有一句话“只有本地IP才能访问”，刷过攻防世界的新手区的题的话应该会有印象，其实就是伪造一个Ip，然后就可以了</p>
+<h4 id="4-XFF-amp-Referer"><a href="#4-XFF-amp-Referer" class="headerlink" title="4.XFF&amp;Referer"></a>4.XFF&amp;Referer</h4><p>打开页面只有一句话“只有本地IP才能访问”，刷过攻防世界的新手区的题的话应该会有印象，其实就是伪造一个Ip，然后就可以了</p>
 <p>首先利用Burpsuit抓个包，右击发送到repeater,然后在header里面Add一个新的头：<code>X-Forwarded-For</code> , 值为127.0.0.1</p>
 <img src="/2020/07/05/0xctf/image-20200705171807465.png" alt="image-20200705171807465" style="zoom:50%;">
+
 <p>点击send（貌似大部分版本是go,小事小事），这时候看右边的响应，多出来一句话“<code>必须来自于：http://0xctf.ctf</code>”</p>
 <p>这时同样的方法，在headers中再添加一个名为<code>Refere</code>r的头，值为<code>http://0xctf.ctf</code>,send一下，响应中就出现了flag</p>
 <img src="/2020/07/05/0xctf/image-20200705172430570.png" alt="image-20200705172430570" style="zoom: 50%;">
+
 <hr>
-<h4 id="5-ezmd5">5.ezmd5</h4>
-<img src="/2020/07/05/0xctf/image-20200705173020907.png" alt="image-20200705173020907" style="zoom: 80%;">
+<h4 id="5-ezmd5"><a href="#5-ezmd5" class="headerlink" title="5.ezmd5"></a>5.ezmd5</h4><img src="/2020/07/05/0xctf/image-20200705173020907.png" alt="image-20200705173020907" style="zoom: 80%;">
+
 <p>核心是那个if 语句，它要求参数a,b 的值相同但是MD5相同，这里可以利用绕过。（绕过蛮有意思的，当时做这题的时候查了查，觉得有篇博文讲的还蛮好的，在这安利一下：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_19980431/article/details/83018232">CTF中常见php-MD5()函数漏洞</a>）</p>
 <blockquote>
 <p>PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以“0E”开头的，那么PHP将会认为他们相同，都是0。</p>
@@ -494,26 +504,24 @@
 <p>所以可以将a,b赋值成上面所列的由md5加密后以OE开头的两个不同的值，再采用get方式传参即可。</p>
 <p><img src="/2020/07/05/0xctf/image-20200705173943800.png" alt="image-20200705173943800"></p>
 <hr>
-<h4 id="6-ezmd5-2">6.ezmd5-2</h4>
-<img src="/2020/07/05/0xctf/image-20200705182529614.png" alt="image-20200705182529614" style="zoom:80%;">
+<h4 id="6-ezmd5-2"><a href="#6-ezmd5-2" class="headerlink" title="6.ezmd5-2"></a>6.ezmd5-2</h4><img src="/2020/07/05/0xctf/image-20200705182529614.png" alt="image-20200705182529614" style="zoom:80%;">
+
 <p>与上一题其实蛮类似的，只不过它的限制又变大了，这次是“===”严格相等，不仅值要相等，类型也要相同</p>
 <p><strong>PHP中md5的函数特性</strong></p>
-<pre><code class="language-php">md5([1,2,3]) == md5([4,5,6]) == NULL
+<pre><code class="line-numbers language-php">md5([1,2,3]) == md5([4,5,6]) == NULL
 </code></pre>
-<p>[1] !== [2] &amp;&amp; md5([1]) === md5([2])<br>
-所以GET传入<code>a[]=1&amp;b[]=2</code>就能够绕过了。</p>
+<p>[1] !== [2] &amp;&amp; md5([1]) === md5([2])<br>所以GET传入<code>a[]=1&amp;b[]=2</code>就能够绕过了。</p>
 <hr>
-<h4 id="7-跳转">7.跳转</h4>
-<p>点开页面只有一句话“flag is not here”,抓一下包看一下响应，发现有个比较特别的响应头,<code>location: youcanfindme.php</code>,</p>
+<h4 id="7-跳转"><a href="#7-跳转" class="headerlink" title="7.跳转"></a>7.跳转</h4><p>点开页面只有一句话“flag is not here”,抓一下包看一下响应，发现有个比较特别的响应头,<code>location: youcanfindme.php</code>,</p>
 <p>虽然有所发现，但是一开始不知道怎么用，尝试在原来的URL后加了个<code>youcanfindme.php</code>,发现页面没变化，一筹莫展。</p>
 <p>后来向大佬求助，我应该再抓一次包的，加了<code>youcanfindme.php</code>后的页面抓包后状态码变成了302（暂时性转移），响应里多了个<code>0xctf: MHhDVEZ7MWY5NGIwMzZiY2NkOTA5Nzg2Yzc3MTVkZTg1NGJmMTh9</code>的头，很可疑，很像flag，但是一般flag不是这种形式啊。原来他用了Base64编码，需要先解码（百度上有很多在线解码的）。解码后就出来一个flag。</p>
 <p>稍微总结一下：</p>
-<p>​	首先，抓包，send to repeater后观察响应头，在原来的URL后面添加发现的<code>youcanfindme.php</code>,再抓一次包，同样观察响应，发现可疑字符串，利用base64编码进行解码即可</p>
+<p>​    首先，抓包，send to repeater后观察响应头，在原来的URL后面添加发现的<code>youcanfindme.php</code>,再抓一次包，同样观察响应，发现可疑字符串，利用base64编码进行解码即可</p>
 <p><img src="/2020/07/05/0xctf/image-20200705184218489.png" alt="image-20200705184218489" style="zoom:50%;"><img src="/2020/07/05/0xctf/image-20200705184247594.png" alt="image-20200705184247594"></p>
 <img src="/2020/07/05/0xctf/image-20200705184247594.png" alt="image-20200705184247594" style="zoom:50%;">
+
 <hr>
-<h4 id="8-我爱吃饼干">8.我爱吃饼干</h4>
-<p>点进页面，也是只有一句话<code>You are guest now, only admin can see flag</code></p>
+<h4 id="8-我爱吃饼干"><a href="#8-我爱吃饼干" class="headerlink" title="8.我爱吃饼干"></a>8.我爱吃饼干</h4><p>点进页面，也是只有一句话<code>You are guest now, only admin can see flag</code></p>
 <p>抓个包看看吧</p>
 <p>抓包后发现响应头里有这样一个头<code>Set-Cookie: Cookie=eyJ1c2VybmFtZSI6Imd1ZXN0In0%3D</code></p>
 <p>首先我尝试的是在请求头里添加一个名为<code>cookie</code>的请求头，并把值赋为<code>eyJ1c2VybmFtZSI6Imd1ZXN0In0%3D</code>,失败！</p>
@@ -523,62 +531,41 @@
 <p>这时候就得求助了，大佬告诉我%3D这类字符其实是经过特殊编码的，就像%20代表空格一样</p>
 <p>比如在网址栏里输入%3D：</p>
 <img src="/2020/07/05/0xctf/image-20200705185957749.png" alt="image-20200705185957749" style="zoom:80%;">
+
 <p>这里的%3D其实就相当于=</p>
 <p>我实在太菜了，大佬提示到这我还是没能领略，我尝试将原来的%3D替换成=再解码看看，得到<code>{"username":"guest"}</code></p>
 <p>虽然解码正常了。但还是不知道怎么利用这个信息，想想题目那句话“only the admin can see the flag”,我试了一下将<code>{"username":"guest"}</code>中的<code>guest</code> 换成<code>admin</code>，获得一串字符，把这串字符作为请求头cookie 的值，send一波，失败!</p>
 <p>此时大佬缓缓打出一个:question:方法对了，但是居然解不出来？</p>
 <p>我又重新试了一遍，不行，发现我的base64编码出来的字符串和大佬的不一样，我换了一个在线解码的网站，再解了一次，把字符串作为cookie的值，成功解出flag。（什么？我居然被在线解码网站给克制了:angry:）</p>
 <hr>
-<h4 id="9-eztrick">9.eztrick</h4>
-<img src="/2020/07/05/0xctf/image-20200706183947270.png" alt="image-20200706183947270">
+<h4 id="9-eztrick"><a href="#9-eztrick" class="headerlink" title="9.eztrick"></a>9.eztrick</h4><img src="/2020/07/05/0xctf/image-20200706183947270.png" alt="image-20200706183947270">
+
 <p>起初我是把它当绕过来做的，试了试绕过空格的一些方法，都失败了。</p>
 <p>后来大佬告诉我不是空格，而是URL编码显示空字符，让我试试<code>？%E%280%AC=xxx</code>的形式，我试了一下<code>？%E%280%AC=%E%280%AC</code>，成功得到flag</p>
 <p><img src="/2020/07/05/0xctf/image-20200706184647653.png" alt="image-20200706184647653"></p>
 <hr>
-<h4 id="10">10.$$</h4>
-<p><img src="/2020/07/05/0xctf/image-20200706184747544.png" alt="image-20200706184747544"></p>
+<h4 id="10"><a href="#10" class="headerlink" title="10.$$"></a>10.$$</h4><p><img src="/2020/07/05/0xctf/image-20200706184747544.png" alt="image-20200706184747544"></p>
 <p>这题考察变量覆盖   此处安利一篇博客：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/a4d782e91852">变量覆盖漏洞</a></p>
 <p>准确说是考察由$$引起的变量覆盖，根据题意，在url后面加上<code>？ctf=0xctf</code>,使其满足if 条件语句即可</p>
 <hr>
-<h4 id="11-extract">11.extract</h4>
-<p><img src="/2020/07/05/0xctf/image-20200706185409318.png" alt="image-20200706185409318"></p>
+<h4 id="11-extract"><a href="#11-extract" class="headerlink" title="11.extract"></a>11.extract</h4><p><img src="/2020/07/05/0xctf/image-20200706185409318.png" alt="image-20200706185409318"></p>
 <p>这题考察由extract（）函数引起的变量覆盖问题，（关于extract（）函数，可自行百度或者阅读上面的博文:arrow_up:）直接在url后面加上<code>？ctf=0xctf</code>,使其满足if 条件语句即可</p>
 <hr>
-<h4 id="12-parse-str">12.parse_str</h4>
-<p><img src="/2020/07/05/0xctf/image-20200706185724337.png" alt="image-20200706185724337"></p>
+<h4 id="12-parse-str"><a href="#12-parse-str" class="headerlink" title="12.parse_str"></a>12.parse_str</h4><p><img src="/2020/07/05/0xctf/image-20200706185724337.png" alt="image-20200706185724337"></p>
 <p>这题考察的是由parse_str()函数引起的变量覆盖，主要是通过变量覆盖使得Leon1===Leon2</p>
 <p>之前在学习变量覆盖的时候见过几道这方面的例题，这道题中的<code>$_SERVER["QUERY_STRING"]</code>是我没见到过的，去百度了一下：</p>
 <blockquote>
 <p>实例：</p>
-<p>1，<a target="_blank" rel="noopener" href="http://localhost/aaa/**">http://localhost/aaa/**</a> (打开aaa中的index.php)<br>
-结果：<br>
-$_SERVER[‘QUERY_STRING’] = “”;<br>
-$_SERVER[‘REQUEST_URI’] = “/aaa/”;<br>
-$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>
-$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
-<p>**2，**<a target="_blank" rel="noopener" href="http://localhost/aaa/?p=222">http://localhost/aaa/?p=222</a> (附带查询)<br>
-结果：<br>
-$_SERVER[‘QUERY_STRING’] = “p=222”;<br>
-$_SERVER[‘REQUEST_URI’] = “/aaa/?p=222”;<br>
-$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>
-$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
-<p><strong>3，<a target="_blank" rel="noopener" href="http://localhost/aaa/index.php?p=222&amp;q=333">http://localhost/aaa/index.php?p=222&amp;q=333</a></strong><br>
-结果：<br>
-$$_SERVER[‘REQUEST_URI’] = “/aaa/index.php?p=222&amp;q=333”;<br>
-$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>
-$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
-<p>由实例可知：<br>
-$_SERVER[“QUERY_STRING”] 获取查询 语句，实例中可知，获取的是?后面的值<br>
-$</p>
-<p>_$SERVER[“REQUEST_URI”]  获取 <a target="_blank" rel="noopener" href="http://localhost">http://localhost</a> 后面的值，包括/<br>
-$_SERVER[“SCRIPT_NAME”]  获取当前脚本的路径，如：index.php<br>
-$_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
+<p>1，<a target="_blank" rel="noopener" href="http://localhost/aaa/">http://localhost/aaa/</a>** (打开aaa中的index.php)<br>结果：<br>$_SERVER[‘QUERY_STRING’] = “”;<br>$_SERVER[‘REQUEST_URI’] = “/aaa/“;<br>$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
+<p><strong>2，</strong><a target="_blank" rel="noopener" href="http://localhost/aaa/?p=222">http://localhost/aaa/?p=222</a> (附带查询)<br>结果：<br>$_SERVER[‘QUERY_STRING’] = “p=222”;<br>$_SERVER[‘REQUEST_URI’] = “/aaa/?p=222”;<br>$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
+<p><strong>3，<a target="_blank" rel="noopener" href="http://localhost/aaa/index.php?p=222&amp;q=333">http://localhost/aaa/index.php?p=222&amp;q=333</a></strong><br>结果：<br>$$_SERVER[‘REQUEST_URI’] = “/aaa/index.php?p=222&amp;q=333”;<br>$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
+<p>由实例可知：<br>$_SERVER[“QUERY_STRING”] 获取查询 语句，实例中可知，获取的是?后面的值<br>$</p>
+<p>_$SERVER[“REQUEST_URI”]  获取 <a target="_blank" rel="noopener" href="http://localhost/">http://localhost</a> 后面的值，包括/<br>$_SERVER[“SCRIPT_NAME”]  获取当前脚本的路径，如：index.php<br>$_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 </blockquote>
 <p>其实对于解题来说并没有太大影响</p>
 <p>所以直接在url后面添加<code>？Leon1=abc&amp;Leon2=abc</code>即可</p>
 <hr>
-<h4 id="13-ezupload">13.ezupload</h4>
-<p><img src="/2020/07/05/0xctf/image-20200708184237017.png" alt="image-20200708184237017"></p>
+<h4 id="13-ezupload"><a href="#13-ezupload" class="headerlink" title="13.ezupload"></a>13.ezupload</h4><p><img src="/2020/07/05/0xctf/image-20200708184237017.png" alt="image-20200708184237017"></p>
 <p>页面很简单，易得这是一道考察文件上传的题</p>
 <p>上传了一张图片，得到一句话</p>
 <p><code>you file: ./sandbox/3a64ab0e3d4f435a3ba6e69810dbcd01/wallhaven-0q6qw7.jpg</code></p>
@@ -596,70 +583,76 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>首先，准备一个一句话木马（.php文件），然后上传，得到一串类似URL的东西，将它添加到原URL 后面，若回显空页面则说明一句话木马已经成功上传（如果404啥的检查一下URL，多试几次）</p>
 <p>准备好中国蚁剑，在空白处右击添加数据，将空页面的URL复制进去，输入密码aaa，点击左上角的添加即可（因为我已经添加过了，所以左上角显示的是保存）</p>
 <img src="/2020/07/05/0xctf/image-20200708194242532.png" alt="image-20200708194242532" style="zoom: 67%;">
+
 <p>连接成功后双击打开：</p>
 <img src="/2020/07/05/0xctf/image-20200708194638547.png" alt="image-20200708194638547" style="zoom:67%;">
+
 <p>找了找也没找到flag，，，，实在是菜啊:sob:</p>
 <p>问了大佬，<strong>flag一般在根目录下</strong>，点开那个<code>/</code>文件夹，在最下面发现了flag文件，点开即可得到flag。</p>
 <hr>
-<h4 id="14-一键getflag">14.一键getflag</h4>
-<img src="/2020/07/05/0xctf/image-20200709215614854.png" alt="image-20200709215614854" style="zoom:67%;">
+<h4 id="14-一键getflag"><a href="#14-一键getflag" class="headerlink" title="14.一键getflag"></a>14.一键getflag</h4><img src="/2020/07/05/0xctf/image-20200709215614854.png" alt="image-20200709215614854" style="zoom:67%;">
+
 <p>点进去，它提示你输入0xCTF网站的IP即可得到flag，菜鸡的我还去百度了一下什么是网站的IP:cold_sweat:</p>
 <p>其实就类似127.0.0.1这类的，我查了一下有没有能查询某个指定网站IP的工具，找了一个在线查询的，输入网站的URL后得到网站的IP：<code>39.106.164.8</code></p>
-<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required></p>
-<p>**maxlength=“4”**说明输入的字符串最大长度为4，而我们的IP地址显然超过了，所以输不进去。想了一下利用Burpsuite抓一波包再改包：</p>
+<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required=""></p>
+<p><strong>maxlength=“4”</strong>说明输入的字符串最大长度为4，而我们的IP地址显然超过了，所以输不进去。想了一下利用Burpsuite抓一波包再改包：</p>
 <p>先输入一个4个字符以内的IP。如我输入的是1234，抓包后将IP改为<code>39.106.164.8</code>，再发包即可</p>
 <hr>
-<h4 id="15-未完成的留言板">15.未完成的留言板</h4>
-<img src="/2020/07/05/0xctf/image-20200711132555655.png" alt="image-20200711132555655" style="zoom:80%;">
+<h4 id="15-未完成的留言板"><a href="#15-未完成的留言板" class="headerlink" title="15.未完成的留言板"></a>15.未完成的留言板</h4><img src="/2020/07/05/0xctf/image-20200711132555655.png" alt="image-20200711132555655" style="zoom:80%;">
+
 <p>点进去，看一下，是一个留言板</p>
 <img src="/2020/07/05/0xctf/image-20200711132711291.png" alt="image-20200711132711291" style="zoom: 33%;">
+
 <p>随便输入一句留言，点击回复</p>
 <img src="/2020/07/05/0xctf/image-20200711132823635.png" alt="image-20200711132823635" style="zoom:33%;">
+
 <p>因为题目说flag在fl4g.php，所以我把这个放到URL后面试了一下，跳转出来的还是留言板界面。</p>
 <p>查看了一下源码，再抓包看了看，并没有看出什么端倪。于是我查看了提示，提示为：LFI，即本地文件包含，所以本题考查PHP伪协议与本地文件包含漏洞。通过对知识与例题的学习，我尝试了一下用php://filter去读取一下fl4g.php文件，构造如下payload:</p>
-<pre><code class="language-php">http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
+<pre><code class="line-numbers language-php">http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
 </code></pre>
 <p>失败，后来又尝试了一下用php://input的方式写入一句话木马，也失败了（可能是我姿势不对吧:joy:）</p>
 <p>继而求助大佬，大佬一针见血地指出了我的问题，上面那个payload里的file参数在本题中并不存在</p>
 <p>（的确，由于我是模仿的其他题目的解法，并没完全理解，此处就照搬了file参数</p>
-<pre><code class="language-php">include($_GET['file']);
+<pre><code class="line-numbers language-php">include($_GET['file']);
 </code></pre>
 <p>这样的php语句说明file是参数，而本题是action为参数</p>
-<pre><code class="language-php">include($_GET['action']);
+<pre><code class="line-numbers language-php">include($_GET['action']);
 </code></pre>
 <p>从点击回复后的url中便可看出<img src="/2020/07/05/0xctf/image-20200711135546090.png" alt="image-20200711135546090" style="zoom:80%;"></p>
 <p>所以将上述payload中的file参数修改为action 即可，不不不，事情没有这么简单，我尝试了一下，直接404，好吧，貌似是index.php中并没有action 这个参数，所以应该在action.php 的基础上再去使用php://filter语句，故修改payload为：</p>
-<pre><code class="language-php">http://ctf.caoyi.site:30002/web8/action.php?action=php://filter/read=convert.base64-encode/resource=fl4g.php
+<pre><code class="line-numbers language-php">http://ctf.caoyi.site:30002/web8/action.php?action=php://filter/read=convert.base64-encode/resource=fl4g.php
 </code></pre>
 <p>访问一下，一串base64编码后的字符串一闪而过，然后页面又变成了留言板界面，此时想到的是抓包，使用Burpsuite抓包后发现可疑字符串</p>
 <img src="/2020/07/05/0xctf/image-20200711140844022.png" alt="image-20200711140844022" style="zoom: 33%;">
+
 <p>base64解码后即可得到flag</p>
 <hr>
-<h4 id="16-RCE-bypass">16.RCE bypass</h4>
-<img src="/2020/07/05/0xctf/image-20200716214515665.png" alt="image-20200716214515665" style="zoom:67%;">
+<h4 id="16-RCE-bypass"><a href="#16-RCE-bypass" class="headerlink" title="16.RCE bypass"></a>16.RCE bypass</h4><img src="/2020/07/05/0xctf/image-20200716214515665.png" alt="image-20200716214515665" style="zoom:67%;">
+
 <p>这道题前前后后花了些时间，一开始无从下手，题目标题是RCE绕过，关于RCE绕过的姿势也了解了一些（此处安利一篇博客：<a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1599149">《RCE的Bypass与骚姿势总结》</a>），但完全无从下手。前期试了试get方式传一个cmd参数，我试了一下<code>？cmd=1</code>,并没有什么用。后来大佬建议我去了解一下php system 函数，了解了一波后，再结合刚学的Linux命令，想起来攻防世界里的一句话木马那道题当时有个wp就是采用system+cat来解决的。我踌躇满志地打开hackbar, load Url,post date:<code>shell=system('ls');</code>，然而又是啥都没。一番挣扎尝试后再次求助大佬，经过大佬的点播与提示，上述php语句中有两句话应该好好理解：</p>
-<pre><code class="language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
+<pre><code class="line-numbers language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
 </code></pre>
 <p>这句话y中用到了三目运算符？：，如果问号前面的条件成立的话，那么它就执行问号与冒号之间的语句，否则执行冒号后面的语句.</p>
 <p>那么这句话的意思就是如果以get方式传入了参数的话，那么他就把这个传入的cmd参数赋值给 $cmd,如果没有传入cmd这个参数的话，那么 cmd就为空。</p>
-<pre><code class="language-php">if($cmd)
+<pre><code class="line-numbers language-php">if($cmd)
 {   system("$cmd"); }
 </code></pre>
 <p>这个语句表明php用system 函数把cmd这个参数当做系统命令执行，所以其实之前尝试的<code>shell=system('ls');</code>可以以在url 里将cmd 赋值为ls 来代替实现，</p>
 <img src="/2020/07/05/0xctf/image-20200716221117992.png" alt="image-20200716221117992" style="zoom:67%;">
+
 <p>此时页面中出现了flag.php和index.php的提示，此时想到利用cmd=cat flag.php的方式来读取文件，但是cat,flag被禁用了，第一时间想到的是用姿势绕过，但大佬说duck不必，<strong>cat被ban了可以用tac，tac被ban 了可以用head，head被ban了还可以用其他的</strong>。一语惊醒梦中人呐，之前在学习Linux命令的时候，的确很多命令都可以完成文件的读取工作。</p>
 <blockquote>
 <p><strong>小小整理一下，若cat被ban,可以采用以下命令代替：</strong></p>
-<p>(1)more:一页一页的显示档案内容</p>
+<p>(1)more:一页一页的显示档案内容 </p>
 <p>(2)less:与 more 类似，但是比 more 更好的是，他可以[pg dn][pg up]翻页 （补充一下，如果想退出less，按q键就可以了）</p>
 <p>(3)head:查看头几行 (默认是前10行)</p>
-<p>(4)tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示</p>
+<p>(4)tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 </p>
 <p>(5)tail:查看尾几行 （默认是后10行）</p>
-<p>(6)nl：显示的时候，顺便输出行号</p>
-<p>(7)od:以二进制的方式读取档案内容</p>
+<p>(6)nl：显示的时候，顺便输出行号 </p>
+<p>(7)od:以二进制的方式读取档案内容 </p>
 <p>(8)vi:一种编辑器，这个也可以查看</p>
 <p>(9)vim:一种编辑器，这个也可以查看</p>
-<p>(10)sort:可以查看</p>
+<p>(10)sort:可以查看 </p>
 <p>(11)uniq:可以查看</p>
 <p>(12)file -f:报错出具体内容   For example:<img src="/2020/07/05/0xctf/image-20200717092841793.png" alt="image-20200717092841793"></p>
 <p>关于如何退出vim（命令模式下）</p>
@@ -679,8 +672,8 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>但是让我很苦恼的是那种拼接方式去构造payload的方式我可能还不太理解，在本题中尝试了好多次也没成功，这个坑先留着，以后来填，或者大佬们评论区指点一波</p>
 <p>）</p>
 <hr>
-<h4 id="17-RCE-bypass-pro"><strong>17.RCE_bypass_pro</strong></h4>
-<img src="/2020/07/05/0xctf/image-20200720210307946.png" alt="image-20200720210307946" style="zoom:50%;">
+<h4 id="17-RCE-bypass-pro"><a href="#17-RCE-bypass-pro" class="headerlink" title="17.RCE_bypass_pro"></a><strong>17.RCE_bypass_pro</strong></h4><img src="/2020/07/05/0xctf/image-20200720210307946.png" alt="image-20200720210307946" style="zoom:50%;">
+
 <p>这道题是RCE的pro版本，料到了绕过有难度。点进去一看，我敲！这么多过滤条件！（手动滑稽_）</p>
 <p>稍微理解一下源码：首先要以<code>GET</code>方式传一个<code>ip</code>参数，然后那一长串用于过滤的令人头皮发麻的正则表达式，emmm，怎么说呢，没能完全看懂，但大致能晓得它过滤掉了哪些东西。</p>
 <p>先稍微试一试水，我构造了这样一个<code>payload:?ip=d;sort${IFS}fl\ag.php</code></p>
@@ -695,19 +688,18 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>然后我又尝试了一下其他的payload，应该不止这一种解法。继续逛百度，居然发现一道和这道题很像的题<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8">😲</span></p>
 <p>去找了找它的wp，由于题目还是有点差异，有些wp中的解法并没成功（也可能是我太菜了<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8">😵</span>），但是经过我的尝试，还是发现了几种骚姿势：</p>
 <ul>
-<li>
-<img src="/2020/07/05/0xctf/image-20200720220319905.png" alt="image-20200720220319905">
-</li>
-<li>
-<p><img src="/2020/07/05/0xctf/image-20200720220434968.png" alt="image-20200720220434968"></p>
-</li>
+<li><img src="/2020/07/05/0xctf/image-20200720220319905.png" alt="image-20200720220319905"></li>
+</ul>
+<ul>
+<li><img src="/2020/07/05/0xctf/image-20200720220434968.png" alt="image-20200720220434968"></li>
 </ul>
 <p>第二个实在是太骚了，运行后：</p>
 <img src="/2020/07/05/0xctf/image-20200720220938545.png" alt="image-20200720220938545" style="zoom:80%;">
+
 <p>菜鸡的我流下了伤心的泪水<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
 <hr>
-<h4 id="18-EZupload-2">18.EZupload-2</h4>
-<img src="/2020/07/05/0xctf/image-20200731115817516.png" alt="image-20200731115817516" style="zoom:67%;">
+<h4 id="18-EZupload-2"><a href="#18-EZupload-2" class="headerlink" title="18.EZupload-2"></a>18.EZupload-2</h4><img src="/2020/07/05/0xctf/image-20200731115817516.png" alt="image-20200731115817516" style="zoom:67%;">
+
 <p>依旧是一道文件上传，首先尝试一波上传shell.php,(让自己死心），回显不允许的文件类型。</p>
 <p>又尝试了一波双写绕过，加.绕过，都不行，想了一下可能是得上传图片马，首先制作一个图片马：</p>
 <p>首先桌面新建一个shell.php文件，写入一句话木马。</p>
@@ -715,11 +707,9 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>用记事本打开3.jpg，将乱码拉倒最后，如果最后有一句话木马就说明制作成功了。（必要的情况下可以把乱码删掉，乱码太多后续可能解析不了）</p>
 <p>图片马制作成功，然后也上传成功，但是菜刀和蚁剑都连不上，几番百度，也没发现问题。后来去问大佬，大佬说图片马没办法像php那样被解析，有两种方法：</p>
 <ul>
-<li>
-<p>文件包含</p>
+<li><p>文件包含            </p>
 </li>
-<li>
-<p>.htaccess</p>
+<li><p>.htaccess</p>
 <p>似乎豁然开朗，但是我之前上传.htaccess文件的时候它显示不允许的文件类型，大佬说抓包改一下文件类型就可以了（奥，我想起来，之前做那个靶场训练的时候好像遇到过这种题）</p>
 <p>此处我当时踩了一个大坑，我的.htaccess文件命名成了1.htaccess，但是其实是不能有文件名的，那个文件直接命名成.htaccess就可</p>
 <p>然后关于.htaccess的内容，第一种写法：<code>SetHandler application/x-httpd-php</code></p>
@@ -729,46 +719,48 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
  &lt;/FilesMatch&gt;
 </code></pre>
 <p>（当然这种写法你的图片马的文件名得是shell.jpg）</p>
-<img src="/2020/07/05/0xctf/image-20200731122831238.png" alt="image-20200731122831238" style="zoom:67%;">
-</li>
+<img src="/2020/07/05/0xctf/image-20200731122831238.png" alt="image-20200731122831238" style="zoom:67%;"></li>
 </ul>
 <p>把上面那个文件类型改成<code>image/jpeg</code> 再发包就可了</p>
 <img src="/2020/07/05/0xctf/image-20200731123111676.png" alt="image-20200731123111676" style="zoom:67%;">
+
 <p>上传成功！</p>
 <p>接着再上传之前的图片木马，上传成功后回显一个地址，访问一波。</p>
 <img src="/2020/07/05/0xctf/image-20200731124839807.png" alt="image-20200731124839807" style="zoom:50%;">
+
 <p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8">😙</span></p>
 <hr>
-<h4 id="19-SQL-injection">19.SQL_injection</h4>
-<p>这是一道SQL注入的问题，应该不是很难。之前刷过几道sqllib的题，有空一定好好刷.</p>
+<h4 id="19-SQL-injection"><a href="#19-SQL-injection" class="headerlink" title="19.SQL_injection"></a>19.SQL_injection</h4><p>这是一道SQL注入的问题，应该不是很难。之前刷过几道sqllib的题，有空一定好好刷.</p>
 <p>之前我采用的一直是手工注入，这次一开始也是采用的手工注入，但是出了些问题，后来转向sqlmap,由于我之前的sqlmap文件夹貌似又双叒叕被我误删了，这次使用的是kali自带的sqlmap。</p>
 <ul>
 <li>第一步，看是否存在注入点：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' "</code></li>
 </ul>
 <img src="/2020/07/05/0xctf/image-20200928161245282.png" alt="image-20200928161245282" style="zoom: 67%;">
+
 <p>提示“id”可能是注入点。</p>
 <ul>
 <li>第二步查看数据库名称：<code>kcm@kali:~$ sqlmap -u"http://59.110.157.4:30010/?id=1' " --dbs</code></li>
 </ul>
 <img src="/2020/07/05/0xctf/image-20200928161505584.png" alt="image-20200928161505584" style="zoom:67%;">
+
 <p>显示有两个可用的数据库，一个名为 <strong>information_schema</strong>(信息模式？)，另一个名为<strong>user</strong>.</p>
 <ul>
-<li>
-<p>知道了数据库的名称，接下来就是去查看数据库中的表：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
-<img src="/2020/07/05/0xctf/image-20200928161847157.png" alt="image-20200928161847157" style="zoom:67%;">
-</li>
+<li><p>知道了数据库的名称，接下来就是去查看数据库中的表：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
+<img src="/2020/07/05/0xctf/image-20200928161847157.png" alt="image-20200928161847157" style="zoom:67%;"></li>
 </ul>
 <p>自上而下看了半天，没发现flag字眼，暂且搁置，去另一个库康康：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
 <img src="/2020/07/05/0xctf/image-20200928162050230.png" alt="image-20200928162050230" style="zoom:67%;">
+
 <p>只有简简单单的一个表，很可疑啊，觉得有必要深究一下。</p>
 <ul>
-<li>
-<p>查看user数据库中user表的列信息：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user  --columns</code></p>
+<li><p>查看user数据库中user表的列信息：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user  --columns</code></p>
 <img src="/2020/07/05/0xctf/image-20200928162328554.png" alt="image-20200928162328554" style="zoom:67%;">
+
 <ul>
 <li>最后查看你想看的东西就行了，falg应该是字符串，所以我首先查看的是password里的东西：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user -C password  --dump</code></li>
 </ul>
 <img src="/2020/07/05/0xctf/Users/28294/Desktop/无标题.png" alt="无标题" style="zoom:67%;">
+
 <p>flag手动打码<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8">😜</span></p>
 </li>
 </ul>
@@ -1316,10 +1308,10 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
                         
                             迁客骚人，多会于此。我可能是后者​,​h​h​h😏
 
-&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖
-&nbsp;六月西湖好，风光小处藏。
-&nbsp;（仄仄平平仄，平平仄仄平。）
-&nb
+
+
+
+&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖&nbsp;六月西湖好，风光小处藏。&nbsp;（仄仄平平仄，平平仄仄平。）&nb
                         
                     </div>
                     <div class="publish-info">
@@ -1368,9 +1360,10 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            ​	昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢:question:
+                            ​    昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢:question:
 
-​	在大佬的安利之下，我发现了 Trpora 这个强大的
+
+​    在大佬的安利之下，我发现了 Trpor
                         
                     </div>
                     <div class="publish-info">
