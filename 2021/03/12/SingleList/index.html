@@ -413,7 +413,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    979
+                    987
                 </div>
                 
 
@@ -453,25 +453,25 @@ typedef int Status;
 typedef int ElemType;
 
 typedef struct node     //节点的结构体
-&#123;
+{
     ElemType element;
     struct node *link;
-&#125;Node;
+}Node;
 
 typedef struct singleList //单链表的结构体
-&#123;
+{
     Node *first;  //first 头指针，用来存放头结点a0的地址
     int n;        //表示单链表中元素的个数
-&#125;SingleList;
+}SingleList;
 
 
 //单链表的初始化
 Status Init(SingleList *L)
-&#123;
+{
     L-&gt;first=NULL;
     L-&gt;n=0;
     return OK;
-&#125;
+}
 
 //单链表的查找
 /*
@@ -481,19 +481,19 @@ Status Init(SingleList *L)
 将ai的值通过x返回（传值与传址，这边传进来的是地址，操作完会改变实参x的值）
 */
 Status Find(SingleList *L,int i,ElemType *x)
-&#123;
+{
     int j;
     Node *p;
     if(i&lt;0||i&gt;L-&gt;n-1)   return ERROR;
       
     p=L-&gt;first;          //p指向a0
     for(j=0;j&lt;i;j++)
-    &#123;
+    {
         p=p-&gt;link;       //执行1次后p指向a1,反复指向下一个结点
-    &#125;
+    }
     *x=p-&gt;element;
     return OK;
-&#125;
+}
 
 //单链表的插入
 /*
@@ -505,34 +505,34 @@ Status Find(SingleList *L,int i,ElemType *x)
 单链表元素个数+1
 */
 Status Insert(SingleList  *L,int i,ElemType x)
-&#123;
+{
     Node *p,*q;
     int j;
     if(i&lt;-1||i&gt;L-&gt;n-1)
-    &#123;
+    {
         return  ERROR;
-    &#125;
+    }
     p=L-&gt;first;          //p指向头指针
     for(j=0;j&lt;i;j++)     //从头开始查找ai
-    &#123;
+    {
         p=p-&gt;link;
-    &#125;
+    }
     q=(Node*)malloc(sizeof(Node));      //生成新节点q
     q-&gt;element=x;
 
     if(i&gt;-1)            //讨论i=-1和i&gt;-1的情况
-    &#123;
+    {
         q-&gt;link=p-&gt;link;
         p-&gt;link=q;
-    &#125;
+    }
     else
-    &#123;
+    {
         q-&gt;link=L-&gt;first; //新节点插在头节点a0之前，成为新的头节点
         L-&gt;first=q;
-    &#125;
+    }
     L-&gt;n++;
     return OK;
-&#125;
+}
 
 //单链表的删除
 /*
@@ -544,7 +544,7 @@ Status Insert(SingleList  *L,int i,ElemType x)
 单链表元素个数-1
 */
 Status Delete(SingleList *L,int i)
-&#123;
+{
     int j;
     Node *p,*q;
     if(!L-&gt;n)  
@@ -558,68 +558,86 @@ Status Delete(SingleList *L,int i)
     if(i==0)
       L-&gt;first=L-&gt;first-&gt;link;    //删除的是头节点
     else
-    &#123;
+    {
         p=q-&gt;link;               //p指向ai
         q-&gt;link=p-&gt;link;          //ai+1的地址存到ai-1的指针域中
-    &#125;
+    }
     free(p);   //释放p所指结点的存储空间
     L-&gt;n--;
     return OK;
 
-&#125;
+}
 
 //单链表的输出
 Status Output(SingleList *L)
-&#123;
+{
     Node *p;
     if(!L-&gt;n)
         return ERROR;
     p=L-&gt;first;
     while(p)
-    &#123;
-        printf(&quot;%d &quot;,p-&gt;element);
+    {
+        printf("%d ",p-&gt;element);
         p=p-&gt;link;
-    &#125;
-    printf(&quot;\n\n&quot;);
+    }
+    printf("\n\n");
     return OK;
-&#125;
+}
 
 //单链表的销毁
 void Destroy(SingleList *L)
-&#123;
+{
     Node *p;
     while (L-&gt;first)
-    &#123;
+    {
         p=L-&gt;first-&gt;link;  //保存后继结点地址，防止断链
         free(L-&gt;first);   //释放first所指结点的存储空间
         L-&gt;first=p;
-    &#125;
-&#125;
+    }
+}
 
 
 int main()
-&#123;
+{
     int i;
     int x;
     SingleList List;
     i=Init(&amp;List);
-    printf(&quot;%d\n\n&quot;,i);     // 1
+    printf("%d\n\n",i);     // 1
     for(i=0;i&lt;10;i++)
-    &#123;
+    {
         Insert(&amp;List,i-1,i);
-    &#125;
+    }
     Output(&amp;List);    //0 1 2 3 4 5 6 7 8 9
     Find(&amp;List,1,&amp;x);
-    printf(&quot;The value is : %d\n\n&quot;,x);  //1
+    printf("The value is : %d\n\n",x);  //1
     Delete(&amp;List,3);
     Output(&amp;List);  //0 1 2 4 5 6 7 8 9
     Destroy(&amp;List);
 
-&#125;
+}
 
 
 </code></pre>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1371,7 +1389,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">14.6k</span>&nbsp;字
+                class="white-color">15k</span>&nbsp;字
             
             
             

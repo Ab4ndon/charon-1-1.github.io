@@ -413,7 +413,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    993
+                    985
                 </div>
                 
 
@@ -441,7 +441,7 @@ using namespace std;
 
 template&lt;class T&gt;
 class SortableList
-&#123;
+{
     public:
         SortableList(int mSize,int n,T*a);
         ~SortableList();
@@ -462,45 +462,45 @@ class SortableList
         int maxSize;
         int num;
 
-&#125;;
+};
 //构造函数
 template&lt;class T&gt;
 SortableList&lt;T&gt;::SortableList(int mSize,int n,T*a)
-&#123;
+{
     l=a;
     maxSize=mSize;
     num=n;
-&#125;
+}
 //析构函数
 template&lt;class T&gt;
 SortableList&lt;T&gt;::~SortableList()
-&#123;
+{
     delete[]l;
-&#125;
+}
 
 /*********************************** 二分搜索 ****************************/
 //采用递归的二分搜索
 template&lt;class T&gt;
 int SortableList&lt;T&gt; ::BSearch(const T&amp;x,int left,int right)const
-&#123;
+{
     if(left&lt;=right)
-    &#123;
+    {
         int m=(left+right)/2;
         if(x&lt;l[m]) 
             return BSearch(x,left,m-1);
         else if(x&gt;l[m])
             return BSearch(x,m+1,right);
         else return m;
-    &#125;
+    }
     return -1;
-&#125;
+}
 //采用迭代的二分搜索（尾递归改迭代）
 template&lt;class T&gt;
 int SortableList&lt;T&gt;::BSearch_DieDai(const T&amp;x,int n)const
-&#123;
+{
     int m,left=0,right=n-1;
     while(left&lt;=right)
-    &#123;
+    {
         m=(left+right)/2;
         if(x&lt;l[m])  
             right=m-1;
@@ -508,32 +508,32 @@ int SortableList&lt;T&gt;::BSearch_DieDai(const T&amp;x,int n)const
             left=m+1;
         else 
             return m;
-    &#125;
+    }
     return -1;
-&#125;
+}
 
 /******************************* 合  并  排  序 ************************************/
 
 template &lt;class T&gt;
 void SortableList&lt;T&gt;::MergeSort()
-&#123;
+{
     MergeSort(0,num-1);
-&#125;
+}
 template&lt;class T&gt;
 void SortableList&lt;T&gt;::MergeSort(int left,int right)
-&#123;
+{
     if(left&lt;right)
-    &#123;
+    {
         int mid = (left+right)/2;
         MergeSort(left,mid);
         MergeSort(mid+1,right);
         Merge(left,mid,right);
-    &#125;
-&#125;
+    }
+}
 
 template &lt;class T&gt;
 void SortableList&lt;T&gt;::Merge(int left, int mid, int right)
-&#123;                                      //a数组为待排序的数组 
+{                                      //a数组为待排序的数组 
 	T* temp =new T[right - left + 1]; //temp数组用来暂时保存排序好的数组 
 	int i = left, j = mid + 1, k = 0; //left 至mid为左半数组 ，mid+1至right为右半数组 
 	while((i &lt;= mid)&amp;&amp;(j &lt;= right))  //对应第一步 当左半数组和右半数组都不为空时 
@@ -547,104 +547,122 @@ void SortableList&lt;T&gt;::Merge(int left, int mid, int right)
         temp[k ++] = l[j ++];
     for(i = 0, k = left; k &lt;= right;) //将temp数组赋值给原数组 
         l[k ++] = temp[i ++];
-&#125;
+}
  
 
 template&lt;class T&gt;
 void SortableList&lt;T&gt;::Output()
-&#123;
+{
 	for(int i = 0; i &lt; num; i++)
-		cout &lt;&lt; l[i] &lt;&lt; &quot; &quot;;
+		cout &lt;&lt; l[i] &lt;&lt; " ";
 	cout &lt;&lt; endl &lt;&lt; endl;
-&#125;
+}
 
 /********************************** 快  速  排  序 ***********************************/
 
 template&lt;class T&gt;
 void SortableList&lt;T&gt;::Swap(int &amp;a, int &amp;b)
-&#123;
+{
 	int t = a;
 	a = b;
 	b = t;
-&#125;
+}
 
 template &lt;class T&gt;
 int SortableList&lt;T&gt;::Partition(int left,int right)
-&#123;
+{
     if(left&gt;=right)
-    &#123;
-        cout&lt;&lt;&quot;下标范围有误，请确保left&lt;right!&quot;&lt;&lt;endl;
+    {
+        cout&lt;&lt;"下标范围有误，请确保left&lt;right!"&lt;&lt;endl;
         return 0;
-    &#125;
+    }
        
     int i = left,j = right +1;
     do 
-    &#123;
+    {
         do i++; while (l[i]&lt;l[left]);
         do j--; while (l[j] &gt; l[left]);
         if(i &lt; j) Swap(i,j);
-    &#125;while(i &lt; j);
+    }while(i &lt; j);
     Swap(left,j);
     return j;
-&#125;
+}
 
 template &lt;class T&gt;
 void SortableList&lt;T&gt;:: QuickSort()
-&#123;
+{
     QuickSort(0,num-1);
-&#125;
+}
 
 template&lt;class T&gt;
 void SortableList&lt;T&gt;:: QuickSort(int left,int right)
-&#123;
+{
     if(left&lt;right)
-    &#123;
+    {
         int j = Partition(left,right);   
         if(j-left&lt;=right-j)                  //为了减少系统栈的深度，一般都会将长的子序列的上下界进栈         
-        &#123;                                    //先处理短的子序列
+        {                                    //先处理短的子序列
             if(j-left&gt;1)                     
-            &#123;
+            {
                 QuickSort(left,j-1);
                 QuickSort(j+1,right);
-            &#125;
-        &#125;else
-        &#123; 
+            }
+        }else
+        { 
             if(right-j&gt;1)
-            &#123;
+            {
                 QuickSort(j+1,right);
                 QuickSort(left,j-1);
-            &#125;
-        &#125;
-    &#125;
-&#125;
+            }
+        }
+    }
+}
 
 /************************************ main 函数 ***********************************/
 int main()
-&#123;
-    int a[5]=&#123;2,3,1,4,5&#125;;
+{
+    int a[5]={2,3,1,4,5};
     SortableList&lt;int&gt; list =SortableList&lt;int&gt;(5,5,a);
     int k = list.BSearch(4,0,4);
     int j = list.BSearch_DieDai(4,6);
     cout&lt;&lt;k;
     cout&lt;&lt;j;
-     cout &lt;&lt; &quot;排序前：&quot;&lt;&lt;endl;
+     cout &lt;&lt; "排序前："&lt;&lt;endl;
 	// for (int i = 0; i &lt; 5; i++)
 	// 	cout &lt;&lt; a[i] &lt;&lt; ' ';
 	// cout &lt;&lt; endl;
     list.Output();
     list.MergeSort();
-    cout &lt;&lt; &quot;归并排序后：&quot;&lt;&lt;endl;
+    cout &lt;&lt; "归并排序后："&lt;&lt;endl;
 	// for (int i = 0; i &lt; 5; i++)
 	// 	cout &lt;&lt; a[i] &lt;&lt; ' ';
 	// cout &lt;&lt; endl;
     list.QuickSort();
     list.Output();
-    cout &lt;&lt; &quot;快速排序后：&quot;&lt;&lt;endl;
+    cout &lt;&lt; "快速排序后："&lt;&lt;endl;
     list.Output();
     return 0;
-&#125;
+}
 </code></pre>
-
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
             </div>
             <hr/>
 
@@ -1218,9 +1236,9 @@ int main()
                             今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。
 
 1.边框圆角化
-&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
 &lt;shape
-  
+    xmlns:android="htt
                         
                     </div>
                     <div class="publish-info">
@@ -1392,7 +1410,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">14.6k</span>&nbsp;字
+                class="white-color">15k</span>&nbsp;字
             
             
             

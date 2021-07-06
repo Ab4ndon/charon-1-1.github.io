@@ -279,7 +279,7 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #0081ff 0%, #1cbbb4 100%);
+    background-image: linear-gradient(to right, #FFB6C1 0%, #1cbbb4 100%);
 }
 
 .text-color {
@@ -295,7 +295,7 @@ mark {
     position: fixed;
     bottom: 0;
     z-index: 300;
-    background: linear-gradient(to right, #0081ff 0%, #1cbbb4 100%);
+    background: linear-gradient(to right, #FFB6C1 0%, #1cbbb4 100%);
     opacity: 0.8;
 }
 
@@ -1356,7 +1356,7 @@ thead {
 
 .chip-container .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #0081ff 0%, #1cbbb4 100%) !important;
+    background: linear-gradient(to right, #FFB6C1 0%, #1cbbb4 100%) !important;
 }
 
 .chip .tag-length {
@@ -1669,7 +1669,7 @@ thead {
     padding: 0;
     color: #fff;
     border: 1px solid #1cbbb4;
-    background: radial-gradient(#0081ff, #1cbbb4);
+    background: radial-gradient(#FFB6C1, #1cbbb4);
     font-size: 0.9rem;
     border-radius: 50%;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .21), 0 2px 3px rgba(0, 0, 0, .1);
@@ -1845,8 +1845,8 @@ thead {
 
 .other-skills .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #0081ff 0%, #1cbbb4 100%);
-    border: 1px solid #0081ff;
+    background: linear-gradient(to right, #FFB6C1 0%, #1cbbb4 100%);
+    border: 1px solid #FFB6C1;
     box-shadow: 0 5px 5px rgba(0, 0, 0, .25)
 }
 
@@ -2193,7 +2193,7 @@ footer .copy-right {
 
 /*直达评论*/
 .comment-scroll .btn-floating {
-    background: linear-gradient(to bottom right, #0081ff 0%, #1cbbb4 100%);
+    background: linear-gradient(to bottom right, #FFB6C1 0%, #1cbbb4 100%);
     width: 48px;
     height: 48px;
 }
@@ -2205,17 +2205,17 @@ footer .copy-right {
 
 
 /* 滚动条 */
-::-webkit-scrollbar-thumb {
-    background-color: #FF2A68;
+/* ::-webkit-scrollbar-thumb {
+    background-color: #00CED1;
     background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.4) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
     border-radius: 3em;
 }
 ::-webkit-scrollbar-track {
-    background-color: #ffcacaff;
+    background-color: #1cbbb4;
     border-radius: 3em;
 }
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 1px;
     height: 15px;
-}
+} */
 

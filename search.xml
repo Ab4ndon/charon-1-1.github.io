@@ -1,6 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Android</title>
+    <url>/2021/03/17/Android/</url>
+    <content><![CDATA[<p>今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。</p>
+<span id="more"></span>
+<h4 id="1-边框圆角化">1.边框圆角化</h4>
+<pre><code class="language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"&gt;
+    &lt;!-- 填充的颜色 --&gt;
+    &lt;solid android:color="#EEB422" /&gt;
+    &lt;!-- android:radius 弧形的半径 --&gt;
+    &lt;!-- 设置按钮的四个角为弧形 --&gt;
+    &lt;corners
+        android:radius="20dip" /&gt;
+    &lt;!--也可单独设置--&gt;
+    &lt;!-- &lt;corners --&gt;
+    &lt;!-- android:topLeftRadius="10dp"--&gt;
+    &lt;!-- android:topRightRadius="10dp"--&gt;
+    &lt;!-- android:bottomRightRadius="10dp"--&gt;
+    &lt;!--  android:bottomLeftRadius="10dp"--&gt;
+    &lt;!--   /&gt;  --&gt;
+    **设置文字padding**
+    &lt;!-- padding：Button里面的文字与Button边界的间隔 --&gt;
+    &lt;padding
+        android:left="5dp"
+        android:top="3dp"
+        android:right="5dp"
+        android:bottom="3dp"
+        /&gt;
+&lt;/shape&gt;
+</code></pre>
+<h4 id="2-背景颜色渐变">2.背景颜色渐变</h4>
+<pre><code class="language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;!--实现应用背景颜色渐变--&gt;
+    &lt;gradient
+        android:startColor="#FFF8DC"
+        android:endColor="#FFE1FF"
+        android:angle="270"/&gt;
+    &lt;corners
+        android:radius="20dip"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"/&gt;
+&lt;/shape&gt;
+
+</code></pre>
+<h4 id="3-Button背景色修改无效">3.Button背景色修改无效</h4>
+<p>找到main/res/values/themes.xml文件</p>
+<p>将其中的<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar"&gt;</code></p>
+<p>修改为<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge"&gt;</code>即可</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>Android</category>
+      </categories>
+      <tags>
+        <tag>Android UI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>阿里云CDN加速域名解析冲突问题</title>
     <url>/2020/10/11/ALi/</url>
     <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
@@ -11,75 +89,456 @@
 <p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
 <hr>
 <p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
-]]></content>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <tags>
         <tag>CDN 解析冲突</tag>
       </tags>
   </entry>
   <entry>
-    <title>Android</title>
-    <url>/2021/03/17/Android/</url>
-    <content><![CDATA[<p>今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。</p>
-<span id="more"></span>
-<h4 id="1-边框圆角化">1.边框圆角化</h4>
-<pre><code class="language-java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;shape
-    xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
-    android:shape=&quot;rectangle&quot;&gt;
-    &lt;!-- 填充的颜色 --&gt;
-    &lt;solid android:color=&quot;#EEB422&quot; /&gt;
-    &lt;!-- android:radius 弧形的半径 --&gt;
-    &lt;!-- 设置按钮的四个角为弧形 --&gt;
-    &lt;corners
-        android:radius=&quot;20dip&quot; /&gt;
-    &lt;!--也可单独设置--&gt;
-    &lt;!-- &lt;corners --&gt;
-    &lt;!-- android:topLeftRadius=&quot;10dp&quot;--&gt;
-    &lt;!-- android:topRightRadius=&quot;10dp&quot;--&gt;
-    &lt;!-- android:bottomRightRadius=&quot;10dp&quot;--&gt;
-    &lt;!--  android:bottomLeftRadius=&quot;10dp&quot;--&gt;
-    &lt;!--   /&gt;  --&gt;
-    **设置文字padding**
-    &lt;!-- padding：Button里面的文字与Button边界的间隔 --&gt;
-    &lt;padding
-        android:left=&quot;5dp&quot;
-        android:top=&quot;3dp&quot;
-        android:right=&quot;5dp&quot;
-        android:bottom=&quot;3dp&quot;
-        /&gt;
-&lt;/shape&gt;
-</code></pre>
-<h4 id="2-背景颜色渐变">2.背景颜色渐变</h4>
-<pre><code class="language-java">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-&lt;shape xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;&gt;
-    &lt;!--实现应用背景颜色渐变--&gt;
-    &lt;gradient
-        android:startColor=&quot;#FFF8DC&quot;
-        android:endColor=&quot;#FFE1FF&quot;
-        android:angle=&quot;270&quot;/&gt;
-    &lt;corners
-        android:radius=&quot;20dip&quot;
-        android:topLeftRadius=&quot;0dp&quot;
-        android:topRightRadius=&quot;0dp&quot;/&gt;
-&lt;/shape&gt;
+    <title>算法设计与分析之二分搜索_合并排序_快速排序</title>
+    <url>/2021/03/22/Algorithm-code/</url>
+    <content><![CDATA[<pre><code class="language-c++">#include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+using namespace std;
 
+template&lt;class T&gt;
+class SortableList
+{
+    public:
+        SortableList(int mSize,int n,T*a);
+        ~SortableList();
+        int BSearch(const T&amp;x,int left,int right)const;  //把整个函数修饰为const，意思是“函数体内不能对成员数据做任何改动”。
+        int BSearch_DieDai(const T&amp;x,int n) const;
+       void Merge(int left,int mid,int right);
+       void MergeSort();
+       void MergeSort(int left,int right);
+       void Output();
+
+       void Swap(int &amp;a, int &amp;b);
+       int Partition(int left,int right);
+       void QuickSort();
+       void QuickSort(int left,int right);
+
+    private:
+        T*l;
+        int maxSize;
+        int num;
+
+};
+//构造函数
+template&lt;class T&gt;
+SortableList&lt;T&gt;::SortableList(int mSize,int n,T*a)
+{
+    l=a;
+    maxSize=mSize;
+    num=n;
+}
+//析构函数
+template&lt;class T&gt;
+SortableList&lt;T&gt;::~SortableList()
+{
+    delete[]l;
+}
+
+/*********************************** 二分搜索 ****************************/
+//采用递归的二分搜索
+template&lt;class T&gt;
+int SortableList&lt;T&gt; ::BSearch(const T&amp;x,int left,int right)const
+{
+    if(left&lt;=right)
+    {
+        int m=(left+right)/2;
+        if(x&lt;l[m]) 
+            return BSearch(x,left,m-1);
+        else if(x&gt;l[m])
+            return BSearch(x,m+1,right);
+        else return m;
+    }
+    return -1;
+}
+//采用迭代的二分搜索（尾递归改迭代）
+template&lt;class T&gt;
+int SortableList&lt;T&gt;::BSearch_DieDai(const T&amp;x,int n)const
+{
+    int m,left=0,right=n-1;
+    while(left&lt;=right)
+    {
+        m=(left+right)/2;
+        if(x&lt;l[m])  
+            right=m-1;
+        else if(x&gt;l[m])  
+            left=m+1;
+        else 
+            return m;
+    }
+    return -1;
+}
+
+/******************************* 合  并  排  序 ************************************/
+
+template &lt;class T&gt;
+void SortableList&lt;T&gt;::MergeSort()
+{
+    MergeSort(0,num-1);
+}
+template&lt;class T&gt;
+void SortableList&lt;T&gt;::MergeSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int mid = (left+right)/2;
+        MergeSort(left,mid);
+        MergeSort(mid+1,right);
+        Merge(left,mid,right);
+    }
+}
+
+template &lt;class T&gt;
+void SortableList&lt;T&gt;::Merge(int left, int mid, int right)
+{                                      //a数组为待排序的数组 
+	T* temp =new T[right - left + 1]; //temp数组用来暂时保存排序好的数组 
+	int i = left, j = mid + 1, k = 0; //left 至mid为左半数组 ，mid+1至right为右半数组 
+	while((i &lt;= mid)&amp;&amp;(j &lt;= right))  //对应第一步 当左半数组和右半数组都不为空时 
+		if(l[i] &lt;= l[j])             //输出两个数组中的较小者 
+			temp[k ++] = l[i ++];
+		else
+			temp[k ++] = l[j ++];
+    while(i &lt;= mid)                  //当一数组为空时，输出另一数组的剩余元素 
+        temp[k ++] = l[i ++];
+    while(j &lt;= right)                //当一数组为空时，输出另一数组的剩余元素 
+        temp[k ++] = l[j ++];
+    for(i = 0, k = left; k &lt;= right;) //将temp数组赋值给原数组 
+        l[k ++] = temp[i ++];
+}
+ 
+
+template&lt;class T&gt;
+void SortableList&lt;T&gt;::Output()
+{
+	for(int i = 0; i &lt; num; i++)
+		cout &lt;&lt; l[i] &lt;&lt; " ";
+	cout &lt;&lt; endl &lt;&lt; endl;
+}
+
+/********************************** 快  速  排  序 ***********************************/
+
+template&lt;class T&gt;
+void SortableList&lt;T&gt;::Swap(int &amp;a, int &amp;b)
+{
+	int t = a;
+	a = b;
+	b = t;
+}
+
+template &lt;class T&gt;
+int SortableList&lt;T&gt;::Partition(int left,int right)
+{
+    if(left&gt;=right)
+    {
+        cout&lt;&lt;"下标范围有误，请确保left&lt;right!"&lt;&lt;endl;
+        return 0;
+    }
+       
+    int i = left,j = right +1;
+    do 
+    {
+        do i++; while (l[i]&lt;l[left]);
+        do j--; while (l[j] &gt; l[left]);
+        if(i &lt; j) Swap(i,j);
+    }while(i &lt; j);
+    Swap(left,j);
+    return j;
+}
+
+template &lt;class T&gt;
+void SortableList&lt;T&gt;:: QuickSort()
+{
+    QuickSort(0,num-1);
+}
+
+template&lt;class T&gt;
+void SortableList&lt;T&gt;:: QuickSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int j = Partition(left,right);   
+        if(j-left&lt;=right-j)                  //为了减少系统栈的深度，一般都会将长的子序列的上下界进栈         
+        {                                    //先处理短的子序列
+            if(j-left&gt;1)                     
+            {
+                QuickSort(left,j-1);
+                QuickSort(j+1,right);
+            }
+        }else
+        { 
+            if(right-j&gt;1)
+            {
+                QuickSort(j+1,right);
+                QuickSort(left,j-1);
+            }
+        }
+    }
+}
+
+/************************************ main 函数 ***********************************/
+int main()
+{
+    int a[5]={2,3,1,4,5};
+    SortableList&lt;int&gt; list =SortableList&lt;int&gt;(5,5,a);
+    int k = list.BSearch(4,0,4);
+    int j = list.BSearch_DieDai(4,6);
+    cout&lt;&lt;k;
+    cout&lt;&lt;j;
+     cout &lt;&lt; "排序前："&lt;&lt;endl;
+	// for (int i = 0; i &lt; 5; i++)
+	// 	cout &lt;&lt; a[i] &lt;&lt; ' ';
+	// cout &lt;&lt; endl;
+    list.Output();
+    list.MergeSort();
+    cout &lt;&lt; "归并排序后："&lt;&lt;endl;
+	// for (int i = 0; i &lt; 5; i++)
+	// 	cout &lt;&lt; a[i] &lt;&lt; ' ';
+	// cout &lt;&lt; endl;
+    list.QuickSort();
+    list.Output();
+    cout &lt;&lt; "快速排序后："&lt;&lt;endl;
+    list.Output();
+    return 0;
+}
 </code></pre>
-<h4 id="3-Button背景色修改无效">3.Button背景色修改无效</h4>
-<p>找到main/res/values/themes.xml文件</p>
-<p>将其中的<code>&lt;style name=&quot;Theme.MyRegistration&quot; parent=&quot;Theme.MaterialComponents.DayNight.DarkActionBar&quot;&gt;</code></p>
-<p>修改为<code>&lt;style name=&quot;Theme.MyRegistration&quot; parent=&quot;Theme.MaterialComponents.DayNight.DarkActionBar.Bridge&quot;&gt;</code>即可</p>
-]]></content>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <categories>
-        <category>Android</category>
+        <category>学习</category>
       </categories>
       <tags>
-        <tag>Android UI</tag>
+        <tag>算法设计与分析  C++</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【数据结构】线性表基本运算的实现</title>
+    <url>/2021/03/11/DSLinearList/</url>
+    <content><![CDATA[<h4 id="【数据结构】线性表基本运算的实现">【数据结构】线性表基本运算的实现</h4>
+<p>关于数据结构中线性表的顺序表示的基本运算的实现。</p>
+<span id="more"></span>
+<pre><code class="language-c">/*
+  author:Ab4nd0n
+  Time:2021-3-11
+*/
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define ERROR 0
+#define OK 1
+#define Overflow 2
+#define Underflow 3
+#define NotPresent 4
+#define Duplicate 5
+
+typedef int ElemType;
+typedef struct
+{
+    int n;              //元素个数
+    int maxlength;      //最大允许长度
+    ElemType *element;  //指针变量
+} SeqList;
+
+typedef int Status; //自定义类型
+
+//初始化
+/*
+为顺序表L动态分配一维数组
+若动态分配一维数组失败则返回ERROR（0）
+*/
+Status Init(SeqList *L,int mSize)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=mSize;
+    L-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    if(!L-&gt;element)  
+    {
+        return ERROR;
+    }
+    return OK;
+}
+
+//顺序表的查找(查找元素ai的值,直接定位下标)
+/*
+首先判断传入的下标i是否越界（0~n-1）
+若未越界，则取出element[i]的值传给x返回
+
+算法复杂度为O(1)
+*/
+Status Find(SeqList *L,int i)
+{
+    int x;
+    if(i&lt;0||i&gt;L-&gt;n-1)
+    {
+        return ERROR;
+    }
+    return x=L-&gt;element[i]
+
+}
+
+//顺序表的插入(在ai之后插入，即ai+1的位置)
+/*
+判断下标i是否越界 （-1~n-1）
+判断顺序表存储空间是否已满
+将元素ai+1~an-1依次向后移动一个位置
+将要插入元素赋值给element[i+1]
+表长+1
+
+算法复杂度为O(n)
+*/
+Status Insert (SeqList *L, int i,ElemType x)
+{
+    int j;
+     if(i&lt;-1||i&gt;L-&gt;n-1)  //注意此处i的范围 是&lt;-1 不是0  ！！！
+    {
+        return ERROR;
+    }
+    if(L-&gt;n==L-&gt;maxlength)   //判满
+    {
+        return ERROR;
+    }
+    for(j=L-&gt;n-1;j&gt;i;j--)       //通过循环将下标i+1到n-1的元素后移（从后往前）
+    {
+        L-&gt;element[j+1]=L-&gt;element[j];   //注意是j的值给j+1（从后往前）
+    }
+    L-&gt;element[i+1]=x; //把插入的 元素放到下标为 i+1 的位置
+    L-&gt;n=L-&gt;n+1;      //表长加1
+    return OK;
+
+}
+
+//顺序表的删除
+/*
+判断下标是否越界（0~n-1）
+判断顺序表是否为空
+将元素ai+1~an-1依次前移一个位置
+表长-1
+
+算法复杂度为O(n)
+*/
+Status Delete(SeqList *L,int i)
+{
+    int j;
+    if(i&lt;0||i&gt;L-&gt;n-1)  return ERROR;  //此处i&lt;0!!!注意和插入区分
+    if(!L-&gt;n)  return ERROR;    //判空
+    for(j=i+1;j&lt;L-&gt;n;j++)
+    {
+        L-&gt;element[j-1]=L-&gt;element[j];  //从前往后逐个前移元素，j的值给j-1
+    }
+    L-&gt;n--;    //表长-1
+    return OK;
+    
+}
+
+//顺序表的输出
+Status Output(SeqList *L)
+{
+    int i;
+    if(!L-&gt;n)   return ERROR;   //判空
+    for(i=0;i&lt;L-&gt;n;i++)
+    {
+        printf("%d",L-&gt;element[i]);
+    }
+    printf("\n\n");
+     return OK;
+}
+
+//顺序表的销毁
+void Destroy(SeqList *L)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=0;
+    free(L-&gt;element);
+    printf("Sucessfuly Destroy!\n");
+}
+
+
+int main()
+{
+    int i,k;
+    SeqList List;
+    k=Init(&amp;List,10); //因为Init函数的形参是指针变量（地址），所以这里要用取地址符！！！
+    printf("%d\n\n",k);   //测试返回值为 1
+    for(i=0;i&lt;10;i++)
+    {
+        Insert(&amp;List,i-1,i);  //执行插入操作
+    }
+    Output(&amp;List);    // 0123456789
+    Delete(&amp;List,2);
+    Output(&amp;List);    // 013456789
+    Destroy(&amp;List);   // Sucessfuly Destroy!
+}
+</code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构 C语言</tag>
       </tags>
   </entry>
   <entry>
     <title>DASCTF 《Ezfileinclude》 wp</title>
     <url>/2020/07/25/DASCTF/</url>
-    <content><![CDATA[<p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验:cry::cry:，遭受了五个小时的吊打。</p>
+    <content><![CDATA[<p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，遭受了五个小时的吊打。</p>
 <span id="more"></span>
 <p><img src="/2020/07/25/DASCTF/image-20200725170156404.png" alt="image-20200725170156404"></p>
 <p>没错，就是这么残忍。直接把我0封了。<img src="/2020/07/25/DASCTF/image-20200725180746269.png" alt="image-20200725180746269"></p>
@@ -89,31 +548,49 @@
 <p>查看源码，没太多有用的信息，唯一比较特殊的话是这找图片的url:<code>**image.php?t=1595643210&amp;f=Z3F5LmpwZw==**</code></p>
 <p>看到f=后面那一串东西，一下子想到了base64编码，尝试解一波码，解出来<code>gqy.jpg</code>，先留着，说不定有用。</p>
 <p>试了一下image.php,回显：<strong>you miss some parameters</strong>（你漏掉了一些参数）奥，可能后面的t,f也得跟着，复制粘贴上去，再回车，页面回显：<strong>what’s your time ?</strong></p>
-<p>作为一个萌新，我一度怀疑这是不是什么CTF黑话，特意百度了一波 <em><strong>CTF what’s your time?</strong></em>  好吧，并不是，想了想，可能是要给time这个参数赋值，盲猜可能是URL中的t参数，试着把t参数删掉，回车，回显提醒漏掉参数，给t赋值为time试试？还是问我时间！:weary:但是时间一直是变化的呀，，，怎么搞呢？关键在于那个t后面的一串数字是啥，我又去百度了一波CTF中的数字编码，没啥结果。卡住。</p>
+<p>作为一个萌新，我一度怀疑这是不是什么CTF黑话，特意百度了一波 <em><strong>CTF what’s your time?</strong></em>  好吧，并不是，想了想，可能是要给time这个参数赋值，盲猜可能是URL中的t参数，试着把t参数删掉，回车，回显提醒漏掉参数，给t赋值为time试试？还是问我时间！<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8">😩</span>但是时间一直是变化的呀，，，怎么搞呢？关键在于那个t后面的一串数字是啥，我又去百度了一波CTF中的数字编码，没啥结果。卡住。</p>
 <p>求助大佬（emmm，应该不算犯规吧）大佬说那一串数字是<strong>unix时间戳</strong>，百度了一波，相当于那一串数字其实表示的是一个时间</p>
 <img src="/2020/07/25/DASCTF/image-20200725172909110.png" alt="image-20200725172909110" style="zoom:67%;">
 <p>还是那个问题，该怎么传当前时间？？？当前时间一直在变化的呀。</p>
 <p>此处贴出大佬的方法：</p>
 <img src="/2020/07/25/DASCTF/image-20200725173059630.png" alt="image-20200725173059630" style="zoom:80%;">
-<p>python脚本，，，好吧，我是靠<code>.py</code>这个后缀猜的:cold_sweat:</p>
-<p>菜鸡的我再次流下了伤心的类水，咱也不会写python脚本呀（一打开我满是灰尘的pycharm还出错了，大家还是支持正版吧:joy:）</p>
+<p>python脚本，，，好吧，我是靠<code>.py</code>这个后缀猜的<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></p>
+<p>菜鸡的我再次流下了伤心的类水，咱也不会写python脚本呀（一打开我满是灰尘的pycharm还出错了，大家还是支持正版吧<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>）</p>
 <p>不会脚本，只能靠手速了，按照大佬的指导，先转换一个10秒后的时间戳。等到时候再发（妙啊）</p>
 <p>一顿操作猛如虎，以为flag呼之欲出了，结果出来的是一堆乱码，淦！</p>
 <img src="/2020/07/25/DASCTF/image-20200725173839845.png" alt="image-20200725173839845" style="zoom:50%;">
 <p>搞了半天居然没用。。。</p>
-<p>后来大佬提示我去看看攻防世界 warmup 这道题的wp,<strong>目录穿越，flag在根目录</strong>，去找了一波wp学习了一下，感觉两个题的确蛮像的，不过那个题源码有提示，这个题看不了源码。我模仿那道题的wp试了试 <code>?file=index.php?/../../../../../../flag</code>不行，又试了试它的各种变形体，失败。我感觉应该没啥问题呀（:arrow_left:菜鸡的蜜汁自信）</p>
+<p>后来大佬提示我去看看攻防世界 warmup 这道题的wp,<strong>目录穿越，flag在根目录</strong>，去找了一波wp学习了一下，感觉两个题的确蛮像的，不过那个题源码有提示，这个题看不了源码。我模仿那道题的wp试了试 <code>?file=index.php?/../../../../../../flag</code>不行，又试了试它的各种变形体，失败。我感觉应该没啥问题呀（<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8">⬅</span>菜鸡的蜜汁自信）</p>
 <p>去问大佬这个姿势错在哪,大佬说不是file=而是f=,我照做了，吧上面那个payload里的file改成了f,还是不行呀。</p>
 <p>再次寻求help,大佬让我看看时间对不对，一惊，<strong>还得用时间？</strong> （不是说没卵用的吗，，手动狗头，，）</p>
-<p>原来每次都必须t=当前时间戳&amp;f=xxx(这边就解释了为啥是f而不是file了，我还是后来才醒悟)  好吧好吧，先去转换一个20秒后的时间戳，打开手机读秒，我感觉到了胜利的曙光:grin:</p>
+<p>原来每次都必须t=当前时间戳&amp;f=xxx(这边就解释了为啥是f而不是file了，我还是后来才醒悟)  好吧好吧，先去转换一个20秒后的时间戳，打开手机读秒，我感觉到了胜利的曙光<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8">😁</span></p>
 <p>一回车，妈耶，还是不行呀，奥，那个f=xxx，xxx应该像他原来url里那样用base64编一下码的，害，这脑子。去在线编码网站把<code>index.php?/../../../../../../flag</code> base64编码一下，编码完发现它居然后面没有两个==, 我不会又被在线编码网站给制裁了吧？<img src="/2020/07/25/DASCTF/image-20200725180857115.png" alt="image-20200725180857115">将信将疑地将它复制过去，又开始手动传时间（卑微.jpg），居然成功得到了flag!</p>
 <p>一波三折，跌宕起伏，柳暗花明。</p>
 <hr>
 <p><strong>参赛体验：</strong></p>
 <p>1.有机会一定学习一下python脚本，手速传时间实在是卑微</p>
 <p>2.多刷题！多刷题！多刷题！多涨涨见识才能触类旁通</p>
-<p>第一次参赛，纪念一下吧:joy:</p>
+<p>第一次参赛，纪念一下吧<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></p>
 <p><img src="/2020/07/25/DASCTF/image-20200725181614351.png" alt="image-20200725181614351"></p>
-]]></content>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <categories>
         <category>学习</category>
       </categories>
@@ -160,179 +637,30 @@
 <h5 id="稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗">稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗</h5>
 <p>按书上那么做的话是必要的</p>
 <p><img src="/2021/03/16/DSQuestion/image-20210318152228362.png" alt="image-20210318152228362"></p>
-]]></content>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <categories>
         <category>数据结构</category>
       </categories>
       <tags>
         <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【数据结构】线性表基本运算的实现</title>
-    <url>/2021/03/11/DSLinearList/</url>
-    <content><![CDATA[<h4 id="【数据结构】线性表基本运算的实现">【数据结构】线性表基本运算的实现</h4>
-<p>关于数据结构中线性表的顺序表示的基本运算的实现。</p>
-<span id="more"></span>
-<pre><code class="language-c">/*
-  author:Ab4nd0n
-  Time:2021-3-11
-*/
-
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-#define ERROR 0
-#define OK 1
-#define Overflow 2
-#define Underflow 3
-#define NotPresent 4
-#define Duplicate 5
-
-typedef int ElemType;
-typedef struct
-&#123;
-    int n;              //元素个数
-    int maxlength;      //最大允许长度
-    ElemType *element;  //指针变量
-&#125; SeqList;
-
-typedef int Status; //自定义类型
-
-//初始化
-/*
-为顺序表L动态分配一维数组
-若动态分配一维数组失败则返回ERROR（0）
-*/
-Status Init(SeqList *L,int mSize)
-&#123;
-    L-&gt;n=0;
-    L-&gt;maxlength=mSize;
-    L-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
-    if(!L-&gt;element)  
-    &#123;
-        return ERROR;
-    &#125;
-    return OK;
-&#125;
-
-//顺序表的查找(查找元素ai的值,直接定位下标)
-/*
-首先判断传入的下标i是否越界（0~n-1）
-若未越界，则取出element[i]的值传给x返回
-
-算法复杂度为O(1)
-*/
-Status Find(SeqList *L,int i)
-&#123;
-    int x;
-    if(i&lt;0||i&gt;L-&gt;n-1)
-    &#123;
-        return ERROR;
-    &#125;
-    return x=L-&gt;element[i]
-
-&#125;
-
-//顺序表的插入(在ai之后插入，即ai+1的位置)
-/*
-判断下标i是否越界 （-1~n-1）
-判断顺序表存储空间是否已满
-将元素ai+1~an-1依次向后移动一个位置
-将要插入元素赋值给element[i+1]
-表长+1
-
-算法复杂度为O(n)
-*/
-Status Insert (SeqList *L, int i,ElemType x)
-&#123;
-    int j;
-     if(i&lt;-1||i&gt;L-&gt;n-1)  //注意此处i的范围 是&lt;-1 不是0  ！！！
-    &#123;
-        return ERROR;
-    &#125;
-    if(L-&gt;n==L-&gt;maxlength)   //判满
-    &#123;
-        return ERROR;
-    &#125;
-    for(j=L-&gt;n-1;j&gt;i;j--)       //通过循环将下标i+1到n-1的元素后移（从后往前）
-    &#123;
-        L-&gt;element[j+1]=L-&gt;element[j];   //注意是j的值给j+1（从后往前）
-    &#125;
-    L-&gt;element[i+1]=x; //把插入的 元素放到下标为 i+1 的位置
-    L-&gt;n=L-&gt;n+1;      //表长加1
-    return OK;
-
-&#125;
-
-//顺序表的删除
-/*
-判断下标是否越界（0~n-1）
-判断顺序表是否为空
-将元素ai+1~an-1依次前移一个位置
-表长-1
-
-算法复杂度为O(n)
-*/
-Status Delete(SeqList *L,int i)
-&#123;
-    int j;
-    if(i&lt;0||i&gt;L-&gt;n-1)  return ERROR;  //此处i&lt;0!!!注意和插入区分
-    if(!L-&gt;n)  return ERROR;    //判空
-    for(j=i+1;j&lt;L-&gt;n;j++)
-    &#123;
-        L-&gt;element[j-1]=L-&gt;element[j];  //从前往后逐个前移元素，j的值给j-1
-    &#125;
-    L-&gt;n--;    //表长-1
-    return OK;
-    
-&#125;
-
-//顺序表的输出
-Status Output(SeqList *L)
-&#123;
-    int i;
-    if(!L-&gt;n)   return ERROR;   //判空
-    for(i=0;i&lt;L-&gt;n;i++)
-    &#123;
-        printf(&quot;%d&quot;,L-&gt;element[i]);
-    &#125;
-    printf(&quot;\n\n&quot;);
-     return OK;
-&#125;
-
-//顺序表的销毁
-void Destroy(SeqList *L)
-&#123;
-    L-&gt;n=0;
-    L-&gt;maxlength=0;
-    free(L-&gt;element);
-    printf(&quot;Sucessfuly Destroy!\n&quot;);
-&#125;
-
-
-int main()
-&#123;
-    int i,k;
-    SeqList List;
-    k=Init(&amp;List,10); //因为Init函数的形参是指针变量（地址），所以这里要用取地址符！！！
-    printf(&quot;%d\n\n&quot;,k);   //测试返回值为 1
-    for(i=0;i&lt;10;i++)
-    &#123;
-        Insert(&amp;List,i-1,i);  //执行插入操作
-    &#125;
-    Output(&amp;List);    // 0123456789
-    Delete(&amp;List,2);
-    Output(&amp;List);    // 013456789
-    Destroy(&amp;List);   // Sucessfuly Destroy!
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>数据结构 C语言</tag>
       </tags>
   </entry>
   <entry>
@@ -348,7 +676,25 @@ int main()
 <p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
 <p><a href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
 <p>加油，打工人！</p>
-]]></content>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <categories>
         <category>Git</category>
       </categories>
@@ -377,25 +723,25 @@ typedef int Status;
 typedef int ElemType;
 
 typedef struct node     //节点的结构体
-&#123;
+{
     ElemType element;
     struct node *link;
-&#125;Node;
+}Node;
 
 typedef struct singleList //单链表的结构体
-&#123;
+{
     Node *first;  //first 头指针，用来存放头结点a0的地址
     int n;        //表示单链表中元素的个数
-&#125;SingleList;
+}SingleList;
 
 
 //单链表的初始化
 Status Init(SingleList *L)
-&#123;
+{
     L-&gt;first=NULL;
     L-&gt;n=0;
     return OK;
-&#125;
+}
 
 //单链表的查找
 /*
@@ -405,19 +751,19 @@ Status Init(SingleList *L)
 将ai的值通过x返回（传值与传址，这边传进来的是地址，操作完会改变实参x的值）
 */
 Status Find(SingleList *L,int i,ElemType *x)
-&#123;
+{
     int j;
     Node *p;
     if(i&lt;0||i&gt;L-&gt;n-1)   return ERROR;
       
     p=L-&gt;first;          //p指向a0
     for(j=0;j&lt;i;j++)
-    &#123;
+    {
         p=p-&gt;link;       //执行1次后p指向a1,反复指向下一个结点
-    &#125;
+    }
     *x=p-&gt;element;
     return OK;
-&#125;
+}
 
 //单链表的插入
 /*
@@ -429,34 +775,34 @@ Status Find(SingleList *L,int i,ElemType *x)
 单链表元素个数+1
 */
 Status Insert(SingleList  *L,int i,ElemType x)
-&#123;
+{
     Node *p,*q;
     int j;
     if(i&lt;-1||i&gt;L-&gt;n-1)
-    &#123;
+    {
         return  ERROR;
-    &#125;
+    }
     p=L-&gt;first;          //p指向头指针
     for(j=0;j&lt;i;j++)     //从头开始查找ai
-    &#123;
+    {
         p=p-&gt;link;
-    &#125;
+    }
     q=(Node*)malloc(sizeof(Node));      //生成新节点q
     q-&gt;element=x;
 
     if(i&gt;-1)            //讨论i=-1和i&gt;-1的情况
-    &#123;
+    {
         q-&gt;link=p-&gt;link;
         p-&gt;link=q;
-    &#125;
+    }
     else
-    &#123;
+    {
         q-&gt;link=L-&gt;first; //新节点插在头节点a0之前，成为新的头节点
         L-&gt;first=q;
-    &#125;
+    }
     L-&gt;n++;
     return OK;
-&#125;
+}
 
 //单链表的删除
 /*
@@ -468,7 +814,7 @@ Status Insert(SingleList  *L,int i,ElemType x)
 单链表元素个数-1
 */
 Status Delete(SingleList *L,int i)
-&#123;
+{
     int j;
     Node *p,*q;
     if(!L-&gt;n)  
@@ -482,68 +828,86 @@ Status Delete(SingleList *L,int i)
     if(i==0)
       L-&gt;first=L-&gt;first-&gt;link;    //删除的是头节点
     else
-    &#123;
+    {
         p=q-&gt;link;               //p指向ai
         q-&gt;link=p-&gt;link;          //ai+1的地址存到ai-1的指针域中
-    &#125;
+    }
     free(p);   //释放p所指结点的存储空间
     L-&gt;n--;
     return OK;
 
-&#125;
+}
 
 //单链表的输出
 Status Output(SingleList *L)
-&#123;
+{
     Node *p;
     if(!L-&gt;n)
         return ERROR;
     p=L-&gt;first;
     while(p)
-    &#123;
-        printf(&quot;%d &quot;,p-&gt;element);
+    {
+        printf("%d ",p-&gt;element);
         p=p-&gt;link;
-    &#125;
-    printf(&quot;\n\n&quot;);
+    }
+    printf("\n\n");
     return OK;
-&#125;
+}
 
 //单链表的销毁
 void Destroy(SingleList *L)
-&#123;
+{
     Node *p;
     while (L-&gt;first)
-    &#123;
+    {
         p=L-&gt;first-&gt;link;  //保存后继结点地址，防止断链
         free(L-&gt;first);   //释放first所指结点的存储空间
         L-&gt;first=p;
-    &#125;
-&#125;
+    }
+}
 
 
 int main()
-&#123;
+{
     int i;
     int x;
     SingleList List;
     i=Init(&amp;List);
-    printf(&quot;%d\n\n&quot;,i);     // 1
+    printf("%d\n\n",i);     // 1
     for(i=0;i&lt;10;i++)
-    &#123;
+    {
         Insert(&amp;List,i-1,i);
-    &#125;
+    }
     Output(&amp;List);    //0 1 2 3 4 5 6 7 8 9
     Find(&amp;List,1,&amp;x);
-    printf(&quot;The value is : %d\n\n&quot;,x);  //1
+    printf("The value is : %d\n\n",x);  //1
     Delete(&amp;List,3);
     Output(&amp;List);  //0 1 2 4 5 6 7 8 9
     Destroy(&amp;List);
 
-&#125;
+}
 
 
 </code></pre>
-]]></content>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <categories>
         <category>数据结构</category>
       </categories>
@@ -554,114 +918,35 @@ int main()
   <entry>
     <title>YCBCTF wp</title>
     <url>/2020/09/10/YCBCTF/</url>
-    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题:sob:</p>
+    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
 <span id="more"></span>
 <p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
 <img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
 <p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
 <img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
-<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了:smile:。</p>
+<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span>。</p>
 <p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
-]]></content>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <tags>
         <tag>CTF</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo matery主题代码高亮问题</title>
-    <url>/2020/09/26/hexo/</url>
-    <content><![CDATA[<p>转载自大佬们的博客:</p>
-<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
-<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记----hexo主题代码高亮</a></p>
-]]></content>
-      <tags>
-        <tag>hexo 代码高亮 matery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>尝试用typora写博客</title>
-    <url>/2020/07/03/typora/</url>
-    <content><![CDATA[<p>​	昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢:question:</p>
-<span id="more"></span>
-<p>​	在大佬的安利之下，我发现了 <strong>Trpora</strong> 这个强大的软件，今天就用它来写这篇博客。（第一次使用，用意不在内容，而是想测试一下各种花里胡哨的东西​ :smile:）</p>
-<p>​	话不多说，测试开始</p>
-<p>:boxing_glove:</p>
-<ul>
-<li>
-<h4 id="首先，测试一下图片的插入-arrow-down-small">首先，测试一下图片的插入:arrow_down_small:</h4>
-<p><img src="/2020/07/03/typora/wallhaven-ox7695.jpg" alt></p>
-</li>
-<li>
-<p><img src="/2020/07/03/typora/wallhaven-49e9zx.jpg" alt></p>
-</li>
-</ul>
-<p><strong>美汁儿汁儿</strong>:call_me_hand:</p>
-<ul>
-<li>
-<h4 id="接着测试一下超链接">接着测试一下超链接</h4>
-<p><a href="http://www.baidu.com">百度</a></p>
-<p>ojbk:sunglasses:</p>
-</li>
-<li>
-<h4 id="搞点代码恰恰-grey-question">搞点代码恰恰:grey_question:</h4>
-<p><code>printf(&quot;hello world!&quot;);</code></p>
-</li>
-</ul>
-<pre><code class="language-c">#include &lt;stdio.h&gt;
-int main()
-&#123;
-	printf(&quot;welcome!&quot;);
-&#125;
-</code></pre>
-<ul>
-<li>
-<h4 id="再整个表？听说Typora这个功能很强啊-black-flag">再整个表？听说Typora这个功能很强啊 :black_flag:</h4>
-<p><code>ctrl+T</code> 插入表格</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>不知道该制个啥表，先空着吧，网上复制一个去(这功能tql)</p>
-<p>好家伙，找半天，没找到合适的，，，，以后再说吧</p>
-</li>
-<li>
-<h4 id="引用点东西水一水字数-cold-sweat">引用点东西水一水字数:cold_sweat:</h4>
-<blockquote>
-<p>​		寂坐时，常想到晚明张岱。他写湖心亭：“崇祯五年十二月，余住西湖。大雪三日，湖中人鸟声俱绝。是日更定矣，余拿一小舟，拥毳衣炉火，独往湖心亭看雪。雾淞沆砀，天与云、与山、与水，上下一白。湖上影子，惟长堤一痕，湖心亭一点，与余舟一芥，舟中人两三粒而已。”</p>
-<p>​		深夜独自到湖上看大雪，他显然不觉寂寞——寂寞可能是美学的必要。但是，国破家亡、人事全非、当他在为自己写墓志铭的时候呢？</p>
-<p>​		蜀人张岱，陶庵其号也。少为纨绔子弟，极爱繁华，好精舍，好美婢，好娈童，好鲜衣，好美食，好骏马，好华灯，好烟火，好梨园，好鼓吹，好古董，好花鸟，兼以茶淫橘虐，书蠹诗魔，劳碌半生，皆成梦幻。年至五十，国破家亡，避迹山居。所存者，破床碎几，折鼎病琴与残书数帙，缺砚一方而已。布衣疏莨，常至断炊。回首二十年前，真如隔世。</p>
-<p>​		有一种寂寞，身边添一个可谈的人，一条知心的狗，或许就可以消减。有一种寂寞，茫茫天地之间“余舟一芥”的无边无际无着落，或许只能各自孤独面对，素颜修行吧。</p>
-<p>​																																							——龙应台《寂寞》</p>
-</blockquote>
-<hr>
-<p>OK，测试暂且到这吧，以后常用的大概就这些了。U1S1，Typora的确是个宝藏软件:fu:</p>
-</li>
-</ul>
-]]></content>
-      <tags>
-        <tag>Typora</tag>
       </tags>
   </entry>
   <entry>
@@ -707,37 +992,37 @@ $b = $_POST['b'];
 $c = $_REQUEST['c'];
 $d = $_COOKIE['d'];
 
-if (!isset($a, $b, $c, $d)) &#123;
+if (!isset($a, $b, $c, $d)) {
     highlight_file(__FILE__);
-&#125; else &#123;
-    if (is_numeric($a) and $a == false) &#123;
+} else {
+    if (is_numeric($a) and $a == false) {
         echo 'A is OK!';
         echo '&lt;br/&gt;';
-        if (!is_numeric($b) and $b == 0x125e591) &#123;
+        if (!is_numeric($b) and $b == 0x125e591) {
             echo 'B is OK!';
             echo '&lt;br/&gt;';
-            if ($c != 240610708 and md5($c) == md5(240610708)) &#123;
+            if ($c != 240610708 and md5($c) == md5(240610708)) {
                 echo 'C is OK!';
                 echo '&lt;br/&gt;';
-                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) &#123;
+                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) {
                     include('/flag');
-                &#125; else &#123;
-                    echo &quot;D is not wanted.&lt;br/&gt;&quot;;
+                } else {
+                    echo "D is not wanted.&lt;br/&gt;";
                     highlight_file(__FILE__);
-                &#125;
-            &#125; else &#123;
-                echo &quot;C is not wanted.&lt;br/&gt;&quot;;
+                }
+            } else {
+                echo "C is not wanted.&lt;br/&gt;";
                 highlight_file(__FILE__);
-            &#125;
-        &#125; else &#123;
-            echo &quot;Too young too simple.&lt;br/&gt;&quot;;
+            }
+        } else {
+            echo "Too young too simple.&lt;br/&gt;";
             highlight_file(__FILE__);
-        &#125;
-    &#125; else &#123;
-        echo &quot;A is not wanted.&lt;br/&gt;&quot;;
+        }
+    } else {
+        echo "A is not wanted.&lt;br/&gt;";
         highlight_file(__FILE__);
-    &#125;
-&#125; 
+    }
+} 
 </code></pre>
 <p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧:cry:</p>
 <ul>
@@ -783,23 +1068,23 @@ $b = $_POST['b'];
 $c = $_REQUEST['c'];
 $d = $_COOKIE['d'];
 
-if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) &#123;
-    echo &quot;A is ok!&quot;;
-    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) &#123;
-        echo &quot;B is ok!&quot;;
-        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) &#123;
-            echo &quot;C is ok!&quot;;
-            echo &quot;Here is your flag:&quot;;
+if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
+    echo "A is ok!";
+    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) {
+        echo "B is ok!";
+        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {
+            echo "C is ok!";
+            echo "Here is your flag:";
             include('/flag');
-        &#125; else &#123;
-            die((isset($c) &amp;&amp; isset($d)) ? &quot;Try to search something?&quot; : &quot;C and D is wanted.&quot;);
-        &#125;
-    &#125; else &#123;
-        die(isset($b) ? &quot;You need to try again.&quot; : &quot;B is wanted.&quot;);
-    &#125;
-&#125; else &#123;
-    die(isset($a) ? &quot;Please try another a.&quot; : &quot;A is wanted.&quot;);
-&#125; 
+        } else {
+            die((isset($c) &amp;&amp; isset($d)) ? "Try to search something?" : "C and D is wanted.");
+        }
+    } else {
+        die(isset($b) ? "You need to try again." : "B is wanted.");
+    }
+} else {
+    die(isset($a) ? "Please try another a." : "A is wanted.");
+} 
 </code></pre>
 <hr>
 <h4 id="8-俄罗斯头套">8.俄罗斯头套</h4>
@@ -812,7 +1097,7 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) &#123;
 <img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
 <p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
 <img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
-<p>好吧，没完了，不愧是俄罗斯头套:cry:  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
+<p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
 <p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
 <img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
 <p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
@@ -820,7 +1105,7 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) &#123;
 <h4 id="9-Moe-include">9.Moe include</h4>
 <p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
 <p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
-<p>让我别点，那一定得点一下了:stuck_out_tongue_closed_eyes:</p>
+<p>让我别点，那一定得点一下了<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8">😝</span></p>
 <img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
 <p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
 <p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
@@ -830,14 +1115,32 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) &#123;
 <p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
 <p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
 <img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
-<p>然后对得到的字符串进行base64解密即可得到flag.:sunglasses:</p>
+<p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">😎</span></p>
 <hr>
 <h4 id="10-Moe-unserialize">10.Moe unserialize</h4>
 <p>等待填坑</p>
 <hr>
 <h4 id="11-EzXXE">11.EzXXE</h4>
 <p>等待填坑</p>
-]]></content>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <categories>
         <category>学习</category>
       </categories>
@@ -846,20 +1149,198 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) &#123;
       </tags>
   </entry>
   <entry>
+    <title>test</title>
+    <url>/2021/07/06/test/</url>
+    <content><![CDATA[<p><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <tags>
+        <tag>测试</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo matery主题代码高亮问题</title>
+    <url>/2020/09/26/hexo/</url>
+    <content><![CDATA[<p>转载自大佬们的博客:</p>
+<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
+<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记----hexo主题代码高亮</a></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <tags>
+        <tag>hexo 代码高亮 matery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>尝试用typora写博客</title>
+    <url>/2020/07/03/typora/</url>
+    <content><![CDATA[<p>​	昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢:question:</p>
+<span id="more"></span>
+<p>​	在大佬的安利之下，我发现了 <strong>Trpora</strong> 这个强大的软件，今天就用它来写这篇博客。（第一次使用，用意不在内容，而是想测试一下各种花里胡哨的东西​ :smile:）</p>
+<p>​	话不多说，测试开始</p>
+<p>:boxing_glove:</p>
+<ul>
+<li>
+<h4 id="首先，测试一下图片的插入-arrow-down-small">首先，测试一下图片的插入:arrow_down_small:</h4>
+<p><img src="/2020/07/03/typora/wallhaven-ox7695.jpg" alt></p>
+</li>
+<li>
+<p><img src="/2020/07/03/typora/wallhaven-49e9zx.jpg" alt></p>
+</li>
+</ul>
+<p><strong>美汁儿汁儿</strong>:call_me_hand:</p>
+<ul>
+<li>
+<h4 id="接着测试一下超链接">接着测试一下超链接</h4>
+<p><a href="http://www.baidu.com">百度</a></p>
+<p>ojbk:sunglasses:</p>
+</li>
+<li>
+<h4 id="搞点代码恰恰-grey-question">搞点代码恰恰:grey_question:</h4>
+<p><code>printf("hello world!");</code></p>
+</li>
+</ul>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main()
+{
+	printf("welcome!");
+}
+</code></pre>
+<ul>
+<li>
+<h4 id="再整个表？听说Typora这个功能很强啊-black-flag">再整个表？听说Typora这个功能很强啊 <span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8">🏴</span></h4>
+<p><code>ctrl+T</code> 插入表格</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>不知道该制个啥表，先空着吧，网上复制一个去(这功能tql)</p>
+<p>好家伙，找半天，没找到合适的，，，，以后再说吧</p>
+</li>
+<li>
+<h4 id="引用点东西水一水字数-cold-sweat">引用点东西水一水字数<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></h4>
+<blockquote>
+<p>​		寂坐时，常想到晚明张岱。他写湖心亭：“崇祯五年十二月，余住西湖。大雪三日，湖中人鸟声俱绝。是日更定矣，余拿一小舟，拥毳衣炉火，独往湖心亭看雪。雾淞沆砀，天与云、与山、与水，上下一白。湖上影子，惟长堤一痕，湖心亭一点，与余舟一芥，舟中人两三粒而已。”</p>
+<p>​		深夜独自到湖上看大雪，他显然不觉寂寞——寂寞可能是美学的必要。但是，国破家亡、人事全非、当他在为自己写墓志铭的时候呢？</p>
+<p>​		蜀人张岱，陶庵其号也。少为纨绔子弟，极爱繁华，好精舍，好美婢，好娈童，好鲜衣，好美食，好骏马，好华灯，好烟火，好梨园，好鼓吹，好古董，好花鸟，兼以茶淫橘虐，书蠹诗魔，劳碌半生，皆成梦幻。年至五十，国破家亡，避迹山居。所存者，破床碎几，折鼎病琴与残书数帙，缺砚一方而已。布衣疏莨，常至断炊。回首二十年前，真如隔世。</p>
+<p>​		有一种寂寞，身边添一个可谈的人，一条知心的狗，或许就可以消减。有一种寂寞，茫茫天地之间“余舟一芥”的无边无际无着落，或许只能各自孤独面对，素颜修行吧。</p>
+<p>​																																							——龙应台《寂寞》</p>
+</blockquote>
+<hr>
+<p>OK，测试暂且到这吧，以后常用的大概就这些了。U1S1，Typora的确是个宝藏软件<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8">🖕</span></p>
+</li>
+</ul>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <tags>
+        <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>诗和远方</title>
     <url>/2020/07/20/%E8%AF%97%E8%AF%8D/</url>
-    <content><![CDATA[<p>迁客骚人，多会于此。我可能是后者​,​h​h​h:smirk:</p>
+    <content><![CDATA[<p>迁客骚人，多会于此。我可能是后者​,​h​h​h<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8">😏</span></p>
 <span id="more"></span>
-<h4 id="西湖">           西湖</h4>
-<p><strong> 六月西湖好，风光小处藏。</strong><br>
- （仄仄平平仄，平平仄仄平。）<br>
-<strong> 苏堤夹岸绿，曲院满池芳。</strong><br>
- （平平平仄仄，仄仄仄平平。）<br>
-<strong> 花港观鱼醉，扁舟水上忙。</strong><br>
- （平仄平平仄，平平仄仄平。）<br>
-<strong> 雷峰夕照晚，自适意悠长。</strong><br>
- （平平平仄仄，仄仄仄平平。）</p>
-]]></content>
+<h4 id="西湖">&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖</h4>
+<p><strong>&nbsp;六月西湖好，风光小处藏。</strong><br>
+&nbsp;（仄仄平平仄，平平仄仄平。）<br>
+<strong>&nbsp;苏堤夹岸绿，曲院满池芳。</strong><br>
+&nbsp;（平平平仄仄，仄仄仄平平。）<br>
+<strong>&nbsp;花港观鱼醉，扁舟水上忙。</strong><br>
+&nbsp;（平仄平平仄，平平仄仄平。）<br>
+<strong>&nbsp;雷峰夕照晚，自适意悠长。</strong><br>
+&nbsp;（平平平仄仄，仄仄仄平平。）</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
       <categories>
         <category>诗词</category>
       </categories>
@@ -959,8 +1440,8 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) &#123;
 <p>比如在网址栏里输入%3D：</p>
 <img src="/2020/07/05/0xctf/image-20200705185957749.png" alt="image-20200705185957749" style="zoom:80%;">
 <p>这里的%3D其实就相当于=</p>
-<p>我实在太菜了，大佬提示到这我还是没能领略，我尝试将原来的%3D替换成=再解码看看，得到<code>&#123;&quot;username&quot;:&quot;guest&quot;&#125;</code></p>
-<p>虽然解码正常了。但还是不知道怎么利用这个信息，想想题目那句话“only the admin can see the flag”,我试了一下将<code>&#123;&quot;username&quot;:&quot;guest&quot;&#125;</code>中的<code>guest</code> 换成<code>admin</code>，获得一串字符，把这串字符作为请求头cookie 的值，send一波，失败!</p>
+<p>我实在太菜了，大佬提示到这我还是没能领略，我尝试将原来的%3D替换成=再解码看看，得到<code>{"username":"guest"}</code></p>
+<p>虽然解码正常了。但还是不知道怎么利用这个信息，想想题目那句话“only the admin can see the flag”,我试了一下将<code>{"username":"guest"}</code>中的<code>guest</code> 换成<code>admin</code>，获得一串字符，把这串字符作为请求头cookie 的值，send一波，失败!</p>
 <p>此时大佬缓缓打出一个:question:方法对了，但是居然解不出来？</p>
 <p>我又重新试了一遍，不行，发现我的base64编码出来的字符串和大佬的不一样，我换了一个在线解码的网站，再解了一次，把字符串作为cookie的值，成功解出flag。（什么？我居然被在线解码网站给克制了:angry:）</p>
 <hr>
@@ -982,7 +1463,7 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) &#123;
 <h4 id="12-parse-str">12.parse_str</h4>
 <p><img src="/2020/07/05/0xctf/image-20200706185724337.png" alt="image-20200706185724337"></p>
 <p>这题考察的是由parse_str()函数引起的变量覆盖，主要是通过变量覆盖使得Leon1===Leon2</p>
-<p>之前在学习变量覆盖的时候见过几道这方面的例题，这道题中的<code>$_SERVER[&quot;QUERY_STRING&quot;]</code>是我没见到过的，去百度了一下：</p>
+<p>之前在学习变量覆盖的时候见过几道这方面的例题，这道题中的<code>$_SERVER["QUERY_STRING"]</code>是我没见到过的，去百度了一下：</p>
 <blockquote>
 <p>实例：</p>
 <p>1，<a href="http://localhost/aaa/**">http://localhost/aaa/**</a> (打开aaa中的index.php)<br>
@@ -1021,7 +1502,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p><code>you file: ./sandbox/e5e655202a8c03687b43d65e6351159b/shell3.php</code></p>
 <p>尝试了一下分别把这两段话加到url后面，发现图片能够正常显示，而.php回显的是一个空白页面</p>
 <p><img src="/2020/07/05/0xctf/image-20200708191734385.png" alt="image-20200708191734385"></p>
-<p>后来去找了找这方面的例题，发现一道和这个有点类似的，它说页面回显的是一个空白页面说明一句话木马成功了（对了，上面用的那个.php文件是一句话木马，如<?php @eval($_POST['aaa'])?>，新建一个空白文档，然后输入这句话，另存为.php文件即可生成）</p>
+<p>后来去找了找这方面的例题，发现一道和这个有点类似的，它说页面回显的是一个空白页面说明一句话木马成功了（对了，上面用的那个.php文件是一句话木马，如<!--?php @eval($_POST['aaa'])?-->，新建一个空白文档，然后输入这句话，另存为.php文件即可生成）</p>
 <p>按照网上的解法，接下来把空白页面的url 复制到中国菜刀链接一下即可，我去网上找了找中国菜刀，试了好多次都不行。（当时我十分怀疑我遇到了假的菜刀:cold_sweat:）</p>
 <p>继而去求助大佬，这才知道原来像上面用的那句一句话木马在用菜刀时要输入密码，密码为aaa（密码是一句话木马中post或者get的值，上面那个一句话木马的post的值为aaa,故密码为aaa）.大喜:grin:，以为问题解决了，一试发现还是不行，连接不上。大佬说我可能装了个假菜刀:cold_sweat:此处附上大佬提供的中国菜刀与中国蚁剑的官网网址：</p>
 <p><em>中国菜刀</em>：<a href="http://www.maicaidao.co/">http://www.maicaidao.co/</a></p>
@@ -1040,7 +1521,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200709215614854.png" alt="image-20200709215614854" style="zoom:67%;">
 <p>点进去，它提示你输入0xCTF网站的IP即可得到flag，菜鸡的我还去百度了一下什么是网站的IP:cold_sweat:</p>
 <p>其实就类似127.0.0.1这类的，我查了一下有没有能查询某个指定网站IP的工具，找了一个在线查询的，输入网站的URL后得到网站的IP：<code>39.106.164.8</code></p>
-<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<td><input type="text" name="ip" class="form-control" maxlength="4" required></td></p>
+<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required></p>
 <p>**maxlength=“4”**说明输入的字符串最大长度为4，而我们的IP地址显然超过了，所以输不进去。想了一下利用Burpsuite抓一波包再改包：</p>
 <p>先输入一个4个字符以内的IP。如我输入的是1234，抓包后将IP改为<code>39.106.164.8</code>，再发包即可</p>
 <hr>
@@ -1078,7 +1559,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>这句话y中用到了三目运算符？：，如果问号前面的条件成立的话，那么它就执行问号与冒号之间的语句，否则执行冒号后面的语句.</p>
 <p>那么这句话的意思就是如果以get方式传入了参数的话，那么他就把这个传入的cmd参数赋值给 $cmd,如果没有传入cmd这个参数的话，那么 cmd就为空。</p>
 <pre><code class="language-php">if($cmd)
-&#123;   system(&quot;$cmd&quot;); &#125;
+{   system("$cmd"); }
 </code></pre>
 <p>这个语句表明php用system 函数把cmd这个参数当做系统命令执行，所以其实之前尝试的<code>shell=system('ls');</code>可以以在url 里将cmd 赋值为ls 来代替实现，</p>
 <img src="/2020/07/05/0xctf/image-20200716221117992.png" alt="image-20200716221117992" style="zoom:67%;">
@@ -1107,7 +1588,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>:cq，退出且不保存(即便有错误)</p>
 </blockquote>
 <p>尝试采用tail代替cat，下面应该把flag绕过就ok了，构造如下payload：<code>?cmd=tail fl''ag.php</code>,发现页面没有出现<strong>爪巴</strong>，估计是成功绕过了。</p>
-<p>大佬友情提醒，文件内容含有&lt;??&gt;的不会在前端输出，需要查看源码。（由于&lt;??&gt;在前端并不显示，所以此处采用的是编码来让其显示，&lt;在html中可用<code>&amp;lt</code>加上<code>；</code>来显示，同理，&gt;用<code>&amp;gt</code>加<code>；</code>来显示，一定别忘了<code>；</code>:cry:，更多的这样的转义符可以去百度一下）</p>
+<p>大佬友情提醒，文件内容含有&lt;??&gt;的不会在前端输出，需要查看源码。（由于&lt;??&gt;在前端并不显示，所以此处采用的是编码来让其显示，&lt;在html中可用<code>&amp;lt</code>加上<code>；</code>来显示，同理，&gt;用<code>&amp;gt</code>加<code>；</code>来显示，一定别忘了<code>；</code><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，更多的这样的转义符可以去百度一下）</p>
 <p>查看一波源码，成功得到flag</p>
 <p>（这里再插几句，关于那个flag的绕过方式，其实fl*这种也很常见,即通配符绕过</p>
 <p>此处再安利一篇博文：<a href="https://www.cnblogs.com/SpouseLJ/p/13223967.html#xcjwjDZd">《CTF下的命令执行漏洞利用及绕过方法总结》</a>。</p>
@@ -1118,17 +1599,17 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <img src="/2020/07/05/0xctf/image-20200720210307946.png" alt="image-20200720210307946" style="zoom:50%;">
 <p>这道题是RCE的pro版本，料到了绕过有难度。点进去一看，我敲！这么多过滤条件！（手动滑稽_）</p>
 <p>稍微理解一下源码：首先要以<code>GET</code>方式传一个<code>ip</code>参数，然后那一长串用于过滤的令人头皮发麻的正则表达式，emmm，怎么说呢，没能完全看懂，但大致能晓得它过滤掉了哪些东西。</p>
-<p>先稍微试一试水，我构造了这样一个<code>payload:?ip=d;sort$&#123;IFS&#125;fl\ag.php</code></p>
+<p>先稍微试一试水，我构造了这样一个<code>payload:?ip=d;sort${IFS}fl\ag.php</code></p>
 <p>失败，回显  <strong>fxck your symbol!</strong></p>
-<p>又仔细看了看，好吧，疏忽了，<code>&#123;&#125;</code>、<code>/</code>貌似都被过滤了，额，<code>&#123;&#125;</code>好解决，空格用<code>$IFS</code>也可以替代，但是flag咋搞呢？</p>
-<p>百度了一波，大概要么编码解决，要么用拼接（哎，终究逃不过拼接:cold_sweat:）</p>
+<p>又仔细看了看，好吧，疏忽了，<code>{}</code>、<code>/</code>貌似都被过滤了，额，<code>{}</code>好解决，空格用<code>$IFS</code>也可以替代，但是flag咋搞呢？</p>
+<p>百度了一波，大概要么编码解决，要么用拼接（哎，终究逃不过拼接<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span>）</p>
 <p>尝试一波拼接 <img src="/2020/07/05/0xctf/image-20200720214759811.png" alt="image-20200720214759811" style="zoom:67%;"></p>
 <p>再次失败，不过这次回显的是  <strong>no flag</strong>,对照源码，应该是咱们的flag没成功绕过，还是被过滤了。</p>
-<p>继续百度，我恰巧看到一篇博客里提到了<code>if(preg_match(&quot;/.*f.*l.*a.*g.*/&quot;, $ip)</code>这个正则表达式，他说这个过滤的话采用一般的拼接不起作用，得换换顺序，因为一旦 f l a g顺序显示，就歇菜了。</p>
+<p>继续百度，我恰巧看到一篇博客里提到了<code>if(preg_match("/.*f.*l.*a.*g.*/", $ip)</code>这个正则表达式，他说这个过滤的话采用一般的拼接不起作用，得换换顺序，因为一旦 f l a g顺序显示，就歇菜了。</p>
 <p>OK,那将a,b换换吧，重新构造payload:<img src="/2020/07/05/0xctf/image-20200720215305374.png" alt="image-20200720215305374" style="zoom: 67%;"></p>
-<p>成功！！:sunglasses:</p>
-<p>然后我又尝试了一下其他的payload，应该不止这一种解法。继续逛百度，居然发现一道和这道题很像的题:astonished:</p>
-<p>去找了找它的wp，由于题目还是有点差异，有些wp中的解法并没成功（也可能是我太菜了:dizzy_face:），但是经过我的尝试，还是发现了几种骚姿势：</p>
+<p>成功！！<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">😎</span></p>
+<p>然后我又尝试了一下其他的payload，应该不止这一种解法。继续逛百度，居然发现一道和这道题很像的题<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8">😲</span></p>
+<p>去找了找它的wp，由于题目还是有点差异，有些wp中的解法并没成功（也可能是我太菜了<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8">😵</span>），但是经过我的尝试，还是发现了几种骚姿势：</p>
 <ul>
 <li>
 <img src="/2020/07/05/0xctf/image-20200720220319905.png" alt="image-20200720220319905">
@@ -1139,7 +1620,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 </ul>
 <p>第二个实在是太骚了，运行后：</p>
 <img src="/2020/07/05/0xctf/image-20200720220938545.png" alt="image-20200720220938545" style="zoom:80%;">
-<p>菜鸡的我流下了伤心的泪水:sob::sob::sob:</p>
+<p>菜鸡的我流下了伤心的泪水<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
 <hr>
 <h4 id="18-EZupload-2">18.EZupload-2</h4>
 <img src="/2020/07/05/0xctf/image-20200731115817516.png" alt="image-20200731115817516" style="zoom:67%;">
@@ -1159,7 +1640,7 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>此处我当时踩了一个大坑，我的.htaccess文件命名成了1.htaccess，但是其实是不能有文件名的，那个文件直接命名成.htaccess就可</p>
 <p>然后关于.htaccess的内容，第一种写法：<code>SetHandler application/x-httpd-php</code></p>
 <p>然后还有一种更精准的写法：</p>
-<pre><code> &lt;FilesMatch &quot;shell.jpg&quot;&gt;
+<pre><code> &lt;FilesMatch "shell.jpg"&gt;
   SetHandler application/x-httpd-php
  &lt;/FilesMatch&gt;
 </code></pre>
@@ -1172,275 +1653,43 @@ $_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
 <p>上传成功！</p>
 <p>接着再上传之前的图片木马，上传成功后回显一个地址，访问一波。</p>
 <img src="/2020/07/05/0xctf/image-20200731124839807.png" alt="image-20200731124839807" style="zoom:50%;">
-<p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.:kissing_smiling_eyes:</p>
+<p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8">😙</span></p>
 <hr>
 <h4 id="19-SQL-injection">19.SQL_injection</h4>
 <p>这是一道SQL注入的问题，应该不是很难。之前刷过几道sqllib的题，有空一定好好刷.</p>
 <p>之前我采用的一直是手工注入，这次一开始也是采用的手工注入，但是出了些问题，后来转向sqlmap,由于我之前的sqlmap文件夹貌似又双叒叕被我误删了，这次使用的是kali自带的sqlmap。</p>
 <ul>
-<li>第一步，看是否存在注入点：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1' &quot;</code></li>
+<li>第一步，看是否存在注入点：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' "</code></li>
 </ul>
 <img src="/2020/07/05/0xctf/image-20200928161245282.png" alt="image-20200928161245282" style="zoom: 67%;">
 <p>提示“id”可能是注入点。</p>
 <ul>
-<li>第二步查看数据库名称：<code>kcm@kali:~$ sqlmap -u&quot;http://59.110.157.4:30010/?id=1' &quot; --dbs</code></li>
+<li>第二步查看数据库名称：<code>kcm@kali:~$ sqlmap -u"http://59.110.157.4:30010/?id=1' " --dbs</code></li>
 </ul>
 <img src="/2020/07/05/0xctf/image-20200928161505584.png" alt="image-20200928161505584" style="zoom:67%;">
 <p>显示有两个可用的数据库，一个名为 <strong>information_schema</strong>(信息模式？)，另一个名为<strong>user</strong>.</p>
 <ul>
 <li>
-<p>知道了数据库的名称，接下来就是去查看数据库中的表：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1' &quot; -D information_schema --tables</code></p>
+<p>知道了数据库的名称，接下来就是去查看数据库中的表：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
 <img src="/2020/07/05/0xctf/image-20200928161847157.png" alt="image-20200928161847157" style="zoom:67%;">
 </li>
 </ul>
-<p>自上而下看了半天，没发现flag字眼，暂且搁置，去另一个库康康：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1' &quot; -D information_schema --tables</code></p>
+<p>自上而下看了半天，没发现flag字眼，暂且搁置，去另一个库康康：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
 <img src="/2020/07/05/0xctf/image-20200928162050230.png" alt="image-20200928162050230" style="zoom:67%;">
 <p>只有简简单单的一个表，很可疑啊，觉得有必要深究一下。</p>
 <ul>
 <li>
-<p>查看user数据库中user表的列信息：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1'&quot; -D user -T user  --columns</code></p>
+<p>查看user数据库中user表的列信息：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user  --columns</code></p>
 <img src="/2020/07/05/0xctf/image-20200928162328554.png" alt="image-20200928162328554" style="zoom:67%;">
 <ul>
-<li>最后查看你想看的东西就行了，falg应该是字符串，所以我首先查看的是password里的东西：<code>kcm@kali:~$ sqlmap -u &quot;http://59.110.157.4:30010/?id=1'&quot; -D user -T user -C password  --dump</code></li>
+<li>最后查看你想看的东西就行了，falg应该是字符串，所以我首先查看的是password里的东西：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user -C password  --dump</code></li>
 </ul>
 <img src="/2020/07/05/0xctf/Users/28294/Desktop/无标题.png" alt="无标题" style="zoom:67%;">
-<p>flag手动打码:stuck_out_tongue_winking_eye:</p>
+<p>flag手动打码<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8">😜</span></p>
 </li>
 </ul>
 <hr>
-<p>未完待续:stuck_out_tongue_winking_eye:</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>CTF  web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>算法设计与分析之二分搜索_合并排序_快速排序</title>
-    <url>/2021/03/22/Algorithm-code/</url>
-    <content><![CDATA[<pre><code class="language-c++">#include &lt;stdio.h&gt;
-#include &lt;iostream&gt;
-using namespace std;
-
-template&lt;class T&gt;
-class SortableList
-&#123;
-    public:
-        SortableList(int mSize,int n,T*a);
-        ~SortableList();
-        int BSearch(const T&amp;x,int left,int right)const;  //把整个函数修饰为const，意思是“函数体内不能对成员数据做任何改动”。
-        int BSearch_DieDai(const T&amp;x,int n) const;
-       void Merge(int left,int mid,int right);
-       void MergeSort();
-       void MergeSort(int left,int right);
-       void Output();
-
-       void Swap(int &amp;a, int &amp;b);
-       int Partition(int left,int right);
-       void QuickSort();
-       void QuickSort(int left,int right);
-
-    private:
-        T*l;
-        int maxSize;
-        int num;
-
-&#125;;
-//构造函数
-template&lt;class T&gt;
-SortableList&lt;T&gt;::SortableList(int mSize,int n,T*a)
-&#123;
-    l=a;
-    maxSize=mSize;
-    num=n;
-&#125;
-//析构函数
-template&lt;class T&gt;
-SortableList&lt;T&gt;::~SortableList()
-&#123;
-    delete[]l;
-&#125;
-
-/*********************************** 二分搜索 ****************************/
-//采用递归的二分搜索
-template&lt;class T&gt;
-int SortableList&lt;T&gt; ::BSearch(const T&amp;x,int left,int right)const
-&#123;
-    if(left&lt;=right)
-    &#123;
-        int m=(left+right)/2;
-        if(x&lt;l[m]) 
-            return BSearch(x,left,m-1);
-        else if(x&gt;l[m])
-            return BSearch(x,m+1,right);
-        else return m;
-    &#125;
-    return -1;
-&#125;
-//采用迭代的二分搜索（尾递归改迭代）
-template&lt;class T&gt;
-int SortableList&lt;T&gt;::BSearch_DieDai(const T&amp;x,int n)const
-&#123;
-    int m,left=0,right=n-1;
-    while(left&lt;=right)
-    &#123;
-        m=(left+right)/2;
-        if(x&lt;l[m])  
-            right=m-1;
-        else if(x&gt;l[m])  
-            left=m+1;
-        else 
-            return m;
-    &#125;
-    return -1;
-&#125;
-
-/******************************* 合  并  排  序 ************************************/
-
-template &lt;class T&gt;
-void SortableList&lt;T&gt;::MergeSort()
-&#123;
-    MergeSort(0,num-1);
-&#125;
-template&lt;class T&gt;
-void SortableList&lt;T&gt;::MergeSort(int left,int right)
-&#123;
-    if(left&lt;right)
-    &#123;
-        int mid = (left+right)/2;
-        MergeSort(left,mid);
-        MergeSort(mid+1,right);
-        Merge(left,mid,right);
-    &#125;
-&#125;
-
-template &lt;class T&gt;
-void SortableList&lt;T&gt;::Merge(int left, int mid, int right)
-&#123;                                      //a数组为待排序的数组 
-	T* temp =new T[right - left + 1]; //temp数组用来暂时保存排序好的数组 
-	int i = left, j = mid + 1, k = 0; //left 至mid为左半数组 ，mid+1至right为右半数组 
-	while((i &lt;= mid)&amp;&amp;(j &lt;= right))  //对应第一步 当左半数组和右半数组都不为空时 
-		if(l[i] &lt;= l[j])             //输出两个数组中的较小者 
-			temp[k ++] = l[i ++];
-		else
-			temp[k ++] = l[j ++];
-    while(i &lt;= mid)                  //当一数组为空时，输出另一数组的剩余元素 
-        temp[k ++] = l[i ++];
-    while(j &lt;= right)                //当一数组为空时，输出另一数组的剩余元素 
-        temp[k ++] = l[j ++];
-    for(i = 0, k = left; k &lt;= right;) //将temp数组赋值给原数组 
-        l[k ++] = temp[i ++];
-&#125;
- 
-
-template&lt;class T&gt;
-void SortableList&lt;T&gt;::Output()
-&#123;
-	for(int i = 0; i &lt; num; i++)
-		cout &lt;&lt; l[i] &lt;&lt; &quot; &quot;;
-	cout &lt;&lt; endl &lt;&lt; endl;
-&#125;
-
-/********************************** 快  速  排  序 ***********************************/
-
-template&lt;class T&gt;
-void SortableList&lt;T&gt;::Swap(int &amp;a, int &amp;b)
-&#123;
-	int t = a;
-	a = b;
-	b = t;
-&#125;
-
-template &lt;class T&gt;
-int SortableList&lt;T&gt;::Partition(int left,int right)
-&#123;
-    if(left&gt;=right)
-    &#123;
-        cout&lt;&lt;&quot;下标范围有误，请确保left&lt;right!&quot;&lt;&lt;endl;
-        return 0;
-    &#125;
-       
-    int i = left,j = right +1;
-    do 
-    &#123;
-        do i++; while (l[i]&lt;l[left]);
-        do j--; while (l[j] &gt; l[left]);
-        if(i &lt; j) Swap(i,j);
-    &#125;while(i &lt; j);
-    Swap(left,j);
-    return j;
-&#125;
-
-template &lt;class T&gt;
-void SortableList&lt;T&gt;:: QuickSort()
-&#123;
-    QuickSort(0,num-1);
-&#125;
-
-template&lt;class T&gt;
-void SortableList&lt;T&gt;:: QuickSort(int left,int right)
-&#123;
-    if(left&lt;right)
-    &#123;
-        int j = Partition(left,right);   
-        if(j-left&lt;=right-j)                  //为了减少系统栈的深度，一般都会将长的子序列的上下界进栈         
-        &#123;                                    //先处理短的子序列
-            if(j-left&gt;1)                     
-            &#123;
-                QuickSort(left,j-1);
-                QuickSort(j+1,right);
-            &#125;
-        &#125;else
-        &#123; 
-            if(right-j&gt;1)
-            &#123;
-                QuickSort(j+1,right);
-                QuickSort(left,j-1);
-            &#125;
-        &#125;
-    &#125;
-&#125;
-
-/************************************ main 函数 ***********************************/
-int main()
-&#123;
-    int a[5]=&#123;2,3,1,4,5&#125;;
-    SortableList&lt;int&gt; list =SortableList&lt;int&gt;(5,5,a);
-    int k = list.BSearch(4,0,4);
-    int j = list.BSearch_DieDai(4,6);
-    cout&lt;&lt;k;
-    cout&lt;&lt;j;
-     cout &lt;&lt; &quot;排序前：&quot;&lt;&lt;endl;
-	// for (int i = 0; i &lt; 5; i++)
-	// 	cout &lt;&lt; a[i] &lt;&lt; ' ';
-	// cout &lt;&lt; endl;
-    list.Output();
-    list.MergeSort();
-    cout &lt;&lt; &quot;归并排序后：&quot;&lt;&lt;endl;
-	// for (int i = 0; i &lt; 5; i++)
-	// 	cout &lt;&lt; a[i] &lt;&lt; ' ';
-	// cout &lt;&lt; endl;
-    list.QuickSort();
-    list.Output();
-    cout &lt;&lt; &quot;快速排序后：&quot;&lt;&lt;endl;
-    list.Output();
-    return 0;
-&#125;
-</code></pre>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>算法设计与分析  C++</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/2021/07/06/test/</url>
-    <content><![CDATA[<p><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span></p>
+<p>未完待续<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8">😜</span></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1460,8 +1709,11 @@ int main()
             document.body.appendChild(img);
           });
       </script>]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
       <tags>
-        <tag>测试</tag>
+        <tag>CTF  web</tag>
       </tags>
   </entry>
 </search>
