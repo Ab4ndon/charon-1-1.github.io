@@ -4,7 +4,7 @@
 
 <head>
     <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta name="keywords" content="MoeCTF wp, Ab4nd0n">
+    <meta name="keywords" content="NJUPT算法实验一, Ab4nd0n">
     <meta name="description" content="记录学习，记录生活。">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>MoeCTF wp | Ab4nd0n</title>
+    <title>NJUPT算法实验一 | Ab4nd0n</title>
     <link rel="icon" type="image/jpeg" href="/medias/touxiang.jpg">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -249,12 +249,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/21.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/13.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">MoeCTF wp</h1>
+                    <h1 class="description center-align post-title">NJUPT算法实验一</h1>
                 </div>
             </div>
         </div>
@@ -374,8 +374,16 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/ctf/">
-                                <span class="chip bg-color">ctf</span>
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">
+                                <span class="chip bg-color">算法设计与分析</span>
+                            </a>
+                        
+                            <a href="/tags/NJUPT/">
+                                <span class="chip bg-color">NJUPT</span>
                             </a>
                         
                     </div>
@@ -386,8 +394,8 @@
                     <div class="post-cate">
                         <i class="fas fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                学习
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="post-category">
+                                算法设计与分析
                             </a>
                         
                     </div>
@@ -399,28 +407,28 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2020-08-14
+                    2021-07-06
                 </div>
                 
 
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2020-09-26
+                    2021-07-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.9k
+                    1.8k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    7 分
+                    9 分
                 </div>
                 
 
@@ -435,176 +443,358 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
-<p>MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中:wink:，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！</p>
-<span id="more"></span>
-<h4 id="1-GET">1.GET</h4>
-<p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
-<hr>
-<h4 id="2-POST">2.POST</h4>
-<p>这是一道简单的post传参的题，利用hackbar（火狐浏览器的插件，不了解的话可自行百度一下，安装啥的不难的）即可传参，或者利用bp应该也是一样的。</p>
-<img src="/2020/08/14/moectf/image-20200814140353992.png" alt="image-20200814140353992" style="zoom:50%;">
-<hr>
-<h4 id="3-小饼干">3.小饼干</h4>
-<p>进入页面发现是一个空页面，这时候想到利用bp抓包，观察</p>
-<img src="/2020/08/14/moectf/image-20200814140801922.png" alt="image-20200814140801922" style="zoom: 67%;">
-<p>发现类似flag的东西。复制提交，发现就是正确的flag</p>
-<hr>
-<h4 id="4-Introduction">4.Introduction</h4>
-<p>这个题点进去的话就是很正常的对<strong>moectf</strong>的介绍，点进去源码也没看到flag     (好吧，是我眼瞎，后来才发现flag就在源码里)  尝试抓包，也没找到</p>
-<img src="/2020/08/14/moectf/image-20200814142428514.png" alt="image-20200814142428514" style="zoom: 67%;">
-<p>考的是眼力:imp:</p>
-<hr>
-<h4 id="5-一句话木马">5.一句话木马</h4>
-<p>进入题目，发现源码就是一句话木马</p>
-<img src="/2020/08/14/moectf/image-20200814142846791.png" alt="image-20200814142846791">
-<p>话不多说，直接掏出俺的<strong>蚁剑</strong></p>
-<img src="/2020/08/14/moectf/image-20200814143147631.png" alt="image-20200814143147631" style="zoom: 50%;">
-<p>这边的话要注意的就是连接密码一定别忘记，<strong>密码就是post后面单引号里的内容</strong>。</p>
-<img src="/2020/08/14/moectf/image-20200814143913525.png" alt="image-20200814143913525" style="zoom: 50%;">
-<p>连接成功！一般情况下flag就在根目录/下，去到这道题的根目录下的确发现了flag。</p>
-<hr>
-<h4 id="6-ezmath">6.ezmath</h4>
-<p>等待填坑</p>
-<hr>
-<h4 id="7-三心二意">7.三心二意</h4>
-<p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
-<pre><code class="language-php">&lt;?php
-$a = $_GET['a'];
-$b = $_POST['b'];
-$c = $_REQUEST['c'];
-$d = $_COOKIE['d'];
+                <span id="more"></span>
+<h4 id="实验要求：">实验要求：</h4>
+<p>1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排<br>
+序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。</p>
+<p>2采用基于“五元中值组取中值分割法”（median-of-median-of-five partitioning） 的线性<br>
+时间选择算法，找出 N 个元素集合 S 中的第 k 个最小的元素，使其在线性时间内解决。（参<br>
+考教材 5.5.3 节）</p>
+<p>​        <strong>分治法</strong>采用将一个难以直接求解的复杂问题分解成若干个规模较小、相互独立，但类型相同的子问题，直到子问题足够小，能够直接求解为止，然后求解这些子问题，并且将子问题的解合成原始问题的一个完整解的策略。基于这样一种策略，我们可以用它来解决一系列复杂的问题。对于排序问题，将原来的序列分成一个个子序列后分别进行排序，再将已排序的子序列合成一个有序序列是可行的，所以符合分治法策略。不过，合并排序和快速排序虽然都运用分治策略，但两者的角度不同，得到的排序算法也不相同。合并排序的问题分解过程十分简单，只需将序列一分为二即可：而快速排序的问题分解方法相对较困难，需调用Partition函数将一个序列划分为子序列。然而，从子问题解得到原问题解的过程对于快速排序来说异常简单，几乎无须额外的工作；但对于合并排序，则需要调用Merge函数来实现。所以，其实Partition函数和Merge函数是这两种排序算法的核心。而线性时间选择第k小元素这个算法我觉得也是受到了快速排序中的分划方法的启迪，采用分治法策略去求。</p>
+<h5 id="1-合并排序与快速排序">1.合并排序与快速排序</h5>
+<pre><code class="language-c++">#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#define INFTY 2147483647;
+using namespace std;
 
-if (!isset($a, $b, $c, $d)) {
-    highlight_file(__FILE__);
-} else {
-    if (is_numeric($a) and $a == false) {
-        echo 'A is OK!';
-        echo '&lt;br/&gt;';
-        if (!is_numeric($b) and $b == 0x125e591) {
-            echo 'B is OK!';
-            echo '&lt;br/&gt;';
-            if ($c != 240610708 and md5($c) == md5(240610708)) {
-                echo 'C is OK!';
-                echo '&lt;br/&gt;';
-                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) {
-                    include('/flag');
-                } else {
-                    echo "D is not wanted.&lt;br/&gt;";
-                    highlight_file(__FILE__);
-                }
-            } else {
-                echo "C is not wanted.&lt;br/&gt;";
-                highlight_file(__FILE__);
-            }
-        } else {
-            echo "Too young too simple.&lt;br/&gt;";
-            highlight_file(__FILE__);
+class SortableList
+{
+    public:
+        SortableList(int mSize)
+        {
+            maxSize = mSize;
+            l = new int[maxSize];
+            n = 0;
         }
-    } else {
-        echo "A is not wanted.&lt;br/&gt;";
-        highlight_file(__FILE__);
+        ~SortableList()
+    {
+    delete[] l;
     }
-} 
-</code></pre>
-<p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧:cry:</p>
-<ul>
-<li><code>is_numeric($a) and $a == false</code></li>
-</ul>
-<p>此处涉及到**is_numeric()**这个php函数,<strong>is_numeric()</strong> 函数用于检测变量是否为数字或数字字符串,如果指定的变量是数字和数字字符串则返回 TRUE，否则返回 FALSE。</p>
-<p>也就是说上面这个语句要求a参数是一个数字或字符串，且==false，那挺简单的，0或者null都可以，尝试?a=0,回车一下发现没反应，仔细看源码才发现他要a,b,c,d四个变量都存在才行。</p>
-<ul>
-<li>
-<p><code>!is_numeric($b) and $b == 0x125e591</code></p>
-<p>这个语句的要求是b变量不是数字或字符串并且b==0x125e591，关于0x125e591，我也不太清楚他是个啥，看起来像16进制，百度一波</p>
-<img src="/2020/08/14/moectf/image-20200921134750652.png" alt="image-20200921134750652" style="zoom:50%;">
-<p>好家伙！直接给我转换出来了。没错了，0x125e591是16进制，转成10进制就是19260817。</p>
-<blockquote>
-<p>php有两种比较方式,一种是“= =”一种是“= = =”</p>
-<p>“= =”：会把两端变量类型转换成相同的，再进行比较。</p>
-<p>“= = =”：会先判断两端变量类型是否相同，再进行比较。</p>
-<p>这里明确说明，<strong>在两个相等的符号中，一个字符串与一个数字相比较时，字符串会转换成数值</strong>。</p>
-<p>当一个字符串被当作一个数值来取值，其结果和类型如下:如果该字符串没有包含’.’,’e’,’E’并且其数值值在整形的范围之内，该字符串被当作int来取值。其他所有情况下都被作为float来取值，<strong>该字符串的 开始部分 决定了它的值，如果该字符串以合法的数值开始，则使用该数值， 否则其值为0 。</strong></p>
-<p>在进行比较运算时，如果遇到了 0e 这类字符串，PHP会将它解析为 科学计数法</p>
-<p>在进行比较运算时，如果遇到了 0x 这类字符串，PHP会将它解析为 十六进制 。</p>
-</blockquote>
-<p>然后经过大佬指点和我的测试，我发现只需要在19260817后面加上字母就行了:smile_cat:</p>
-</li>
-<li>
-<p><code>$c != 240610708 and md5($c) == md5(240610708)</code></p>
-<p>这个的话主要是md5值的知识，上网一查，md5(‘240610708’)等于md5(‘QNKCDZO’)，于是直接吧c赋值成后面那个字符串。</p>
-</li>
-<li>
-<p><code>strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0</code></p>
-<p>这个一开始是真的不会，后来还是一个学弟教我的，害。</p>
-<p>考点应该是<strong>md5()函数无法处理数组，如果传入的为数组，会返回NULL</strong>（之前应该遇到过，忘记了。。。）</p>
-<p>所以此处将d赋值成<code>d[]=0</code>,妙啊。</p>
-<p>所以最终传参如下：</p>
-<img src="/2020/08/14/moectf/image-20200921143630484.png" alt="image-20200921143630484" style="zoom:67%;">
-</li>
-</ul>
-<p>再贴一道与这道题很像的题：（来自CNSS）</p>
-<pre><code class="language-php">&lt;?php
-highlight_file(__FILE__);
-$a = $_GET['a'];
-$b = $_POST['b'];
-$c = $_REQUEST['c'];
-$d = $_COOKIE['d'];
+        void Input();
+        void Output();
+        void MergeSort();
+        void QuickSort();
+    private:
+        int *l;
+        int maxSize;
+        int n;
+        void Merge(int left,int mid,int right);
+        void MergeSort(int left,int right);
+        void QuickSort(int left, int right);
+        void Swap(int i,int j);
+        int Partition(int left, int right);
+        
+        
+};
 
-if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
-    echo "A is ok!";
-    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) {
-        echo "B is ok!";
-        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {
-            echo "C is ok!";
-            echo "Here is your flag:";
-            include('/flag');
-        } else {
-            die((isset($c) &amp;&amp; isset($d)) ? "Try to search something?" : "C and D is wanted.");
-        }
-    } else {
-        die(isset($b) ? "You need to try again." : "B is wanted.");
+void SortableList::Merge(int left,int mid,int right)
+{
+    int *temp = new int[right - left + 1];
+    int i = left, j = mid + 1, k = 0;
+    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
+        if(l[i]&lt;=l[j])
+            temp[k++] = l[i++];
+        else
+            temp[k++] = l[j++];
+    while(i&lt;=mid)                //将剩余元素输出
+        temp[k++] = l[i++];
+    while(j&lt;=right)
+        temp[k++] = l[j++];
+    for (i = 0, k = left; k &lt;= right;)  //将排好序的有序序列复制到原序列中去
+        l[k++] = temp[i++];
+}
+
+void SortableList::MergeSort()
+{
+    MergeSort(0,n-1);
+}
+void SortableList::MergeSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int mid = left + (right-left) / 2;
+        MergeSort(left,mid);
+        MergeSort(mid+1,right);
+        Merge(left,mid,right);
     }
-} else {
-    die(isset($a) ? "Please try another a." : "A is wanted.");
-} 
+}
+
+void SortableList::Swap(int i,int j)
+{
+    int temp = l[i];
+    l[i] = l[j];
+    l[j] = temp;
+}
+
+int SortableList::Partition(int left,int right)
+{
+    int i = left, j = right + 1;
+    l[n]=INFTY;
+    do{
+        do
+            i++;
+        while (l[i]&lt;l[left]);
+        do
+            j--;
+        while (l[j]&gt;l[left]);
+        if(i&lt;j)
+            Swap(i,j);
+    } while (i &lt; j);
+    Swap(left,j);
+    return j;
+}
+
+void SortableList::QuickSort()
+{
+    QuickSort(0,n-1);
+}
+void SortableList::QuickSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int j = Partition(left,right);
+        QuickSort(left,j-1);
+        QuickSort(j+1,right);
+    }
+}
+
+// void SortableList::Input()
+// {
+//     for (int i = 0; i &lt; maxSize;i++)
+//     {
+//         cin &gt;&gt; l[i];
+//         n++;
+//     }
+// }
+
+void SortableList::Input()
+{
+    int i = 0;
+    ifstream out ("Sort.txt");
+    if(!out)
+    {
+        cout &lt;&lt; "Can not open output file.\n";
+        return;
+    }
+    for (i = 0; i &lt; maxSize;i++)
+    {
+        out &gt;&gt; l[i];
+        n++;
+    }
+    out.close();
+   
+}
+
+void SortableList::Output()
+{
+    for (int i = 0; i &lt; maxSize;i++)
+    {
+        cout &lt;&lt; l[i] &lt;&lt; " ";
+       // cout &lt;&lt; endl;
+    }
+}
+
+int main()
+{
+    int key;
+    int x, k;
+    SortableList list(30);
+    cout &lt;&lt; "原始序列：\n" &lt;&lt; endl;
+    list.Input();
+    list.Output();
+    cout &lt;&lt; "\n\n请选择排序算法：【0】两路合并排序  【1】快速排序\n" &lt;&lt; endl;
+    cin &gt;&gt; key;
+    
+    if(key==0)
+    {
+        list.MergeSort();
+    }
+    else
+        list.QuickSort();
+    cout &lt;&lt; "排序后的序列：\n\n";
+    list.Output();
+   
+}
+
 </code></pre>
-<hr>
-<h4 id="8-俄罗斯头套">8.俄罗斯头套</h4>
-<img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
-<p>点进去后发现这样一句话，觉得应该得<strong>burpsuits</strong>伪造一波ip地址</p>
-<p><img src="/2020/08/14/moectf/image-20200814145154603.png" alt="image-20200814145154603"></p>
-<p>抓包后添加 <strong>X-Forwarded-For</strong>头，伪造一波ip地址，send一下，得到如下页面</p>
-<img src="/2020/08/14/moectf/image-20200814145736400.png" alt="image-20200814145736400" style="zoom:50%;">
-<p>然后注意到response里说我得是从https://www.baidu.com来的，根据之前的做题经验的话，再添加一个<strong>Referer</strong>头即可，如下：</p>
-<img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
-<p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
-<img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
-<p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
-<p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
-<img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
-<p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
-<hr>
-<h4 id="9-Moe-include">9.Moe include</h4>
-<p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
-<p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
-<p>让我别点，那一定得点一下了<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8">😝</span></p>
-<img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
-<p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
-<p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
-<img src="/2020/08/14/moectf/image-20200816141033076.png" alt="image-20200816141033076" style="zoom:67%;">
-<p>看到注释：<strong>你知道php伪协议吗？</strong></p>
-<p>不知道的话可以参考参考这篇博客：[<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13030717.html">php伪协议总结</a>](<a target="_blank" rel="noopener" href="https://www.cnblogs.com/zzjdbk/p/13030717.html">https://www.cnblogs.com/zzjdbk/p/13030717.html</a>)</p>
-<p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
-<p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
-<img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
-<p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8">😎</span></p>
-<hr>
-<h4 id="10-Moe-unserialize">10.Moe unserialize</h4>
-<p>等待填坑</p>
-<hr>
-<h4 id="11-EzXXE">11.EzXXE</h4>
-<p>等待填坑</p>
+<h5 id="2-选择第k小元素">2.选择第k小元素</h5>
+<p>​       求第k小元素其实可以直接通过排序算法将原序列排序好，然后取出第k小元素即可，但是这样的话在最坏情况下的时间复杂度就不是线性的了，比如采用快速排序，那么在最坏情况下时间复杂度为O(n^2)。人们并不满足与这样的时间复杂度，所以继续去优化这样的一个算法，采用二次取中法确定主元的方式使得分划所得的两个子集合的大小相对接近，从而避免了上述最坏情况的发生，使得最坏情况下的时间复杂度也是O(n),我想这就是算法设计与分析的魅力所在，通过应用或设计一种算法去不断优化时空复杂度。</p>
+<pre><code class="language-C++">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#define INFTY 2147483647;
+using namespace std;
+
+class SortableList
+{
+    public:
+        SortableList(int mSize)
+        {
+            maxSize = mSize;
+            l = new int[maxSize];
+            n = 0;
+        }
+        ~SortableList()
+    {
+    delete[] l;
+    }
+        void Input();
+        void Output();
+        void MergeSort();
+        int Select(int&amp; x,int k);
+        int Ceil(int a,int b);
+
+    private:
+        int *l;
+        int maxSize;
+        int n;
+        void Merge(int left,int mid,int right);
+        void MergeSort(int left,int right);
+        void Swap(int i,int j);
+        int Partition(int left, int right);
+        int Select(int k,int left,int right,int r);
+        
+};
+
+void SortableList::Merge(int left,int mid,int right)
+{
+    int *temp = new int[right - left + 1];
+    int i = left, j = mid + 1, k = 0;
+    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
+        if(l[i]&lt;=l[j])
+            temp[k++] = l[i++];
+        else
+            temp[k++] = l[j++];
+    while(i&lt;=mid)                //将剩余元素输出
+        temp[k++] = l[i++];
+    while(j&lt;=right)
+        temp[k++] = l[j++];
+    for (i = 0, k = left; k &lt;= right;)  //将排好序的有序序列复制到原序列中去
+        l[k++] = temp[i++];
+}
+
+void SortableList::MergeSort()
+{
+    MergeSort(0,n-1);
+}
+void SortableList::MergeSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int mid = left + (right-left) / 2;
+        MergeSort(left,mid);
+        MergeSort(mid+1,right);
+        Merge(left,mid,right);
+    }
+}
+
+void SortableList::Swap(int i,int j)
+{
+    int temp = l[i];
+    l[i] = l[j];
+    l[j] = temp;
+}
+
+int SortableList::Partition(int left,int right)
+{
+    int i = left, j = right + 1;
+    l[n]=INFTY;
+    do{
+        do
+            i++;
+        while (l[i]&lt;l[left]);
+        do
+            j--;
+        while (l[j]&gt;l[left]);
+        if(i&lt;j)
+            Swap(i,j);
+    } while (i &lt; j);
+    Swap(left,j);
+    return j;
+}
+
+
+void SortableList::Input()
+{
+    int i = 0;
+    ifstream out ("Sort.txt");
+    if(!out)
+    {
+        cout &lt;&lt; "Can not open output file.\n";
+        return;
+    }
+    for (i = 0; i &lt; maxSize;i++)
+    {
+        out &gt;&gt; l[i];
+        n++;
+    }
+    out.close();
+   
+}
+
+void SortableList::Output()
+{
+    for (int i = 0; i &lt; maxSize;i++)
+    {
+        cout &lt;&lt; l[i] &lt;&lt; " ";
+       // cout &lt;&lt; endl;
+    }
+}
+
+int SortableList::Ceil(int a,int b)
+{
+    return (int)(a / b) + 1;
+}
+
+int SortableList::Select(int&amp;x,int k)
+{
+    if(n&lt;=0||k&gt;n||k&lt;=0)
+        return -1;
+    int j = Select(k,0,n-1,5);
+    x = l[j];
+        return 1;
+}
+
+int SortableList::Select(int k,int left,int right,int r)
+{
+    int n = right - left + 1;
+    if(n&lt;=r)
+    {
+        MergeSort(left,right);
+        return left + k - 1;
+    }
+    for (int i = 1; i &lt; n / r;i++)
+    {
+        MergeSort(left+(i-1)*r,left+i*r-1);
+        Swap(left+i-1,left+(i-1)*r+Ceil(r,2)-1);
+
+    }
+    int j = Select(Ceil(n/r,2),left,left+(n/2)-1,r);
+    Swap(left,j);
+    j = Partition(left,right);
+    if(k==j-left+1)
+        return j;
+    else if(k&lt;j-left+1)
+        return Select(k,left,j-1,r);
+        else
+            return Select(k-(j-left+1),j+1,right,r);
+
+}
+
+int main()
+{
+    int key;
+    int x, k;
+    SortableList list(30);
+    list.Input();
+    list.Output();
+    cout &lt;&lt; "\n\n请输入要寻找的第几小元素：\n";
+    cin &gt;&gt; k;
+    list.Select(x,k);
+    cout &lt;&lt; x &lt;&lt; endl;
+    //list.Output();
+}
+
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -648,7 +838,7 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://kongcm.cn/2020/08/14/moectf/">http://kongcm.cn/2020/08/14/moectf/</a>
+                    <a href="http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E4%B8%80/">http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E4%B8%80/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -686,8 +876,16 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/ctf/">
-                                    <span class="chip bg-color">ctf</span>
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">
+                                    <span class="chip bg-color">算法设计与分析</span>
+                                </a>
+                            
+                                <a href="/tags/NJUPT/">
+                                    <span class="chip bg-color">NJUPT</span>
                                 </a>
                             
                         </div>
@@ -1129,48 +1327,60 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2020/09/10/YCBCTF/">
+                <a href="/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E4%B8%80/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/0.jpg" class="responsive-img" alt="YCBCTF wp">
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="NJUPT算法实验一">
                         
-                        <span class="card-title">YCBCTF wp</span>
+                        <span class="card-title">NJUPT算法实验一</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            “羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题😭
-
-尝试访问一波index.php，页面出现eval post cmd,貌似是一句话木马。
-
-尝试用蚁剑连接一下，密码试一下cmd,连接成功！
-
-并没有找到flag.php
+                            
+实验要求：
+1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排
+序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。
+2采用基于“五元中值组取中值分割法”（median-of-me
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2020-09-10
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
+                            </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-user fa-fw"></i>
-                            Ab4nd0n
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="post-category">
+                                    算法设计与分析
+                                </a>
+                            
                             
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/CTF/">
-                        <span class="chip bg-color">CTF</span>
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">算法设计与分析</span>
+                    </a>
+                    
+                    <a href="/tags/NJUPT/">
+                        <span class="chip bg-color">NJUPT</span>
                     </a>
                     
                 </div>
@@ -1184,38 +1394,33 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
                 下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2020/07/25/DASCTF/">
+                <a href="/2021/07/06/test/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/4.jpg" class="responsive-img" alt="DASCTF 《Ezfileinclude》 wp">
+                        <img src="/medias/featureimages/22.jpg" class="responsive-img" alt="test">
                         
-                        <span class="card-title">DASCTF 《Ezfileinclude》 wp</span>
+                        <span class="card-title">test</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验😢😢，遭受了五个小时的吊打。
+                            😄
 
-
-没错，就是这么残忍。直接把我0封了。
-
-后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { ret
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2020-07-25
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
-                                    学习
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Ab4nd0n
                             
                         </span>
                     </div>
@@ -1223,8 +1428,8 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/web/">
-                        <span class="chip bg-color">web</span>
+                    <a href="/tags/%E6%B5%8B%E8%AF%95/">
+                        <span class="chip bg-color">测试</span>
                     </a>
                     
                 </div>
