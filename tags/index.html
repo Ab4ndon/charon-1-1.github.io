@@ -276,9 +276,7 @@
 
 
 <script>
-    // 每天切换 banner 图.  Switch banner image every day.
-    var bannerUrl = "/medias/banner/" + new Date().getDay() + '.jpg';
-    $('.bg-cover').css('background-image', 'url(' + bannerUrl + ')');
+    $('.bg-cover').css('background-image', 'url(/medias/banner2/0.jpg)');
 </script>
 
 
@@ -414,6 +412,15 @@
                     </span>
                 </a>
                 
+                
+                <a href="/tags/%E6%B5%8B%E8%AF%95/" title="测试: 1">
+                    <span class="chip center-align waves-effect waves-light
+                             chip-default "
+                            data-tagname="测试" style="background-color: #F8C471;">测试
+                        <span class="tag-length">1</span>
+                    </span>
+                </a>
+                
             </div>
         </div>
     </div>
@@ -438,7 +445,7 @@
 <script type="text/javascript">
     
 
-    $('#tag-wordcloud').jQCloud([{"text":"CDN 解析冲突","weight":1,"link":"/tags/CDN-解析冲突/"},{"text":"Android UI","weight":1,"link":"/tags/Android-UI/"},{"text":"web","weight":1,"link":"/tags/web/"},{"text":"数据结构","weight":1,"link":"/tags/数据结构/"},{"text":"数据结构 C语言","weight":2,"link":"/tags/数据结构-C语言/"},{"text":"Git Hexo部署","weight":1,"link":"/tags/Git-Hexo部署/"},{"text":"CTF","weight":1,"link":"/tags/CTF/"},{"text":"hexo 代码高亮 matery","weight":1,"link":"/tags/hexo-代码高亮-matery/"},{"text":"Typora","weight":1,"link":"/tags/Typora/"},{"text":"ctf","weight":1,"link":"/tags/ctf/"},{"text":"生活","weight":1,"link":"/tags/生活/"},{"text":"CTF  web","weight":1,"link":"/tags/CTF-web/"},{"text":"算法设计与分析  C++","weight":1,"link":"/tags/算法设计与分析-C/"}], {
+    $('#tag-wordcloud').jQCloud([{"text":"CDN 解析冲突","weight":1,"link":"/tags/CDN-解析冲突/"},{"text":"Android UI","weight":1,"link":"/tags/Android-UI/"},{"text":"web","weight":1,"link":"/tags/web/"},{"text":"数据结构","weight":1,"link":"/tags/数据结构/"},{"text":"数据结构 C语言","weight":2,"link":"/tags/数据结构-C语言/"},{"text":"Git Hexo部署","weight":1,"link":"/tags/Git-Hexo部署/"},{"text":"CTF","weight":1,"link":"/tags/CTF/"},{"text":"hexo 代码高亮 matery","weight":1,"link":"/tags/hexo-代码高亮-matery/"},{"text":"Typora","weight":1,"link":"/tags/Typora/"},{"text":"ctf","weight":1,"link":"/tags/ctf/"},{"text":"生活","weight":1,"link":"/tags/生活/"},{"text":"CTF  web","weight":1,"link":"/tags/CTF-web/"},{"text":"算法设计与分析  C++","weight":1,"link":"/tags/算法设计与分析-C/"},{"text":"测试","weight":1,"link":"/tags/测试/"}], {
         autoResize: true
     });
 </script>
@@ -460,7 +467,7 @@
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">14.5k</span>&nbsp;字
+                class="white-color">14.6k</span>&nbsp;字
             
             
             
@@ -638,9 +645,9 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
     
 
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script><!-- hexo-inject:begin --><!-- hexo-inject:end --></body>
+</body>
 
 </html>

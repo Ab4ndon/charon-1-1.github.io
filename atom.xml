@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2021-03-22T12:20:21.970Z</updated>
+  <updated>2021-07-06T06:04:57.478Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test</title>
+    <link href="http://kongcm.cn/2021/07/06/test/"/>
+    <id>http://kongcm.cn/2021/07/06/test/</id>
+    <published>2021-07-06T06:03:29.000Z</published>
+    <updated>2021-07-06T06:04:57.478Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;span class=&quot;github-emoji&quot; style=&quot;color: transparent;background:no-repeat
+        
+      
+    
+    </summary>
+    
+    
+    
+      <category term="测试" scheme="http://kongcm.cn/tags/%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
   
   <entry>
     <title>算法设计与分析之二分搜索_合并排序_快速排序</title>
