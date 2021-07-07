@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2021-07-06T09:57:07.054Z</updated>
+  <updated>2021-07-07T13:18:08.198Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>NJUPT算法实验一</title>
-    <link href="http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E4%B8%80/"/>
-    <id>http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E4%B8%80/</id>
-    <published>2021-07-06T08:56:05.000Z</published>
-    <updated>2021-07-06T09:57:07.054Z</updated>
+    <title>test2</title>
+    <link href="http://kongcm.cn/2021/07/07/test2/"/>
+    <id>http://kongcm.cn/2021/07/07/test2/</id>
+    <published>2021-07-07T13:17:03.000Z</published>
+    <updated>2021-07-07T13:18:08.198Z</updated>
     
     <summary type="html">
     
@@ -29,9 +29,88 @@
       
         
         
-          &lt;span id=&quot;more&quot;&gt;&lt;/span&gt;
-
-&lt;h2 id=&quot;实验要求：&quot;&gt;&lt;a href=&quot;#实验要求：&quot; class=&quot;headerlink&quot; title=&quot;实验要求：&quot;&gt;&lt;/a&gt;实验要求：&lt;/h2&gt;&lt;p&gt;1用分治法实现一组无序序列的两路合并排序和快速排序。
+          &lt;p&gt;111&lt;/p&gt;
+&lt;script&gt;
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if (!el.dataset.src) {
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>test</title>
+    <link href="http://kongcm.cn/2021/07/07/test/"/>
+    <id>http://kongcm.cn/2021/07/07/test/</id>
+    <published>2021-07-07T13:11:49.000Z</published>
+    <updated>2021-07-07T13:18:28.592Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script&gt;
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if (!el.dataset.src) { return; }
+       
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构实验一</title>
+    <link href="http://kongcm.cn/2021/07/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/"/>
+    <id>http://kongcm.cn/2021/07/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</id>
+    <published>2021-07-06T10:22:53.000Z</published>
+    <updated>2021-07-06T10:22:53.594Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script&gt;
+        document.querySelectorAll(&#39;.github-emoji&#39;)
+          .forEach(el =&gt; {
+            if (!el.dataset.src) { return; }
+       
+        
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>NJUPT 算法实验（合集）</title>
+    <link href="http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/"/>
+    <id>http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</id>
+    <published>2021-07-06T08:56:05.000Z</published>
+    <updated>2021-07-07T12:36:52.752Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;实验一：&quot;&gt;&lt;a href=&quot;#实验一：&quot; class=&quot;headerlink&quot; title=&quot;实验一：&quot;&gt;&lt;/a&gt;实验一：&lt;/h2&gt;&lt;p&gt;1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理，
         
       
     
@@ -45,7 +124,13 @@
     
       <category term="算法设计与分析" scheme="http://kongcm.cn/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"/>
     
-      <category term="NJUPT" scheme="http://kongcm.cn/tags/NJUPT/"/>
+      <category term="分治法" scheme="http://kongcm.cn/tags/%E5%88%86%E6%B2%BB%E6%B3%95/"/>
+    
+      <category term="动态规划法" scheme="http://kongcm.cn/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B3%95/"/>
+    
+      <category term="回溯法" scheme="http://kongcm.cn/tags/%E5%9B%9E%E6%BA%AF%E6%B3%95/"/>
+    
+      <category term="密码算法" scheme="http://kongcm.cn/tags/%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95/"/>
     
   </entry>
   
@@ -54,7 +139,7 @@
     <link href="http://kongcm.cn/2021/03/22/Algorithm-code/"/>
     <id>http://kongcm.cn/2021/03/22/Algorithm-code/</id>
     <published>2021-03-22T12:17:12.000Z</published>
-    <updated>2021-03-22T12:20:21.970Z</updated>
+    <updated>2021-07-07T14:06:01.416Z</updated>
     
     <summary type="html">
     
@@ -85,11 +170,17 @@ template&amp;lt;class
     <link href="http://kongcm.cn/2021/03/17/Android/"/>
     <id>http://kongcm.cn/2021/03/17/Android/</id>
     <published>2021-03-17T15:38:15.000Z</published>
-    <updated>2021-03-17T15:45:46.179Z</updated>
+    <updated>2021-07-07T13:55:07.619Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。&lt;/p&gt;
+      
+      
+        
+        
+          &lt;h4 id=&quot;1-边框圆角化&quot;&gt;&lt;a href=&quot;#1-边框圆角化&quot; class=&quot;headerlink&quot; title=&quot;1.边框圆角化&quot;&gt;&lt;/a&gt;1.边框圆角化&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;line-numbers
+        
+      
     
     </summary>
     
@@ -106,7 +197,7 @@ template&amp;lt;class
     <link href="http://kongcm.cn/2021/03/17/GitQues/"/>
     <id>http://kongcm.cn/2021/03/17/GitQues/</id>
     <published>2021-03-17T01:40:45.000Z</published>
-    <updated>2021-03-20T15:16:40.434Z</updated>
+    <updated>2021-07-07T13:00:12.014Z</updated>
     
     <summary type="html">
     
@@ -134,7 +225,7 @@ template&amp;lt;class
     <link href="http://kongcm.cn/2021/03/16/DSQuestion/"/>
     <id>http://kongcm.cn/2021/03/16/DSQuestion/</id>
     <published>2021-03-16T13:55:54.000Z</published>
-    <updated>2021-03-18T08:17:36.491Z</updated>
+    <updated>2021-07-07T13:00:26.056Z</updated>
     
     <summary type="html">
     
@@ -182,11 +273,17 @@ template&amp;lt;class
     <link href="http://kongcm.cn/2021/03/11/DSLinearList/"/>
     <id>http://kongcm.cn/2021/03/11/DSLinearList/</id>
     <published>2021-03-11T15:33:35.000Z</published>
-    <updated>2021-03-12T15:27:55.953Z</updated>
+    <updated>2021-07-07T13:01:03.324Z</updated>
     
     <summary type="html">
     
-      &lt;h4 id=&quot;【数据结构】线性表基本运算的实现&quot;&gt;&lt;a href=&quot;#【数据结构】线性表基本运算的实现&quot; class=&quot;headerlink&quot; title=&quot;【数据结构】线性表基本运算的实现&quot;&gt;&lt;/a&gt;【数据结构】线性表基本运算的实现&lt;/h4&gt;&lt;p&gt;关于数据结构中线性表的顺序表示的基本运算的实现。&lt;/p&gt;
+      
+      
+        
+        
+          &lt;h4 id=&quot;【数据结构】线性表基本运算的实现&quot;&gt;&lt;a href=&quot;#【数据结构】线性表基本运算的实现&quot; class=&quot;headerlink&quot; title=&quot;【数据结构】线性表基本运算的实现&quot;&gt;&lt;/a&gt;【数据结构】线性表基本运算的实现&lt;/h4&gt;&lt;pre&gt;&lt;code
+        
+      
     
     </summary>
     
@@ -203,11 +300,19 @@ template&amp;lt;class
     <link href="http://kongcm.cn/2020/10/11/ALi/"/>
     <id>http://kongcm.cn/2020/10/11/ALi/</id>
     <published>2020-10-11T05:35:58.000Z</published>
-    <updated>2020-10-11T05:56:30.169Z</updated>
+    <updated>2021-07-07T13:02:33.049Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。&lt;/p&gt;
+      
+      
+        
+        
+          &lt;p&gt;自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。&lt;/p&gt;
+&lt;p&gt;首先，你需要将域名进行备案，备案完成后才能进行后续操作。&lt;/p&gt;
+&lt;p
+        
+      
     
     </summary>
     
@@ -222,7 +327,7 @@ template&amp;lt;class
     <link href="http://kongcm.cn/2020/09/26/hexo/"/>
     <id>http://kongcm.cn/2020/09/26/hexo/</id>
     <published>2020-09-26T03:09:24.000Z</published>
-    <updated>2020-10-11T05:58:48.227Z</updated>
+    <updated>2021-07-07T13:54:43.674Z</updated>
     
     <summary type="html">
     
@@ -291,11 +396,18 @@ template&amp;lt;class
     <link href="http://kongcm.cn/2020/07/25/DASCTF/"/>
     <id>http://kongcm.cn/2020/07/25/DASCTF/</id>
     <published>2020-07-25T08:57:02.000Z</published>
-    <updated>2020-07-25T10:16:17.220Z</updated>
+    <updated>2021-07-07T13:01:28.784Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验&lt;span class=&quot;github-emoji&quot; style=&quot;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain&quot; data-src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8&quot;&gt;😢&lt;/span&gt;&lt;span class=&quot;github-emoji&quot; style=&quot;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain&quot; data-src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8&quot;&gt;😢&lt;/span&gt;，遭受了五个小时的吊打。&lt;/p&gt;
+      
+      
+        
+        
+          &lt;p&gt;&lt;img src=&quot;/2020/07/25/DASCTF/image-20200725170156404.png&quot; alt=&quot;image-20200725170156404&quot;&gt;&lt;/p&gt;
+&lt;p&gt;没错，就是这么残忍。直接把我0封了。&lt;img
+        
+      
     
     </summary>
     
@@ -333,11 +445,17 @@ template&amp;lt;class
     <link href="http://kongcm.cn/2020/07/05/0xctf/"/>
     <id>http://kongcm.cn/2020/07/05/0xctf/</id>
     <published>2020-07-05T08:31:31.000Z</published>
-    <updated>2020-09-28T08:33:56.085Z</updated>
+    <updated>2021-07-07T13:03:03.500Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打&lt;span class=&quot;github-emoji&quot; style=&quot;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain&quot; data-src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8&quot;&gt;😭&lt;/span&gt;&lt;span class=&quot;github-emoji&quot; style=&quot;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain&quot; data-src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8&quot;&gt;😭&lt;/span&gt;,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.&lt;/p&gt;
+      
+      
+        
+        
+          &lt;h4 id=&quot;1-soeasy&quot;&gt;&lt;a href=&quot;#1-soeasy&quot; class=&quot;headerlink&quot; title=&quot;1.soeasy&quot;&gt;&lt;/a&gt;1.soeasy&lt;/h4&gt;&lt;p&gt;&lt;img
+        
+      
     
     </summary>
     

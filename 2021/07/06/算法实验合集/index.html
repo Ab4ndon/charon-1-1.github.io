@@ -1,0 +1,2419 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="NJUPT 算法实验（合集）, Ab4nd0n">
+    <meta name="description" content="记录学习，记录生活。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>NJUPT 算法实验（合集） | Ab4nd0n</title>
+    <link rel="icon" type="image/jpeg" href="/medias/touxiang.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/js/prism/prism.css">
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/touxiang.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ab4nd0n</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/touxiang.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ab4nd0n</div>
+        <div class="logo-desc">
+            
+            记录学习，记录生活。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+    
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/4.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">NJUPT 算法实验（合集）</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+   /* .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    } */
+    .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/C/">
+                                <span class="chip bg-color">C++</span>
+                            </a>
+                        
+                            <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">
+                                <span class="chip bg-color">算法设计与分析</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/">
+                                <span class="chip bg-color">分治法</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B3%95/">
+                                <span class="chip bg-color">动态规划法</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%9B%9E%E6%BA%AF%E6%B3%95/">
+                                <span class="chip bg-color">回溯法</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95/">
+                                <span class="chip bg-color">密码算法</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="post-category">
+                                算法设计与分析
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-06
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-07
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    5.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    27 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实验一："><a href="#实验一：" class="headerlink" title="实验一："></a>实验一：</h2><p>1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。 </p>
+<p>2采用基于“五元中值组取中值分割法”（median-of-median-of-five partitioning） 的线性<br> 时间选择算法，找出 N 个元素集合 S 中的第 k 个最小的元素，使其在线性时间内解决。（参<br> 考教材 5.5.3 节）</p>
+<p>​        <strong>分治法</strong>采用将一个难以直接求解的复杂问题分解成若干个规模较小、相互独立，但类型相同的子问题，直到子问题足够小，能够直接求解为止，然后求解这些子问题，并且将子问题的解合成原始问题的一个完整解的策略。基于这样一种策略，我们可以用它来解决一系列复杂的问题。对于排序问题，将原来的序列分成一个个子序列后分别进行排序，再将已排序的子序列合成一个有序序列是可行的，所以符合分治法策略。不过，合并排序和快速排序虽然都运用分治策略，但两者的角度不同，得到的排序算法也不相同。合并排序的问题分解过程十分简单，只需将序列一分为二即可：而快速排序的问题分解方法相对较困难，需调用Partition函数将一个序列划分为子序列。然而，从子问题解得到原问题解的过程对于快速排序来说异常简单，几乎无须额外的工作；但对于合并排序，则需要调用Merge函数来实现。所以，其实Partition函数和Merge函数是这两种排序算法的核心。而线性时间选择第k小元素这个算法我觉得也是受到了快速排序中的分划方法的启迪，采用分治法策略去求。</p>
+<h3 id="1-合并排序与快速排序"><a href="#1-合并排序与快速排序" class="headerlink" title="1.合并排序与快速排序"></a>1.合并排序与快速排序</h3><pre><code class="line-numbers language-c++">#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#define INFTY 2147483647;
+using namespace std;
+
+class SortableList
+{
+    public:
+        SortableList(int mSize)
+        {
+            maxSize = mSize;
+            l = new int[maxSize];
+            n = 0;
+        }
+        ~SortableList()
+    {
+    delete[] l;
+    }
+        void Input();
+        void Output();
+        void MergeSort();
+        void QuickSort();
+    private:
+        int *l;
+        int maxSize;
+        int n;
+        void Merge(int left,int mid,int right);
+        void MergeSort(int left,int right);
+        void QuickSort(int left, int right);
+        void Swap(int i,int j);
+        int Partition(int left, int right);
+        
+        
+};
+
+void SortableList::Merge(int left,int mid,int right)
+{
+    int *temp = new int[right - left + 1];
+    int i = left, j = mid + 1, k = 0;
+    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
+        if(l[i]&lt;=l[j])
+            temp[k++] = l[i++];
+        else
+            temp[k++] = l[j++];
+    while(i&lt;=mid)                //将剩余元素输出
+        temp[k++] = l[i++];
+    while(j&lt;=right)
+        temp[k++] = l[j++];
+    for (i = 0, k = left; k &lt;= right;)  //将排好序的有序序列复制到原序列中去
+        l[k++] = temp[i++];
+}
+
+void SortableList::MergeSort()
+{
+    MergeSort(0,n-1);
+}
+void SortableList::MergeSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int mid = left + (right-left) / 2;
+        MergeSort(left,mid);
+        MergeSort(mid+1,right);
+        Merge(left,mid,right);
+    }
+}
+
+void SortableList::Swap(int i,int j)
+{
+    int temp = l[i];
+    l[i] = l[j];
+    l[j] = temp;
+}
+
+int SortableList::Partition(int left,int right)
+{
+    int i = left, j = right + 1;
+    l[n]=INFTY;
+    do{
+        do
+            i++;
+        while (l[i]&lt;l[left]);
+        do
+            j--;
+        while (l[j]&gt;l[left]);
+        if(i&lt;j)
+            Swap(i,j);
+    } while (i &lt; j);
+    Swap(left,j);
+    return j;
+}
+
+void SortableList::QuickSort()
+{
+    QuickSort(0,n-1);
+}
+void SortableList::QuickSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int j = Partition(left,right);
+        QuickSort(left,j-1);
+        QuickSort(j+1,right);
+    }
+}
+
+// void SortableList::Input()
+// {
+//     for (int i = 0; i &lt; maxSize;i++)
+//     {
+//         cin &gt;&gt; l[i];
+//         n++;
+//     }
+// }
+
+void SortableList::Input()
+{
+    int i = 0;
+    ifstream out ("Sort.txt");
+    if(!out)
+    {
+        cout &lt;&lt; "Can not open output file.\n";
+        return;
+    }
+    for (i = 0; i &lt; maxSize;i++)
+    {
+        out &gt;&gt; l[i];
+        n++;
+    }
+    out.close();
+   
+}
+
+void SortableList::Output()
+{
+    for (int i = 0; i &lt; maxSize;i++)
+    {
+        cout &lt;&lt; l[i] &lt;&lt; " ";
+       // cout &lt;&lt; endl;
+    }
+}
+
+int main()
+{
+    int key;
+    int x, k;
+    SortableList list(30);
+    cout &lt;&lt; "原始序列：\n" &lt;&lt; endl;
+    list.Input();
+    list.Output();
+    cout &lt;&lt; "\n\n请选择排序算法：【0】两路合并排序  【1】快速排序\n" &lt;&lt; endl;
+    cin &gt;&gt; key;
+    
+    if(key==0)
+    {
+        list.MergeSort();
+    }
+    else
+        list.QuickSort();
+    cout &lt;&lt; "排序后的序列：\n\n";
+    list.Output();
+   
+}
+</code></pre>
+<h3 id="2-选择第k小元素"><a href="#2-选择第k小元素" class="headerlink" title="2.选择第k小元素"></a>2.选择第k小元素</h3><p>​       求第k小元素其实可以直接通过排序算法将原序列排序好，然后取出第k小元素即可，但是这样的话在最坏情况下的时间复杂度就不是线性的了，比如采用快速排序，那么在最坏情况下时间复杂度为O(n^2)。人们并不满足与这样的时间复杂度，所以继续去优化这样的一个算法，采用二次取中法确定主元的方式使得分划所得的两个子集合的大小相对接近，从而避免了上述最坏情况的发生，使得最坏情况下的时间复杂度也是O(n),我想这就是算法设计与分析的魅力所在，通过应用或设计一种算法去不断优化时空复杂度。</p>
+<pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#define INFTY 2147483647;
+using namespace std;
+
+class SortableList
+{
+    public:
+        SortableList(int mSize)
+        {
+            maxSize = mSize;
+            l = new int[maxSize];
+            n = 0;
+        }
+        ~SortableList()
+    {
+    delete[] l;
+    }
+        void Input();
+        void Output();
+        void MergeSort();
+        int Select(int&amp; x,int k);
+        int Ceil(int a,int b);
+
+    private:
+        int *l;
+        int maxSize;
+        int n;
+        void Merge(int left,int mid,int right);
+        void MergeSort(int left,int right);
+        void Swap(int i,int j);
+        int Partition(int left, int right);
+        int Select(int k,int left,int right,int r);
+        
+};
+
+void SortableList::Merge(int left,int mid,int right)
+{
+    int *temp = new int[right - left + 1];
+    int i = left, j = mid + 1, k = 0;
+    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
+        if(l[i]&lt;=l[j])
+            temp[k++] = l[i++];
+        else
+            temp[k++] = l[j++];
+    while(i&lt;=mid)                //将剩余元素输出
+        temp[k++] = l[i++];
+    while(j&lt;=right)
+        temp[k++] = l[j++];
+    for (i = 0, k = left; k &lt;= right;)  //将排好序的有序序列复制到原序列中去
+        l[k++] = temp[i++];
+}
+
+void SortableList::MergeSort()
+{
+    MergeSort(0,n-1);
+}
+void SortableList::MergeSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int mid = left + (right-left) / 2;
+        MergeSort(left,mid);
+        MergeSort(mid+1,right);
+        Merge(left,mid,right);
+    }
+}
+
+void SortableList::Swap(int i,int j)
+{
+    int temp = l[i];
+    l[i] = l[j];
+    l[j] = temp;
+}
+
+int SortableList::Partition(int left,int right)
+{
+    int i = left, j = right + 1;
+    l[n]=INFTY;
+    do{
+        do
+            i++;
+        while (l[i]&lt;l[left]);
+        do
+            j--;
+        while (l[j]&gt;l[left]);
+        if(i&lt;j)
+            Swap(i,j);
+    } while (i &lt; j);
+    Swap(left,j);
+    return j;
+}
+
+
+void SortableList::Input()
+{
+    int i = 0;
+    ifstream out ("Sort.txt");
+    if(!out)
+    {
+        cout &lt;&lt; "Can not open output file.\n";
+        return;
+    }
+    for (i = 0; i &lt; maxSize;i++)
+    {
+        out &gt;&gt; l[i];
+        n++;
+    }
+    out.close();
+   
+}
+
+void SortableList::Output()
+{
+    for (int i = 0; i &lt; maxSize;i++)
+    {
+        cout &lt;&lt; l[i] &lt;&lt; " ";
+       // cout &lt;&lt; endl;
+    }
+}
+
+int SortableList::Ceil(int a,int b)
+{
+    return (int)(a / b) + 1;
+}
+
+int SortableList::Select(int&amp;x,int k)
+{
+    if(n&lt;=0||k&gt;n||k&lt;=0)
+        return -1;
+    int j = Select(k,0,n-1,5);
+    x = l[j];
+        return 1;
+}
+
+int SortableList::Select(int k,int left,int right,int r)
+{
+    int n = right - left + 1;
+    if(n&lt;=r)
+    {
+        MergeSort(left,right);
+        return left + k - 1;
+    }
+    for (int i = 1; i &lt; n / r;i++)
+    {
+        MergeSort(left+(i-1)*r,left+i*r-1);
+        Swap(left+i-1,left+(i-1)*r+Ceil(r,2)-1);
+
+    }
+    int j = Select(Ceil(n/r,2),left,left+(n/2)-1,r);
+    Swap(left,j);
+    j = Partition(left,right);
+    if(k==j-left+1)
+        return j;
+    else if(k&lt;j-left+1)
+        return Select(k,left,j-1,r);
+        else
+            return Select(k-(j-left+1),j+1,right,r);
+
+}
+
+int main()
+{
+    int key;
+    int x, k;
+    SortableList list(30);
+    list.Input();
+    list.Output();
+    cout &lt;&lt; "\n\n请输入要寻找的第几小元素：\n";
+    cin &gt;&gt; k;
+    list.Select(x,k);
+    cout &lt;&lt; x &lt;&lt; endl;
+    //list.Output();
+}
+</code></pre>
+<h2 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h2><ul>
+<li>用动态规划法和备忘录方法实现求两序列的 最长公共子序列问题。 要求掌握动态规划法思想在实际中的应用，分析最长公共子序列的问题特征，选择算法策略并设计具体算法，编程实现两输入序列的比较，并输出它们的最长公共子序列。</li>
+<li>用动态规划法和备忘录方法求解矩阵相乘问题， 求得最优的计算次序以使得矩阵连乘总的数乘次数最少，并输出加括号的最优乘法算式。</li>
+</ul>
+<h3 id="1-最长公共子序列"><a href="#1-最长公共子序列" class="headerlink" title="1.最长公共子序列"></a>1.最长公共子序列</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+using namespace std;
+int const MaxLen = 50;
+class LCS
+{
+    public:
+        LCS(int nx,int ny,char *a,char *b);
+        ~LCS();
+        int LCSLength();
+        void CLCS();
+        void Output(int **a);
+        int** getc()  // 用来访问私有数据成员
+        {
+            return c;
+        };
+         int** gets()
+        {
+            return s;
+        };
+
+    private:
+        void CLCS(int i,int j);
+        int **c, **s;
+        int m, n;
+        char *x, *y;
+};
+
+LCS::LCS(int nx,int ny,char *a,char *b)
+{
+    m = nx;
+    n = ny;
+    x = a;
+    y = b;
+    c = new int *[m + 1];
+    s = new int *[m + 1];
+    for (int i = 0; i &lt;= m;i++)
+    {
+        c[i] = new int[n + 1];
+        s[i] = new int[n + 1];
+    }
+}
+
+LCS::~LCS()
+{
+    for (int i = 0; i &lt; m;i++)
+    {
+        delete c[i];
+        delete s[i];
+    }
+    delete c;
+    delete s;
+}
+
+int LCS::LCSLength()
+{
+    int i,j;
+    for ( i = 0; i &lt;= m;i++)
+        {
+            c[i][0] = 0;
+            s[i][0] = 0;
+        }
+    for (j = 1; j &lt;= n;j++)
+        {
+            c[0][j] = 0;
+            s[0][j] = 0;
+        }
+    for (i = 1; i &lt;= m;i++)
+        {
+            for (j = 1; j &lt;= n;j++)
+            {
+                // if(x[i]==y[i])   !!!!! 应该是y[j]
+                // {
+                //     c[i][j] = c[i-1][j-1]+ 1;   // 左上格值 + 1
+                //     s[i][j] = 1;
+                // }
+                if(x[i] == y[j])  //由c[i-1][j-1]得到c[i][j]
+                {
+                    c[i][j] = c[i - 1][j - 1] + 1;
+                    s[i][j] = 1;
+                }
+                else if(c[i-1][j] &gt;= c[i][j-1])    // 左格值 &gt; 上格值
+                {
+                    c[i][j] = c[i - 1][j];
+                    s[i][j] = 2;
+                }
+                else     //左格值 &lt; 上格值
+                {
+                    c[i][j] = c[i][j - 1];
+                    s[i][j] = 3;
+                }
+            }
+        }    
+return c[m][n];      // 返回最优解值
+}
+
+void LCS::CLCS(int i,int j)
+{
+    if(i==0||j==0)
+        return;
+    if(s[i][j]==1)
+    {
+        CLCS(i-1,j-1);
+        cout &lt;&lt; x[i];
+    }else if(s[i][j]==2)
+        CLCS(i-1,j);
+    else
+        CLCS(i, j - 1);
+}
+void LCS::CLCS()
+{
+    CLCS(m,n);
+}
+
+void LCS::Output(int **a)
+{
+    
+    int i, j;
+    printf("  ");
+    for (i = 0; i &lt;= n;i++)
+    {
+        printf("%4d",i);
+    }
+    printf("\n");
+    for (i = 0; i &lt;= m;i++)
+    {
+        printf("%2d",i);
+        for (j = 0; j &lt;= n;j++)
+           {
+               printf("%4d",a[i][j]);
+           }
+           printf("\n");
+    }
+   
+}
+
+int main()
+{
+    // int nx = 7, ny = 6;
+    // char *x = (char*)"0abcbdab";
+    // char *y = (char*)"0bdcaba";
+    
+    int nx, ny;
+    char *x = new char[MaxLen], *y = new char[MaxLen];
+    cout &lt;&lt; "Please input X:(Start with 0, like 0ab)" &lt;&lt; endl;
+    scanf("%s", x);
+    nx = strlen(x)-1;
+    cout &lt;&lt;endl&lt;&lt; "Please input Y:(Start with 0, like 0ab)" &lt;&lt; endl;
+    scanf("%s", y);
+    ny = strlen(y)-1;
+    LCS lcs(nx, ny, x, y);
+    cout &lt;&lt;endl&lt;&lt; "The LCSLength of X and Y is: " &lt;&lt; lcs.LCSLength() &lt;&lt; endl&lt;&lt;endl;
+    cout &lt;&lt; "The CLCS is: " ;
+    lcs.CLCS();
+    cout &lt;&lt; endl;
+    
+    cout &lt;&lt;endl&lt;&lt; "  c  =  " &lt;&lt; endl&lt;&lt;endl;
+    lcs.Output(lcs.getc());    // 输出c[i][j]
+    cout &lt;&lt;endl&lt;&lt;endl&lt;&lt; "  s  =  " &lt;&lt; endl&lt;&lt;endl;
+    lcs.Output(lcs.gets());   // 输出s[i][j]
+    delete []x;
+    delete []y;
+    return 0;
+}
+</code></pre>
+<h3 id="2-矩阵连乘"><a href="#2-矩阵连乘" class="headerlink" title="2.矩阵连乘"></a>2.矩阵连乘</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+#include &lt;iomanip&gt;  //输出格式头文件
+using namespace std;
+int const MaxLen = 50;
+class MatrixChain
+{
+    public:
+        MatrixChain(int mSize,int *q);
+        int MChain();
+        int LookupChain();
+        void Traceback();
+        void Output();
+
+    private:
+        void Traceback(int i,int j);
+        int LookupChain(int i,int j);
+        int *p, **m, **s, n;
+};
+
+MatrixChain::MatrixChain(int mSize, int *q)
+{  n=mSize;
+   m=new int*[n];   s=new int*[n];   p=new int[n+1];
+   for(int i=0; i&lt;n; i++)
+   {  m[i]=new int [n];   m[i][i]=0;
+      s[i]=new int [n];   s[i][i]=0;
+         p[i]=q[i];
+   }
+   p[n]=q[n];
+}
+
+int MatrixChain::MChain()
+{  //求A[0:n-1]的最优解值
+   //for (int i=0;i&lt;n; i++) m[i][i]=0;  //由于构造函数中有了m[i][i]=0的语句，这条可以删除，且备忘录方法输出的s数组对角线就是0，否则不正确。
+   for (int r=2; r&lt;=n; r++)
+     for (int i=0; i&lt;=n-r; i++) 
+                    {   int j=i+r-1;
+           m[i][j]=m[i+1][j]+p[i]*p[i+1]*p[j+1];  //m[i][j] 的初值
+            s[i][j]=i;
+            for (int k=i+1;    k&lt;j; k++) 
+                                {  int t=m[i][k]+m[k+1][j]+p[i]*p[k+1]*p[j+1];
+                 if (t&lt;m[i][j]) 
+                                            {  m[i][j]=t;   s[i][j]=k;
+                                            }
+                                }
+                    }
+      return m[0][n-1];
+}
+
+void MatrixChain::Traceback(int i,int j)
+{
+    if(i==j)
+    {
+        cout &lt;&lt; 'A' &lt;&lt; i;
+        return;
+    }
+    if(i&lt;s[i][j])
+        cout &lt;&lt; '(';
+    Traceback(i,s[i][j]);
+    if(i&lt;s[i][j])
+        cout &lt;&lt; ')';
+    if(s[i][j]+1&lt;j)
+        cout &lt;&lt; '(';
+    Traceback(s[i][j]+1,j);
+    if(s[i][j]+1&lt;j)
+        cout &lt;&lt; ')';
+
+}
+
+void MatrixChain::Traceback()
+{
+    cout &lt;&lt; '(';
+    Traceback(0,n-1);
+    cout &lt;&lt; ')';
+    cout &lt;&lt; endl;
+}
+
+int MatrixChain::LookupChain(int i, int j)
+{   if (m[i][j]&gt;0) return m[i][j];                  //子问题已经求解，直接引用
+      if(i==j) return 0;                                      //单一矩阵无须计算
+      int u=LookupChain(i+1, j)+p[i]*p[i+1]*p[j+1]; //按式（7-9）求最小值
+    s[i][j]=i;
+    for (int k=i+1; k&lt;j; k++) 
+            {  int t=LookupChain(i, k)+LookupChain(k+1, j)+p[i]*p[k+1]*p[j+1];
+         if (t&lt;u) 
+                        {  u=t;   s[i][j]=k;
+                        }
+            }
+    m[i][j]=u; return u;                           //保存并返回子最优解值
+}
+
+int MatrixChain::LookupChain()
+{  
+    return LookupChain(0, n-1);     //返回A[0:n-1]的最优解值
+}
+
+void MatrixChain::Output()
+{  int i,j;
+  
+   cout&lt;&lt;"  m="&lt;&lt;endl;
+   cout&lt;&lt;"  ";
+   for(j=0; j&lt;n; j++)
+                  if(j&lt;2) cout&lt;&lt;setw(4)&lt;&lt;j;
+                        else cout&lt;&lt;setw(6)&lt;&lt;j;
+   cout&lt;&lt;endl;
+
+   for(i=0; i&lt;n; i++)
+   {  cout&lt;&lt;"  "&lt;&lt;i&lt;&lt;" ";
+      for(j=0; j&lt;n; j++)
+                        {  if(i&lt;j) cout&lt;&lt;setw(6)&lt;&lt;m[i][j];  //setw(6), 指定输出域宽为6
+         else if(i==j) cout&lt;&lt;setw(2)&lt;&lt;m[i][j];
+            else cout&lt;&lt;setw(6)&lt;&lt;" ";
+                        }
+         cout&lt;&lt;endl;
+   }
+
+   cout&lt;&lt;"  s="&lt;&lt;endl;
+   cout&lt;&lt;"    ";
+   for(j=0; j&lt;n; j++) cout&lt;&lt;j&lt;&lt;" ";
+   cout&lt;&lt;endl;
+   for(i=0; i&lt;n; i++)
+   {  cout&lt;&lt;"  "&lt;&lt;i&lt;&lt;" ";
+      for(j=0; j&lt;n; j++)
+      {  if(i&lt;=j) cout&lt;&lt;s[i][j]&lt;&lt;" ";
+         else cout&lt;&lt;"  ";
+      }
+      cout&lt;&lt;endl;
+   }
+}
+
+int main()
+{ 
+//   int nn=6,k,k2;
+//   int pp[7]={30,35,15,5,10,20,25};
+int pp[MaxLen];
+int nn,i,k, k2;
+cout &lt;&lt; "  请输入连乘矩阵的个数" &lt;&lt; endl;
+scanf("%d", &amp;nn);
+cout &lt;&lt; "  请输入连乘矩阵的"&lt;&lt;nn+1&lt;&lt;"个维数(以空格隔开)"&lt;&lt; endl;
+for (i = 1; i &lt;= nn+1;i++)
+    {
+        scanf("%d", &amp;pp[i-1]);
+    }
+MatrixChain mm(nn, pp);
+k = mm.MChain();
+cout &lt;&lt; "  最少数乘次数k=" &lt;&lt; k &lt;&lt; endl; //最少数乘次数k=15125
+mm.Traceback();                          //矩阵连乘次序:(((A0(A1A2))((A3A4)A5))
+cout &lt;&lt; endl;
+mm.Output();
+k2 = mm.LookupChain();
+cout &lt;&lt;endl&lt;&lt; "采用备忘录方法：" &lt;&lt; endl;
+cout &lt;&lt; "  最少数乘次数k2=" &lt;&lt; k2 &lt;&lt; endl; //最少数乘次数k=15125
+mm.Traceback();                            //矩阵连乘次序:(((A0(A1A2))((A3A4)A5))
+cout &lt;&lt; endl;
+mm.Output();
+
+  
+}
+</code></pre>
+<h2 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a>实验三</h2><ul>
+<li><p>用回溯法求解 8- 皇后问题，使放置在 8*8 棋盘上的 8 个皇后彼此不受攻击，即：任何两个皇后都不在同一行、同一列或同一斜线上。请输出 8-皇后问题的所有可行解。</p>
+</li>
+<li><p>用回溯法编写一个递归程序解决如下装载问题： 有 n 个集装箱要装上 2 艘载重分别为 c1和 c2的轮船，其中集装箱 i 的重量为 wi（1≤ i ≤ n） ，且                                ,问是否有一个合理的装载方案可以将这 n 个集装箱装上这 2 艘轮船？如果有，请给出装载方案</p>
+<p>提示 ：参考 子集和数问题的求解方法。 </p>
+<p>举例 ： 当 n=3， c1=c2=50， 且 w=[10,40,40]时， 可以将集装箱 1 和 2 装到第一艘轮船上，集装箱 3 装到第二艘轮船上；如果 w=[20,40,40]时，无法将这 3 个集装箱都装上轮船。</p>
+</li>
+</ul>
+<h3 id="1-8皇后问题"><a href="#1-8皇后问题" class="headerlink" title="1.8皇后问题"></a>1.8皇后问题</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cmath&gt;
+#define N 8        // 8 皇后
+using namespace std;
+int count = 0,count2=0;
+
+//判定两个皇后是否在同一列或在同一斜线上
+bool Place(int k, int i, int *x)
+{
+   for(int j = 0; j &lt; k; j++)
+   if((x[j] == i) || (abs(x[j] - i) == abs(j - k))) 
+       return false;
+   return true;
+}
+
+//递归函数（求解n皇后问题）
+void NQueens(int k, int n, int *x) 
+{
+    for(int i = 0; i &lt; n; i++)  //显式约束的第一种观点，x[k] = 0,1,···,n-1
+    {
+        if(Place(k, i, x))  //约束函数
+        {
+            x[k] = i;
+            if(k == n - 1)    
+            {
+                for(i = 0; i &lt; n; i++) 
+                  cout &lt;&lt; x[i] &lt;&lt; " ";  //输出一个可行解
+                cout &lt;&lt; endl;
+                count ++;
+            }
+            else
+            {
+               NQueens(k + 1, n, x);  //深度优先进入下一层
+            }
+       }
+    }
+}
+
+void NQueens(int n, int *x)
+{
+    NQueens(0, n, x);
+}
+
+//求非对称解
+void NQueens2(int k, int n, int *x) 
+{
+    static int temp=n;        //求非对称的解
+    if(k==0)
+        n = int(temp / 2);
+    else
+        n = temp;
+    for(int i = 0; i &lt; n; i++)  //显式约束的第一种观点，x[k] = 0,1,···,n-1
+    {
+        if(Place(k, i, x))  //约束函数
+        {
+            x[k] = i;
+            if(k == n - 1)    
+            {
+                for(i = 0; i &lt; n; i++) 
+                  cout &lt;&lt; x[i] &lt;&lt; " ";  //输出一个可行解
+                cout &lt;&lt; endl;
+                count2 ++;
+            }
+            else
+            {
+               NQueens2(k + 1, n, x);  //深度优先进入下一层
+            }
+       }
+    }
+}
+
+void NQueens2(int n, int *x)
+{
+    NQueens2(0, n, x);
+}
+
+int main()
+{
+    int queens[N];  //8皇后
+    // int count = 0,count2=0;
+    for(int i = 0; i &lt; N; i++) 
+        queens[i] = -1;
+    NQueens(N, queens);
+    cout &lt;&lt;endl&lt;&lt; "可行解共有: " &lt;&lt; count &lt;&lt;" 组"&lt;&lt; endl;
+    cout &lt;&lt; endl&lt;&lt; " 仅输出非对称解 : " &lt;&lt; endl;
+    NQueens2(N, queens);
+    cout &lt;&lt;endl&lt;&lt; "非对称可行解共有: " &lt;&lt; count2 &lt;&lt;" 组"&lt;&lt; endl;
+    getchar();
+    return 0;
+}
+</code></pre>
+<h3 id="2-装载问题"><a href="#2-装载问题" class="headerlink" title="2.装载问题"></a>2.装载问题</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+
+using namespace std;
+
+template &lt;class T&gt; 
+class Loading  
+{ 
+private: 
+  int  n,  // 集装箱数 
+   x[100],   // 当前解 
+   bestx[100]; // 当前 第一艘 船的最优解 
+T  c1, // 第一艘轮船的核定载重量 
+   c2, // 第二艘轮船的核定载重量 
+   w[100], // 集装箱重量数组 
+   total,  // 所有集装箱重量之和 
+   cw,   // 当前 第一艘船的 载重量 
+   bestw, // 当前 第一艘 船的最优载重量 
+   r;   // 剩余集装箱总重量 
+public: 
+  Loading()   // 构造函数 
+  {
+    cout&lt;&lt;"请输入集装箱的数量："&lt;&lt;endl;
+    cin&gt;&gt;n;
+    cout&lt;&lt;"请输入轮船1、2的载重量："&lt;&lt;endl;
+    cin&gt;&gt;c1&gt;&gt;c2;
+    cout&lt;&lt;"请输入每个集装箱的重量："&lt;&lt;endl;
+    for(int i=1;i&lt;=n;i++)
+    {
+        cin&gt;&gt;w[i];
+    }
+
+    r=0;
+    cw=0;
+    bestw=0;
+    for(int i=1;i&lt;=n;i++)
+    {
+        r=r+w[i];
+    }
+  }
+
+      ~Loading() // 析构函数
+      {
+      }
+    void Backtrack(int i); // 找到最接近第一艘轮船载重c1 的最佳装载方案，
+                                // 最优载重值bestw ，最优解数组bestx 。
+    void Show();          // 输出整个装载方案 
+}; 
+ 
+template &lt;class T&gt; 
+void Loading&lt;T&gt;::Backtrack(int i) 
+{  
+ if(i&gt;n) //判断是否达到叶子节点
+    { //到达叶子节点
+        if(cw&gt;bestw)
+        {
+            for(int j=1;j&lt;=n;j++)
+            {
+                bestx[j]=x[j];   //把当前解赋给最优解
+            }
+            bestw=cw;    //把当前载重量赋给当前最优载重量
+        }
+    }
+
+    r=r-w[i];  //剩余集装箱的总重量
+    if(cw+w[i]&lt;=c1) //判断该集装箱到底放不放
+    {
+        x[i]=1;
+        cw=cw+w[i];
+        Backtrack(i+1);
+        //当节点i的子树延伸结束时要返回i节点
+        x[i]=0;
+        cw=cw-w[i];
+
+    }
+    if(cw+r&gt;bestw) //判断先不放该集装箱后是否还有可行解
+    {
+        x[i]=0;
+        Backtrack(i+1);
+    }
+    r=r+w[i];
+
+} 
+ 
+template &lt;class T&gt; 
+void Loading&lt;T&gt;::Show() 
+{
+    int c2w=0;
+    for(int i=1;i&lt;=n;i++)
+    {
+        if(bestx[i]==0)
+        {
+            c2w=c2w+w[i];
+        }
+    }
+    if(c2w&gt;c2)
+        cout&lt;&lt;endl&lt;&lt;"装载失败！无法装下所有的集装箱！"&lt;&lt;endl;
+    else
+    {
+        cout &lt;&lt; endl&lt;&lt;"成功装载！" &lt;&lt; endl;
+        cout&lt;&lt;"第一艘船所装的集装箱为："&lt;&lt;endl;
+        for(int i=1;i&lt;=n;i++)
+        {
+            if(bestx[i]==1)
+                cout&lt;&lt;i&lt;&lt;" ";
+        }
+        cout&lt;&lt;endl;
+        cout&lt;&lt;"第二艘船所装的集装箱为："&lt;&lt;endl;
+        for(int i=1;i&lt;=n;i++)
+        {
+            if(bestx[i]!=1)
+                cout&lt;&lt;i&lt;&lt;" ";
+        }
+
+    }
+
+} 
+ 
+int  main() 
+{ 
+  Loading&lt;int&gt; load;
+  load.~Loading();
+  load.Backtrack(1); 
+  load.Show(); 
+//   system("pause");
+  return 0;
+}
+</code></pre>
+<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><h3 id="编程一个简单的RSA加、解密系统。"><a href="#编程一个简单的RSA加、解密系统。" class="headerlink" title="编程一个简单的RSA加、解密系统。"></a>编程一个简单的RSA加、解密系统。</h3><ul>
+<li><p>假设用户A选择两个素数p和q，计算得到n=pq和Φ(n)=(p-1)(q-1)。选择一个加密密钥e，它小于Φ(n)且与Φ(n)互素。计算解密密钥 d≡ e-1 mod Φ(n)。则用户A公布公开密钥{e,n}，自己拥有私有密钥{d,n}。</p>
+</li>
+<li><p>用户B使用用户 A 的公开密钥 e 和 n 对报文 M 进行加密，得到 C= Me mod n，并发送给用户 A。</p>
+</li>
+<li><p>用户A收到加密的报文后，使用自己的私有密钥 d 和 n 对加密报文 C 进行解密，恢复得到明文 M=Cd mod n。</p>
+</li>
+</ul>
+<pre><code class="line-numbers language-c++">#include &lt;iostream&gt;
+using namespace std;
+int MOD;
+
+//由公开密钥e和n，求私有密钥d
+int ext_euclid(int a, int b, int &amp;x, int &amp;y) 
+{ 
+    if(b == 0)
+    {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    int gcd = ext_euclid(b, a % b, x, y);
+    int t = x % MOD;
+    x = y % MOD;
+    y = ((t - a / b * x) % MOD + MOD) % MOD;
+    return gcd;
+}
+
+int main()
+{
+    int p, q, i, d;
+    cout &lt;&lt; "请输入一个质数 p (如 101) :";
+    cin &gt;&gt; p;
+    cout &lt;&lt; "请输入一个质数 q (如 113) :";
+    cin &gt;&gt; q;
+    int n = p * q;
+    cout&lt;&lt;"分组加密时，每个分组的大小 n 不能超过 p*q=";
+    cout &lt;&lt; n &lt;&lt; endl;
+
+    //求得φ(n)=(p-1)*(q-1)的值
+    MOD = (p - 1) * (q - 1);
+    cout &lt;&lt; "模φ(n)=(p-1)*(q-1)=";
+    cout &lt;&lt; MOD &lt;&lt; endl &lt;&lt; endl;
+
+    //选取与φ(n)互质的公钥e
+    int e;
+    cout &lt;&lt; "输入与φ(n)互质的公钥 e (如 3533):";
+    cin &gt;&gt; e;
+
+    //由e和φ(n)生成私钥d
+    int x, y;
+    ext_euclid(e, MOD, d, y);
+    while(d &lt; 0) 
+        d += MOD;
+    cout &lt;&lt; "通过调用扩展欧几里德算法，求得密钥d为：" &lt;&lt; d &lt;&lt; endl;
+
+    //利用生成的公钥{e,n}对明文M进行加密
+    int M, C;
+    cout &lt;&lt; "现在公钥{e,n}、私钥{d,n}均已生成完毕。\n\n请输入需要传输的明文内容进行加密(如9726):";
+    cin &gt;&gt; M;
+    C = 1;
+    for(i = 1; i &lt;= e; i++)
+        C = C * M % n;
+    cout &lt;&lt;endl&lt;&lt; "-------------------- 加解密完成 ----------------------" &lt;&lt; endl&lt;&lt;endl;
+    cout &lt;&lt; "明文M= " &lt;&lt; M &lt;&lt; "  经加密后得到密文C=M^e(mod n):  " &lt;&lt; C &lt;&lt; endl;
+
+    //利用生成的私钥私钥{e,n}对密文C进行解密
+    M = 1;
+    for(i = 1; i &lt;= d; i++)
+        M = M * C % n;
+    cout &lt;&lt; "密文C= " &lt;&lt; C &lt;&lt; "  经解密后得到明文M=C^d(mod n):  " &lt;&lt; M &lt;&lt; endl;
+    return 0;
+}
+
+</code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Ab4nd0n</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/">http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Ab4nd0n</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/C/">
+                                    <span class="chip bg-color">C++</span>
+                                </a>
+                            
+                                <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">
+                                    <span class="chip bg-color">算法设计与分析</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/">
+                                    <span class="chip bg-color">分治法</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B3%95/">
+                                    <span class="chip bg-color">动态规划法</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%9B%9E%E6%BA%AF%E6%B3%95/">
+                                    <span class="chip bg-color">回溯法</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95/">
+                                    <span class="chip bg-color">密码算法</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'AxNbxfoIMrOxBzetVISTrmJe-gzGzoHsz',
+        appKey: 'A77RycvQsXl5xql5DXHq4Wj9',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+    
+</script>
+
+<!-- ֱ������ -->
+<div id="to_comment" class="comment-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#vcomments" title="ֱ������">
+        <i class="fas fa-comments"></i>
+    </a>
+</div>
+
+
+
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/07/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="数据结构实验一">
+                        
+                        <span class="card-title">数据结构实验一</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            Ab4nd0n
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/22/Algorithm-code/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/38.jpg" class="responsive-img" alt="算法设计与分析之二分搜索_合并排序_快速排序">
+                        
+                        <span class="card-title">算法设计与分析之二分搜索_合并排序_快速排序</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            #include &lt;stdio.h&gt;
+#include &lt;iostream&gt;
+using namespace std;
+
+template&lt;class T&gt;
+class SortableList
+{
+  
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E5%AD%A6%E4%B9%A0/" class="post-category">
+                                    学习
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90-C/">
+                        <span class="chip bg-color">算法设计与分析  C++</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('2'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">Ab4nd0n</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">20.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="/null" target="_blank">苏ICP备2020057407号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:2829493640@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2829493640" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2829493640" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+<script src="/js/prism/prism.js" async></script>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <script src="/js/FunnyTitle.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "96bb8160"
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>

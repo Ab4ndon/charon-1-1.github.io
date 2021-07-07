@@ -30,7 +30,7 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
-<meta name="generator" content="Hexo 5.4.0"><!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml">
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
 
@@ -249,7 +249,7 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/26.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
@@ -1041,11 +1041,7 @@ int main()
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打:sob::sob:,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.
-
-
-1.soeasy
-这个题还是蛮简单的，查看源码,稍微找找
+                            最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.
                         
                     </div>
                     <div class="publish-info">
@@ -1086,7 +1082,7 @@ int main()
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/26.jpg" class="responsive-img" alt="尝试用typora写博客">
+                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="尝试用typora写博客">
                         
                         <span class="card-title">尝试用typora写博客</span>
                     </div>
@@ -1178,8 +1174,8 @@ int main()
             tocSelector: '#toc-content',
             contentSelector: '#articleContent',
             headingsOffset: -($(window).height() * 0.4 - 45),
-            collapseDepth: Number('0'),
-            headingSelector: 'h2, h3, h4'
+            collapseDepth: Number('2'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
         });
 
         // modify the toc link href to support Chinese.
@@ -1191,7 +1187,7 @@ int main()
 
         // modify the heading title id to support Chinese.
         i = 0;
-        $('#articleContent').children('h2, h3, h4').each(function () {
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
             $(this).attr('id', tocHeading + (++i));
         });
 
@@ -1266,7 +1262,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">16.8k</span>&nbsp;字
+                class="white-color">20.3k</span>&nbsp;字
             
             
             
