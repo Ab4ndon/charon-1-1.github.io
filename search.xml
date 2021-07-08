@@ -34,244 +34,6 @@
       </tags>
   </entry>
   <entry>
-    <title>算法设计与分析之二分搜索_合并排序_快速排序</title>
-    <url>/2021/03/22/Algorithm-code/</url>
-    <content><![CDATA[<pre><code class="line-numbers language-c++">#include &lt;stdio.h&gt;
-#include &lt;iostream&gt;
-using namespace std;
-
-template&lt;class T&gt;
-class SortableList
-{
-    public:
-        SortableList(int mSize,int n,T*a);
-        ~SortableList();
-        int BSearch(const T&amp;x,int left,int right)const;  //把整个函数修饰为const，意思是“函数体内不能对成员数据做任何改动”。
-        int BSearch_DieDai(const T&amp;x,int n) const;
-       void Merge(int left,int mid,int right);
-       void MergeSort();
-       void MergeSort(int left,int right);
-       void Output();
-
-       void Swap(int &amp;a, int &amp;b);
-       int Partition(int left,int right);
-       void QuickSort();
-       void QuickSort(int left,int right);
-
-    private:
-        T*l;
-        int maxSize;
-        int num;
-
-};
-//构造函数
-template&lt;class T&gt;
-SortableList&lt;T&gt;::SortableList(int mSize,int n,T*a)
-{
-    l=a;
-    maxSize=mSize;
-    num=n;
-}
-//析构函数
-template&lt;class T&gt;
-SortableList&lt;T&gt;::~SortableList()
-{
-    delete[]l;
-}
-
-/*********************************** 二分搜索 ****************************/
-//采用递归的二分搜索
-template&lt;class T&gt;
-int SortableList&lt;T&gt; ::BSearch(const T&amp;x,int left,int right)const
-{
-    if(left&lt;=right)
-    {
-        int m=(left+right)/2;
-        if(x&lt;l[m]) 
-            return BSearch(x,left,m-1);
-        else if(x&gt;l[m])
-            return BSearch(x,m+1,right);
-        else return m;
-    }
-    return -1;
-}
-//采用迭代的二分搜索（尾递归改迭代）
-template&lt;class T&gt;
-int SortableList&lt;T&gt;::BSearch_DieDai(const T&amp;x,int n)const
-{
-    int m,left=0,right=n-1;
-    while(left&lt;=right)
-    {
-        m=(left+right)/2;
-        if(x&lt;l[m])  
-            right=m-1;
-        else if(x&gt;l[m])  
-            left=m+1;
-        else 
-            return m;
-    }
-    return -1;
-}
-
-/******************************* 合  并  排  序 ************************************/
-
-template &lt;class T&gt;
-void SortableList&lt;T&gt;::MergeSort()
-{
-    MergeSort(0,num-1);
-}
-template&lt;class T&gt;
-void SortableList&lt;T&gt;::MergeSort(int left,int right)
-{
-    if(left&lt;right)
-    {
-        int mid = (left+right)/2;
-        MergeSort(left,mid);
-        MergeSort(mid+1,right);
-        Merge(left,mid,right);
-    }
-}
-
-template &lt;class T&gt;
-void SortableList&lt;T&gt;::Merge(int left, int mid, int right)
-{                                      //a数组为待排序的数组 
-    T* temp =new T[right - left + 1]; //temp数组用来暂时保存排序好的数组 
-    int i = left, j = mid + 1, k = 0; //left 至mid为左半数组 ，mid+1至right为右半数组 
-    while((i &lt;= mid)&amp;&amp;(j &lt;= right))  //对应第一步 当左半数组和右半数组都不为空时 
-        if(l[i] &lt;= l[j])             //输出两个数组中的较小者 
-            temp[k ++] = l[i ++];
-        else
-            temp[k ++] = l[j ++];
-    while(i &lt;= mid)                  //当一数组为空时，输出另一数组的剩余元素 
-        temp[k ++] = l[i ++];
-    while(j &lt;= right)                //当一数组为空时，输出另一数组的剩余元素 
-        temp[k ++] = l[j ++];
-    for(i = 0, k = left; k &lt;= right;) //将temp数组赋值给原数组 
-        l[k ++] = temp[i ++];
-}
- 
-
-template&lt;class T&gt;
-void SortableList&lt;T&gt;::Output()
-{
-    for(int i = 0; i &lt; num; i++)
-        cout &lt;&lt; l[i] &lt;&lt; " ";
-    cout &lt;&lt; endl &lt;&lt; endl;
-}
-
-/********************************** 快  速  排  序 ***********************************/
-
-template&lt;class T&gt;
-void SortableList&lt;T&gt;::Swap(int &amp;a, int &amp;b)
-{
-    int t = a;
-    a = b;
-    b = t;
-}
-
-template &lt;class T&gt;
-int SortableList&lt;T&gt;::Partition(int left,int right)
-{
-    if(left&gt;=right)
-    {
-        cout&lt;&lt;"下标范围有误，请确保left&lt;right!"&lt;&lt;endl;
-        return 0;
-    }
-       
-    int i = left,j = right +1;
-    do 
-    {
-        do i++; while (l[i]&lt;l[left]);
-        do j--; while (l[j] &gt; l[left]);
-        if(i &lt; j) Swap(i,j);
-    }while(i &lt; j);
-    Swap(left,j);
-    return j;
-}
-
-template &lt;class T&gt;
-void SortableList&lt;T&gt;:: QuickSort()
-{
-    QuickSort(0,num-1);
-}
-
-template&lt;class T&gt;
-void SortableList&lt;T&gt;:: QuickSort(int left,int right)
-{
-    if(left&lt;right)
-    {
-        int j = Partition(left,right);   
-        if(j-left&lt;=right-j)                  //为了减少系统栈的深度，一般都会将长的子序列的上下界进栈         
-        {                                    //先处理短的子序列
-            if(j-left&gt;1)                     
-            {
-                QuickSort(left,j-1);
-                QuickSort(j+1,right);
-            }
-        }else
-        { 
-            if(right-j&gt;1)
-            {
-                QuickSort(j+1,right);
-                QuickSort(left,j-1);
-            }
-        }
-    }
-}
-
-/************************************ main 函数 ***********************************/
-int main()
-{
-    int a[5]={2,3,1,4,5};
-    SortableList&lt;int&gt; list =SortableList&lt;int&gt;(5,5,a);
-    int k = list.BSearch(4,0,4);
-    int j = list.BSearch_DieDai(4,6);
-    cout&lt;&lt;k;
-    cout&lt;&lt;j;
-     cout &lt;&lt; "排序前："&lt;&lt;endl;
-    // for (int i = 0; i &lt; 5; i++)
-    //     cout &lt;&lt; a[i] &lt;&lt; ' ';
-    // cout &lt;&lt; endl;
-    list.Output();
-    list.MergeSort();
-    cout &lt;&lt; "归并排序后："&lt;&lt;endl;
-    // for (int i = 0; i &lt; 5; i++)
-    //     cout &lt;&lt; a[i] &lt;&lt; ' ';
-    // cout &lt;&lt; endl;
-    list.QuickSort();
-    list.Output();
-    cout &lt;&lt; "快速排序后："&lt;&lt;endl;
-    list.Output();
-    return 0;
-}
-</code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>算法设计与分析  C++</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Android</title>
     <url>/2021/03/17/Android/</url>
     <content><![CDATA[<h4 id="1-边框圆角化"><a href="#1-边框圆角化" class="headerlink" title="1.边框圆角化"></a>1.边框圆角化</h4><pre><code class="line-numbers language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
@@ -409,188 +171,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>【数据结构】线性表基本运算的实现</title>
-    <url>/2021/03/11/DSLinearList/</url>
-    <content><![CDATA[<h4 id="【数据结构】线性表基本运算的实现"><a href="#【数据结构】线性表基本运算的实现" class="headerlink" title="【数据结构】线性表基本运算的实现"></a>【数据结构】线性表基本运算的实现</h4><pre><code class="line-numbers language-c">/*
-  author:Ab4nd0n
-  Time:2021-3-11
-*/
-
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-#define ERROR 0
-#define OK 1
-#define Overflow 2
-#define Underflow 3
-#define NotPresent 4
-#define Duplicate 5
-
-typedef int ElemType;
-typedef struct
-{
-    int n;              //元素个数
-    int maxlength;      //最大允许长度
-    ElemType *element;  //指针变量
-} SeqList;
-
-typedef int Status; //自定义类型
-
-//初始化
-/*
-为顺序表L动态分配一维数组
-若动态分配一维数组失败则返回ERROR（0）
-*/
-Status Init(SeqList *L,int mSize)
-{
-    L-&gt;n=0;
-    L-&gt;maxlength=mSize;
-    L-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
-    if(!L-&gt;element)  
-    {
-        return ERROR;
-    }
-    return OK;
-}
-
-//顺序表的查找(查找元素ai的值,直接定位下标)
-/*
-首先判断传入的下标i是否越界（0~n-1）
-若未越界，则取出element[i]的值传给x返回
-
-算法复杂度为O(1)
-*/
-Status Find(SeqList *L,int i)
-{
-    int x;
-    if(i&lt;0||i&gt;L-&gt;n-1)
-    {
-        return ERROR;
-    }
-    return x=L-&gt;element[i]
-
-}
-
-//顺序表的插入(在ai之后插入，即ai+1的位置)
-/*
-判断下标i是否越界 （-1~n-1）
-判断顺序表存储空间是否已满
-将元素ai+1~an-1依次向后移动一个位置
-将要插入元素赋值给element[i+1]
-表长+1
-
-算法复杂度为O(n)
-*/
-Status Insert (SeqList *L, int i,ElemType x)
-{
-    int j;
-     if(i&lt;-1||i&gt;L-&gt;n-1)  //注意此处i的范围 是&lt;-1 不是0  ！！！
-    {
-        return ERROR;
-    }
-    if(L-&gt;n==L-&gt;maxlength)   //判满
-    {
-        return ERROR;
-    }
-    for(j=L-&gt;n-1;j&gt;i;j--)       //通过循环将下标i+1到n-1的元素后移（从后往前）
-    {
-        L-&gt;element[j+1]=L-&gt;element[j];   //注意是j的值给j+1（从后往前）
-    }
-    L-&gt;element[i+1]=x; //把插入的 元素放到下标为 i+1 的位置
-    L-&gt;n=L-&gt;n+1;      //表长加1
-    return OK;
-
-}
-
-//顺序表的删除
-/*
-判断下标是否越界（0~n-1）
-判断顺序表是否为空
-将元素ai+1~an-1依次前移一个位置
-表长-1
-
-算法复杂度为O(n)
-*/
-Status Delete(SeqList *L,int i)
-{
-    int j;
-    if(i&lt;0||i&gt;L-&gt;n-1)  return ERROR;  //此处i&lt;0!!!注意和插入区分
-    if(!L-&gt;n)  return ERROR;    //判空
-    for(j=i+1;j&lt;L-&gt;n;j++)
-    {
-        L-&gt;element[j-1]=L-&gt;element[j];  //从前往后逐个前移元素，j的值给j-1
-    }
-    L-&gt;n--;    //表长-1
-    return OK;
-    
-}
-
-//顺序表的输出
-Status Output(SeqList *L)
-{
-    int i;
-    if(!L-&gt;n)   return ERROR;   //判空
-    for(i=0;i&lt;L-&gt;n;i++)
-    {
-        printf("%d",L-&gt;element[i]);
-    }
-    printf("\n\n");
-     return OK;
-}
-
-//顺序表的销毁
-void Destroy(SeqList *L)
-{
-    L-&gt;n=0;
-    L-&gt;maxlength=0;
-    free(L-&gt;element);
-    printf("Sucessfuly Destroy!\n");
-}
-
-
-int main()
-{
-    int i,k;
-    SeqList List;
-    k=Init(&amp;List,10); //因为Init函数的形参是指针变量（地址），所以这里要用取地址符！！！
-    printf("%d\n\n",k);   //测试返回值为 1
-    for(i=0;i&lt;10;i++)
-    {
-        Insert(&amp;List,i-1,i);  //执行插入操作
-    }
-    Output(&amp;List);    // 0123456789
-    Delete(&amp;List,2);
-    Output(&amp;List);    // 013456789
-    Destroy(&amp;List);   // Sucessfuly Destroy!
-}
-</code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>数据结构 C语言</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据结构疑问</title>
     <url>/2021/03/16/DSQuestion/</url>
     <content><![CDATA[<h4 id="1-时间复杂度O-1-与O-n-的区别？"><a href="#1-时间复杂度O-1-与O-n-的区别？" class="headerlink" title="1.时间复杂度O(1)与O(n)的区别？"></a>1.时间复杂度O(1)与O(n)的区别？</h4><p><img src="/2021/03/16/DSQuestion/image-20210316215804952.png" alt="image-20210316215804952"></p>
@@ -681,218 +261,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>【数据结构】单链表的基本运算实现</title>
-    <url>/2021/03/12/SingleList/</url>
-    <content><![CDATA[<h4 id="【数据结构】单链表的基本运算实现"><a href="#【数据结构】单链表的基本运算实现" class="headerlink" title="【数据结构】单链表的基本运算实现"></a>【数据结构】单链表的基本运算实现</h4><p>关于数据结构中线性表的链接表示的基本运算的实现,把书上单链表的代码敲了一遍，加了些注释。</p>
-<span id="more"></span>
-
-<pre><code class="line-numbers language-c">/*
-  author:Ab4nd0n
-  Time:2021-3-11
-*/
-
-#include &lt;stdio.h&gt;
-#include &lt;stdlib.h&gt;
-
-#define OK 1
-#define ERROR 0
-
-typedef int Status;
-typedef int ElemType;
-
-typedef struct node     //节点的结构体
-{
-    ElemType element;
-    struct node *link;
-}Node;
-
-typedef struct singleList //单链表的结构体
-{
-    Node *first;  //first 头指针，用来存放头结点a0的地址
-    int n;        //表示单链表中元素的个数
-}SingleList;
-
-
-//单链表的初始化
-Status Init(SingleList *L)
-{
-    L-&gt;first=NULL;
-    L-&gt;n=0;
-    return OK;
-}
-
-//单链表的查找
-/*
-判断下标i是否越界 0~n-1
-若未越界，则从头结点开始顺着单链表逐个结点查找
-通过循环让p指向结点ai
-将ai的值通过x返回（传值与传址，这边传进来的是地址，操作完会改变实参x的值）
-*/
-Status Find(SingleList *L,int i,ElemType *x)
-{
-    int j;
-    Node *p;
-    if(i&lt;0||i&gt;L-&gt;n-1)   return ERROR;
-      
-    p=L-&gt;first;          //p指向a0
-    for(j=0;j&lt;i;j++)
-    {
-        p=p-&gt;link;       //执行1次后p指向a1,反复指向下一个结点
-    }
-    *x=p-&gt;element;
-    return OK;
-}
-
-//单链表的插入
-/*
-判断i是否越界 （-1~n-1）
-查找ai,指针p指向此节点
-生成一个新的结点q，将新结点的数据域置为x，指针q指向此结点
-考虑i的取值：若i=-1,表明新结点q插在头结点a0之前，成为新的头结点
-            若i&gt;-1,将q所指向的结点插入p所指的结点之后（注意不要断链）
-单链表元素个数+1
-*/
-Status Insert(SingleList  *L,int i,ElemType x)
-{
-    Node *p,*q;
-    int j;
-    if(i&lt;-1||i&gt;L-&gt;n-1)
-    {
-        return  ERROR;
-    }
-    p=L-&gt;first;          //p指向头指针
-    for(j=0;j&lt;i;j++)     //从头开始查找ai
-    {
-        p=p-&gt;link;
-    }
-    q=(Node*)malloc(sizeof(Node));      //生成新节点q
-    q-&gt;element=x;
-
-    if(i&gt;-1)            //讨论i=-1和i&gt;-1的情况
-    {
-        q-&gt;link=p-&gt;link;
-        p-&gt;link=q;
-    }
-    else
-    {
-        q-&gt;link=L-&gt;first; //新节点插在头节点a0之前，成为新的头节点
-        L-&gt;first=q;
-    }
-    L-&gt;n++;
-    return OK;
-}
-
-//单链表的删除
-/*
-判断i是否越界（0~n-1）、单链表是否为空
-查找元素ai的直接前驱ai-1,并令指针q指向它
-考虑i的取值：若i=0,则从单链表中删除头结点
-            若i&gt;0，则使p指向ai所在的结点，并删除ai
-释放p所指结点的存储空间
-单链表元素个数-1
-*/
-Status Delete(SingleList *L,int i)
-{
-    int j;
-    Node *p,*q;
-    if(!L-&gt;n)  
-      return ERROR;
-    if(i&lt;0||i&gt;L-&gt;n-1)
-      return ERROR;
-    q=L-&gt;first;
-    p=L-&gt;first;
-    for(j=0;j&lt;i-1;j++)
-      q=q-&gt;link;
-    if(i==0)
-      L-&gt;first=L-&gt;first-&gt;link;    //删除的是头节点
-    else
-    {
-        p=q-&gt;link;               //p指向ai
-        q-&gt;link=p-&gt;link;          //ai+1的地址存到ai-1的指针域中
-    }
-    free(p);   //释放p所指结点的存储空间
-    L-&gt;n--;
-    return OK;
-
-}
-
-//单链表的输出
-Status Output(SingleList *L)
-{
-    Node *p;
-    if(!L-&gt;n)
-        return ERROR;
-    p=L-&gt;first;
-    while(p)
-    {
-        printf("%d ",p-&gt;element);
-        p=p-&gt;link;
-    }
-    printf("\n\n");
-    return OK;
-}
-
-//单链表的销毁
-void Destroy(SingleList *L)
-{
-    Node *p;
-    while (L-&gt;first)
-    {
-        p=L-&gt;first-&gt;link;  //保存后继结点地址，防止断链
-        free(L-&gt;first);   //释放first所指结点的存储空间
-        L-&gt;first=p;
-    }
-}
-
-
-int main()
-{
-    int i;
-    int x;
-    SingleList List;
-    i=Init(&amp;List);
-    printf("%d\n\n",i);     // 1
-    for(i=0;i&lt;10;i++)
-    {
-        Insert(&amp;List,i-1,i);
-    }
-    Output(&amp;List);    //0 1 2 3 4 5 6 7 8 9
-    Find(&amp;List,1,&amp;x);
-    printf("The value is : %d\n\n",x);  //1
-    Delete(&amp;List,3);
-    Output(&amp;List);  //0 1 2 4 5 6 7 8 9
-    Destroy(&amp;List);
-
-}
-
-</code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>数据结构 C语言</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>YCBCTF wp</title>
     <url>/2020/09/10/YCBCTF/</url>
     <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
@@ -961,29 +329,6 @@ int main()
       <tags>
         <tag>hexo 代码高亮 matery</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>test</title>
-    <url>/2021/07/07/test/</url>
-    <content><![CDATA[<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
   </entry>
   <entry>
     <title>MoeCTF wp</title>
@@ -1187,30 +532,6 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
       </tags>
   </entry>
   <entry>
-    <title>test2</title>
-    <url>/2021/07/07/test2/</url>
-    <content><![CDATA[<p>111</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-  </entry>
-  <entry>
     <title>尝试用typora写博客</title>
     <url>/2020/07/03/typora/</url>
     <content><![CDATA[<p>​    昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢:question:</p>
@@ -1303,29 +624,6 @@ int main()
       <tags>
         <tag>Typora</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>数据结构实验一</title>
-    <url>/2021/07/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</url>
-    <content><![CDATA[<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
   </entry>
   <entry>
     <title>诗和远方</title>
@@ -1712,7 +1010,7 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>NJUPT 算法实验（合集）</title>
+    <title>【NJUPT】 算法实验（合集）</title>
     <url>/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</url>
     <content><![CDATA[<h2 id="实验一："><a href="#实验一：" class="headerlink" title="实验一："></a>实验一：</h2><p>1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。 </p>
 <p>2采用基于“五元中值组取中值分割法”（median-of-median-of-five partitioning） 的线性<br> 时间选择算法，找出 N 个元素集合 S 中的第 k 个最小的元素，使其在线性时间内解决。（参<br> 考教材 5.5.3 节）</p>
@@ -2715,6 +2013,2287 @@ int main()
         <tag>动态规划法</tag>
         <tag>回溯法</tag>
         <tag>密码算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【NJUPT】数据结构实验(合集)</title>
+    <url>/2021/07/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</url>
+    <content><![CDATA[<h2 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h2><h3 id="1-顺序表的初始化、查找、插入、删除、输出、撤销等操作"><a href="#1-顺序表的初始化、查找、插入、删除、输出、撤销等操作" class="headerlink" title="1.顺序表的初始化、查找、插入、删除、输出、撤销等操作"></a>1.顺序表的初始化、查找、插入、删除、输出、撤销等操作</h3><pre><code class="line-numbers language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define ERROR 0
+#define OK 1
+#define Overflow 2
+#define Underflow 3
+#define NotPresent 4
+#define Duplicate 5
+
+typedef int ElemType;
+typedef struct seqlist
+{
+    int n;              //元素个数
+    int maxlength;      //最大允许长度
+    ElemType *element;  //指针变量
+} SeqList;
+
+typedef int Status; //自定义类型
+
+//初始化
+/*
+为顺序表L动态分配一维数组
+若动态分配一维数组失败则返回ERROR（0）
+*/
+Status Init(SeqList *L,int mSize)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=mSize;
+    L-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    if(!L-&gt;element)  
+    {
+        return ERROR;
+    }
+    return OK;
+}
+
+//顺序表的查找(查找元素ai的值,直接定位下标)
+/*
+首先判断传入的下标i是否越界（0~n-1）
+若未越界，则取出element[i]的值传给x返回
+
+算法复杂度为O(1)
+*/
+Status Find(SeqList L,int i,ElemType *x){
+    if(i&lt;0||i&gt;L.n-1){
+        return ERROR;    //判断元素下标i是否越界
+    }
+    *x=L.element[i];     //取出element[i]的值通过参数x返回
+    return OK;
+}
+
+
+//顺序表的插入(在ai之后插入，即ai+1的位置)
+/*
+判断下标i是否越界 （-1~n-1）
+判断顺序表存储空间是否已满
+将元素ai+1~an-1依次向后移动一个位置
+将要插入元素赋值给element[i+1]
+表长+1
+
+算法复杂度为O(n)
+*/
+Status Insert (SeqList *L, int i,ElemType x)
+{
+    int j;
+     if(i&lt;-1||i&gt;L-&gt;n-1)  //注意此处i的范围 是&lt;-1 不是0  ！！！
+    {
+        return ERROR;
+    }
+    if(L-&gt;n==L-&gt;maxlength)   //判满
+    {
+        return ERROR;
+    }
+    for(j=L-&gt;n-1;j&gt;i;j--)       //通过循环将下标i+1到n-1的元素后移（从后往前）
+    {
+        L-&gt;element[j+1]=L-&gt;element[j];   //注意是j的值给j+1（从后往前）
+    }
+    L-&gt;element[i+1]=x; //把插入的 元素放到下标为 i+1 的位置
+    L-&gt;n=L-&gt;n+1;      //表长加1
+    return OK;
+}
+
+
+//顺序表的删除
+/*
+判断下标是否越界（0~n-1）
+判断顺序表是否为空
+将元素ai+1~an-1依次前移一个位置
+表长-1
+
+算法复杂度为O(n)
+*/
+Status Delete(SeqList *L,int i)
+{
+    int j;
+    if(i&lt;0||i&gt;L-&gt;n-1)  return ERROR;  //此处i&lt;0!!!注意和插入区分
+    if(!L-&gt;n)  return ERROR;    //判空
+    for(j=i+1;j&lt;L-&gt;n;j++)
+    {
+        L-&gt;element[j-1]=L-&gt;element[j];  //从前往后逐个前移元素，j的值给j-1
+    }
+    L-&gt;n--;    //表长-1
+    return OK;
+    
+}
+
+//顺序表的输出
+Status Output(SeqList *L)
+{
+    int i;
+    if(!L-&gt;n)   return ERROR;   //判空
+    for(i=0;i&lt;L-&gt;n;i++)
+    {
+        printf("%d  ",L-&gt;element[i]);
+    }
+    printf("\n\n");
+     return OK;
+}
+
+//顺序表的销毁
+void Destroy(SeqList *L)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=0;
+    free(L-&gt;element);
+    printf("Sucessfuly Destroyed!\n");
+}
+
+
+int main()
+{
+    int i,j,k,x;
+    int m, n;
+    SeqList List;
+    k=Init(&amp;List,100); //因为Init函数的形参是指针变量（地址），所以这里要用取地址符！！！
+    printf("初始化状态：%d\n\n",k);   //测试返回值为 1
+    for(i=0;i&lt;10;i++)
+    {
+        Insert(&amp;List,i-1,i);  //执行插入操作
+    }
+    Output(&amp;List);    // 0123456789
+    printf("请输入需要插入的数的位置下标和值（中间以空格隔开）：\n");
+    scanf("%d%d",&amp;m,&amp;n);
+    Insert(&amp;List,m,n);
+     printf("\n插入后的序列：\n");
+    Output(&amp;List);
+    printf("请输入需要查找的数的下标：\n");
+    scanf("%d",&amp;j);
+    Find(List,j,&amp;x);
+    printf("\nThe value is : %d\n\n",x);  
+    printf("请输入需要删除的数的下标：\n");
+    scanf("%d",&amp;k);
+    Delete(&amp;List,k);
+    printf("\n删除后的序列：\n");
+    Output(&amp;List); 
+    Destroy(&amp;List);
+    printf("\n");
+    system("pause");
+}
+</code></pre>
+<h3 id="2-带表头结点单链表的初始化、查找、插入、删除、输出、撤销、逆置、排序等操作"><a href="#2-带表头结点单链表的初始化、查找、插入、删除、输出、撤销、逆置、排序等操作" class="headerlink" title="2.带表头结点单链表的初始化、查找、插入、删除、输出、撤销、逆置、排序等操作"></a>2.带表头结点单链表的初始化、查找、插入、删除、输出、撤销、逆置、排序等操作</h3><pre><code class="line-numbers language-c">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+typedef int ElemType;
+typedef int Status;
+#define ERROR 0
+#define OK 1
+ 
+typedef struct Node {      //结点的结构体
+    ElemType element;      //结点的数据域
+    struct Node * link;    //结点的指针域
+}Node;
+ 
+typedef struct headerlist{ //带表头结点的单链表结构体
+    struct Node* head;     //表头结点
+    int n;                 //元素个数
+}HeaderList;
+ 
+ 
+//带表头结点单链表的初始化
+Status Init(HeaderList *h) {
+    h-&gt;head=(Node*)malloc(sizeof(Node));   //生成表头结点
+    if(!h-&gt;head){
+        return ERROR;
+    }
+    h-&gt;head-&gt;link = NULL;                  //设置单链表为空表
+    h-&gt;n = 0;
+    return OK;
+}
+ 
+ 
+//带表头结点单链表的查找
+/*
+判断下标i是否越界 0~n-1
+若未越界，则从头结点开始顺着单链表逐个结点查找
+通过循环让p指向结点ai
+将ai的值通过x返回
+*/
+Status Find(HeaderList *h,int i,ElemType *x){
+    Node *p;
+    int j;
+    if(i&lt;0||i&gt;h-&gt;n-1){
+        return ERROR;
+    }
+    p=h-&gt;head-&gt;link;
+    for(j=0;j&lt;i;j++){
+        p=p-&gt;link;
+    }
+    *x=p-&gt;element;
+    return OK;
+}
+ 
+ 
+//带表头结点单链表的插入
+/*
+判断i是否越界 （-1~n-1）
+查找ai,指针p指向此节点
+生成一个新的结点q，将新结点的数据域置为x，指针q指向此结点
+将q所指向的结点插入p所指的结点之后（注意不要断链）
+单链表元素个数+1
+*/
+Status Insert(HeaderList *h, int i, ElemType x) {
+    Node *p, *q;
+    int j;
+    if (i&lt;-1 || i&gt;h-&gt;n - 1)
+        return ERROR;
+    p = h-&gt;head;                          //从头结点开始找ai元素所在的结点p
+    for (j = 0; j &lt;= i; j++) {
+        p = p-&gt;link;
+    }
+    q = (Node*)malloc(sizeof(Node));      //生成新结点q
+    q-&gt;element = x;
+    q-&gt;link = p-&gt;link;                    //新结点q插在p之后
+    p-&gt;link = q;
+    h-&gt;n++;
+    return OK;
+}
+ 
+ 
+//带表头结点单链表的删除
+/*
+判断i是否越界（0~n-1）、单链表是否为空
+查找元素ai的直接前驱ai-1,并令指针q指向它
+则使p指向ai所在的结点，并删除ai
+释放p所指结点的存储空间
+单链表元素个数-1
+*/
+Status Delete(HeaderList *h,int i){
+    int j;
+    Node *p,*q;
+    if(!h-&gt;n){
+        return ERROR;
+        if(i&lt;0||i&gt;h-&gt;n-1){
+            return ERROR;
+        }
+    }
+    q=h-&gt;head;
+    for(j=0;j&lt;i;j++){
+        q=q-&gt;link;
+    }
+    p=q-&gt;link;                      //p指向ai
+    q-&gt;link=p-&gt;link;                //从单链表中删除p所指结点
+    free(p);                        //释放p所指结点的存储空间
+    h-&gt;n--;
+    return OK;
+}
+ 
+ 
+//带表头结点的输出操作
+Status Output (HeaderList *h)
+{
+    Node*p;
+    p = h-&gt;head;
+    for(int i=0; i&lt;h-&gt;n; i++)
+    {
+        p = p-&gt;link;
+        printf("%d  ",p-&gt;element);
+    }
+    printf("\n\n");
+    return OK;
+}
+ 
+ 
+// //带表头结点单链表的撤销操作
+// void Destroy(HeaderList *h){
+//     Node *p,*q;
+//     while(h-&gt;head-&gt;link){
+//         q=h-&gt;head-&gt;link;
+//         p=h-&gt;head-&gt;link-&gt;link;
+//         free(h-&gt;head-&gt;link);
+//         h-&gt;head=q;
+//     }
+//     printf("Sucessfully destroyed!\n");
+// }
+void Destroy (HeaderList *h)
+{
+    Node* p;
+    while(h-&gt;n)
+    {
+        p = h-&gt;head-&gt;link-&gt;link;
+        free(h-&gt;head-&gt;link);
+        h-&gt;head-&gt;link = p;
+        h-&gt;n -=1;
+    }
+    free(h-&gt;head);
+    printf("Sucessfully Destroyed!\n");
+}
+ 
+ 
+//将带表头结点单链表逆置
+void Reverse(HeaderList *h){
+    Node *p,*q;
+    p = h-&gt;head-&gt;link;            //p指向a0
+    h-&gt;head-&gt;link = NULL;         //断开与表头结点的链接
+    while(p){
+        q=p-&gt;link;                //q指向p的下一个结点
+        p-&gt;link=h-&gt;head-&gt;link;    
+        h-&gt;head-&gt;link=p;          //这两步主要是将p指向的结点插到头结点后面
+        p=q;                      //把下一个结点的地址给p（q的存在避免了断链）
+    }
+}
+
+//将单链表排序成为有序单链表
+void Sort(HeaderList *h)    //冒泡排序
+{
+    int temp;
+    Node*p;  //定义p.q两个结点,p指向第一个结点，q指向p的下一个结点
+    Node*q;
+    for(p=h-&gt;head-&gt;link;p!=NULL;p=p-&gt;link)
+    {
+        for(q=p-&gt;link,temp=0;q!=NULL;q=q-&gt;link)
+        {
+            if(p-&gt;element &gt; q-&gt;element)   
+            {
+                temp = p-&gt;element;        
+                p-&gt;element = q-&gt;element;    //如果p所指的结点的值大于q所指结点的值，则进行交换
+                q-&gt;element = temp;        
+            }
+        }
+    }
+}
+
+
+ //用于测试的主函数
+int main()
+{
+    int i;
+    int x;
+    int m,n,j,k;
+    HeaderList List;
+    i=Init(&amp;List);
+    printf("初始化状态：%d\n\n",i);     // 1
+    for(i=0;i&lt;10;i++)
+    {
+        Insert(&amp;List,i-1,i);
+    }
+    Output(&amp;List);    //0 1 2 3 4 5 6 7 8 9
+    printf("请输入需要插入的数的位置下标和值（中间以空格隔开）：\n");
+    scanf("%d%d",&amp;m,&amp;n);
+    Insert(&amp;List,m,n);
+    printf("\n插入后的序列：\n");
+    Output(&amp;List);
+    Reverse(&amp;List);
+    printf("逆置后的序列：\n");
+    Output(&amp;List);
+    printf("排序后的序列：\n");
+    Sort(&amp;List);
+    Output(&amp;List);
+    printf("请输入需要查找的数的下标：\n");
+    scanf("%d",&amp;j);
+    Find(&amp;List,j,&amp;x);
+    printf("The value is : %d\n\n",x);  
+    printf("请输入需要删除的数的下标：\n");
+    scanf("%d",&amp;k);
+    Delete(&amp;List,k);
+    printf("删除后的序列：\n");
+    Output(&amp;List); 
+    Destroy(&amp;List);
+    return 0;
+}
+</code></pre>
+<h3 id="3-一元多项式的创建、输出、撤销以及两个一元多项式相加和相乘"><a href="#3-一元多项式的创建、输出、撤销以及两个一元多项式相加和相乘" class="headerlink" title="3.一元多项式的创建、输出、撤销以及两个一元多项式相加和相乘"></a>3.一元多项式的创建、输出、撤销以及两个一元多项式相加和相乘</h3><pre><code class="line-numbers language-c">#include&lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct PNode
+{
+    int coef;
+    int exp;
+    struct PNode *link;
+} PNode;
+typedef struct Polynominal
+{
+    PNode *head;
+} Polynominal;
+
+void Create(Polynominal *p)
+{
+    PNode *pn, *pre, *q;
+    p-&gt;head = (PNode*)malloc(sizeof(PNode));
+    p-&gt;head-&gt;exp = -1;
+    p-&gt;head-&gt;link = p-&gt;head;
+    for (;;)
+    {
+        pn = (PNode*)malloc(sizeof(PNode));
+        printf("coef\texp:\n");
+        scanf("%d\t%d",&amp;pn-&gt;coef,&amp;pn-&gt;exp);
+        if(pn-&gt;exp&lt;0)   //指数为负数时退出
+            break;
+        pre = p-&gt;head;
+        q = p-&gt;head-&gt;link;
+        while(q&amp;&amp;q-&gt;exp&gt;pn-&gt;exp)
+        {
+            pre = q;
+            q = q-&gt;link;
+        }
+        pn-&gt;link = q;
+        pre-&gt;link = pn;
+    }
+}
+
+void Add(Polynominal *px,Polynominal *qx)
+{
+    PNode *q, *q1 = qx-&gt;head, *p, *p1, *temp;
+    p = px-&gt;head-&gt;link;
+    q = q1-&gt;link;
+    while(p-&gt;exp&lt;q-&gt;exp)  //当p-&gt;exp&lt;q-&gt;exp,则q所指的项成为结果多项式中的一项，q1和q分别右移一项
+    {
+        q1 = q;
+        q = q-&gt;link;
+    }
+    if(q-&gt;exp==p-&gt;exp)    //当p-&gt;exp==q-&gt;exp，将系数coef相加，但需要讨论相加后系数是否为零
+    {
+        q-&gt;coef = p-&gt;coef + q-&gt;coef;
+        if(q-&gt;coef==0)   //相加后系数为0
+        {
+            q1-&gt;link = q-&gt;link;  //删除q
+            free(q);             //释放q的空间
+            q = q1-&gt;link;        //重置q指针
+            p = p-&gt;link;         //p指针右移
+        }
+        else //相加后系数不为0
+        {
+            q1 = q;
+            q = q-&gt;link;
+            p = p-&gt;link;
+        }
+    }
+    else  //当p-&gt;exp&lt;q-&gt;exp,则复制p所指向的结点，并将其插在q1之后，指针p右移一项
+    {
+        temp = (PNode*)malloc(sizeof(PNode));//以p的系数和指数生成新的结点
+        temp-&gt;coef = p-&gt;coef;   
+        temp-&gt;exp = p-&gt;exp;
+        temp-&gt;link = q1-&gt;link;
+        q1-&gt;link = temp;
+        q1 = q1-&gt;link;
+        p = p-&gt;link;
+    }
+}
+
+//多项式的乘法
+void Multiply(Polynominal *px,Polynominal *qx){
+    Polynominal qx1,qx2;
+    PNode *q1,*q2,*q3,*q4,*pre,*q;
+    qx1.head = (PNode*)malloc(sizeof(PNode));       //生成新多项式qx1
+    qx1.head-&gt;exp = -1;
+    qx1.head-&gt;link = qx1.head;                      //qx1改造成循环链表
+    q1 = px-&gt;head-&gt;link;                            //q1指向px的第一项
+    q2 = qx-&gt;head-&gt;link;                            //q2指向qx的第一项
+    while(q2-&gt;exp != -1){                           //当q2的指数不为-1时,px先和qx的每一项相乘
+        q3 = (PNode*)malloc(sizeof(PNode));         //q3存放相乘的结果
+        q3-&gt;coef = q1-&gt;coef * q2-&gt;coef;
+        q3-&gt;exp = q1-&gt;exp + q2-&gt;exp;
+        if(qx1.head-&gt;link-&gt;exp == -1){              //q3插入到qx1多项式第一项中
+            q3-&gt;link = qx1.head-&gt;link;
+            qx1.head-&gt;link = q3;
+            pre = qx1.head-&gt;link;
+        }
+        else{                                       //q3插入到qx1多项式最后一项中
+            q3-&gt;link = qx1.head;
+            pre-&gt;link = q3;
+            pre = pre-&gt;link;
+        }
+        q2 = q2-&gt;link;
+    }
+    q1 = q1-&gt;link;                                 //q1后移一位
+    while(q1-&gt;exp != -1){                          //将px剩下来每一项和qx每一项相乘
+        q2 = q2-&gt;link;
+        qx2.head = (PNode*)malloc(sizeof(PNode));  //生成新多项式qx2
+        qx2.head-&gt;exp = -1;
+        qx2.head-&gt;link = qx2.head;
+        while(q2-&gt;exp != -1){       
+            q4 = (PNode*)malloc(sizeof(PNode));
+            q4-&gt;coef = q1-&gt;coef * q2-&gt;coef;
+            q4-&gt;exp = q1-&gt;exp + q2-&gt;exp;
+            if(qx2.head-&gt;link-&gt;exp == -1){
+                q4-&gt;link = qx2.head-&gt;link;
+                qx2.head-&gt;link = q4;
+                pre = qx2.head-&gt;link;
+            }
+            else{
+                q4-&gt;link = qx2.head;
+                pre-&gt;link = q4;
+                pre = pre-&gt;link;
+            }
+            q2 = q2-&gt;link;
+        }
+        Add(&amp;qx2,&amp;qx1);                            //利用加法合并同类项
+        q1 = q1-&gt;link;
+    }
+    Output(qx1);
+}
+ 
+void Output(Polynominal p){
+    PNode *q;
+    int flag = 1;                                   //记录是否为第一项
+    q = p.head-&gt;link;
+    if (!q){
+        return;
+    }
+    while(q != p.head){
+        if (!flag &amp;&amp; (q-&gt;coef &gt; 0)) printf("+");    //在非第一项的正系数前输出+号
+        flag = 0;                                   //flag置为0,表示不是第一项
+        if(q-&gt;coef == 0){                           //当前项系数为0
+            return;
+        }
+        printf("%d",q-&gt;coef);                       //当前项系数不为0
+        switch(q-&gt;exp){                             //判断当前项指数
+            case 0:break;                           //当前项指数为0,退出
+            case 1:printf("X");break;               //当前项指数为1,输出X
+            default:printf("X^%d",q-&gt;exp);break;    //当前项指数不为0,也不为1
+        }
+        q = q-&gt;link;
+    }
+}
+ 
+
+  int main()
+    {
+        Polynominal *p,*q;
+        int x;
+        printf("Please enter the first polynomial:\n");
+        Create(&amp;p);
+        Output(p);
+        printf("\n\nPlease enter the second polynomial:\n");
+        Create(&amp;q);
+        Output(q);
+        printf("\n\nPlease choose the function:(0：ADD；1：MULTIPLY)\n");
+        scanf("%d",&amp;x);
+        switch(x){                                  
+            case 0:printf("Add Result:\n");
+                Add(&amp;p,&amp;q);
+                Output(q);
+            break;
+            case 1:printf("Multiply Result:\n");
+                Multiply(&amp;p,&amp;q);
+                Output(q);
+            default:break;
+        }
+        return 0;
+        
+    }
+</code></pre>
+<h2 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h2><h3 id="1-二叉树的基本操作"><a href="#1-二叉树的基本操作" class="headerlink" title="1.二叉树的基本操作"></a>1.二叉树的基本操作</h3><p>a) 已知二叉树二叉链表结点结构定义如下：</p>
+<pre><code class="line-numbers language-c">typedef struct btnode
+
+{
+
+  ElemType element;
+
+  struct btnode *lChild;
+
+  struct btnode *rChild;
+
+} BTNode;
+</code></pre>
+<p>参照程序5.1~5.4，编写程序，完成二叉树的先序创建、先序遍历、中序遍历、后序遍历等操作。</p>
+<p>b)基于上一实验内容中构建的二叉链表存储结构，编写程序实现求二叉树结点个数、叶结点个数、二叉树的高度以及交换二叉树所有子树的操作。</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-c">#include&lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct PNode
+{
+    int coef;
+    int exp;
+    struct PNode *link;
+} PNode;
+typedef struct Polynominal
+{
+    PNode *head;
+} Polynominal;
+
+void Create(Polynominal *p)
+{
+    PNode *pn, *pre, *q;
+    p-&gt;head = (PNode*)malloc(sizeof(PNode));
+    p-&gt;head-&gt;exp = -1;
+    p-&gt;head-&gt;link = p-&gt;head;
+    for (;;)
+    {
+        pn = (PNode*)malloc(sizeof(PNode));
+        printf("coef\texp:\n");
+        scanf("%d\t%d",&amp;pn-&gt;coef,&amp;pn-&gt;exp);
+        if(pn-&gt;exp&lt;0)   //指数为负数时退出
+            break;
+        pre = p-&gt;head;
+        q = p-&gt;head-&gt;link;
+        while(q&amp;&amp;q-&gt;exp&gt;pn-&gt;exp)
+        {
+            pre = q;
+            q = q-&gt;link;
+        }
+        pn-&gt;link = q;
+        pre-&gt;link = pn;
+    }
+}
+
+void Add(Polynominal *px,Polynominal *qx)
+{
+    PNode *q, *q1 = qx-&gt;head, *p, *p1, *temp;
+    p = px-&gt;head-&gt;link;
+    q = q1-&gt;link;
+    while(p-&gt;exp&lt;q-&gt;exp)  //当p-&gt;exp&lt;q-&gt;exp,则q所指的项成为结果多项式中的一项，q1和q分别右移一项
+    {
+        q1 = q;
+        q = q-&gt;link;
+    }
+    if(q-&gt;exp==p-&gt;exp)    //当p-&gt;exp==q-&gt;exp，将系数coef相加，但需要讨论相加后系数是否为零
+    {
+        q-&gt;coef = p-&gt;coef + q-&gt;coef;
+        if(q-&gt;coef==0)   //相加后系数为0
+        {
+            q1-&gt;link = q-&gt;link;  //删除q
+            free(q);             //释放q的空间
+            q = q1-&gt;link;        //重置q指针
+            p = p-&gt;link;         //p指针右移
+        }
+        else //相加后系数不为0
+        {
+            q1 = q;
+            q = q-&gt;link;
+            p = p-&gt;link;
+        }
+    }
+    else  //当p-&gt;exp&lt;q-&gt;exp,则复制p所指向的结点，并将其插在q1之后，指针p右移一项
+    {
+        temp = (PNode*)malloc(sizeof(PNode));//以p的系数和指数生成新的结点
+        temp-&gt;coef = p-&gt;coef;   
+        temp-&gt;exp = p-&gt;exp;
+        temp-&gt;link = q1-&gt;link;
+        q1-&gt;link = temp;
+        q1 = q1-&gt;link;
+        p = p-&gt;link;
+    }
+}
+
+//多项式的乘法
+void Multiply(Polynominal *px,Polynominal *qx){
+    Polynominal qx1,qx2;
+    PNode *q1,*q2,*q3,*q4,*pre,*q;
+    qx1.head = (PNode*)malloc(sizeof(PNode));       //生成新多项式qx1
+    qx1.head-&gt;exp = -1;
+    qx1.head-&gt;link = qx1.head;                      //qx1改造成循环链表
+    q1 = px-&gt;head-&gt;link;                            //q1指向px的第一项
+    q2 = qx-&gt;head-&gt;link;                            //q2指向qx的第一项
+    while(q2-&gt;exp != -1){                           //当q2的指数不为-1时,px先和qx的每一项相乘
+        q3 = (PNode*)malloc(sizeof(PNode));         //q3存放相乘的结果
+        q3-&gt;coef = q1-&gt;coef * q2-&gt;coef;
+        q3-&gt;exp = q1-&gt;exp + q2-&gt;exp;
+        if(qx1.head-&gt;link-&gt;exp == -1){              //q3插入到qx1多项式第一项中
+            q3-&gt;link = qx1.head-&gt;link;
+            qx1.head-&gt;link = q3;
+            pre = qx1.head-&gt;link;
+        }
+        else{                                       //q3插入到qx1多项式最后一项中
+            q3-&gt;link = qx1.head;
+            pre-&gt;link = q3;
+            pre = pre-&gt;link;
+        }
+        q2 = q2-&gt;link;
+    }
+    q1 = q1-&gt;link;                                 //q1后移一位
+    while(q1-&gt;exp != -1){                          //将px剩下来每一项和qx每一项相乘
+        q2 = q2-&gt;link;
+        qx2.head = (PNode*)malloc(sizeof(PNode));  //生成新多项式qx2
+        qx2.head-&gt;exp = -1;
+        qx2.head-&gt;link = qx2.head;
+        while(q2-&gt;exp != -1){       
+            q4 = (PNode*)malloc(sizeof(PNode));
+            q4-&gt;coef = q1-&gt;coef * q2-&gt;coef;
+            q4-&gt;exp = q1-&gt;exp + q2-&gt;exp;
+            if(qx2.head-&gt;link-&gt;exp == -1){
+                q4-&gt;link = qx2.head-&gt;link;
+                qx2.head-&gt;link = q4;
+                pre = qx2.head-&gt;link;
+            }
+            else{
+                q4-&gt;link = qx2.head;
+                pre-&gt;link = q4;
+                pre = pre-&gt;link;
+            }
+            q2 = q2-&gt;link;
+        }
+        Add(&amp;qx2,&amp;qx1);                            //利用加法合并同类项
+        q1 = q1-&gt;link;
+    }
+    Output(qx1);
+}
+ 
+void Output(Polynominal p){
+    PNode *q;
+    int flag = 1;                                   //记录是否为第一项
+    q = p.head-&gt;link;
+    if (!q){
+        return;
+    }
+    while(q != p.head){
+        if (!flag &amp;&amp; (q-&gt;coef &gt; 0)) printf("+");    //在非第一项的正系数前输出+号
+        flag = 0;                                   //flag置为0,表示不是第一项
+        if(q-&gt;coef == 0){                           //当前项系数为0
+            return;
+        }
+        printf("%d",q-&gt;coef);                       //当前项系数不为0
+        switch(q-&gt;exp){                             //判断当前项指数
+            case 0:break;                           //当前项指数为0,退出
+            case 1:printf("X");break;               //当前项指数为1,输出X
+            default:printf("X^%d",q-&gt;exp);break;    //当前项指数不为0,也不为1
+        }
+        q = q-&gt;link;
+    }
+}
+ 
+
+  int main()
+    {
+        Polynominal *p,*q;
+        int x;
+        printf("Please enter the first polynomial:\n");
+        Create(&amp;p);
+        Output(p);
+        printf("\n\nPlease enter the second polynomial:\n");
+        Create(&amp;q);
+        Output(q);
+        printf("\n\nPlease choose the function:(0：ADD；1：MULTIPLY)\n");
+        scanf("%d",&amp;x);
+        switch(x){                                  
+            case 0:printf("Add Result:\n");
+                Add(&amp;p,&amp;q);
+                Output(q);
+            break;
+            case 1:printf("Multiply Result:\n");
+                Multiply(&amp;p,&amp;q);
+                Output(q);
+            default:break;
+        }
+        return 0;
+        
+    }
+</code></pre>
+<h3 id="2-哈夫曼编码-译码系统的实现"><a href="#2-哈夫曼编码-译码系统的实现" class="headerlink" title="2.哈夫曼编码/译码系统的实现"></a>2.哈夫曼编码/译码系统的实现</h3><p>   已知哈夫曼树结点结构定义如下：</p>
+<pre><code class="line-numbers language-CC">typedef struct hfmTNode   //哈夫曼树结点结构体       
+
+{
+
+  ElemeTypeBefore element; //结点的数据域
+
+  int w;          //结点的权值
+
+  struct hfmTNode* lChild; //结点的左孩子指针
+
+  struct hfmTNode* rChild; //结点的右孩子指针
+
+}HFMTnode;
+</code></pre>
+<p>编写程序，实现哈夫曼树的创建、哈夫曼编码及解码的实现。</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdbool.h&gt;
+#include&lt;string.h&gt;
+typedef char ElemeTypeBefore;
+typedef struct hfmTNode      //哈夫曼树结点结构体             
+{
+    ElemeTypeBefore element;  //结点的数据域
+    int w;                    //结点的权值
+    struct hfmTNode* lChild;  //结点的左孩子指针
+    struct hfmTNode* rChild;  //结点的右孩子指针
+}HFMTnode;
+typedef struct hfmTree       //哈夫曼树结构体
+{
+    hfmTNode* root;
+}HFMTree;
+typedef HFMTree ElemeType;
+typedef struct priorityQueue  //优先权队列结构体
+{
+    ElemeType *element;
+    int n;
+    int maxSize;
+}PriorityQueue;
+
+char res[50];
+//创建一个优先权队列
+void CreatPQ(PriorityQueue* PQ, int mSize)
+{
+    PQ-&gt;maxSize = mSize;
+    PQ-&gt;n = 0;
+    PQ-&gt;element = (ElemeType*)malloc(mSize*sizeof(ElemeType));
+}
+
+//销毁一个优先权队列
+void Destroy(PriorityQueue* PQ)
+{
+    free(PQ-&gt;element);
+    PQ-&gt;n = 0;
+    PQ-&gt;maxSize = 0;
+}
+//判空
+bool IsEmpty(PriorityQueue* PQ)
+{
+    if(PQ-&gt;n == 0) return true;
+    return false;
+}
+//判满
+bool IsFull(PriorityQueue* PQ)
+{
+    if(PQ-&gt;n == PQ-&gt;maxSize) return true;
+    return false;
+}
+
+//向上调整
+void AdjustUp(ElemeType heap[], int current)
+{
+    int p = current; 
+    ElemeType temp;
+    while(p&gt;0)
+    {
+        if(heap[p].root-&gt;w&lt;heap[(p-1)/2].root-&gt;w)
+        {
+            temp = heap[p];
+            heap[p] = heap[(p-1)/2];
+            heap[(p-1)/2] = temp;
+            p = (p-1)/2;
+        }
+        else break;
+    }
+}
+
+//在优先权队列中添加一个新元素x
+void Append(PriorityQueue* PQ, ElemeType x)
+{
+    if(IsFull(PQ)) return;
+    PQ-&gt;element[PQ-&gt;n] = x;
+    PQ-&gt;n++;
+    AdjustUp(PQ-&gt;element,(PQ-&gt;n)-1);
+}
+
+//向下调整
+void AdjustDown(ElemeType heap[],int current,int n)
+{
+    int i = current;
+    ElemeType temp;
+    while(2*i+1&lt;n)
+    {
+        if(heap[i].root-&gt;w&gt;heap[2*i+1].root-&gt;w)
+        {
+            temp = heap[i];
+            heap[i] = heap[2*i+1];
+            heap[2*i+1] = temp;
+            i = 2*i+1;
+        }
+        else break;
+    }
+}
+
+//取出堆顶哈夫曼结点并赋值给x
+void Serve(PriorityQueue* PQ, ElemeType* x)
+{
+    if(IsEmpty(PQ)) return;
+    *x = PQ-&gt;element[0];
+    PQ-&gt;n--;
+    PQ-&gt;element[0] = PQ-&gt;element[PQ-&gt;n];
+    AdjustDown(PQ-&gt;element, 0, PQ-&gt;n);
+}
+
+//新建一个哈夫曼结点
+HFMTnode* NewNode(ElemeTypeBefore x, HFMTree* ln, HFMTree* rn, int w)
+{
+    HFMTnode* p =(HFMTnode*)malloc(sizeof(HFMTnode));
+    p-&gt;element = x;
+    if(ln)p-&gt;lChild = ln-&gt;root;else p-&gt;lChild = NULL;
+    if(rn)p-&gt;rChild = rn-&gt;root;else p-&gt;rChild = NULL;
+    p-&gt;w = w;
+    return p;
+}
+
+//建树
+void MakeHFMTree(HFMTree *bt, ElemeTypeBefore e, HFMTree *left, HFMTree *right, int w)
+{
+    bt-&gt;root = NewNode(e, left, right, w);
+    if(bt-&gt;root || left == right)
+        return;
+    left-&gt;root = right-&gt;root = NULL; //root属于指针，置NULL可以减少内存使用
+}
+
+//创建哈夫曼树
+HFMTree CreatHFMTree(int w[],char c[],int m)
+{
+    PriorityQueue PQ;       //定义优先权队列PQ，用于存放二叉树根结点指针
+    HFMTree x,y,z;          //x,y,z为哈夫曼树变量
+    CreatPQ(&amp;PQ,m);         //初始化优先权队列PQ
+    for(int i=0; i&lt;m; i++)
+    {
+        MakeHFMTree(&amp;x,c[i],NULL,NULL,w[i]);       //创建仅包含根结点的二叉树，w[i]为权值，c[i]为字符
+        Append(&amp;PQ,x);         //将新创建的二叉树插入优先权队列
+    }
+    while (PQ.n&gt;1)
+    {
+        Serve(&amp;PQ,&amp;x);                //从PQ中取出根结点值最小和次小的二叉树，分别存入x和y
+        Serve(&amp;PQ,&amp;y);
+        if(x.root-&gt;w&gt;y.root-&gt;w)       //设置左子树根结点的权值小于右子树
+        MakeHFMTree(&amp;z,'#',&amp;y,&amp;x,x.root-&gt;w+y.root-&gt;w);
+        else
+        MakeHFMTree(&amp;z,'#',&amp;x,&amp;y,x.root-&gt;w+y.root-&gt;w);
+        Append(&amp;PQ,z);       //将和并生成的新二叉树z插入优先权队列
+    }
+    Serve(&amp;PQ,&amp;x);   //获取优先权队列中唯一的一棵二叉树，存入x，该二叉树即为哈夫曼树
+    return x;
+}
+
+//先序遍历
+void PreOrderTree(HFMTnode *t){
+    if(t==NULL){
+        return;
+    }
+    printf("%c%d\t",t-&gt;element,t-&gt;w);  //打印输出根结点，此处可以定义其他操作
+    PreOrderTree(t-&gt;lChild);  //然后先序遍历左子树
+    PreOrderTree(t-&gt;rChild);  //最后先序遍历右子树
+}
+
+//中序遍历
+void InOrderTree(HFMTnode *t){
+    if(t==NULL){
+        return;
+    }
+    InOrderTree(t-&gt;lChild);  //中序遍历根结点的左子树
+    printf("%c%d\t",t-&gt;element,t-&gt;w); //打印输出根结点，此处可以定义其他操作
+    InOrderTree(t-&gt;rChild);  //最后中序遍历根结点的右子树
+}
+
+//哈夫曼编码
+void Encode(HFMTnode *root,int level)        
+{
+    
+    if(root-&gt;rChild==root-&gt;lChild)        
+    {
+        if(level==0)          //根结点         
+        {
+            res[0]='0';
+            level++;
+        }
+        res[level]='\0';     //结束字符串            
+        printf("%c =&gt; %s\n",root-&gt;element,res);
+    }
+    else
+    {
+        res[level]='0';                
+        Encode(root-&gt;lChild,level+1);
+        res[level]='1';                
+        Encode(root-&gt;rChild,level+1);
+    }
+}
+
+//解码
+void Decode(HFMTnode *root, char a[])
+{
+    int i,j;
+    HFMTnode *temp;               //用来存放根结点，因为后续要重新从根结点进行匹配
+    temp = root;
+    int Len = strlen(a);          //获取码文长度
+    for (i = 0; i &lt; Len;i++)
+    {
+        if(a[i]=='0')              //扫描到0则向根结点的左子树前进
+        {
+            if(root-&gt;lChild!=NULL)
+            {
+                root = root-&gt;lChild;
+            }
+        }else if (a[i]=='1')        //扫描到1则向根结点的有子树前进
+        {
+            if(root-&gt;rChild!=NULL)
+            {
+                root = root-&gt;rChild;
+            }
+        }
+        if(root-&gt;lChild==NULL&amp;&amp;root-&gt;rChild==NULL)  //当匹配到的是叶子结点
+        {
+            printf("%c",root-&gt;element);             //输出对应字符
+            root = temp;                            //回到根结点
+        } 
+    }
+    printf("\n");
+   
+}
+
+
+int main()
+{
+    HFMTree x;
+    int m,i;
+    int w[50];   //权值集
+    char c[50];  //字符集
+    char res[50];
+    char array[50];
+    printf("Please enter the number of characters:\n");
+    scanf("%d",&amp;m);
+    for (i = 0; i &lt; m;i++)
+    {
+    printf("Please enter %dth characters and weights (separated by commas):\n",i+1);
+    scanf(" %c,%d",&amp;c[i],&amp;w[i]);
+    }
+    x = CreatHFMTree(w,c,m);
+    printf("\n PreOrderHFMTree:\n");
+    PreOrderTree(x.root);            //通过先序遍历和中序遍历的结果就可以画出这棵哈夫曼树
+    printf("\n InOrderHFMTree:\n");
+    InOrderTree(x.root);
+    printf("\n\nAfter Huffman coding:\n");
+    Encode(x.root,0);
+    printf("\nPlease enter the code text:\n");
+    scanf("%s",array);
+    printf("\nDecoding is:\n");
+    Decode(x.root,array);
+    return 0;
+}
+</code></pre>
+<h2 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a>实验三</h2><h3 id="1-图的邻接矩阵存储及深度优先和宽度优先遍历"><a href="#1-图的邻接矩阵存储及深度优先和宽度优先遍历" class="headerlink" title="1.图的邻接矩阵存储及深度优先和宽度优先遍历"></a>1.<strong>图的邻接矩阵存储及深度优先和宽度优先遍历</strong></h3><p>a) 已知图的邻接矩阵结构定义如下：</p>
+<pre><code class="line-numbers language-c">//邻接矩阵的结构体定义
+
+typedef struct mGraph{
+
+  ElemType **a;   //邻接矩阵
+
+  int n;      //图的当前顶点数
+
+  int e;      //图的当前边数
+
+  ElemType noEdge; //两顶点间无边时的值
+
+}mGraph;
+</code></pre>
+<p>参照程序9.1~9.4，编写程序，完成邻接矩阵的初始化、撤销和边的搜索、插入、删除等操作。 </p>
+<p>b)以上述邻接矩阵为存储结构，编写程序，实现图的深度、宽度优先遍历。 </p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-c">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;math.h&gt;
+#include&lt;windows.h&gt;
+#include&lt;queue&gt;
+#define ERROR 0
+#define OK 1
+#define Overflow 2  //表示上溢
+#define Underflow 3  //表示下溢
+#define NotPresent 4 //表示元素不存在
+#define Duplicate 5  //表示有重复元素
+typedef int ElemType;
+typedef int Status;
+ 
+//邻接矩阵的结构体定义
+typedef struct mGraph{
+    ElemType **a;     //邻接矩阵
+    int n;            //图的当前顶点数
+    int e;            //图的当前边数
+    ElemType noEdge;  //两顶点间无边时的值
+}mGraph;
+ 
+ 
+//循环队列的结构体定义
+typedef struct{
+    int front;
+    int rear;
+    int maxSize;    //最大容量
+    ElemType *element;
+}Queue;
+ 
+ 
+//创建一个能容纳mSize个单元的空队列
+void Create(Queue *Q,int mSize){
+    Q-&gt;maxSize=mSize;
+    Q-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    Q-&gt;front=Q-&gt;rear=0;
+}
+ 
+ 
+//判断队列是否为空,若是,则返回TRUE;否则返回FALSE
+BOOL IsEmpty(Queue *Q){
+    return Q-&gt;front==Q-&gt;rear;
+}
+ 
+ 
+//判断队列是否已满,若是,则返回TRUE,否则返回FALSE
+BOOL IsFULL(Queue *Q){
+    return (Q-&gt;rear+1)%Q-&gt;maxSize==Q-&gt;front;
+}
+ 
+ 
+//获取队头元素,并通过x返回.若操作成功,则返回TRUE,否则返回FALSE
+BOOL Front(Queue *Q,ElemType *x){
+    if(IsEmpty(Q))      //空队列处理
+        return FALSE;
+    *x=Q-&gt;element[(Q-&gt;front+1)%Q-&gt;maxSize];
+    return TRUE;
+}
+ 
+ 
+//入队.在队列Q的队尾插入元素x(入队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL EnQueue(Queue *Q,ElemType x){
+    if(IsFULL(Q))      //溢出处理
+        return FALSE;
+    Q-&gt;rear=(Q-&gt;rear+1)%Q-&gt;maxSize;
+    Q-&gt;element[Q-&gt;rear]=x;
+    return TRUE;
+}
+ 
+ 
+//出队.从队列Q中删除队头元素(出队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL DeQueue(Queue *Q){
+    if(IsEmpty(Q)){   //空队列处理
+        return FALSE;
+    }
+    Q-&gt;front=(Q-&gt;front+1)%Q-&gt;maxSize;
+    return TRUE;
+}
+ 
+ 
+//邻接矩阵的初始化
+Status Init(mGraph *mg,int nSize,ElemType noEdgeValue){
+    int i,j;
+    mg-&gt;n = nSize;               //初始化顶点数
+    mg-&gt;e = 0;                   //初始化时没有边
+    mg-&gt;noEdge = noEdgeValue;    //初始化没有边时的取值
+    mg-&gt;a = (ElemType**)malloc(nSize*sizeof(ElemType *));  //生成长度为n的一维指针数组
+    if(!mg-&gt;a) return ERROR;
+    for(i = 0;i &lt; mg-&gt;n;i ++){   //动态生成二维数组
+        mg-&gt;a[i] = (ElemType*)malloc(nSize*sizeof(ElemType));
+        for(j = 0;j &lt; mg-&gt;n;j ++){
+            mg-&gt;a[i][j] = mg-&gt;noEdge;
+        }
+        mg-&gt;a[i][i] = 0;        //自回路设置为0
+    }
+    return OK;
+}
+ 
+ 
+//邻接矩阵的撤销,先释放一维数组,再释放指针数组
+int Destory(mGraph *mg){
+    int i;
+    for(i = 0;i &lt; mg-&gt;n;i ++){
+        free(mg-&gt;a[i]);  //释放n个一维数组的存储空间
+    }
+    free(mg-&gt;a);         //释放一维数组的存储空间
+    return 1;
+}
+ 
+ 
+//邻接矩阵的边的搜索
+Status Exist(mGraph *mg,int u,int v){
+    if(u &lt; 0||v &lt; 0||u &gt; mg-&gt;n-1||v &gt; mg-&gt;n-1 ||u == v||mg-&gt;a[u][v] == mg-&gt;noEdge) return ERROR;
+    return OK;
+}
+ 
+ 
+//邻接矩阵的边的插入
+Status Insert(mGraph *mg,int u,int v,ElemType w){
+    if(u &lt; 0||v &lt; 0||u &gt; mg-&gt;n-1||v &gt; mg-&gt;n-1 ||u == v) return ERROR;
+    if(mg-&gt;a[u][v] != mg-&gt;noEdge) return Duplicate;  //若待插入边已存在,则返回出错信息
+    mg-&gt;a[u][v] = w;                                 //插入新边
+    mg-&gt;e ++;                                        //增加一条边
+    return OK;
+}
+ 
+ 
+//邻接矩阵的边的删除
+Status Remove(mGraph *mg,int u,int v){
+    if(u &lt; 0||v &lt; 0||u &gt; mg-&gt;n-1||v &gt; mg-&gt;n-1 ||u == v) return ERROR;
+    if(mg-&gt;a[u][v] == mg-&gt;noEdge) return NotPresent;  //若待删除边不存在,则返回出错信息
+    mg-&gt;a[u][v] = mg-&gt;noEdge;                         //删除边
+    mg-&gt;e --;
+    return OK;
+}
+ 
+ 
+//邻接矩阵的单一顶点DFS
+void DFS(int v,int visited[],mGraph g){
+    int j;
+    printf("%d ",v);              //访问顶点v
+    visited[v] = 1;               //为顶点v打上访问标记       
+    for(j = 0;j &lt; g.n; j++){      //遍历v的邻接点
+        if(!visited[j] &amp;&amp; g.a[v][j] &gt; 0){  //当未被访问且有权值
+            DFS(j,visited,g);
+        }
+    }
+}
+ 
+ 
+//邻接矩阵的全图DFS
+void DFSGraph(mGraph g){
+    int i;
+    int *visited = (int*)malloc(g.n * sizeof(int)); //动态生成标记数组visted
+    for(i = 0;i &lt; g.n;i ++){
+        visited[i] = 0;          //visted数组初始化
+    }                            //visted数组初始化
+    for(i = 0;i &lt; g.n;i ++){     //逐一检查每个顶点,若未被访问,则调用DFS
+        if(!visited[i]){   //当未被访问且有权值
+            DFS(i,visited,g);
+        }
+    }                      
+    free(visited);                       //释放visted数组
+}
+ 
+ 
+//邻接矩阵的单一顶点BFS
+void BFS(int v,int visited[],mGraph g){
+    Queue q;
+    Create(&amp;q,g.n);                        //初始化队列
+    visited[v] = 1;                        //为顶点v打上访问标记
+    printf("%d ",v);                       //访问顶点v
+    EnQueue(&amp;q,v);                         //将顶点v放入队列
+    while(!IsEmpty(&amp;q)){
+        Front(&amp;q,&amp;v);
+        DeQueue(&amp;q);                       //队首顶点出队列
+        for(int i = 0;i &lt; g.n;i ++){       //遍历v的每一项
+            if(!visited[i] &amp;&amp; g.a[v][i] &gt; 0){       //若未被访问且有权值,则将其访问并放入队列,注意这里判断的是g.a[v][i]二维数组
+                visited[i] = 1;
+                printf("%d ",i);
+                EnQueue(&amp;q,i);
+            }
+        }
+    }
+}
+ 
+ 
+//邻接矩阵的全图BFS
+void BFSGraph(mGraph g){
+    int i;
+    int *visited = (int*)malloc(g.n * sizeof(int));  //动态生成visited数组
+    for(i = 0;i &lt; g.n;i ++){                         //初始化visited数组
+        visited[i] = 0;
+    }
+    for(i = 0 ;i &lt; g.n;i ++){                        //逐一检查每个顶点,若未被访问,则调用BFS
+        if(!visited[i]){
+            BFS(i,visited,g);
+        }
+    }
+    free(visited);
+}
+ 
+ 
+void OutPut(mGraph g)
+{
+    int i, j;
+    printf(" ");
+    for (j = 0; j &lt; g.n; j++)
+        printf("%4d", j);
+    printf("\n");
+    for (i = 0; i &lt; g.n; i++)
+    {
+        printf("%d", i);
+        for (j = 0; j &lt; g.n; j++)
+            printf("%4d", g.a[i][j]);
+        printf("\n");
+    }
+}
+ 
+ 
+int main(){
+    mGraph g;
+    int nSize,edge,u,v,i;
+    ElemType w;
+    printf("Please enter the size of the mgraph:");
+    scanf("%d",&amp;nSize);
+    Init(&amp;g,nSize,-1);
+    printf("Please enter the number of the edges:");
+    scanf("%d",&amp;edge);
+    printf("Now init the graph.\n");
+    
+    for(i = 0;i &lt; edge;i ++){
+        printf("Please enter the %dth edge:",i);
+        scanf("%d%d%d",&amp;u,&amp;v,&amp;w);
+        Insert(&amp;g,u,v,w);
+    }
+    // nSize = 6;
+    // edge = 10;
+    // Init(&amp;g,nSize,-1);
+    // Insert(&amp;g,0,1,50);
+    // Insert(&amp;g,0,2,10);
+    // Insert(&amp;g,0,4,80);
+    // Insert(&amp;g,1,2,15);
+    // Insert(&amp;g,1,4,20);
+    // Insert(&amp;g,2,3,15);
+    // Insert(&amp;g,3,1,20);
+    // Insert(&amp;g,3,4,45);
+    // Insert(&amp;g,5,3,9);
+    // Insert(&amp;g,5,4,10);
+    printf("\n\nThe adjacency matrix is:\n\n");
+    OutPut(g);
+    printf("\n");
+    printf("DFS:\n");
+    DFSGraph(g);
+    printf("\nBFS:\n");
+    BFSGraph(g);
+    // system("pause");
+    return 0;
+
+}
+
+
+</code></pre>
+<h3 id="2-图的邻接表存储及深度优先和宽度优先遍历"><a href="#2-图的邻接表存储及深度优先和宽度优先遍历" class="headerlink" title="2.图的邻接表存储及深度优先和宽度优先遍历"></a>2.<strong>图的邻接表存储及深度优先和宽度优先遍历</strong></h3><p>   a)已知图的邻接表结构定义如下：</p>
+<pre><code class="line-numbers language-c">//邻接表的结构体定义
+
+typedef struct ENode{
+
+  int adjVex;       //任意顶点u相邻的顶点
+
+  ElemType w;       //边的权值
+
+  struct ENode *nextArc;  //指向下一个边结点
+
+}ENode;
+
+ 
+
+typedef struct{
+
+  int n;      //图的当前顶点数
+
+  int e;      //图的当前边数
+
+  ENode **a;    //指向一维指针数组
+
+}LGraph;
+</code></pre>
+<p>参照程序9.6~9.10，编写程序，完成邻接表的初始化、撤销和边的搜索、插入、删除等操作。</p>
+<p>b)以上述邻接表为存储结构，编写程序，完成图的深度、宽度优先遍历。</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-C">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include &lt;windows.h&gt;
+#define ERROR 0
+#define OK 1
+#define Overflow 2      //表示上溢
+#define Underflow 3     //表示下溢
+#define NotPresent 4    //表示元素不存在
+#define Duplicate 5     //表示有重复元素
+typedef int ElemType;
+typedef int Status;
+ 
+ 
+//邻接表的结构体定义
+typedef struct ENode{
+    int adjVex;              //任意顶点u相邻的顶点
+    ElemType w;              //边的权值
+    struct ENode *nextArc;   //指向下一个边结点
+}ENode;
+ 
+typedef struct{
+    int n;           //图的当前顶点数
+    int e;           //图的当前边数
+    ENode **a;       //指向一维指针数组
+}LGraph;
+ 
+ 
+//循环队列的结构体定义
+typedef struct{
+    int front;
+    int rear;
+    int maxSize;    //最大容量
+    ElemType *element;
+}Queue;
+ 
+ 
+//创建一个能容纳mSize个单元的空队列
+void Create(Queue *Q,int mSize){
+    Q-&gt;maxSize=mSize;
+    Q-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    Q-&gt;front=Q-&gt;rear=0;
+}
+ 
+ 
+//判断队列是否为空,若是,则返回TRUE;否则返回FALSE
+BOOL IsEmpty(Queue *Q){
+    return Q-&gt;front==Q-&gt;rear;
+}
+ 
+ 
+//判断队列是否已满,若是,则返回TRUE,否则返回FALSE
+BOOL IsFULL(Queue *Q){
+    return (Q-&gt;rear+1)%Q-&gt;maxSize==Q-&gt;front;
+}
+ 
+ 
+//获取队头元素,并通过x返回.若操作成功,则返回TRUE,否则返回FALSE
+BOOL Front(Queue *Q,ElemType *x){
+    if(IsEmpty(Q))      //空队列处理
+        return FALSE;
+    *x=Q-&gt;element[(Q-&gt;front+1)%Q-&gt;maxSize];
+    return TRUE;
+}
+ 
+ 
+//入队.在队列Q的队尾插入元素x(入队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL EnQueue(Queue *Q,ElemType x){
+    if(IsFULL(Q))      //溢出处理
+        return FALSE;
+    Q-&gt;rear=(Q-&gt;rear+1)%Q-&gt;maxSize;
+    Q-&gt;element[Q-&gt;rear]=x;
+    return TRUE;
+}
+ 
+ 
+//出队.从队列Q中删除队头元素(出队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL DeQueue(Queue *Q){
+    if(IsEmpty(Q)){   //空队列处理
+        return FALSE;
+    }
+    Q-&gt;front=(Q-&gt;front+1)%Q-&gt;maxSize;
+    return TRUE;
+}
+ 
+ 
+//邻接表的初始化
+Status Init(LGraph *lg,int nSize){
+    int  i;
+    lg-&gt;n = nSize;
+    lg-&gt;e = 0;
+    lg-&gt;a = (ENode**)malloc(nSize*sizeof(ENode*)); //动态生成长度为n的一维指针数组
+    if(!lg-&gt;a) return ERROR;
+    else{
+        for(i = 0;i &lt; lg-&gt;n;i ++){
+            lg-&gt;a[i] = NULL;                       //将指针数组a置空
+        }
+        return OK;
+    }
+}
+ 
+ 
+//邻接表的搜索边
+Status Exist(LGraph *lg,int u,int v){
+    ENode *p;
+    if(u &lt; 0||v &lt; 0||u &gt; lg-&gt;n-1||v &gt; lg-&gt;n-1 ||u == v) return ERROR;
+    p = lg-&gt;a[u];                 //指针p指向顶点u的单链表的第一个边结点
+    while(p &amp;&amp; p-&gt;adjVex != v){
+        p = p-&gt;nextArc;
+    }
+    if(!p) return ERROR;          //若未找到此边,则返回ERROR
+    else return OK;
+}
+ 
+ 
+//邻接表的插入边
+Status Insert(LGraph *lg,int u,int v,ElemType w){
+    ENode *p;
+    if(u &lt; 0||v &lt; 0||u &gt; lg-&gt;n-1||v &gt; lg-&gt;n-1 ||u == v) return ERROR;
+    if(Exist(lg,u,v)) return Duplicate;       //此边已存在,返回错误
+    p = (ENode*)malloc(sizeof(ENode));        //为新的边结点分配存储空间
+    p-&gt;adjVex = v;
+    p-&gt;w = w;
+    p -&gt; nextArc = lg-&gt;a[u];                  //将新的边结点插入单链表的最前面
+    lg-&gt;a[u] = p;
+    lg-&gt;e ++;                                 //边加1
+    return OK;
+}
+ 
+ 
+//邻接表的单一顶点DFS
+void DFS(int v,int visited[],LGraph g){
+    ENode *w;
+    printf("%d ",v);                           //访问顶点v
+    visited[v] = 1;                            //为顶点v打上访问标记
+    for(w = g.a[v];w;w = w-&gt;nextArc){          //遍历v的邻接点
+        if(!visited[w-&gt;adjVex]){
+            DFS(w-&gt;adjVex,visited,g);          //若w未被访问,则递归调用DFS
+        }
+    }
+}
+ 
+ 
+//邻接表的全图DFS
+void DFSGraph(LGraph g){
+    int i;
+    int *visited = (int*)malloc(g.n * sizeof(int)); //动态生成标记数组visted
+    for(i = 0;i &lt; g.n;i ++){
+        visited[i] = 0;                             //visted数组初始化
+    }
+    for(i = 0;i &lt; g.n;i ++){                        //逐一检查每个顶点,若未被访问,则调用DFS
+        if(!visited[i]){
+            DFS(i,visited,g);
+        }
+    }
+    free(visited);                                 //释放visted数组
+}
+ 
+ 
+//邻接表的单一顶点BFS
+void BFS(int v,int visited[],LGraph g){
+    ENode *w;
+    Queue q;
+    Create(&amp;q,g.n);                        //初始化队列
+    visited[v] = 1;                        //为顶点v打上访问标记
+    printf("%d ",v);                       //访问顶点v
+    EnQueue(&amp;q,v);                         //将顶点v放入队列
+    while(!IsEmpty(&amp;q)){
+        Front(&amp;q,&amp;v);
+        DeQueue(&amp;q);                       //队首顶点出队列
+        for(w = g.a[v];w;w = w-&gt;nextArc){  //遍历v的所有邻接点
+            if(!visited[w-&gt;adjVex]){       //若w未被访问,则将其访问并放入队列
+                visited[w-&gt;adjVex] = 1;
+                printf("%d ",w-&gt;adjVex);
+                EnQueue(&amp;q,w-&gt;adjVex);
+            }
+        }
+    }
+}
+ 
+ 
+//邻接表的全图BFS
+void BFSGraph(LGraph g){
+    int i;
+    int *visited = (int*)malloc(g.n * sizeof(int));  //动态生成visited数组
+    for(i = 0;i &lt; g.n;i ++){                         //初始化visited数组
+        visited[i] = 0;
+    }
+    for(i = 0 ;i &lt; g.n;i ++){                        //逐一检查每个顶点,若未被访问,则调用BFS
+        if(!visited[i]){
+            BFS(i,visited,g);
+        }
+    }
+    free(visited);
+}
+void OutPut(LGraph g)
+{
+    int i;
+    ENode *p;
+    for (i = 0; i &lt; g.n;i++)
+    {
+            printf("%d ",i);
+            p = g.a[i];
+            for (p; p ;p = p-&gt;nextArc)
+        {
+            printf("--&gt;%2d|%2d ",p-&gt;adjVex,p-&gt;w);
+        }
+        printf("\n");
+    }
+}
+ 
+ 
+ 
+ 
+int main(){
+    LGraph g;
+    int i,u,v,enode,edge;
+    ElemType w;
+    // printf("Please enter the number of the ENodes:");
+    // scanf("%d",&amp;enode);
+    // Init(&amp;g,enode);
+    // printf("Please enter the number of the edges:");
+    // scanf("%d",&amp;edge);
+    // printf("Now init the graph.\n");
+    // for(i = 0;i &lt; edge;i ++){
+    //     printf("Please enter the edge:");
+    //     scanf("%d%d%d",&amp;u,&amp;v,&amp;w);
+    //     Insert(&amp;g,u,v,w);
+    // }
+    enode = 6;
+    edge = 10;
+    Init(&amp;g,enode);
+    Insert(&amp;g,0,1,50);
+    Insert(&amp;g,0,2,10);
+    Insert(&amp;g,0,4,80);
+    Insert(&amp;g,1,2,15);
+    Insert(&amp;g,1,4,20);
+    Insert(&amp;g,2,3,15);
+    Insert(&amp;g,3,1,20);
+    Insert(&amp;g,3,4,45);
+    Insert(&amp;g,5,3,9);
+    Insert(&amp;g,5,4,10);
+    printf("\n\n The adjacency list is:\n\n");
+    OutPut(g);
+    printf("\n DFS:\n");
+    DFSGraph(g);
+    printf("\n\n BFS:\n");
+    BFSGraph(g);
+    // system("pause");
+    return 0;
+}
+</code></pre>
+<h3 id="3-最佳路径选择问题"><a href="#3-最佳路径选择问题" class="headerlink" title="3.最佳路径选择问题"></a>3.<strong>最佳路径选择问题</strong></h3><p>​    编写程序，实现智能交通中的最佳路径选择：设有n个地点，编号为0~n-1，m条路径的起点、终点和代价由用户输入提供，采用上述<strong>邻接表</strong>作为存储结构，寻找最佳路径方案（如花费时间最少、路径长度最短、交通费用最小等，任选其一即可）</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-C">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include &lt;windows.h&gt;
+#define ERROR 0
+#define OK 1
+#define Overflow 2      //表示上溢
+#define Underflow 3     //表示下溢
+#define NotPresent 4    //表示元素不存在
+#define Duplicate 5     //表示有重复元素
+#define INFTY 32767    //表示极大值正无穷
+typedef int ElemType;
+typedef int Status;
+ 
+ 
+//邻接表的结构体定义
+typedef struct ENode{
+    int adjVex;              //任意顶点u相邻的顶点
+    ElemType w;              //边的权值
+    struct ENode *nextArc;   //指向下一个边结点
+}ENode;
+ 
+typedef struct{
+    int n;           //图的当前顶点数
+    int e;           //图的当前边数
+    ENode **a;       //指向一维指针数组
+}LGraph;
+ 
+ 
+//循环队列的结构体定义
+typedef struct{
+    int front;
+    int rear;
+    int maxSize;    //最大容量
+    ElemType *element;
+}Queue;
+ 
+ 
+//创建一个能容纳mSize个单元的空队列
+void Create(Queue *Q,int mSize){
+    Q-&gt;maxSize=mSize;
+    Q-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    Q-&gt;front=Q-&gt;rear=0;
+}
+ 
+ 
+//判断队列是否为空,若是,则返回TRUE;否则返回FALSE
+BOOL IsEmpty(Queue *Q){
+    return Q-&gt;front==Q-&gt;rear;
+}
+ 
+ 
+//判断队列是否已满,若是,则返回TRUE,否则返回FALSE
+BOOL IsFULL(Queue *Q){
+    return (Q-&gt;rear+1)%Q-&gt;maxSize==Q-&gt;front;
+}
+ 
+ 
+//获取队头元素,并通过x返回.若操作成功,则返回TRUE,否则返回FALSE
+BOOL Front(Queue *Q,ElemType *x){
+    if(IsEmpty(Q))      //空队列处理
+        return FALSE;
+    *x=Q-&gt;element[(Q-&gt;front+1)%Q-&gt;maxSize];
+    return TRUE;
+}
+ 
+ 
+//入队.在队列Q的队尾插入元素x(入队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL EnQueue(Queue *Q,ElemType x){
+    if(IsFULL(Q))      //溢出处理
+        return FALSE;
+    Q-&gt;rear=(Q-&gt;rear+1)%Q-&gt;maxSize;
+    Q-&gt;element[Q-&gt;rear]=x;
+    return TRUE;
+}
+ 
+ 
+//出队.从队列Q中删除队头元素(出队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL DeQueue(Queue *Q){
+    if(IsEmpty(Q)){   //空队列处理
+        return FALSE;
+    }
+    Q-&gt;front=(Q-&gt;front+1)%Q-&gt;maxSize;
+    return TRUE;
+}
+ 
+ 
+//邻接表的初始化
+Status Init(LGraph *lg,int nSize){
+    int  i;
+    lg-&gt;n = nSize;
+    lg-&gt;e = 0;
+    lg-&gt;a = (ENode**)malloc(nSize*sizeof(ENode*)); //动态生成长度为n的一维指针数组
+    if(!lg-&gt;a) return ERROR;
+    else{
+        for(i = 0;i &lt; lg-&gt;n;i ++){
+            lg-&gt;a[i] = NULL;                       //将指针数组a置空
+        }
+        return OK;
+    }
+}
+ 
+ 
+//邻接表的搜索边
+Status Exist(LGraph *lg,int u,int v){
+    ENode *p;
+    if(u &lt; 0||v &lt; 0||u &gt; lg-&gt;n-1||v &gt; lg-&gt;n-1 ||u == v) return ERROR;
+    p = lg-&gt;a[u];                 //指针p指向顶点u的单链表的第一个边结点
+    while(p &amp;&amp; p-&gt;adjVex != v){
+        p = p-&gt;nextArc;
+    }
+    if(!p) return ERROR;          //若未找到此边,则返回ERROR
+    else return OK;
+}
+ 
+ 
+//邻接表的插入边
+Status Insert(LGraph *lg,int u,int v,ElemType w){
+    ENode *p;
+    if(u &lt; 0||v &lt; 0||u &gt; lg-&gt;n-1||v &gt; lg-&gt;n-1 ||u == v) return ERROR;
+    if(Exist(lg,u,v)) return Duplicate;       //此边已存在,返回错误
+    p = (ENode*)malloc(sizeof(ENode));        //为新的边结点分配存储空间
+    p-&gt;adjVex = v;
+    p-&gt;w = w;
+    p -&gt; nextArc = lg-&gt;a[u];                  //将新的边结点插入单链表的最前面
+    lg-&gt;a[u] = p;
+    lg-&gt;e ++;                                 //边加1
+    return OK;
+}
+
+
+int Choose(int *d, int *s,int n) //选出最小的d[i]，将i加入S，i∈V-S
+{
+    int i,minpos,min;
+    min=INFTY;
+    minpos=-1;
+    for(i=0;i&lt;n;i++)
+    {
+        if(d[i]&lt;min&amp;&amp;!s[i])
+        {
+            min=d[i];
+            minpos=i;
+        }
+    }
+    return minpos;
+ } 
+ Status Dijkstra(int v,int *d,int *path,LGraph *lg)//迪杰斯特拉算法求路径 
+ {
+     int i,j,k,w;
+     int distance = 0;
+     ENode *p;
+     p=lg-&gt;a[v];//工作指针 
+     int *s;
+
+     if(v&lt;0||v&gt;lg-&gt;n-1)
+     {
+         return ERROR;
+     }
+
+     s=(int*)malloc(sizeof(int)*lg-&gt;n);
+     for(i=0;i&lt;lg-&gt;n ;i++)
+     {
+         s[i]=0;
+         path[i]=-1;
+         d[i]=INFTY;
+     }
+
+     while(p)//初始化 
+     {
+         d[p-&gt;adjVex ]=p-&gt;w ;
+         if(p-&gt;adjVex!=v&amp;&amp;d[p-&gt;adjVex ]&lt;INFTY)
+         {
+             path[p-&gt;adjVex ]=v;
+         }
+         p=p-&gt;nextArc ;
+    } //对各个数组初始化 
+     s[v]=1;
+     d[v]=0;
+     for(i=1;i&lt;lg-&gt;n ;i++)
+     {
+
+         k=Choose(d,s,lg-&gt;n );
+         if(k==-1)
+         {
+             continue;
+         } //判断是否选择了有效结点 
+         s[k]=1;
+         p=lg-&gt;a[k];
+         if(p==NULL)
+         {
+             continue ;
+         }
+         while(p)
+         {
+             if(!s[p-&gt;adjVex ]&amp;&amp;d[k]+p-&gt;w &lt;d[p-&gt;adjVex ])//更新d和path 
+             {
+                 d[p-&gt;adjVex ]=d[k]+p-&gt;w ;
+                 path[p-&gt;adjVex ]=k;
+                //  distance = d[p-&gt;adjVex];
+             }
+             p=p-&gt;nextArc ;
+         }
+        
+     }
+
+     return OK;
+ }
+
+  void OutPut(LGraph *lg)//此函数用于输出路径 
+ {
+     int u,v;
+     printf("\nplease input the origin (u) and destination (v):\n");
+    scanf("%d %d",&amp;u,&amp;v);
+    int d[lg-&gt;n];
+    int path[lg-&gt;n];
+    Dijkstra(u,d,path,lg);
+    printf("The shortest path length between %d and %d is: %d\n",u,v,d[v]);
+    printf("\nThe path detail: ");
+    if (path[v] == -1)
+    {
+        printf(" Not exist!\n");
+        return; 
+     }
+     while (path[v]!=-1)
+      {
+        printf("%d &lt;-- ",v);
+         v=path[v];
+     }
+     printf("%d\n",u);
+ }
+
+
+
+int main(){
+    LGraph g;
+    int nSize,edge,u,v,i;
+    int d[100];
+    int path[100];
+    ElemType w;
+    printf("Please enter the size of the mgraph: ");
+    scanf("%d",&amp;nSize);
+    Init(&amp;g,nSize);
+    printf("Please enter the number of the edges: ");
+    scanf("%d",&amp;edge);
+    printf("\n");
+    for(i = 0;i &lt; edge;i ++){
+        printf("Please enter the %d edge: ",i);
+        scanf("%d%d%d",&amp;u,&amp;v,&amp;w);
+        Insert(&amp;g,u,v,w);
+    }
+    // nSize = 6;
+    // edge = 10;
+    // Init(&amp;g,nSize);
+    // Insert(&amp;g,0,1,50);
+    // Insert(&amp;g,0,2,10);
+    // Insert(&amp;g,0,4,80);
+    // Insert(&amp;g,1,2,15);
+    // Insert(&amp;g,1,4,20);
+    // Insert(&amp;g,2,3,15);
+    // Insert(&amp;g,3,1,20);
+    // Insert(&amp;g,3,4,45);
+    // Insert(&amp;g,5,3,9);
+    // Insert(&amp;g,5,4,10);
+
+    Dijkstra(0,d,path,&amp;g);
+    OutPut(&amp;g);
+    // system("pause");
+    return 0;
+}
+</code></pre>
+<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><h3 id="各种内排序算法的实现和性能比较"><a href="#各种内排序算法的实现和性能比较" class="headerlink" title="各种内排序算法的实现和性能比较"></a>各种内排序算法的实现和性能比较</h3><p>1.已知待排序序列以顺序表存储，数据元素以及表结构定义如下：</p>
+<pre><code class="line-numbers language-c">typedef struct entry //数据元素
+
+{
+
+  KeyType key;   //排序关键词，KeyType应该为可以比较类型
+
+  DataType data;  //data包含数据元素中的其他数据项
+
+} Entry;
+
+ 
+
+typedef struct list  //顺序表
+
+{
+
+  int n;      //待排序数据元素数量
+
+  Entry D[MaxSize]; //静态数组存储数据元素
+
+} List;
+</code></pre>
+<p>参照程序10.1~10.7，编写算法，分别实现顺序表的简单选择排序、直接插入排序、冒泡排序、快速排序、两路合并排序以及堆排序。</p>
+<p>2.编写算法，利用随机函数，在文件中随机产生n个关键字（关键字定义为整型数据）。</p>
+<p>3.编写程序，分别验证简单选择排序、直接插入排序、冒泡排序、快速排序、两路合并排序以及堆排序，在待排关键字个数为500、10000、50000、100000时，完成排序所需要的时间（单位：毫秒）</p>
+<p>4.将排序结果存放于Excel工作表中，并以图表（簇状柱形图）的方式显示。</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-C">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;windows.h&gt;
+#define MaxSize 50000
+
+
+typedef int KeyType;
+typedef int DataType;
+typedef struct entry  //数据元素
+{
+    KeyType key;      //排序关键词，KeyType应该为可以比较类型
+    DataType data;    //data包含数据元素中的其他数据项
+} Entry;
+
+typedef struct list   //顺序表
+{
+    int n;            //待排序数据元素数量
+    Entry D[MaxSize]; //静态数组存储数据元素
+} List;
+
+
+//简单选择排序算法
+int FindMin(List list,int StartIndex)  //在startIndex至表尾范围内找到最小关键字元素下标
+{
+    int MInIndex = StartIndex;
+    int i;
+    for (i = StartIndex+1; i &lt; list.n;i++)
+    {
+        if(list.D[i].key&lt;list.D[MInIndex].key)
+        {
+            MInIndex = i;
+        }
+    }
+    return MInIndex;
+}
+void Swap(Entry *D ,int i,int j)  //交换顺序表中两元素位置
+{
+    Entry temp;
+    if(i==j)
+        return;
+    temp = *(D + i);
+    *(D + i) = *(D+j);
+    *(D + j) = temp;
+}
+void SelectSort(List *list)
+{
+    int i,MinIndex;
+    int StartIndex = 0;
+    // for (i = 0; i &lt; list-&gt;n;i++)
+    // {
+    //     MinIndex=FindMin(*list, StartIndex);
+    //     Swap(list-&gt;D, i, MinIndex);
+    //     StartIndex++;
+    // }
+    while(StartIndex&lt;list-&gt;n)
+    {
+        MinIndex=FindMin(*list, StartIndex);
+        Swap(list-&gt;D, StartIndex, MinIndex);
+        StartIndex++;  
+    }
+}
+
+//直接插入排序
+void InsertSort(List *list)
+{
+    int i, j;   //i为待插入元素下标
+    for (i = 1; i &lt; list-&gt;n; i++)  //每一趟待插入元素
+    {
+        Entry insertItem = list-&gt;D[i];
+        for (j = i - 1; j &gt;= 0; j--)
+        {   //不断将有序序列中元素向后移动，为待插入元素空出一个位置
+            if (insertItem.key &lt; list-&gt;D[j].key)
+                list-&gt;D[j + 1] = list-&gt;D[j];
+            else break;
+        }
+        list-&gt;D[j + 1] = insertItem;   //待插入元素有序存放至有序序列中
+    }
+}
+
+//冒泡排序
+void BubbleSort(List* list) 
+{
+    int i, j;     //i标识每趟排序范围最后一个元素下标，每趟排序元素下标范围是0~i
+    bool isSwap = false;   //标记一趟排序中是否发生了元素交换
+    for (i =list-&gt;n - 1; i &gt; 0; i--)
+    {
+        for (j = 0; j &lt; i; j++)
+        {
+            if (list-&gt;D[j].key &gt; list-&gt;D[j + 1].key)
+            {
+                Swap(list-&gt;D, j, j + 1);
+                isSwap = true;
+            }
+        }
+        if (!isSwap) break;   //如果本趟排序没有发生元素交换，排序完成
+    }
+}
+
+//划分
+int Partition(List *list,int low,int high)
+{
+    int i = low, j = j = high + 1;  //注意是high+1
+    Entry pivot = list-&gt;D[low];  //pivot是分划元素
+    do
+    {
+        do
+        {
+            i++;
+        }  while (i&lt;=high &amp;&amp; list-&gt;D[i].key&lt;pivot.key);
+        do
+        {
+            j--;
+        }  while (list-&gt;D[j].key&gt;pivot.key);
+        if(i&lt;j)
+            Swap(list-&gt;D,i,j);   //若i&lt;j，交换D[i]与D[j]
+    }  while (i&lt;j);
+    Swap(list-&gt;D,low,j);    //若i&gt;=j,交换D[low]与D[j]
+    return j;
+}
+//快速排序的递归函数
+void QuickSort(List *list,int low ,int high)
+{
+    int k;
+    if(low&lt;high)
+    {
+        k = Partition(list,low,high);
+        QuickSort(list,low,k-1);  //递归排序（low，k-1）
+        QuickSort(list,k+1,high); //递归排序（k+1，high）
+    }
+}
+//快速排序的主调用函数
+void QuickSort(List *list)
+{
+    QuickSort(list,0,list-&gt;n-1);
+}
+
+
+
+void Merge(List *list,int left,int mid,int right)
+{
+    int *Temp = new int[right - left + 1];
+    // int *Temp = (int *)malloc(sizeof(int)*list-&gt;n);
+    int i = left, j = mid + 1, k = 0;
+    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
+    {       //每次把比较小的放进Temp里
+        if(list-&gt;D[i].key&lt;=list-&gt;D[j].key)
+            Temp[k++] = list-&gt;D[i++].key;
+        else
+            Temp[k++] = list-&gt;D[j++].key;
+    }
+        
+        while(i&lt;=mid)  Temp[k++] = list-&gt;D[i++].key;    //将剩余元素复制到Temp
+        while(j&lt;=right)  Temp[k++] = list-&gt;D[j++].key;
+        for (i = 0, k = left; k &lt;= right;)
+            list-&gt;D[k++].key = Temp[i++];
+}
+//快速排序的递归函数
+void MergeSort(List *list,int left,int right)
+{
+    if(left&lt;right)
+    {
+        int mid = left + (right-left) / 2;    //二分选择中间值
+        MergeSort(list,left, mid);            //递归排序左半部分
+        MergeSort(list, mid + 1, right);      //递归排序右半部分
+        Merge(list,left,mid,right);           //合并左右两部分
+    }
+}
+//快速排序的主调用函数
+void MergeSort(List *list)
+{
+    MergeSort(list,0,list-&gt;n-1);
+}
+
+//最大堆结构体
+typedef struct maxheap
+{
+    int n;
+    Entry D[MaxSize];
+
+} MaxHeap;
+//向下调整
+void AdjustDown(Entry heap[],int current,int border)
+{
+    int p = current;
+    int maxChild;
+    Entry temp;
+    while(2*p+1&lt;=border)
+    {
+        if((2*p+2&lt;=border) &amp;&amp;(heap[2*p+1].key &lt; heap[2*p+2].key))
+            maxChild = 2 * p + 2;
+        else 
+            maxChild = 2 * p + 1;
+        if(heap[p].key&gt;=heap[maxChild].key)
+            break;
+        else  //否则将p和其最大孩子交换
+        {
+            temp = heap[p];
+            heap[p] = heap[maxChild];
+            heap[maxChild] = temp;
+            p = maxChild;
+        }
+    }
+}
+
+void HeapSort(MaxHeap *hp)
+{
+    int i;
+    Entry temp;
+    for (i =( hp-&gt;n -2) / 2; i &gt;= 0;i--)
+    {
+        AdjustDown(hp-&gt;D,i,hp-&gt;n-1);
+    }
+        for (i = hp-&gt;n - 1; i &gt;= 0; i--)  //i指向当前堆的堆底元素
+        {
+            Swap(hp-&gt;D, 0, i);    //交换堆底与堆顶元素
+            AdjustDown(hp-&gt;D, 0, i - 1);
+        }
+}
+
+void Rand(List *list1)
+{
+    int i;
+       srand((unsigned int)time(NULL));  //以运行程序时的时间作为随机数种子
+    for (i = 0; i &lt;list1-&gt;n ; i++)
+     {
+        list1-&gt;D[i].key = rand();
+    }
+}
+
+
+
+void Output(List *list)
+{
+    int i;
+    for (i = 0; i &lt; list-&gt;n; i++)
+    {
+        printf("%4d ",list-&gt;D[i].key);
+    }
+}
+void Output2(MaxHeap *heap)
+{
+    int i;
+    for (i = 0; i &lt; heap-&gt;n; i++)
+    {
+        printf("%4d ",heap-&gt;D[i].key);
+    }
+}
+
+MaxHeap heap;
+
+int main()
+{
+    List list;
+    // MaxHeap heap;
+    static List temp=list;
+    int i;
+    clock_t start, finish;
+    double duration;
+    list.n = MaxSize;
+    printf("numbers: %d \n",MaxSize);
+    Rand(&amp;list);  //初始化
+    // printf("Initial list:\n");
+    // Output(&amp;list);           //输出
+
+
+    temp = list;
+    // printf("\n");
+    start = clock();
+    SelectSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) ; 
+    // printf("\n\nSelectSort:\n");
+    // printf( "%f ms\n", duration); //精度是1ms  //显示排序时间
+    Output(&amp;list);
+    
+
+
+    list = temp;
+    // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nInsertSort:\n");
+    start = clock();
+    InsertSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nInsertSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output(&amp;list);
+   
+
+
+    list = temp;
+    // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nBubbleSort:\n");
+    start = clock();
+    BubbleSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nBubbleSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output(&amp;list);
+   
+
+
+    list = temp;
+    // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nQuickSort:\n");
+    start = clock();
+    QuickSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nQuickSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output(&amp;list);
+
+
+    list = temp;
+    // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nMergeSort:\n");
+    start = clock();
+    MergeSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nMergeSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output(&amp;list);
+ 
+
+
+    list = temp;
+    heap.n = list.n;
+    for (i = 0; i &lt; list.n;i++)
+    {
+        heap.D[i].key = list.D[i].key;
+    }
+        // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nHeapSort:\n");
+    start = clock();
+    HeapSort(&amp;heap);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nHeapSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output2(&amp;heap);
+
+}
+
+</code></pre>
+<h4 id="时间统计与比较"><a href="#时间统计与比较" class="headerlink" title="时间统计与比较"></a>时间统计与比较</h4><p><img src="/2021/07/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/clip_image002-1625712889034.png" alt="img"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>线性表</tag>
+        <tag>链表</tag>
+        <tag>哈夫曼编码</tag>
+        <tag>图</tag>
+        <tag>内排序</tag>
       </tags>
   </entry>
 </search>

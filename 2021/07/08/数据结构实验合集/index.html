@@ -1,0 +1,3726 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="【NJUPT】数据结构实验(合集), Ab4nd0n">
+    <meta name="description" content="记录学习，记录生活。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>【NJUPT】数据结构实验(合集) | Ab4nd0n</title>
+    <link rel="icon" type="image/jpeg" href="/medias/touxiang.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/js/prism/prism.css">
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/touxiang.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ab4nd0n</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/touxiang.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ab4nd0n</div>
+        <div class="logo-desc">
+            
+            记录学习，记录生活。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+    
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/10.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">【NJUPT】数据结构实验(合集)</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+   /* .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    } */
+    .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+                                <span class="chip bg-color">线性表</span>
+                            </a>
+                        
+                            <a href="/tags/%E9%93%BE%E8%A1%A8/">
+                                <span class="chip bg-color">链表</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/">
+                                <span class="chip bg-color">哈夫曼编码</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%9B%BE/">
+                                <span class="chip bg-color">图</span>
+                            </a>
+                        
+                            <a href="/tags/%E5%86%85%E6%8E%92%E5%BA%8F/">
+                                <span class="chip bg-color">内排序</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                数据结构
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-07-08
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2021-07-08
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    11.9k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    59 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h2 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h2><h3 id="1-顺序表的初始化、查找、插入、删除、输出、撤销等操作"><a href="#1-顺序表的初始化、查找、插入、删除、输出、撤销等操作" class="headerlink" title="1.顺序表的初始化、查找、插入、删除、输出、撤销等操作"></a>1.顺序表的初始化、查找、插入、删除、输出、撤销等操作</h3><pre><code class="line-numbers language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define ERROR 0
+#define OK 1
+#define Overflow 2
+#define Underflow 3
+#define NotPresent 4
+#define Duplicate 5
+
+typedef int ElemType;
+typedef struct seqlist
+{
+    int n;              //元素个数
+    int maxlength;      //最大允许长度
+    ElemType *element;  //指针变量
+} SeqList;
+
+typedef int Status; //自定义类型
+
+//初始化
+/*
+为顺序表L动态分配一维数组
+若动态分配一维数组失败则返回ERROR（0）
+*/
+Status Init(SeqList *L,int mSize)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=mSize;
+    L-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    if(!L-&gt;element)  
+    {
+        return ERROR;
+    }
+    return OK;
+}
+
+//顺序表的查找(查找元素ai的值,直接定位下标)
+/*
+首先判断传入的下标i是否越界（0~n-1）
+若未越界，则取出element[i]的值传给x返回
+
+算法复杂度为O(1)
+*/
+Status Find(SeqList L,int i,ElemType *x){
+    if(i&lt;0||i&gt;L.n-1){
+        return ERROR;    //判断元素下标i是否越界
+    }
+    *x=L.element[i];     //取出element[i]的值通过参数x返回
+    return OK;
+}
+
+
+//顺序表的插入(在ai之后插入，即ai+1的位置)
+/*
+判断下标i是否越界 （-1~n-1）
+判断顺序表存储空间是否已满
+将元素ai+1~an-1依次向后移动一个位置
+将要插入元素赋值给element[i+1]
+表长+1
+
+算法复杂度为O(n)
+*/
+Status Insert (SeqList *L, int i,ElemType x)
+{
+    int j;
+     if(i&lt;-1||i&gt;L-&gt;n-1)  //注意此处i的范围 是&lt;-1 不是0  ！！！
+    {
+        return ERROR;
+    }
+    if(L-&gt;n==L-&gt;maxlength)   //判满
+    {
+        return ERROR;
+    }
+    for(j=L-&gt;n-1;j&gt;i;j--)       //通过循环将下标i+1到n-1的元素后移（从后往前）
+    {
+        L-&gt;element[j+1]=L-&gt;element[j];   //注意是j的值给j+1（从后往前）
+    }
+    L-&gt;element[i+1]=x; //把插入的 元素放到下标为 i+1 的位置
+    L-&gt;n=L-&gt;n+1;      //表长加1
+    return OK;
+}
+
+
+//顺序表的删除
+/*
+判断下标是否越界（0~n-1）
+判断顺序表是否为空
+将元素ai+1~an-1依次前移一个位置
+表长-1
+
+算法复杂度为O(n)
+*/
+Status Delete(SeqList *L,int i)
+{
+    int j;
+    if(i&lt;0||i&gt;L-&gt;n-1)  return ERROR;  //此处i&lt;0!!!注意和插入区分
+    if(!L-&gt;n)  return ERROR;    //判空
+    for(j=i+1;j&lt;L-&gt;n;j++)
+    {
+        L-&gt;element[j-1]=L-&gt;element[j];  //从前往后逐个前移元素，j的值给j-1
+    }
+    L-&gt;n--;    //表长-1
+    return OK;
+    
+}
+
+//顺序表的输出
+Status Output(SeqList *L)
+{
+    int i;
+    if(!L-&gt;n)   return ERROR;   //判空
+    for(i=0;i&lt;L-&gt;n;i++)
+    {
+        printf("%d  ",L-&gt;element[i]);
+    }
+    printf("\n\n");
+     return OK;
+}
+
+//顺序表的销毁
+void Destroy(SeqList *L)
+{
+    L-&gt;n=0;
+    L-&gt;maxlength=0;
+    free(L-&gt;element);
+    printf("Sucessfuly Destroyed!\n");
+}
+
+
+int main()
+{
+    int i,j,k,x;
+    int m, n;
+    SeqList List;
+    k=Init(&amp;List,100); //因为Init函数的形参是指针变量（地址），所以这里要用取地址符！！！
+    printf("初始化状态：%d\n\n",k);   //测试返回值为 1
+    for(i=0;i&lt;10;i++)
+    {
+        Insert(&amp;List,i-1,i);  //执行插入操作
+    }
+    Output(&amp;List);    // 0123456789
+    printf("请输入需要插入的数的位置下标和值（中间以空格隔开）：\n");
+    scanf("%d%d",&amp;m,&amp;n);
+    Insert(&amp;List,m,n);
+     printf("\n插入后的序列：\n");
+    Output(&amp;List);
+    printf("请输入需要查找的数的下标：\n");
+    scanf("%d",&amp;j);
+    Find(List,j,&amp;x);
+    printf("\nThe value is : %d\n\n",x);  
+    printf("请输入需要删除的数的下标：\n");
+    scanf("%d",&amp;k);
+    Delete(&amp;List,k);
+    printf("\n删除后的序列：\n");
+    Output(&amp;List); 
+    Destroy(&amp;List);
+    printf("\n");
+    system("pause");
+}
+</code></pre>
+<h3 id="2-带表头结点单链表的初始化、查找、插入、删除、输出、撤销、逆置、排序等操作"><a href="#2-带表头结点单链表的初始化、查找、插入、删除、输出、撤销、逆置、排序等操作" class="headerlink" title="2.带表头结点单链表的初始化、查找、插入、删除、输出、撤销、逆置、排序等操作"></a>2.带表头结点单链表的初始化、查找、插入、删除、输出、撤销、逆置、排序等操作</h3><pre><code class="line-numbers language-c">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+typedef int ElemType;
+typedef int Status;
+#define ERROR 0
+#define OK 1
+ 
+typedef struct Node {      //结点的结构体
+    ElemType element;      //结点的数据域
+    struct Node * link;    //结点的指针域
+}Node;
+ 
+typedef struct headerlist{ //带表头结点的单链表结构体
+    struct Node* head;     //表头结点
+    int n;                 //元素个数
+}HeaderList;
+ 
+ 
+//带表头结点单链表的初始化
+Status Init(HeaderList *h) {
+    h-&gt;head=(Node*)malloc(sizeof(Node));   //生成表头结点
+    if(!h-&gt;head){
+        return ERROR;
+    }
+    h-&gt;head-&gt;link = NULL;                  //设置单链表为空表
+    h-&gt;n = 0;
+    return OK;
+}
+ 
+ 
+//带表头结点单链表的查找
+/*
+判断下标i是否越界 0~n-1
+若未越界，则从头结点开始顺着单链表逐个结点查找
+通过循环让p指向结点ai
+将ai的值通过x返回
+*/
+Status Find(HeaderList *h,int i,ElemType *x){
+    Node *p;
+    int j;
+    if(i&lt;0||i&gt;h-&gt;n-1){
+        return ERROR;
+    }
+    p=h-&gt;head-&gt;link;
+    for(j=0;j&lt;i;j++){
+        p=p-&gt;link;
+    }
+    *x=p-&gt;element;
+    return OK;
+}
+ 
+ 
+//带表头结点单链表的插入
+/*
+判断i是否越界 （-1~n-1）
+查找ai,指针p指向此节点
+生成一个新的结点q，将新结点的数据域置为x，指针q指向此结点
+将q所指向的结点插入p所指的结点之后（注意不要断链）
+单链表元素个数+1
+*/
+Status Insert(HeaderList *h, int i, ElemType x) {
+    Node *p, *q;
+    int j;
+    if (i&lt;-1 || i&gt;h-&gt;n - 1)
+        return ERROR;
+    p = h-&gt;head;                          //从头结点开始找ai元素所在的结点p
+    for (j = 0; j &lt;= i; j++) {
+        p = p-&gt;link;
+    }
+    q = (Node*)malloc(sizeof(Node));      //生成新结点q
+    q-&gt;element = x;
+    q-&gt;link = p-&gt;link;                    //新结点q插在p之后
+    p-&gt;link = q;
+    h-&gt;n++;
+    return OK;
+}
+ 
+ 
+//带表头结点单链表的删除
+/*
+判断i是否越界（0~n-1）、单链表是否为空
+查找元素ai的直接前驱ai-1,并令指针q指向它
+则使p指向ai所在的结点，并删除ai
+释放p所指结点的存储空间
+单链表元素个数-1
+*/
+Status Delete(HeaderList *h,int i){
+    int j;
+    Node *p,*q;
+    if(!h-&gt;n){
+        return ERROR;
+        if(i&lt;0||i&gt;h-&gt;n-1){
+            return ERROR;
+        }
+    }
+    q=h-&gt;head;
+    for(j=0;j&lt;i;j++){
+        q=q-&gt;link;
+    }
+    p=q-&gt;link;                      //p指向ai
+    q-&gt;link=p-&gt;link;                //从单链表中删除p所指结点
+    free(p);                        //释放p所指结点的存储空间
+    h-&gt;n--;
+    return OK;
+}
+ 
+ 
+//带表头结点的输出操作
+Status Output (HeaderList *h)
+{
+    Node*p;
+    p = h-&gt;head;
+    for(int i=0; i&lt;h-&gt;n; i++)
+    {
+        p = p-&gt;link;
+        printf("%d  ",p-&gt;element);
+    }
+    printf("\n\n");
+    return OK;
+}
+ 
+ 
+// //带表头结点单链表的撤销操作
+// void Destroy(HeaderList *h){
+//     Node *p,*q;
+//     while(h-&gt;head-&gt;link){
+//         q=h-&gt;head-&gt;link;
+//         p=h-&gt;head-&gt;link-&gt;link;
+//         free(h-&gt;head-&gt;link);
+//         h-&gt;head=q;
+//     }
+//     printf("Sucessfully destroyed!\n");
+// }
+void Destroy (HeaderList *h)
+{
+    Node* p;
+    while(h-&gt;n)
+    {
+        p = h-&gt;head-&gt;link-&gt;link;
+        free(h-&gt;head-&gt;link);
+        h-&gt;head-&gt;link = p;
+        h-&gt;n -=1;
+    }
+    free(h-&gt;head);
+    printf("Sucessfully Destroyed!\n");
+}
+ 
+ 
+//将带表头结点单链表逆置
+void Reverse(HeaderList *h){
+    Node *p,*q;
+    p = h-&gt;head-&gt;link;            //p指向a0
+    h-&gt;head-&gt;link = NULL;         //断开与表头结点的链接
+    while(p){
+        q=p-&gt;link;                //q指向p的下一个结点
+        p-&gt;link=h-&gt;head-&gt;link;    
+        h-&gt;head-&gt;link=p;          //这两步主要是将p指向的结点插到头结点后面
+        p=q;                      //把下一个结点的地址给p（q的存在避免了断链）
+    }
+}
+
+//将单链表排序成为有序单链表
+void Sort(HeaderList *h)    //冒泡排序
+{
+    int temp;
+    Node*p;  //定义p.q两个结点,p指向第一个结点，q指向p的下一个结点
+    Node*q;
+    for(p=h-&gt;head-&gt;link;p!=NULL;p=p-&gt;link)
+    {
+        for(q=p-&gt;link,temp=0;q!=NULL;q=q-&gt;link)
+        {
+            if(p-&gt;element &gt; q-&gt;element)   
+            {
+                temp = p-&gt;element;        
+                p-&gt;element = q-&gt;element;    //如果p所指的结点的值大于q所指结点的值，则进行交换
+                q-&gt;element = temp;        
+            }
+        }
+    }
+}
+
+
+ //用于测试的主函数
+int main()
+{
+    int i;
+    int x;
+    int m,n,j,k;
+    HeaderList List;
+    i=Init(&amp;List);
+    printf("初始化状态：%d\n\n",i);     // 1
+    for(i=0;i&lt;10;i++)
+    {
+        Insert(&amp;List,i-1,i);
+    }
+    Output(&amp;List);    //0 1 2 3 4 5 6 7 8 9
+    printf("请输入需要插入的数的位置下标和值（中间以空格隔开）：\n");
+    scanf("%d%d",&amp;m,&amp;n);
+    Insert(&amp;List,m,n);
+    printf("\n插入后的序列：\n");
+    Output(&amp;List);
+    Reverse(&amp;List);
+    printf("逆置后的序列：\n");
+    Output(&amp;List);
+    printf("排序后的序列：\n");
+    Sort(&amp;List);
+    Output(&amp;List);
+    printf("请输入需要查找的数的下标：\n");
+    scanf("%d",&amp;j);
+    Find(&amp;List,j,&amp;x);
+    printf("The value is : %d\n\n",x);  
+    printf("请输入需要删除的数的下标：\n");
+    scanf("%d",&amp;k);
+    Delete(&amp;List,k);
+    printf("删除后的序列：\n");
+    Output(&amp;List); 
+    Destroy(&amp;List);
+    return 0;
+}
+</code></pre>
+<h3 id="3-一元多项式的创建、输出、撤销以及两个一元多项式相加和相乘"><a href="#3-一元多项式的创建、输出、撤销以及两个一元多项式相加和相乘" class="headerlink" title="3.一元多项式的创建、输出、撤销以及两个一元多项式相加和相乘"></a>3.一元多项式的创建、输出、撤销以及两个一元多项式相加和相乘</h3><pre><code class="line-numbers language-c">#include&lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct PNode
+{
+    int coef;
+    int exp;
+    struct PNode *link;
+} PNode;
+typedef struct Polynominal
+{
+    PNode *head;
+} Polynominal;
+
+void Create(Polynominal *p)
+{
+    PNode *pn, *pre, *q;
+    p-&gt;head = (PNode*)malloc(sizeof(PNode));
+    p-&gt;head-&gt;exp = -1;
+    p-&gt;head-&gt;link = p-&gt;head;
+    for (;;)
+    {
+        pn = (PNode*)malloc(sizeof(PNode));
+        printf("coef\texp:\n");
+        scanf("%d\t%d",&amp;pn-&gt;coef,&amp;pn-&gt;exp);
+        if(pn-&gt;exp&lt;0)   //指数为负数时退出
+            break;
+        pre = p-&gt;head;
+        q = p-&gt;head-&gt;link;
+        while(q&amp;&amp;q-&gt;exp&gt;pn-&gt;exp)
+        {
+            pre = q;
+            q = q-&gt;link;
+        }
+        pn-&gt;link = q;
+        pre-&gt;link = pn;
+    }
+}
+
+void Add(Polynominal *px,Polynominal *qx)
+{
+    PNode *q, *q1 = qx-&gt;head, *p, *p1, *temp;
+    p = px-&gt;head-&gt;link;
+    q = q1-&gt;link;
+    while(p-&gt;exp&lt;q-&gt;exp)  //当p-&gt;exp&lt;q-&gt;exp,则q所指的项成为结果多项式中的一项，q1和q分别右移一项
+    {
+        q1 = q;
+        q = q-&gt;link;
+    }
+    if(q-&gt;exp==p-&gt;exp)    //当p-&gt;exp==q-&gt;exp，将系数coef相加，但需要讨论相加后系数是否为零
+    {
+        q-&gt;coef = p-&gt;coef + q-&gt;coef;
+        if(q-&gt;coef==0)   //相加后系数为0
+        {
+            q1-&gt;link = q-&gt;link;  //删除q
+            free(q);             //释放q的空间
+            q = q1-&gt;link;        //重置q指针
+            p = p-&gt;link;         //p指针右移
+        }
+        else //相加后系数不为0
+        {
+            q1 = q;
+            q = q-&gt;link;
+            p = p-&gt;link;
+        }
+    }
+    else  //当p-&gt;exp&lt;q-&gt;exp,则复制p所指向的结点，并将其插在q1之后，指针p右移一项
+    {
+        temp = (PNode*)malloc(sizeof(PNode));//以p的系数和指数生成新的结点
+        temp-&gt;coef = p-&gt;coef;   
+        temp-&gt;exp = p-&gt;exp;
+        temp-&gt;link = q1-&gt;link;
+        q1-&gt;link = temp;
+        q1 = q1-&gt;link;
+        p = p-&gt;link;
+    }
+}
+
+//多项式的乘法
+void Multiply(Polynominal *px,Polynominal *qx){
+    Polynominal qx1,qx2;
+    PNode *q1,*q2,*q3,*q4,*pre,*q;
+    qx1.head = (PNode*)malloc(sizeof(PNode));       //生成新多项式qx1
+    qx1.head-&gt;exp = -1;
+    qx1.head-&gt;link = qx1.head;                      //qx1改造成循环链表
+    q1 = px-&gt;head-&gt;link;                            //q1指向px的第一项
+    q2 = qx-&gt;head-&gt;link;                            //q2指向qx的第一项
+    while(q2-&gt;exp != -1){                           //当q2的指数不为-1时,px先和qx的每一项相乘
+        q3 = (PNode*)malloc(sizeof(PNode));         //q3存放相乘的结果
+        q3-&gt;coef = q1-&gt;coef * q2-&gt;coef;
+        q3-&gt;exp = q1-&gt;exp + q2-&gt;exp;
+        if(qx1.head-&gt;link-&gt;exp == -1){              //q3插入到qx1多项式第一项中
+            q3-&gt;link = qx1.head-&gt;link;
+            qx1.head-&gt;link = q3;
+            pre = qx1.head-&gt;link;
+        }
+        else{                                       //q3插入到qx1多项式最后一项中
+            q3-&gt;link = qx1.head;
+            pre-&gt;link = q3;
+            pre = pre-&gt;link;
+        }
+        q2 = q2-&gt;link;
+    }
+    q1 = q1-&gt;link;                                 //q1后移一位
+    while(q1-&gt;exp != -1){                          //将px剩下来每一项和qx每一项相乘
+        q2 = q2-&gt;link;
+        qx2.head = (PNode*)malloc(sizeof(PNode));  //生成新多项式qx2
+        qx2.head-&gt;exp = -1;
+        qx2.head-&gt;link = qx2.head;
+        while(q2-&gt;exp != -1){       
+            q4 = (PNode*)malloc(sizeof(PNode));
+            q4-&gt;coef = q1-&gt;coef * q2-&gt;coef;
+            q4-&gt;exp = q1-&gt;exp + q2-&gt;exp;
+            if(qx2.head-&gt;link-&gt;exp == -1){
+                q4-&gt;link = qx2.head-&gt;link;
+                qx2.head-&gt;link = q4;
+                pre = qx2.head-&gt;link;
+            }
+            else{
+                q4-&gt;link = qx2.head;
+                pre-&gt;link = q4;
+                pre = pre-&gt;link;
+            }
+            q2 = q2-&gt;link;
+        }
+        Add(&amp;qx2,&amp;qx1);                            //利用加法合并同类项
+        q1 = q1-&gt;link;
+    }
+    Output(qx1);
+}
+ 
+void Output(Polynominal p){
+    PNode *q;
+    int flag = 1;                                   //记录是否为第一项
+    q = p.head-&gt;link;
+    if (!q){
+        return;
+    }
+    while(q != p.head){
+        if (!flag &amp;&amp; (q-&gt;coef &gt; 0)) printf("+");    //在非第一项的正系数前输出+号
+        flag = 0;                                   //flag置为0,表示不是第一项
+        if(q-&gt;coef == 0){                           //当前项系数为0
+            return;
+        }
+        printf("%d",q-&gt;coef);                       //当前项系数不为0
+        switch(q-&gt;exp){                             //判断当前项指数
+            case 0:break;                           //当前项指数为0,退出
+            case 1:printf("X");break;               //当前项指数为1,输出X
+            default:printf("X^%d",q-&gt;exp);break;    //当前项指数不为0,也不为1
+        }
+        q = q-&gt;link;
+    }
+}
+ 
+
+  int main()
+    {
+        Polynominal *p,*q;
+        int x;
+        printf("Please enter the first polynomial:\n");
+        Create(&amp;p);
+        Output(p);
+        printf("\n\nPlease enter the second polynomial:\n");
+        Create(&amp;q);
+        Output(q);
+        printf("\n\nPlease choose the function:(0：ADD；1：MULTIPLY)\n");
+        scanf("%d",&amp;x);
+        switch(x){                                  
+            case 0:printf("Add Result:\n");
+                Add(&amp;p,&amp;q);
+                Output(q);
+            break;
+            case 1:printf("Multiply Result:\n");
+                Multiply(&amp;p,&amp;q);
+                Output(q);
+            default:break;
+        }
+        return 0;
+        
+    }
+</code></pre>
+<h2 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h2><h3 id="1-二叉树的基本操作"><a href="#1-二叉树的基本操作" class="headerlink" title="1.二叉树的基本操作"></a>1.二叉树的基本操作</h3><p>a) 已知二叉树二叉链表结点结构定义如下：</p>
+<pre><code class="line-numbers language-c">typedef struct btnode
+
+{
+
+  ElemType element;
+
+  struct btnode *lChild;
+
+  struct btnode *rChild;
+
+} BTNode;
+</code></pre>
+<p>参照程序5.1~5.4，编写程序，完成二叉树的先序创建、先序遍历、中序遍历、后序遍历等操作。</p>
+<p>b)基于上一实验内容中构建的二叉链表存储结构，编写程序实现求二叉树结点个数、叶结点个数、二叉树的高度以及交换二叉树所有子树的操作。</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-c">#include&lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+typedef struct PNode
+{
+    int coef;
+    int exp;
+    struct PNode *link;
+} PNode;
+typedef struct Polynominal
+{
+    PNode *head;
+} Polynominal;
+
+void Create(Polynominal *p)
+{
+    PNode *pn, *pre, *q;
+    p-&gt;head = (PNode*)malloc(sizeof(PNode));
+    p-&gt;head-&gt;exp = -1;
+    p-&gt;head-&gt;link = p-&gt;head;
+    for (;;)
+    {
+        pn = (PNode*)malloc(sizeof(PNode));
+        printf("coef\texp:\n");
+        scanf("%d\t%d",&amp;pn-&gt;coef,&amp;pn-&gt;exp);
+        if(pn-&gt;exp&lt;0)   //指数为负数时退出
+            break;
+        pre = p-&gt;head;
+        q = p-&gt;head-&gt;link;
+        while(q&amp;&amp;q-&gt;exp&gt;pn-&gt;exp)
+        {
+            pre = q;
+            q = q-&gt;link;
+        }
+        pn-&gt;link = q;
+        pre-&gt;link = pn;
+    }
+}
+
+void Add(Polynominal *px,Polynominal *qx)
+{
+    PNode *q, *q1 = qx-&gt;head, *p, *p1, *temp;
+    p = px-&gt;head-&gt;link;
+    q = q1-&gt;link;
+    while(p-&gt;exp&lt;q-&gt;exp)  //当p-&gt;exp&lt;q-&gt;exp,则q所指的项成为结果多项式中的一项，q1和q分别右移一项
+    {
+        q1 = q;
+        q = q-&gt;link;
+    }
+    if(q-&gt;exp==p-&gt;exp)    //当p-&gt;exp==q-&gt;exp，将系数coef相加，但需要讨论相加后系数是否为零
+    {
+        q-&gt;coef = p-&gt;coef + q-&gt;coef;
+        if(q-&gt;coef==0)   //相加后系数为0
+        {
+            q1-&gt;link = q-&gt;link;  //删除q
+            free(q);             //释放q的空间
+            q = q1-&gt;link;        //重置q指针
+            p = p-&gt;link;         //p指针右移
+        }
+        else //相加后系数不为0
+        {
+            q1 = q;
+            q = q-&gt;link;
+            p = p-&gt;link;
+        }
+    }
+    else  //当p-&gt;exp&lt;q-&gt;exp,则复制p所指向的结点，并将其插在q1之后，指针p右移一项
+    {
+        temp = (PNode*)malloc(sizeof(PNode));//以p的系数和指数生成新的结点
+        temp-&gt;coef = p-&gt;coef;   
+        temp-&gt;exp = p-&gt;exp;
+        temp-&gt;link = q1-&gt;link;
+        q1-&gt;link = temp;
+        q1 = q1-&gt;link;
+        p = p-&gt;link;
+    }
+}
+
+//多项式的乘法
+void Multiply(Polynominal *px,Polynominal *qx){
+    Polynominal qx1,qx2;
+    PNode *q1,*q2,*q3,*q4,*pre,*q;
+    qx1.head = (PNode*)malloc(sizeof(PNode));       //生成新多项式qx1
+    qx1.head-&gt;exp = -1;
+    qx1.head-&gt;link = qx1.head;                      //qx1改造成循环链表
+    q1 = px-&gt;head-&gt;link;                            //q1指向px的第一项
+    q2 = qx-&gt;head-&gt;link;                            //q2指向qx的第一项
+    while(q2-&gt;exp != -1){                           //当q2的指数不为-1时,px先和qx的每一项相乘
+        q3 = (PNode*)malloc(sizeof(PNode));         //q3存放相乘的结果
+        q3-&gt;coef = q1-&gt;coef * q2-&gt;coef;
+        q3-&gt;exp = q1-&gt;exp + q2-&gt;exp;
+        if(qx1.head-&gt;link-&gt;exp == -1){              //q3插入到qx1多项式第一项中
+            q3-&gt;link = qx1.head-&gt;link;
+            qx1.head-&gt;link = q3;
+            pre = qx1.head-&gt;link;
+        }
+        else{                                       //q3插入到qx1多项式最后一项中
+            q3-&gt;link = qx1.head;
+            pre-&gt;link = q3;
+            pre = pre-&gt;link;
+        }
+        q2 = q2-&gt;link;
+    }
+    q1 = q1-&gt;link;                                 //q1后移一位
+    while(q1-&gt;exp != -1){                          //将px剩下来每一项和qx每一项相乘
+        q2 = q2-&gt;link;
+        qx2.head = (PNode*)malloc(sizeof(PNode));  //生成新多项式qx2
+        qx2.head-&gt;exp = -1;
+        qx2.head-&gt;link = qx2.head;
+        while(q2-&gt;exp != -1){       
+            q4 = (PNode*)malloc(sizeof(PNode));
+            q4-&gt;coef = q1-&gt;coef * q2-&gt;coef;
+            q4-&gt;exp = q1-&gt;exp + q2-&gt;exp;
+            if(qx2.head-&gt;link-&gt;exp == -1){
+                q4-&gt;link = qx2.head-&gt;link;
+                qx2.head-&gt;link = q4;
+                pre = qx2.head-&gt;link;
+            }
+            else{
+                q4-&gt;link = qx2.head;
+                pre-&gt;link = q4;
+                pre = pre-&gt;link;
+            }
+            q2 = q2-&gt;link;
+        }
+        Add(&amp;qx2,&amp;qx1);                            //利用加法合并同类项
+        q1 = q1-&gt;link;
+    }
+    Output(qx1);
+}
+ 
+void Output(Polynominal p){
+    PNode *q;
+    int flag = 1;                                   //记录是否为第一项
+    q = p.head-&gt;link;
+    if (!q){
+        return;
+    }
+    while(q != p.head){
+        if (!flag &amp;&amp; (q-&gt;coef &gt; 0)) printf("+");    //在非第一项的正系数前输出+号
+        flag = 0;                                   //flag置为0,表示不是第一项
+        if(q-&gt;coef == 0){                           //当前项系数为0
+            return;
+        }
+        printf("%d",q-&gt;coef);                       //当前项系数不为0
+        switch(q-&gt;exp){                             //判断当前项指数
+            case 0:break;                           //当前项指数为0,退出
+            case 1:printf("X");break;               //当前项指数为1,输出X
+            default:printf("X^%d",q-&gt;exp);break;    //当前项指数不为0,也不为1
+        }
+        q = q-&gt;link;
+    }
+}
+ 
+
+  int main()
+    {
+        Polynominal *p,*q;
+        int x;
+        printf("Please enter the first polynomial:\n");
+        Create(&amp;p);
+        Output(p);
+        printf("\n\nPlease enter the second polynomial:\n");
+        Create(&amp;q);
+        Output(q);
+        printf("\n\nPlease choose the function:(0：ADD；1：MULTIPLY)\n");
+        scanf("%d",&amp;x);
+        switch(x){                                  
+            case 0:printf("Add Result:\n");
+                Add(&amp;p,&amp;q);
+                Output(q);
+            break;
+            case 1:printf("Multiply Result:\n");
+                Multiply(&amp;p,&amp;q);
+                Output(q);
+            default:break;
+        }
+        return 0;
+        
+    }
+</code></pre>
+<h3 id="2-哈夫曼编码-译码系统的实现"><a href="#2-哈夫曼编码-译码系统的实现" class="headerlink" title="2.哈夫曼编码/译码系统的实现"></a>2.哈夫曼编码/译码系统的实现</h3><p>   已知哈夫曼树结点结构定义如下：</p>
+<pre><code class="line-numbers language-CC">typedef struct hfmTNode   //哈夫曼树结点结构体       
+
+{
+
+  ElemeTypeBefore element; //结点的数据域
+
+  int w;          //结点的权值
+
+  struct hfmTNode* lChild; //结点的左孩子指针
+
+  struct hfmTNode* rChild; //结点的右孩子指针
+
+}HFMTnode;
+</code></pre>
+<p>编写程序，实现哈夫曼树的创建、哈夫曼编码及解码的实现。</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;stdbool.h&gt;
+#include&lt;string.h&gt;
+typedef char ElemeTypeBefore;
+typedef struct hfmTNode      //哈夫曼树结点结构体             
+{
+    ElemeTypeBefore element;  //结点的数据域
+    int w;                    //结点的权值
+    struct hfmTNode* lChild;  //结点的左孩子指针
+    struct hfmTNode* rChild;  //结点的右孩子指针
+}HFMTnode;
+typedef struct hfmTree       //哈夫曼树结构体
+{
+    hfmTNode* root;
+}HFMTree;
+typedef HFMTree ElemeType;
+typedef struct priorityQueue  //优先权队列结构体
+{
+    ElemeType *element;
+    int n;
+    int maxSize;
+}PriorityQueue;
+
+char res[50];
+//创建一个优先权队列
+void CreatPQ(PriorityQueue* PQ, int mSize)
+{
+    PQ-&gt;maxSize = mSize;
+    PQ-&gt;n = 0;
+    PQ-&gt;element = (ElemeType*)malloc(mSize*sizeof(ElemeType));
+}
+
+//销毁一个优先权队列
+void Destroy(PriorityQueue* PQ)
+{
+    free(PQ-&gt;element);
+    PQ-&gt;n = 0;
+    PQ-&gt;maxSize = 0;
+}
+//判空
+bool IsEmpty(PriorityQueue* PQ)
+{
+    if(PQ-&gt;n == 0) return true;
+    return false;
+}
+//判满
+bool IsFull(PriorityQueue* PQ)
+{
+    if(PQ-&gt;n == PQ-&gt;maxSize) return true;
+    return false;
+}
+
+//向上调整
+void AdjustUp(ElemeType heap[], int current)
+{
+    int p = current; 
+    ElemeType temp;
+    while(p&gt;0)
+    {
+        if(heap[p].root-&gt;w&lt;heap[(p-1)/2].root-&gt;w)
+        {
+            temp = heap[p];
+            heap[p] = heap[(p-1)/2];
+            heap[(p-1)/2] = temp;
+            p = (p-1)/2;
+        }
+        else break;
+    }
+}
+
+//在优先权队列中添加一个新元素x
+void Append(PriorityQueue* PQ, ElemeType x)
+{
+    if(IsFull(PQ)) return;
+    PQ-&gt;element[PQ-&gt;n] = x;
+    PQ-&gt;n++;
+    AdjustUp(PQ-&gt;element,(PQ-&gt;n)-1);
+}
+
+//向下调整
+void AdjustDown(ElemeType heap[],int current,int n)
+{
+    int i = current;
+    ElemeType temp;
+    while(2*i+1&lt;n)
+    {
+        if(heap[i].root-&gt;w&gt;heap[2*i+1].root-&gt;w)
+        {
+            temp = heap[i];
+            heap[i] = heap[2*i+1];
+            heap[2*i+1] = temp;
+            i = 2*i+1;
+        }
+        else break;
+    }
+}
+
+//取出堆顶哈夫曼结点并赋值给x
+void Serve(PriorityQueue* PQ, ElemeType* x)
+{
+    if(IsEmpty(PQ)) return;
+    *x = PQ-&gt;element[0];
+    PQ-&gt;n--;
+    PQ-&gt;element[0] = PQ-&gt;element[PQ-&gt;n];
+    AdjustDown(PQ-&gt;element, 0, PQ-&gt;n);
+}
+
+//新建一个哈夫曼结点
+HFMTnode* NewNode(ElemeTypeBefore x, HFMTree* ln, HFMTree* rn, int w)
+{
+    HFMTnode* p =(HFMTnode*)malloc(sizeof(HFMTnode));
+    p-&gt;element = x;
+    if(ln)p-&gt;lChild = ln-&gt;root;else p-&gt;lChild = NULL;
+    if(rn)p-&gt;rChild = rn-&gt;root;else p-&gt;rChild = NULL;
+    p-&gt;w = w;
+    return p;
+}
+
+//建树
+void MakeHFMTree(HFMTree *bt, ElemeTypeBefore e, HFMTree *left, HFMTree *right, int w)
+{
+    bt-&gt;root = NewNode(e, left, right, w);
+    if(bt-&gt;root || left == right)
+        return;
+    left-&gt;root = right-&gt;root = NULL; //root属于指针，置NULL可以减少内存使用
+}
+
+//创建哈夫曼树
+HFMTree CreatHFMTree(int w[],char c[],int m)
+{
+    PriorityQueue PQ;       //定义优先权队列PQ，用于存放二叉树根结点指针
+    HFMTree x,y,z;          //x,y,z为哈夫曼树变量
+    CreatPQ(&amp;PQ,m);         //初始化优先权队列PQ
+    for(int i=0; i&lt;m; i++)
+    {
+        MakeHFMTree(&amp;x,c[i],NULL,NULL,w[i]);       //创建仅包含根结点的二叉树，w[i]为权值，c[i]为字符
+        Append(&amp;PQ,x);         //将新创建的二叉树插入优先权队列
+    }
+    while (PQ.n&gt;1)
+    {
+        Serve(&amp;PQ,&amp;x);                //从PQ中取出根结点值最小和次小的二叉树，分别存入x和y
+        Serve(&amp;PQ,&amp;y);
+        if(x.root-&gt;w&gt;y.root-&gt;w)       //设置左子树根结点的权值小于右子树
+        MakeHFMTree(&amp;z,'#',&amp;y,&amp;x,x.root-&gt;w+y.root-&gt;w);
+        else
+        MakeHFMTree(&amp;z,'#',&amp;x,&amp;y,x.root-&gt;w+y.root-&gt;w);
+        Append(&amp;PQ,z);       //将和并生成的新二叉树z插入优先权队列
+    }
+    Serve(&amp;PQ,&amp;x);   //获取优先权队列中唯一的一棵二叉树，存入x，该二叉树即为哈夫曼树
+    return x;
+}
+
+//先序遍历
+void PreOrderTree(HFMTnode *t){
+    if(t==NULL){
+        return;
+    }
+    printf("%c%d\t",t-&gt;element,t-&gt;w);  //打印输出根结点，此处可以定义其他操作
+    PreOrderTree(t-&gt;lChild);  //然后先序遍历左子树
+    PreOrderTree(t-&gt;rChild);  //最后先序遍历右子树
+}
+
+//中序遍历
+void InOrderTree(HFMTnode *t){
+    if(t==NULL){
+        return;
+    }
+    InOrderTree(t-&gt;lChild);  //中序遍历根结点的左子树
+    printf("%c%d\t",t-&gt;element,t-&gt;w); //打印输出根结点，此处可以定义其他操作
+    InOrderTree(t-&gt;rChild);  //最后中序遍历根结点的右子树
+}
+
+//哈夫曼编码
+void Encode(HFMTnode *root,int level)        
+{
+    
+    if(root-&gt;rChild==root-&gt;lChild)        
+    {
+        if(level==0)          //根结点         
+        {
+            res[0]='0';
+            level++;
+        }
+        res[level]='\0';     //结束字符串            
+        printf("%c =&gt; %s\n",root-&gt;element,res);
+    }
+    else
+    {
+        res[level]='0';                
+        Encode(root-&gt;lChild,level+1);
+        res[level]='1';                
+        Encode(root-&gt;rChild,level+1);
+    }
+}
+
+//解码
+void Decode(HFMTnode *root, char a[])
+{
+    int i,j;
+    HFMTnode *temp;               //用来存放根结点，因为后续要重新从根结点进行匹配
+    temp = root;
+    int Len = strlen(a);          //获取码文长度
+    for (i = 0; i &lt; Len;i++)
+    {
+        if(a[i]=='0')              //扫描到0则向根结点的左子树前进
+        {
+            if(root-&gt;lChild!=NULL)
+            {
+                root = root-&gt;lChild;
+            }
+        }else if (a[i]=='1')        //扫描到1则向根结点的有子树前进
+        {
+            if(root-&gt;rChild!=NULL)
+            {
+                root = root-&gt;rChild;
+            }
+        }
+        if(root-&gt;lChild==NULL&amp;&amp;root-&gt;rChild==NULL)  //当匹配到的是叶子结点
+        {
+            printf("%c",root-&gt;element);             //输出对应字符
+            root = temp;                            //回到根结点
+        } 
+    }
+    printf("\n");
+   
+}
+
+
+int main()
+{
+    HFMTree x;
+    int m,i;
+    int w[50];   //权值集
+    char c[50];  //字符集
+    char res[50];
+    char array[50];
+    printf("Please enter the number of characters:\n");
+    scanf("%d",&amp;m);
+    for (i = 0; i &lt; m;i++)
+    {
+    printf("Please enter %dth characters and weights (separated by commas):\n",i+1);
+    scanf(" %c,%d",&amp;c[i],&amp;w[i]);
+    }
+    x = CreatHFMTree(w,c,m);
+    printf("\n PreOrderHFMTree:\n");
+    PreOrderTree(x.root);            //通过先序遍历和中序遍历的结果就可以画出这棵哈夫曼树
+    printf("\n InOrderHFMTree:\n");
+    InOrderTree(x.root);
+    printf("\n\nAfter Huffman coding:\n");
+    Encode(x.root,0);
+    printf("\nPlease enter the code text:\n");
+    scanf("%s",array);
+    printf("\nDecoding is:\n");
+    Decode(x.root,array);
+    return 0;
+}
+</code></pre>
+<h2 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a>实验三</h2><h3 id="1-图的邻接矩阵存储及深度优先和宽度优先遍历"><a href="#1-图的邻接矩阵存储及深度优先和宽度优先遍历" class="headerlink" title="1.图的邻接矩阵存储及深度优先和宽度优先遍历"></a>1.<strong>图的邻接矩阵存储及深度优先和宽度优先遍历</strong></h3><p>a) 已知图的邻接矩阵结构定义如下：</p>
+<pre><code class="line-numbers language-c">//邻接矩阵的结构体定义
+
+typedef struct mGraph{
+
+  ElemType **a;   //邻接矩阵
+
+  int n;      //图的当前顶点数
+
+  int e;      //图的当前边数
+
+  ElemType noEdge; //两顶点间无边时的值
+
+}mGraph;
+</code></pre>
+<p>参照程序9.1~9.4，编写程序，完成邻接矩阵的初始化、撤销和边的搜索、插入、删除等操作。 </p>
+<p>b)以上述邻接矩阵为存储结构，编写程序，实现图的深度、宽度优先遍历。 </p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-c">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include&lt;math.h&gt;
+#include&lt;windows.h&gt;
+#include&lt;queue&gt;
+#define ERROR 0
+#define OK 1
+#define Overflow 2  //表示上溢
+#define Underflow 3  //表示下溢
+#define NotPresent 4 //表示元素不存在
+#define Duplicate 5  //表示有重复元素
+typedef int ElemType;
+typedef int Status;
+ 
+//邻接矩阵的结构体定义
+typedef struct mGraph{
+    ElemType **a;     //邻接矩阵
+    int n;            //图的当前顶点数
+    int e;            //图的当前边数
+    ElemType noEdge;  //两顶点间无边时的值
+}mGraph;
+ 
+ 
+//循环队列的结构体定义
+typedef struct{
+    int front;
+    int rear;
+    int maxSize;    //最大容量
+    ElemType *element;
+}Queue;
+ 
+ 
+//创建一个能容纳mSize个单元的空队列
+void Create(Queue *Q,int mSize){
+    Q-&gt;maxSize=mSize;
+    Q-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    Q-&gt;front=Q-&gt;rear=0;
+}
+ 
+ 
+//判断队列是否为空,若是,则返回TRUE;否则返回FALSE
+BOOL IsEmpty(Queue *Q){
+    return Q-&gt;front==Q-&gt;rear;
+}
+ 
+ 
+//判断队列是否已满,若是,则返回TRUE,否则返回FALSE
+BOOL IsFULL(Queue *Q){
+    return (Q-&gt;rear+1)%Q-&gt;maxSize==Q-&gt;front;
+}
+ 
+ 
+//获取队头元素,并通过x返回.若操作成功,则返回TRUE,否则返回FALSE
+BOOL Front(Queue *Q,ElemType *x){
+    if(IsEmpty(Q))      //空队列处理
+        return FALSE;
+    *x=Q-&gt;element[(Q-&gt;front+1)%Q-&gt;maxSize];
+    return TRUE;
+}
+ 
+ 
+//入队.在队列Q的队尾插入元素x(入队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL EnQueue(Queue *Q,ElemType x){
+    if(IsFULL(Q))      //溢出处理
+        return FALSE;
+    Q-&gt;rear=(Q-&gt;rear+1)%Q-&gt;maxSize;
+    Q-&gt;element[Q-&gt;rear]=x;
+    return TRUE;
+}
+ 
+ 
+//出队.从队列Q中删除队头元素(出队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL DeQueue(Queue *Q){
+    if(IsEmpty(Q)){   //空队列处理
+        return FALSE;
+    }
+    Q-&gt;front=(Q-&gt;front+1)%Q-&gt;maxSize;
+    return TRUE;
+}
+ 
+ 
+//邻接矩阵的初始化
+Status Init(mGraph *mg,int nSize,ElemType noEdgeValue){
+    int i,j;
+    mg-&gt;n = nSize;               //初始化顶点数
+    mg-&gt;e = 0;                   //初始化时没有边
+    mg-&gt;noEdge = noEdgeValue;    //初始化没有边时的取值
+    mg-&gt;a = (ElemType**)malloc(nSize*sizeof(ElemType *));  //生成长度为n的一维指针数组
+    if(!mg-&gt;a) return ERROR;
+    for(i = 0;i &lt; mg-&gt;n;i ++){   //动态生成二维数组
+        mg-&gt;a[i] = (ElemType*)malloc(nSize*sizeof(ElemType));
+        for(j = 0;j &lt; mg-&gt;n;j ++){
+            mg-&gt;a[i][j] = mg-&gt;noEdge;
+        }
+        mg-&gt;a[i][i] = 0;        //自回路设置为0
+    }
+    return OK;
+}
+ 
+ 
+//邻接矩阵的撤销,先释放一维数组,再释放指针数组
+int Destory(mGraph *mg){
+    int i;
+    for(i = 0;i &lt; mg-&gt;n;i ++){
+        free(mg-&gt;a[i]);  //释放n个一维数组的存储空间
+    }
+    free(mg-&gt;a);         //释放一维数组的存储空间
+    return 1;
+}
+ 
+ 
+//邻接矩阵的边的搜索
+Status Exist(mGraph *mg,int u,int v){
+    if(u &lt; 0||v &lt; 0||u &gt; mg-&gt;n-1||v &gt; mg-&gt;n-1 ||u == v||mg-&gt;a[u][v] == mg-&gt;noEdge) return ERROR;
+    return OK;
+}
+ 
+ 
+//邻接矩阵的边的插入
+Status Insert(mGraph *mg,int u,int v,ElemType w){
+    if(u &lt; 0||v &lt; 0||u &gt; mg-&gt;n-1||v &gt; mg-&gt;n-1 ||u == v) return ERROR;
+    if(mg-&gt;a[u][v] != mg-&gt;noEdge) return Duplicate;  //若待插入边已存在,则返回出错信息
+    mg-&gt;a[u][v] = w;                                 //插入新边
+    mg-&gt;e ++;                                        //增加一条边
+    return OK;
+}
+ 
+ 
+//邻接矩阵的边的删除
+Status Remove(mGraph *mg,int u,int v){
+    if(u &lt; 0||v &lt; 0||u &gt; mg-&gt;n-1||v &gt; mg-&gt;n-1 ||u == v) return ERROR;
+    if(mg-&gt;a[u][v] == mg-&gt;noEdge) return NotPresent;  //若待删除边不存在,则返回出错信息
+    mg-&gt;a[u][v] = mg-&gt;noEdge;                         //删除边
+    mg-&gt;e --;
+    return OK;
+}
+ 
+ 
+//邻接矩阵的单一顶点DFS
+void DFS(int v,int visited[],mGraph g){
+    int j;
+    printf("%d ",v);              //访问顶点v
+    visited[v] = 1;               //为顶点v打上访问标记       
+    for(j = 0;j &lt; g.n; j++){      //遍历v的邻接点
+        if(!visited[j] &amp;&amp; g.a[v][j] &gt; 0){  //当未被访问且有权值
+            DFS(j,visited,g);
+        }
+    }
+}
+ 
+ 
+//邻接矩阵的全图DFS
+void DFSGraph(mGraph g){
+    int i;
+    int *visited = (int*)malloc(g.n * sizeof(int)); //动态生成标记数组visted
+    for(i = 0;i &lt; g.n;i ++){
+        visited[i] = 0;          //visted数组初始化
+    }                            //visted数组初始化
+    for(i = 0;i &lt; g.n;i ++){     //逐一检查每个顶点,若未被访问,则调用DFS
+        if(!visited[i]){   //当未被访问且有权值
+            DFS(i,visited,g);
+        }
+    }                      
+    free(visited);                       //释放visted数组
+}
+ 
+ 
+//邻接矩阵的单一顶点BFS
+void BFS(int v,int visited[],mGraph g){
+    Queue q;
+    Create(&amp;q,g.n);                        //初始化队列
+    visited[v] = 1;                        //为顶点v打上访问标记
+    printf("%d ",v);                       //访问顶点v
+    EnQueue(&amp;q,v);                         //将顶点v放入队列
+    while(!IsEmpty(&amp;q)){
+        Front(&amp;q,&amp;v);
+        DeQueue(&amp;q);                       //队首顶点出队列
+        for(int i = 0;i &lt; g.n;i ++){       //遍历v的每一项
+            if(!visited[i] &amp;&amp; g.a[v][i] &gt; 0){       //若未被访问且有权值,则将其访问并放入队列,注意这里判断的是g.a[v][i]二维数组
+                visited[i] = 1;
+                printf("%d ",i);
+                EnQueue(&amp;q,i);
+            }
+        }
+    }
+}
+ 
+ 
+//邻接矩阵的全图BFS
+void BFSGraph(mGraph g){
+    int i;
+    int *visited = (int*)malloc(g.n * sizeof(int));  //动态生成visited数组
+    for(i = 0;i &lt; g.n;i ++){                         //初始化visited数组
+        visited[i] = 0;
+    }
+    for(i = 0 ;i &lt; g.n;i ++){                        //逐一检查每个顶点,若未被访问,则调用BFS
+        if(!visited[i]){
+            BFS(i,visited,g);
+        }
+    }
+    free(visited);
+}
+ 
+ 
+void OutPut(mGraph g)
+{
+    int i, j;
+    printf(" ");
+    for (j = 0; j &lt; g.n; j++)
+        printf("%4d", j);
+    printf("\n");
+    for (i = 0; i &lt; g.n; i++)
+    {
+        printf("%d", i);
+        for (j = 0; j &lt; g.n; j++)
+            printf("%4d", g.a[i][j]);
+        printf("\n");
+    }
+}
+ 
+ 
+int main(){
+    mGraph g;
+    int nSize,edge,u,v,i;
+    ElemType w;
+    printf("Please enter the size of the mgraph:");
+    scanf("%d",&amp;nSize);
+    Init(&amp;g,nSize,-1);
+    printf("Please enter the number of the edges:");
+    scanf("%d",&amp;edge);
+    printf("Now init the graph.\n");
+    
+    for(i = 0;i &lt; edge;i ++){
+        printf("Please enter the %dth edge:",i);
+        scanf("%d%d%d",&amp;u,&amp;v,&amp;w);
+        Insert(&amp;g,u,v,w);
+    }
+    // nSize = 6;
+    // edge = 10;
+    // Init(&amp;g,nSize,-1);
+    // Insert(&amp;g,0,1,50);
+    // Insert(&amp;g,0,2,10);
+    // Insert(&amp;g,0,4,80);
+    // Insert(&amp;g,1,2,15);
+    // Insert(&amp;g,1,4,20);
+    // Insert(&amp;g,2,3,15);
+    // Insert(&amp;g,3,1,20);
+    // Insert(&amp;g,3,4,45);
+    // Insert(&amp;g,5,3,9);
+    // Insert(&amp;g,5,4,10);
+    printf("\n\nThe adjacency matrix is:\n\n");
+    OutPut(g);
+    printf("\n");
+    printf("DFS:\n");
+    DFSGraph(g);
+    printf("\nBFS:\n");
+    BFSGraph(g);
+    // system("pause");
+    return 0;
+
+}
+
+
+</code></pre>
+<h3 id="2-图的邻接表存储及深度优先和宽度优先遍历"><a href="#2-图的邻接表存储及深度优先和宽度优先遍历" class="headerlink" title="2.图的邻接表存储及深度优先和宽度优先遍历"></a>2.<strong>图的邻接表存储及深度优先和宽度优先遍历</strong></h3><p>   a)已知图的邻接表结构定义如下：</p>
+<pre><code class="line-numbers language-c">//邻接表的结构体定义
+
+typedef struct ENode{
+
+  int adjVex;       //任意顶点u相邻的顶点
+
+  ElemType w;       //边的权值
+
+  struct ENode *nextArc;  //指向下一个边结点
+
+}ENode;
+
+ 
+
+typedef struct{
+
+  int n;      //图的当前顶点数
+
+  int e;      //图的当前边数
+
+  ENode **a;    //指向一维指针数组
+
+}LGraph;
+</code></pre>
+<p>参照程序9.6~9.10，编写程序，完成邻接表的初始化、撤销和边的搜索、插入、删除等操作。</p>
+<p>b)以上述邻接表为存储结构，编写程序，完成图的深度、宽度优先遍历。</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-C">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include &lt;windows.h&gt;
+#define ERROR 0
+#define OK 1
+#define Overflow 2      //表示上溢
+#define Underflow 3     //表示下溢
+#define NotPresent 4    //表示元素不存在
+#define Duplicate 5     //表示有重复元素
+typedef int ElemType;
+typedef int Status;
+ 
+ 
+//邻接表的结构体定义
+typedef struct ENode{
+    int adjVex;              //任意顶点u相邻的顶点
+    ElemType w;              //边的权值
+    struct ENode *nextArc;   //指向下一个边结点
+}ENode;
+ 
+typedef struct{
+    int n;           //图的当前顶点数
+    int e;           //图的当前边数
+    ENode **a;       //指向一维指针数组
+}LGraph;
+ 
+ 
+//循环队列的结构体定义
+typedef struct{
+    int front;
+    int rear;
+    int maxSize;    //最大容量
+    ElemType *element;
+}Queue;
+ 
+ 
+//创建一个能容纳mSize个单元的空队列
+void Create(Queue *Q,int mSize){
+    Q-&gt;maxSize=mSize;
+    Q-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    Q-&gt;front=Q-&gt;rear=0;
+}
+ 
+ 
+//判断队列是否为空,若是,则返回TRUE;否则返回FALSE
+BOOL IsEmpty(Queue *Q){
+    return Q-&gt;front==Q-&gt;rear;
+}
+ 
+ 
+//判断队列是否已满,若是,则返回TRUE,否则返回FALSE
+BOOL IsFULL(Queue *Q){
+    return (Q-&gt;rear+1)%Q-&gt;maxSize==Q-&gt;front;
+}
+ 
+ 
+//获取队头元素,并通过x返回.若操作成功,则返回TRUE,否则返回FALSE
+BOOL Front(Queue *Q,ElemType *x){
+    if(IsEmpty(Q))      //空队列处理
+        return FALSE;
+    *x=Q-&gt;element[(Q-&gt;front+1)%Q-&gt;maxSize];
+    return TRUE;
+}
+ 
+ 
+//入队.在队列Q的队尾插入元素x(入队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL EnQueue(Queue *Q,ElemType x){
+    if(IsFULL(Q))      //溢出处理
+        return FALSE;
+    Q-&gt;rear=(Q-&gt;rear+1)%Q-&gt;maxSize;
+    Q-&gt;element[Q-&gt;rear]=x;
+    return TRUE;
+}
+ 
+ 
+//出队.从队列Q中删除队头元素(出队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL DeQueue(Queue *Q){
+    if(IsEmpty(Q)){   //空队列处理
+        return FALSE;
+    }
+    Q-&gt;front=(Q-&gt;front+1)%Q-&gt;maxSize;
+    return TRUE;
+}
+ 
+ 
+//邻接表的初始化
+Status Init(LGraph *lg,int nSize){
+    int  i;
+    lg-&gt;n = nSize;
+    lg-&gt;e = 0;
+    lg-&gt;a = (ENode**)malloc(nSize*sizeof(ENode*)); //动态生成长度为n的一维指针数组
+    if(!lg-&gt;a) return ERROR;
+    else{
+        for(i = 0;i &lt; lg-&gt;n;i ++){
+            lg-&gt;a[i] = NULL;                       //将指针数组a置空
+        }
+        return OK;
+    }
+}
+ 
+ 
+//邻接表的搜索边
+Status Exist(LGraph *lg,int u,int v){
+    ENode *p;
+    if(u &lt; 0||v &lt; 0||u &gt; lg-&gt;n-1||v &gt; lg-&gt;n-1 ||u == v) return ERROR;
+    p = lg-&gt;a[u];                 //指针p指向顶点u的单链表的第一个边结点
+    while(p &amp;&amp; p-&gt;adjVex != v){
+        p = p-&gt;nextArc;
+    }
+    if(!p) return ERROR;          //若未找到此边,则返回ERROR
+    else return OK;
+}
+ 
+ 
+//邻接表的插入边
+Status Insert(LGraph *lg,int u,int v,ElemType w){
+    ENode *p;
+    if(u &lt; 0||v &lt; 0||u &gt; lg-&gt;n-1||v &gt; lg-&gt;n-1 ||u == v) return ERROR;
+    if(Exist(lg,u,v)) return Duplicate;       //此边已存在,返回错误
+    p = (ENode*)malloc(sizeof(ENode));        //为新的边结点分配存储空间
+    p-&gt;adjVex = v;
+    p-&gt;w = w;
+    p -&gt; nextArc = lg-&gt;a[u];                  //将新的边结点插入单链表的最前面
+    lg-&gt;a[u] = p;
+    lg-&gt;e ++;                                 //边加1
+    return OK;
+}
+ 
+ 
+//邻接表的单一顶点DFS
+void DFS(int v,int visited[],LGraph g){
+    ENode *w;
+    printf("%d ",v);                           //访问顶点v
+    visited[v] = 1;                            //为顶点v打上访问标记
+    for(w = g.a[v];w;w = w-&gt;nextArc){          //遍历v的邻接点
+        if(!visited[w-&gt;adjVex]){
+            DFS(w-&gt;adjVex,visited,g);          //若w未被访问,则递归调用DFS
+        }
+    }
+}
+ 
+ 
+//邻接表的全图DFS
+void DFSGraph(LGraph g){
+    int i;
+    int *visited = (int*)malloc(g.n * sizeof(int)); //动态生成标记数组visted
+    for(i = 0;i &lt; g.n;i ++){
+        visited[i] = 0;                             //visted数组初始化
+    }
+    for(i = 0;i &lt; g.n;i ++){                        //逐一检查每个顶点,若未被访问,则调用DFS
+        if(!visited[i]){
+            DFS(i,visited,g);
+        }
+    }
+    free(visited);                                 //释放visted数组
+}
+ 
+ 
+//邻接表的单一顶点BFS
+void BFS(int v,int visited[],LGraph g){
+    ENode *w;
+    Queue q;
+    Create(&amp;q,g.n);                        //初始化队列
+    visited[v] = 1;                        //为顶点v打上访问标记
+    printf("%d ",v);                       //访问顶点v
+    EnQueue(&amp;q,v);                         //将顶点v放入队列
+    while(!IsEmpty(&amp;q)){
+        Front(&amp;q,&amp;v);
+        DeQueue(&amp;q);                       //队首顶点出队列
+        for(w = g.a[v];w;w = w-&gt;nextArc){  //遍历v的所有邻接点
+            if(!visited[w-&gt;adjVex]){       //若w未被访问,则将其访问并放入队列
+                visited[w-&gt;adjVex] = 1;
+                printf("%d ",w-&gt;adjVex);
+                EnQueue(&amp;q,w-&gt;adjVex);
+            }
+        }
+    }
+}
+ 
+ 
+//邻接表的全图BFS
+void BFSGraph(LGraph g){
+    int i;
+    int *visited = (int*)malloc(g.n * sizeof(int));  //动态生成visited数组
+    for(i = 0;i &lt; g.n;i ++){                         //初始化visited数组
+        visited[i] = 0;
+    }
+    for(i = 0 ;i &lt; g.n;i ++){                        //逐一检查每个顶点,若未被访问,则调用BFS
+        if(!visited[i]){
+            BFS(i,visited,g);
+        }
+    }
+    free(visited);
+}
+void OutPut(LGraph g)
+{
+    int i;
+    ENode *p;
+    for (i = 0; i &lt; g.n;i++)
+    {
+            printf("%d ",i);
+            p = g.a[i];
+            for (p; p ;p = p-&gt;nextArc)
+        {
+            printf("--&gt;%2d|%2d ",p-&gt;adjVex,p-&gt;w);
+        }
+        printf("\n");
+    }
+}
+ 
+ 
+ 
+ 
+int main(){
+    LGraph g;
+    int i,u,v,enode,edge;
+    ElemType w;
+    // printf("Please enter the number of the ENodes:");
+    // scanf("%d",&amp;enode);
+    // Init(&amp;g,enode);
+    // printf("Please enter the number of the edges:");
+    // scanf("%d",&amp;edge);
+    // printf("Now init the graph.\n");
+    // for(i = 0;i &lt; edge;i ++){
+    //     printf("Please enter the edge:");
+    //     scanf("%d%d%d",&amp;u,&amp;v,&amp;w);
+    //     Insert(&amp;g,u,v,w);
+    // }
+    enode = 6;
+    edge = 10;
+    Init(&amp;g,enode);
+    Insert(&amp;g,0,1,50);
+    Insert(&amp;g,0,2,10);
+    Insert(&amp;g,0,4,80);
+    Insert(&amp;g,1,2,15);
+    Insert(&amp;g,1,4,20);
+    Insert(&amp;g,2,3,15);
+    Insert(&amp;g,3,1,20);
+    Insert(&amp;g,3,4,45);
+    Insert(&amp;g,5,3,9);
+    Insert(&amp;g,5,4,10);
+    printf("\n\n The adjacency list is:\n\n");
+    OutPut(g);
+    printf("\n DFS:\n");
+    DFSGraph(g);
+    printf("\n\n BFS:\n");
+    BFSGraph(g);
+    // system("pause");
+    return 0;
+}
+</code></pre>
+<h3 id="3-最佳路径选择问题"><a href="#3-最佳路径选择问题" class="headerlink" title="3.最佳路径选择问题"></a>3.<strong>最佳路径选择问题</strong></h3><p>​    编写程序，实现智能交通中的最佳路径选择：设有n个地点，编号为0~n-1，m条路径的起点、终点和代价由用户输入提供，采用上述<strong>邻接表</strong>作为存储结构，寻找最佳路径方案（如花费时间最少、路径长度最短、交通费用最小等，任选其一即可）</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-C">#include&lt;stdio.h&gt;
+#include&lt;stdlib.h&gt;
+#include &lt;windows.h&gt;
+#define ERROR 0
+#define OK 1
+#define Overflow 2      //表示上溢
+#define Underflow 3     //表示下溢
+#define NotPresent 4    //表示元素不存在
+#define Duplicate 5     //表示有重复元素
+#define INFTY 32767    //表示极大值正无穷
+typedef int ElemType;
+typedef int Status;
+ 
+ 
+//邻接表的结构体定义
+typedef struct ENode{
+    int adjVex;              //任意顶点u相邻的顶点
+    ElemType w;              //边的权值
+    struct ENode *nextArc;   //指向下一个边结点
+}ENode;
+ 
+typedef struct{
+    int n;           //图的当前顶点数
+    int e;           //图的当前边数
+    ENode **a;       //指向一维指针数组
+}LGraph;
+ 
+ 
+//循环队列的结构体定义
+typedef struct{
+    int front;
+    int rear;
+    int maxSize;    //最大容量
+    ElemType *element;
+}Queue;
+ 
+ 
+//创建一个能容纳mSize个单元的空队列
+void Create(Queue *Q,int mSize){
+    Q-&gt;maxSize=mSize;
+    Q-&gt;element=(ElemType*)malloc(sizeof(ElemType)*mSize);
+    Q-&gt;front=Q-&gt;rear=0;
+}
+ 
+ 
+//判断队列是否为空,若是,则返回TRUE;否则返回FALSE
+BOOL IsEmpty(Queue *Q){
+    return Q-&gt;front==Q-&gt;rear;
+}
+ 
+ 
+//判断队列是否已满,若是,则返回TRUE,否则返回FALSE
+BOOL IsFULL(Queue *Q){
+    return (Q-&gt;rear+1)%Q-&gt;maxSize==Q-&gt;front;
+}
+ 
+ 
+//获取队头元素,并通过x返回.若操作成功,则返回TRUE,否则返回FALSE
+BOOL Front(Queue *Q,ElemType *x){
+    if(IsEmpty(Q))      //空队列处理
+        return FALSE;
+    *x=Q-&gt;element[(Q-&gt;front+1)%Q-&gt;maxSize];
+    return TRUE;
+}
+ 
+ 
+//入队.在队列Q的队尾插入元素x(入队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL EnQueue(Queue *Q,ElemType x){
+    if(IsFULL(Q))      //溢出处理
+        return FALSE;
+    Q-&gt;rear=(Q-&gt;rear+1)%Q-&gt;maxSize;
+    Q-&gt;element[Q-&gt;rear]=x;
+    return TRUE;
+}
+ 
+ 
+//出队.从队列Q中删除队头元素(出队操作)。操作成功,则返回TRUE,否则返回FALSE
+BOOL DeQueue(Queue *Q){
+    if(IsEmpty(Q)){   //空队列处理
+        return FALSE;
+    }
+    Q-&gt;front=(Q-&gt;front+1)%Q-&gt;maxSize;
+    return TRUE;
+}
+ 
+ 
+//邻接表的初始化
+Status Init(LGraph *lg,int nSize){
+    int  i;
+    lg-&gt;n = nSize;
+    lg-&gt;e = 0;
+    lg-&gt;a = (ENode**)malloc(nSize*sizeof(ENode*)); //动态生成长度为n的一维指针数组
+    if(!lg-&gt;a) return ERROR;
+    else{
+        for(i = 0;i &lt; lg-&gt;n;i ++){
+            lg-&gt;a[i] = NULL;                       //将指针数组a置空
+        }
+        return OK;
+    }
+}
+ 
+ 
+//邻接表的搜索边
+Status Exist(LGraph *lg,int u,int v){
+    ENode *p;
+    if(u &lt; 0||v &lt; 0||u &gt; lg-&gt;n-1||v &gt; lg-&gt;n-1 ||u == v) return ERROR;
+    p = lg-&gt;a[u];                 //指针p指向顶点u的单链表的第一个边结点
+    while(p &amp;&amp; p-&gt;adjVex != v){
+        p = p-&gt;nextArc;
+    }
+    if(!p) return ERROR;          //若未找到此边,则返回ERROR
+    else return OK;
+}
+ 
+ 
+//邻接表的插入边
+Status Insert(LGraph *lg,int u,int v,ElemType w){
+    ENode *p;
+    if(u &lt; 0||v &lt; 0||u &gt; lg-&gt;n-1||v &gt; lg-&gt;n-1 ||u == v) return ERROR;
+    if(Exist(lg,u,v)) return Duplicate;       //此边已存在,返回错误
+    p = (ENode*)malloc(sizeof(ENode));        //为新的边结点分配存储空间
+    p-&gt;adjVex = v;
+    p-&gt;w = w;
+    p -&gt; nextArc = lg-&gt;a[u];                  //将新的边结点插入单链表的最前面
+    lg-&gt;a[u] = p;
+    lg-&gt;e ++;                                 //边加1
+    return OK;
+}
+
+
+int Choose(int *d, int *s,int n) //选出最小的d[i]，将i加入S，i∈V-S
+{
+    int i,minpos,min;
+    min=INFTY;
+    minpos=-1;
+    for(i=0;i&lt;n;i++)
+    {
+        if(d[i]&lt;min&amp;&amp;!s[i])
+        {
+            min=d[i];
+            minpos=i;
+        }
+    }
+    return minpos;
+ } 
+ Status Dijkstra(int v,int *d,int *path,LGraph *lg)//迪杰斯特拉算法求路径 
+ {
+     int i,j,k,w;
+     int distance = 0;
+     ENode *p;
+     p=lg-&gt;a[v];//工作指针 
+     int *s;
+
+     if(v&lt;0||v&gt;lg-&gt;n-1)
+     {
+         return ERROR;
+     }
+
+     s=(int*)malloc(sizeof(int)*lg-&gt;n);
+     for(i=0;i&lt;lg-&gt;n ;i++)
+     {
+         s[i]=0;
+         path[i]=-1;
+         d[i]=INFTY;
+     }
+
+     while(p)//初始化 
+     {
+         d[p-&gt;adjVex ]=p-&gt;w ;
+         if(p-&gt;adjVex!=v&amp;&amp;d[p-&gt;adjVex ]&lt;INFTY)
+         {
+             path[p-&gt;adjVex ]=v;
+         }
+         p=p-&gt;nextArc ;
+    } //对各个数组初始化 
+     s[v]=1;
+     d[v]=0;
+     for(i=1;i&lt;lg-&gt;n ;i++)
+     {
+
+         k=Choose(d,s,lg-&gt;n );
+         if(k==-1)
+         {
+             continue;
+         } //判断是否选择了有效结点 
+         s[k]=1;
+         p=lg-&gt;a[k];
+         if(p==NULL)
+         {
+             continue ;
+         }
+         while(p)
+         {
+             if(!s[p-&gt;adjVex ]&amp;&amp;d[k]+p-&gt;w &lt;d[p-&gt;adjVex ])//更新d和path 
+             {
+                 d[p-&gt;adjVex ]=d[k]+p-&gt;w ;
+                 path[p-&gt;adjVex ]=k;
+                //  distance = d[p-&gt;adjVex];
+             }
+             p=p-&gt;nextArc ;
+         }
+        
+     }
+
+     return OK;
+ }
+
+  void OutPut(LGraph *lg)//此函数用于输出路径 
+ {
+     int u,v;
+     printf("\nplease input the origin (u) and destination (v):\n");
+    scanf("%d %d",&amp;u,&amp;v);
+    int d[lg-&gt;n];
+    int path[lg-&gt;n];
+    Dijkstra(u,d,path,lg);
+    printf("The shortest path length between %d and %d is: %d\n",u,v,d[v]);
+    printf("\nThe path detail: ");
+    if (path[v] == -1)
+    {
+        printf(" Not exist!\n");
+        return; 
+     }
+     while (path[v]!=-1)
+      {
+        printf("%d &lt;-- ",v);
+         v=path[v];
+     }
+     printf("%d\n",u);
+ }
+
+
+
+int main(){
+    LGraph g;
+    int nSize,edge,u,v,i;
+    int d[100];
+    int path[100];
+    ElemType w;
+    printf("Please enter the size of the mgraph: ");
+    scanf("%d",&amp;nSize);
+    Init(&amp;g,nSize);
+    printf("Please enter the number of the edges: ");
+    scanf("%d",&amp;edge);
+    printf("\n");
+    for(i = 0;i &lt; edge;i ++){
+        printf("Please enter the %d edge: ",i);
+        scanf("%d%d%d",&amp;u,&amp;v,&amp;w);
+        Insert(&amp;g,u,v,w);
+    }
+    // nSize = 6;
+    // edge = 10;
+    // Init(&amp;g,nSize);
+    // Insert(&amp;g,0,1,50);
+    // Insert(&amp;g,0,2,10);
+    // Insert(&amp;g,0,4,80);
+    // Insert(&amp;g,1,2,15);
+    // Insert(&amp;g,1,4,20);
+    // Insert(&amp;g,2,3,15);
+    // Insert(&amp;g,3,1,20);
+    // Insert(&amp;g,3,4,45);
+    // Insert(&amp;g,5,3,9);
+    // Insert(&amp;g,5,4,10);
+
+    Dijkstra(0,d,path,&amp;g);
+    OutPut(&amp;g);
+    // system("pause");
+    return 0;
+}
+</code></pre>
+<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><h3 id="各种内排序算法的实现和性能比较"><a href="#各种内排序算法的实现和性能比较" class="headerlink" title="各种内排序算法的实现和性能比较"></a>各种内排序算法的实现和性能比较</h3><p>1.已知待排序序列以顺序表存储，数据元素以及表结构定义如下：</p>
+<pre><code class="line-numbers language-c">typedef struct entry //数据元素
+
+{
+
+  KeyType key;   //排序关键词，KeyType应该为可以比较类型
+
+  DataType data;  //data包含数据元素中的其他数据项
+
+} Entry;
+
+ 
+
+typedef struct list  //顺序表
+
+{
+
+  int n;      //待排序数据元素数量
+
+  Entry D[MaxSize]; //静态数组存储数据元素
+
+} List;
+</code></pre>
+<p>参照程序10.1~10.7，编写算法，分别实现顺序表的简单选择排序、直接插入排序、冒泡排序、快速排序、两路合并排序以及堆排序。</p>
+<p>2.编写算法，利用随机函数，在文件中随机产生n个关键字（关键字定义为整型数据）。</p>
+<p>3.编写程序，分别验证简单选择排序、直接插入排序、冒泡排序、快速排序、两路合并排序以及堆排序，在待排关键字个数为500、10000、50000、100000时，完成排序所需要的时间（单位：毫秒）</p>
+<p>4.将排序结果存放于Excel工作表中，并以图表（簇状柱形图）的方式显示。</p>
+<p><strong>源码：</strong></p>
+<pre><code class="line-numbers language-C">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;time.h&gt;
+#include &lt;windows.h&gt;
+#define MaxSize 50000
+
+
+typedef int KeyType;
+typedef int DataType;
+typedef struct entry  //数据元素
+{
+    KeyType key;      //排序关键词，KeyType应该为可以比较类型
+    DataType data;    //data包含数据元素中的其他数据项
+} Entry;
+
+typedef struct list   //顺序表
+{
+    int n;            //待排序数据元素数量
+    Entry D[MaxSize]; //静态数组存储数据元素
+} List;
+
+
+//简单选择排序算法
+int FindMin(List list,int StartIndex)  //在startIndex至表尾范围内找到最小关键字元素下标
+{
+    int MInIndex = StartIndex;
+    int i;
+    for (i = StartIndex+1; i &lt; list.n;i++)
+    {
+        if(list.D[i].key&lt;list.D[MInIndex].key)
+        {
+            MInIndex = i;
+        }
+    }
+    return MInIndex;
+}
+void Swap(Entry *D ,int i,int j)  //交换顺序表中两元素位置
+{
+    Entry temp;
+    if(i==j)
+        return;
+    temp = *(D + i);
+    *(D + i) = *(D+j);
+    *(D + j) = temp;
+}
+void SelectSort(List *list)
+{
+    int i,MinIndex;
+    int StartIndex = 0;
+    // for (i = 0; i &lt; list-&gt;n;i++)
+    // {
+    //     MinIndex=FindMin(*list, StartIndex);
+    //     Swap(list-&gt;D, i, MinIndex);
+    //     StartIndex++;
+    // }
+    while(StartIndex&lt;list-&gt;n)
+    {
+        MinIndex=FindMin(*list, StartIndex);
+        Swap(list-&gt;D, StartIndex, MinIndex);
+        StartIndex++;  
+    }
+}
+
+//直接插入排序
+void InsertSort(List *list)
+{
+    int i, j;   //i为待插入元素下标
+    for (i = 1; i &lt; list-&gt;n; i++)  //每一趟待插入元素
+    {
+        Entry insertItem = list-&gt;D[i];
+        for (j = i - 1; j &gt;= 0; j--)
+        {   //不断将有序序列中元素向后移动，为待插入元素空出一个位置
+            if (insertItem.key &lt; list-&gt;D[j].key)
+                list-&gt;D[j + 1] = list-&gt;D[j];
+            else break;
+        }
+        list-&gt;D[j + 1] = insertItem;   //待插入元素有序存放至有序序列中
+    }
+}
+
+//冒泡排序
+void BubbleSort(List* list) 
+{
+    int i, j;     //i标识每趟排序范围最后一个元素下标，每趟排序元素下标范围是0~i
+    bool isSwap = false;   //标记一趟排序中是否发生了元素交换
+    for (i =list-&gt;n - 1; i &gt; 0; i--)
+    {
+        for (j = 0; j &lt; i; j++)
+        {
+            if (list-&gt;D[j].key &gt; list-&gt;D[j + 1].key)
+            {
+                Swap(list-&gt;D, j, j + 1);
+                isSwap = true;
+            }
+        }
+        if (!isSwap) break;   //如果本趟排序没有发生元素交换，排序完成
+    }
+}
+
+//划分
+int Partition(List *list,int low,int high)
+{
+    int i = low, j = j = high + 1;  //注意是high+1
+    Entry pivot = list-&gt;D[low];  //pivot是分划元素
+    do
+    {
+        do
+        {
+            i++;
+        }  while (i&lt;=high &amp;&amp; list-&gt;D[i].key&lt;pivot.key);
+        do
+        {
+            j--;
+        }  while (list-&gt;D[j].key&gt;pivot.key);
+        if(i&lt;j)
+            Swap(list-&gt;D,i,j);   //若i&lt;j，交换D[i]与D[j]
+    }  while (i&lt;j);
+    Swap(list-&gt;D,low,j);    //若i&gt;=j,交换D[low]与D[j]
+    return j;
+}
+//快速排序的递归函数
+void QuickSort(List *list,int low ,int high)
+{
+    int k;
+    if(low&lt;high)
+    {
+        k = Partition(list,low,high);
+        QuickSort(list,low,k-1);  //递归排序（low，k-1）
+        QuickSort(list,k+1,high); //递归排序（k+1，high）
+    }
+}
+//快速排序的主调用函数
+void QuickSort(List *list)
+{
+    QuickSort(list,0,list-&gt;n-1);
+}
+
+
+
+void Merge(List *list,int left,int mid,int right)
+{
+    int *Temp = new int[right - left + 1];
+    // int *Temp = (int *)malloc(sizeof(int)*list-&gt;n);
+    int i = left, j = mid + 1, k = 0;
+    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
+    {       //每次把比较小的放进Temp里
+        if(list-&gt;D[i].key&lt;=list-&gt;D[j].key)
+            Temp[k++] = list-&gt;D[i++].key;
+        else
+            Temp[k++] = list-&gt;D[j++].key;
+    }
+        
+        while(i&lt;=mid)  Temp[k++] = list-&gt;D[i++].key;    //将剩余元素复制到Temp
+        while(j&lt;=right)  Temp[k++] = list-&gt;D[j++].key;
+        for (i = 0, k = left; k &lt;= right;)
+            list-&gt;D[k++].key = Temp[i++];
+}
+//快速排序的递归函数
+void MergeSort(List *list,int left,int right)
+{
+    if(left&lt;right)
+    {
+        int mid = left + (right-left) / 2;    //二分选择中间值
+        MergeSort(list,left, mid);            //递归排序左半部分
+        MergeSort(list, mid + 1, right);      //递归排序右半部分
+        Merge(list,left,mid,right);           //合并左右两部分
+    }
+}
+//快速排序的主调用函数
+void MergeSort(List *list)
+{
+    MergeSort(list,0,list-&gt;n-1);
+}
+
+//最大堆结构体
+typedef struct maxheap
+{
+    int n;
+    Entry D[MaxSize];
+
+} MaxHeap;
+//向下调整
+void AdjustDown(Entry heap[],int current,int border)
+{
+    int p = current;
+    int maxChild;
+    Entry temp;
+    while(2*p+1&lt;=border)
+    {
+        if((2*p+2&lt;=border) &amp;&amp;(heap[2*p+1].key &lt; heap[2*p+2].key))
+            maxChild = 2 * p + 2;
+        else 
+            maxChild = 2 * p + 1;
+        if(heap[p].key&gt;=heap[maxChild].key)
+            break;
+        else  //否则将p和其最大孩子交换
+        {
+            temp = heap[p];
+            heap[p] = heap[maxChild];
+            heap[maxChild] = temp;
+            p = maxChild;
+        }
+    }
+}
+
+void HeapSort(MaxHeap *hp)
+{
+    int i;
+    Entry temp;
+    for (i =( hp-&gt;n -2) / 2; i &gt;= 0;i--)
+    {
+        AdjustDown(hp-&gt;D,i,hp-&gt;n-1);
+    }
+        for (i = hp-&gt;n - 1; i &gt;= 0; i--)  //i指向当前堆的堆底元素
+        {
+            Swap(hp-&gt;D, 0, i);    //交换堆底与堆顶元素
+            AdjustDown(hp-&gt;D, 0, i - 1);
+        }
+}
+
+void Rand(List *list1)
+{
+    int i;
+       srand((unsigned int)time(NULL));  //以运行程序时的时间作为随机数种子
+    for (i = 0; i &lt;list1-&gt;n ; i++)
+     {
+        list1-&gt;D[i].key = rand();
+    }
+}
+
+
+
+void Output(List *list)
+{
+    int i;
+    for (i = 0; i &lt; list-&gt;n; i++)
+    {
+        printf("%4d ",list-&gt;D[i].key);
+    }
+}
+void Output2(MaxHeap *heap)
+{
+    int i;
+    for (i = 0; i &lt; heap-&gt;n; i++)
+    {
+        printf("%4d ",heap-&gt;D[i].key);
+    }
+}
+
+MaxHeap heap;
+
+int main()
+{
+    List list;
+    // MaxHeap heap;
+    static List temp=list;
+    int i;
+    clock_t start, finish;
+    double duration;
+    list.n = MaxSize;
+    printf("numbers: %d \n",MaxSize);
+    Rand(&amp;list);  //初始化
+    // printf("Initial list:\n");
+    // Output(&amp;list);           //输出
+
+
+    temp = list;
+    // printf("\n");
+    start = clock();
+    SelectSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) ; 
+    // printf("\n\nSelectSort:\n");
+    // printf( "%f ms\n", duration); //精度是1ms  //显示排序时间
+    Output(&amp;list);
+    
+
+
+    list = temp;
+    // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nInsertSort:\n");
+    start = clock();
+    InsertSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nInsertSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output(&amp;list);
+   
+
+
+    list = temp;
+    // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nBubbleSort:\n");
+    start = clock();
+    BubbleSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nBubbleSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output(&amp;list);
+   
+
+
+    list = temp;
+    // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nQuickSort:\n");
+    start = clock();
+    QuickSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nQuickSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output(&amp;list);
+
+
+    list = temp;
+    // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nMergeSort:\n");
+    start = clock();
+    MergeSort(&amp;list);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nMergeSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output(&amp;list);
+ 
+
+
+    list = temp;
+    heap.n = list.n;
+    for (i = 0; i &lt; list.n;i++)
+    {
+        heap.D[i].key = list.D[i].key;
+    }
+        // printf("\n\nInitial list:\n");
+    // Output(&amp;temp);
+    // printf("\nHeapSort:\n");
+    start = clock();
+    HeapSort(&amp;heap);
+    finish = clock();
+    duration=(double)(finish - start) / CLOCKS_PER_SEC; 
+    // printf("\n\nHeapSort:\n");
+    // printf( "%f ms\n", duration*1000 ); 
+    Output2(&amp;heap);
+
+}
+
+</code></pre>
+<h4 id="时间统计与比较"><a href="#时间统计与比较" class="headerlink" title="时间统计与比较"></a>时间统计与比较</h4><p><img src="/2021/07/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/clip_image002-1625712889034.png" alt="img"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Ab4nd0n</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://kongcm.cn/2021/07/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/">http://kongcm.cn/2021/07/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Ab4nd0n</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+                                    <span class="chip bg-color">线性表</span>
+                                </a>
+                            
+                                <a href="/tags/%E9%93%BE%E8%A1%A8/">
+                                    <span class="chip bg-color">链表</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/">
+                                    <span class="chip bg-color">哈夫曼编码</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%9B%BE/">
+                                    <span class="chip bg-color">图</span>
+                                </a>
+                            
+                                <a href="/tags/%E5%86%85%E6%8E%92%E5%BA%8F/">
+                                    <span class="chip bg-color">内排序</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'AxNbxfoIMrOxBzetVISTrmJe-gzGzoHsz',
+        appKey: 'A77RycvQsXl5xql5DXHq4Wj9',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+    
+</script>
+
+<!-- ֱ������ -->
+<div id="to_comment" class="comment-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#vcomments" title="ֱ������">
+        <i class="fas fa-comments"></i>
+    </a>
+</div>
+
+
+
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2021/07/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/">
+                    <div class="card-image">
+                        
+                        <img src="/medias/featureimages/10.jpg" class="responsive-img" alt="【NJUPT】数据结构实验(合集)">
+                        
+                        <span class="card-title">【NJUPT】数据结构实验(合集)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            简单记录一下数据结构四次实验
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-08
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
+                        <span class="chip bg-color">线性表</span>
+                    </a>
+                    
+                    <a href="/tags/%E9%93%BE%E8%A1%A8/">
+                        <span class="chip bg-color">链表</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/">
+                        <span class="chip bg-color">哈夫曼编码</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%BE/">
+                        <span class="chip bg-color">图</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%86%85%E6%8E%92%E5%BA%8F/">
+                        <span class="chip bg-color">内排序</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="【NJUPT】 算法实验（合集）">
+                        
+                        <span class="card-title">【NJUPT】 算法实验（合集）</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            简单记录一下大二下做的四次算法实验。
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-07-06
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/" class="post-category">
+                                    算法设计与分析
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/C/">
+                        <span class="chip bg-color">C++</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/">
+                        <span class="chip bg-color">算法设计与分析</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/">
+                        <span class="chip bg-color">分治法</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B3%95/">
+                        <span class="chip bg-color">动态规划法</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%9B%9E%E6%BA%AF%E6%B3%95/">
+                        <span class="chip bg-color">回溯法</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95/">
+                        <span class="chip bg-color">密码算法</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('2'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">Ab4nd0n</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">29.2k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="/null" target="_blank">苏ICP备2020057407号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:2829493640@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2829493640" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2829493640" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+<script src="/js/prism/prism.js" async></script>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <script src="/js/FunnyTitle.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "96bb8160"
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    
+
+</body>
+
+</html>
