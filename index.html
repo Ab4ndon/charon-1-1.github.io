@@ -30,6 +30,9 @@
     <script src="/libs/jquery/jquery.min.js"></script>
     <link rel="stylesheet" href="/js/prism/prism.css">
 
+
+    <script src="https://v1.hitokoto.cn/?c=d&encode=js&select=%23hitokoto" defer></script>
+
 <meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 </head>
 
@@ -446,8 +449,8 @@
         <div class="container ">
             <div class="card">
                 <div class="card-content">
-                    
-                        <div class="dream">
+                    <!--  -->
+                        <!-- <div class="dream">
     
     <div class="title center-align">
         <i class="far fa-lightbulb"></i>&nbsp;&nbsp;公告栏
@@ -455,11 +458,34 @@
     
     <div class="row">
         <div class="col l8 offset-l2 m10 offset-m1 s10 offset-s1 center-align text">
-            最近会更新的比较多
+            记录学习，记录生活。
         </div>
     </div>
 </div>
+ -->
+                        <!-- <div class="center">
 
+                        </div><span id="jinrishici-sentence">正在加载今日诗词....</span>
+                        </div> -->
+                        <div class="poem-wrap">
+                            <div class="poem-border poem-left"></div>
+                            <div class="poem-border poem-right"></div>
+                              <h1>念两句诗</h1>
+                              <p id="poem">挑选中...</p>
+                              <p id="info">
+                          
+                            <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+                            <script type="text/javascript">
+                              jinrishici.load(function(result) {
+                                poem.innerHTML = result.data.content
+                                info.innerHTML = '【' + result.data.origin.dynasty + '】' + result.data.origin.author + '《' + result.data.origin.title + '》'
+                                document.getElementById("poem").value(poem);
+                                document.getElementById("info").value(info);  
+                            });
+                            </script>
+                          </div>
+                          
+  
                     
 
                     
@@ -496,7 +522,7 @@
 <div class="music-player">
     
         <div class="title center-align">
-            <i class="fas fa-music"></i>&nbsp;&nbsp;听听音乐
+            <i class="fas fa-music"></i>&nbsp;&nbsp;听听音乐吧
         </div>
     
     <div class="row">
@@ -511,7 +537,7 @@
                    order='random'
                    preload='auto'
                    volume='0.5'
-                   list-folded='true'
+                   list-folded='false'
         >
         </meting-js>
     </div>
