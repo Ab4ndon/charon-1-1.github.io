@@ -315,7 +315,7 @@
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">22</a></span>
+    <span class="count"><a href="/tags">23</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -345,7 +345,7 @@
 
 
 <div class="statis">
-    <span class="count"><a href="/tags">22</a></span>
+    <span class="count"><a href="/tags">23</a></span>
     <span class="name">标签</span>
 </div>
 
@@ -523,7 +523,7 @@
                 type: 'pie',
                 radius: '50%',
                 color: ['#6772e5', '#ff9e0f', '#fa755a', '#3ecf8e', '#82d3f4', '#ab47bc', '#525f7f', '#f51c47', '#26A69A'],
-                data: [{"name":"Android","value":1},{"name":"学习","value":3},{"name":"数据结构","value":2},{"name":"Git","value":1},{"name":"诗词","value":1},{"name":"算法设计与分析","value":1}],
+                data: [{"name":"数据结构","value":2},{"name":"算法设计与分析","value":1},{"name":"文艺的心","value":1},{"name":"CTF","value":4},{"name":"Hexo","value":4},{"name":"技术学习","value":1}],
                 itemStyle: {
                     emphasis: {
                         shadowBlur: 10,
@@ -547,7 +547,7 @@
         xAxis: [
             {
                 type: 'category',
-                data: ["CDN 解析冲突","Android UI","web","数据结构","Git Hexo部署","CTF","hexo 代码高亮 matery","ctf","Typora","生活"]
+                data: ["web","CTF","CDN 解析冲突","Android UI","数据结构","hexo 代码高亮 matery","ctf","Typora","生活","C++"]
             }
         ],
         yAxis: [
@@ -560,7 +560,7 @@
                 type: 'bar',
                 color: ['#82d3f4'],
                 barWidth : 18,
-                data: [1,1,1,1,1,1,1,1,1,1],
+                data: [3,2,1,1,1,1,1,1,1,1],
                 markPoint: {
                     symbolSize: 45,
                     data: [{
@@ -702,12 +702,6 @@
             
             
             
-            <a href="/tags/Git-Hexo%E9%83%A8%E7%BD%B2/">
-                <span class="chip center-align waves-effect waves-light chip-default">Git Hexo部署</span>
-            </a>
-            
-            
-            
             <a href="/tags/CTF/">
                 <span class="chip center-align waves-effect waves-light chip-default">CTF</span>
             </a>
@@ -734,12 +728,6 @@
             
             <a href="/tags/%E7%94%9F%E6%B4%BB/">
                 <span class="chip center-align waves-effect waves-light chip-default">生活</span>
-            </a>
-            
-            
-            
-            <a href="/tags/CTF-web/">
-                <span class="chip center-align waves-effect waves-light chip-default">CTF  web</span>
             </a>
             
             
@@ -806,6 +794,24 @@
             
             <a href="/tags/%E5%86%85%E6%8E%92%E5%BA%8F/">
                 <span class="chip center-align waves-effect waves-light chip-default">内排序</span>
+            </a>
+            
+            
+            
+            <a href="/tags/%E8%AF%97%E8%AF%8D/">
+                <span class="chip center-align waves-effect waves-light chip-default">诗词</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Git/">
+                <span class="chip center-align waves-effect waves-light chip-default">Git</span>
+            </a>
+            
+            
+            
+            <a href="/tags/Hexo%E9%83%A8%E7%BD%B2/">
+                <span class="chip center-align waves-effect waves-light chip-default">Hexo部署</span>
             </a>
             
             
@@ -1076,8 +1082,17 @@ $(function () {
     
 
     
-    <script src="/libs/instantpage/instantpage.js" type="module"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
+
+    <script type="text/javascript">
+        //ֻ���������ҳ������Ч
+        var windowWidth = $(window).width();
+        if (windowWidth > 768) {
+            document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+        }
+        </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+        
 
 </body>
 

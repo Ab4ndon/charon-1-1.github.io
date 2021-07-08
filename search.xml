@@ -29,6 +29,9 @@
             document.body.appendChild(img);
           });
       </script>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
       <tags>
         <tag>CDN 解析冲突</tag>
       </tags>
@@ -99,7 +102,7 @@
           });
       </script>]]></content>
       <categories>
-        <category>Android</category>
+        <category>技术学习</category>
       </categories>
       <tags>
         <tag>Android UI</tag>
@@ -164,7 +167,7 @@
           });
       </script>]]></content>
       <categories>
-        <category>学习</category>
+        <category>CTF</category>
       </categories>
       <tags>
         <tag>web</tag>
@@ -254,10 +257,11 @@
           });
       </script>]]></content>
       <categories>
-        <category>Git</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Git Hexo部署</tag>
+        <tag>Git</tag>
+        <tag>Hexo部署</tag>
       </tags>
   </entry>
   <entry>
@@ -297,7 +301,11 @@
             document.body.appendChild(img);
           });
       </script>]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
       <tags>
+        <tag>web</tag>
         <tag>CTF</tag>
       </tags>
   </entry>
@@ -326,6 +334,9 @@
             document.body.appendChild(img);
           });
       </script>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
       <tags>
         <tag>hexo 代码高亮 matery</tag>
       </tags>
@@ -525,7 +536,7 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
           });
       </script>]]></content>
       <categories>
-        <category>学习</category>
+        <category>CTF</category>
       </categories>
       <tags>
         <tag>ctf</tag>
@@ -621,6 +632,9 @@ int main()
             document.body.appendChild(img);
           });
       </script>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
       <tags>
         <tag>Typora</tag>
       </tags>
@@ -654,10 +668,11 @@ int main()
           });
       </script>]]></content>
       <categories>
-        <category>诗词</category>
+        <category>文艺的心</category>
       </categories>
       <tags>
         <tag>生活</tag>
+        <tag>诗词</tag>
       </tags>
   </entry>
   <entry>
@@ -1003,10 +1018,11 @@ int main()
           });
       </script>]]></content>
       <categories>
-        <category>学习</category>
+        <category>CTF</category>
       </categories>
       <tags>
-        <tag>CTF  web</tag>
+        <tag>web</tag>
+        <tag>CTF</tag>
       </tags>
   </entry>
   <entry>
