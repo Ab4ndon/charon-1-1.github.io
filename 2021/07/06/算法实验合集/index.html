@@ -437,21 +437,21 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-08
+                    2021-07-12
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    5.3k
+                    6.6k
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                    27 分
+                    32 分
                 </div>
                 
 
@@ -1363,7 +1363,8 @@ int  main()
   return 0;
 }
 </code></pre>
-<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><h3 id="编程一个简单的RSA加、解密系统。"><a href="#编程一个简单的RSA加、解密系统。" class="headerlink" title="编程一个简单的RSA加、解密系统。"></a>编程一个简单的RSA加、解密系统。</h3><ul>
+<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><h3 id="编程一个简单的RSA加、解密系统。"><a href="#编程一个简单的RSA加、解密系统。" class="headerlink" title="编程一个简单的RSA加、解密系统。"></a>编程一个简单的RSA加、解密系统。</h3><blockquote>
+<ul>
 <li><p>假设用户A选择两个素数p和q，计算得到n=pq和Φ(n)=(p-1)(q-1)。选择一个加密密钥e，它小于Φ(n)且与Φ(n)互素。计算解密密钥 d≡ e-1 mod Φ(n)。则用户A公布公开密钥{e,n}，自己拥有私有密钥{d,n}。</p>
 </li>
 <li><p>用户B使用用户 A 的公开密钥 e 和 n 对报文 M 进行加密，得到 C= Me mod n，并发送给用户 A。</p>
@@ -1371,7 +1372,8 @@ int  main()
 <li><p>用户A收到加密的报文后，使用自己的私有密钥 d 和 n 对加密报文 C 进行解密，恢复得到明文 M=Cd mod n。</p>
 </li>
 </ul>
-<pre><code class="line-numbers language-c++">#include &lt;iostream&gt;
+</blockquote>
+<h4 id="初始代码"><a href="#初始代码" class="headerlink" title="初始代码"></a>初始代码</h4><pre><code class="line-numbers language-c++">#include &lt;iostream&gt;
 using namespace std;
 int MOD;
 
@@ -1437,6 +1439,151 @@ int main()
     return 0;
 }
 
+</code></pre>
+<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><blockquote>
+<p>由于第四次实验是在考试周的时候做的，对于RSA的原理也不是很清楚，上面的代码也是借鉴了网上的，自己实验时发现样例能正常运行，但是有的例子没办法正常解码，最近有空又重新研究了一下RSA，记录如下。</p>
+</blockquote>
+<p><strong>原理</strong></p>
+<p>1.公钥与私钥的生成</p>
+<p>（1）选取两个大素数：p和q,(p≠q)；<br>（2）计算n=p*q；<br>（3）利用欧拉(Euler)函数的性质与定理计算Φ(n)=(p-1)·(q-1)</p>
+<blockquote>
+<p><strong>欧拉函数</strong>  设n是自然数，数列1，2，···，n-1中与n互素的数的个数称为n的欧拉函数，记为Φ(n)</p>
+<ul>
+<li>性质    若p是素数，则Φ(p)=(p-1)</li>
+<li>定理     设p和q是素数，对n=pq，有Φ(n)=Φ(p)Φ(q)=p-1)·(q-1)</li>
+</ul>
+</blockquote>
+<p>（4）随机选择加密密钥e(公钥)，使 gcd(Φ(n),e)=1; 1&lt;e&lt;Φ(n)<br>（5）最后，利用Euclid（欧几里得）算法计算解密密钥d，使其满足ed=1（mod Φ(n)）。</p>
+<blockquote>
+<p>后来自己重新敲代码的时候对这一步产生了误解，因为书上给的公式是d=e^(-1)modΦ(n),我把e^(-1)理解成-1次幂了。后来重新看书和查资料，这里描述的应该是e和d是互逆的关系，e^(-1)指的是e是d关于模Φ(n)的乘法逆元</p>
+<p><strong>乘法逆元</strong>    设a是整数，若存在x使得ax≡1(mod n),则称a与x互逆，x是a关于模n的乘法逆元(inverse),记为x=a^(-1)</p>
+</blockquote>
+<p>​    然后将（e，n）公开，即为公钥PK，私人保存好d，即为私钥SK。</p>
+<p>2.加密与解密</p>
+<p>加密公式为<br>$$<br>C=M^e  mod n<br>$$<br>解密公式为<br>$$<br>M^`=C^d  mod n<br>$$<br>一般在计算M^e modn的时候都是计算M mod n然后累乘 e次，这是按模计算原理的推论。</p>
+<h4 id="重新敲的代码"><a href="#重新敲的代码" class="headerlink" title="重新敲的代码"></a>重新敲的代码</h4><blockquote>
+<p>针对之前代码中出现的部分样例解密失败的问题，我认为与未对输入的素数和公钥e与Φ(n)是否互质进行检验有很大关系，于是在新的代码中加入了 JudgePrime 和 IsCoprime 分别进行判断，经过测试，成功解决了之前的解密失败问题（但是对于密文长度较长的情况还是会失败，目前未找到原因:sob:）</p>
+</blockquote>
+<pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+using namespace std;
+int MOD;
+int JudgePrime(int x)
+{
+    if(x == 1) return 1;
+    for(int i=2;i &lt;=x/2;i++)
+    {
+        if(x % i == 0)
+            return 0;  
+    }
+    return 1;
+}
+
+
+bool isCoprime(int x,int y)
+{
+    if(x==1 &amp;&amp; y==1)//1和1互质
+        return true;
+    else if(x&lt;=0 || y&lt;=0 || x==y)//非正整数都不存在互质的说法
+        return false;
+    else if(x==1 || y==1)//1和任何正整数都互质
+        return true;
+    else
+    {
+        int tmp=0;
+        //使用求商判断法，如果输入的x&lt;y，第一次循环会交换x和y的位置
+        while(true)
+        {
+            tmp=x%y;
+            if(tmp==0)
+            {
+                break;
+            }
+            else
+            {
+                x=y;
+                y=tmp;
+            }
+        }
+        if(y==1)          //最大公约数为1,所以互质
+            return true;
+        else              //最大公约数大于1，所以不互质
+            return false;
+ 
+    }
+}
+
+//由公开密钥e和n，求私有密钥d
+int ext_euclid(int a, int b, int &amp;x, int &amp;y) 
+{ 
+    if(b == 0)
+    {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    int gcd = ext_euclid(b, a % b, x, y);
+    int t = x % MOD;
+    x = y % MOD;
+    y = ((t - a / b * x) % MOD + MOD) % MOD;
+    return gcd;
+}
+
+
+int main()
+{
+    int p,q,n,e,d;
+    cout&lt;&lt;"请输入第一个大素数p："&lt;&lt;endl;
+    cin&gt;&gt;p;
+    while(!JudgePrime(p))
+        {
+            cout&lt;&lt;"【 抱歉，您输入的不是素数，请重新输入！】"&lt;&lt;endl;
+             cin&gt;&gt;p;
+        }
+        
+    cout&lt;&lt;"请输入第二个大素数q："&lt;&lt;endl;
+    cin&gt;&gt;q;
+    while(!JudgePrime(q))
+        {
+            cout&lt;&lt;"【 抱歉，您输入的不是素数，请重新输入！】"&lt;&lt;endl;
+             cin&gt;&gt;q;
+        }
+    n=p*q;
+    cout&lt;&lt;"\n乘积 n=p*q= "&lt;&lt;n&lt;&lt;endl;
+    MOD=(p-1)*(q-1);
+    cout&lt;&lt;"φ(n)=(p-1)(q-1)= "&lt;&lt;MOD&lt;&lt;endl;
+    cout&lt;&lt;"\n请输入一个与φ(n)互质的公钥e: "&lt;&lt;endl;
+    cin&gt;&gt;e;
+    while(!isCoprime(e,MOD))
+    {
+        cout&lt;&lt;"【 e与φ(n)不互质，请重新输入！】"&lt;&lt;endl;
+        cin&gt;&gt;e;
+    }
+    //由e和φ(n)生成私钥d
+    int x, y;
+    ext_euclid(e, MOD, d, y);
+    while(d &lt; 0) 
+        d += MOD;
+    cout &lt;&lt; "\n通过调用扩展欧几里德算法，求得密钥d为：" &lt;&lt; d &lt;&lt; endl;
+
+    //利用生成的公钥{e,n}对明文M进行加密
+    int M, C;
+    cout &lt;&lt; "现在公钥{e,n}、私钥{d,n}均已生成完毕。\n\n请输入需要传输的明文内容进行加密:";
+    cin &gt;&gt; M;
+    cout &lt;&lt;endl&lt;&lt; "-------------------- 加解密完成 ----------------------" &lt;&lt; endl&lt;&lt;endl;
+    C = 1;
+    for(int i = 1; i &lt;= e; i++)
+        C = C * M % n;
+    cout &lt;&lt; "明文M= " &lt;&lt; M &lt;&lt; "  经加密后得到密文C=M^e(mod n):  " &lt;&lt; C &lt;&lt; endl;
+
+    //利用生成的私钥私钥{e,n}对密文C进行解密
+    M = 1;
+    for(int i = 1; i &lt;= d; i++)
+        M = M * C % n;
+    cout &lt;&lt; "密文C= " &lt;&lt; C &lt;&lt; "  经解密后得到明文M=C^d(mod n):  " &lt;&lt; M &lt;&lt; endl;
+    return 0;
+
+
+}
 </code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -2233,7 +2380,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">29.2k</span>&nbsp;字
+                class="white-color">33.2k</span>&nbsp;字
             
             
             

@@ -1925,7 +1925,8 @@ int  main()
   return 0;
 }
 </code></pre>
-<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><h3 id="编程一个简单的RSA加、解密系统。"><a href="#编程一个简单的RSA加、解密系统。" class="headerlink" title="编程一个简单的RSA加、解密系统。"></a>编程一个简单的RSA加、解密系统。</h3><ul>
+<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><h3 id="编程一个简单的RSA加、解密系统。"><a href="#编程一个简单的RSA加、解密系统。" class="headerlink" title="编程一个简单的RSA加、解密系统。"></a>编程一个简单的RSA加、解密系统。</h3><blockquote>
+<ul>
 <li><p>假设用户A选择两个素数p和q，计算得到n=pq和Φ(n)=(p-1)(q-1)。选择一个加密密钥e，它小于Φ(n)且与Φ(n)互素。计算解密密钥 d≡ e-1 mod Φ(n)。则用户A公布公开密钥{e,n}，自己拥有私有密钥{d,n}。</p>
 </li>
 <li><p>用户B使用用户 A 的公开密钥 e 和 n 对报文 M 进行加密，得到 C= Me mod n，并发送给用户 A。</p>
@@ -1933,7 +1934,8 @@ int  main()
 <li><p>用户A收到加密的报文后，使用自己的私有密钥 d 和 n 对加密报文 C 进行解密，恢复得到明文 M=Cd mod n。</p>
 </li>
 </ul>
-<pre><code class="line-numbers language-c++">#include &lt;iostream&gt;
+</blockquote>
+<h4 id="初始代码"><a href="#初始代码" class="headerlink" title="初始代码"></a>初始代码</h4><pre><code class="line-numbers language-c++">#include &lt;iostream&gt;
 using namespace std;
 int MOD;
 
@@ -1999,6 +2001,151 @@ int main()
     return 0;
 }
 
+</code></pre>
+<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><blockquote>
+<p>由于第四次实验是在考试周的时候做的，对于RSA的原理也不是很清楚，上面的代码也是借鉴了网上的，自己实验时发现样例能正常运行，但是有的例子没办法正常解码，最近有空又重新研究了一下RSA，记录如下。</p>
+</blockquote>
+<p><strong>原理</strong></p>
+<p>1.公钥与私钥的生成</p>
+<p>（1）选取两个大素数：p和q,(p≠q)；<br>（2）计算n=p*q；<br>（3）利用欧拉(Euler)函数的性质与定理计算Φ(n)=(p-1)·(q-1)</p>
+<blockquote>
+<p><strong>欧拉函数</strong>  设n是自然数，数列1，2，···，n-1中与n互素的数的个数称为n的欧拉函数，记为Φ(n)</p>
+<ul>
+<li>性质    若p是素数，则Φ(p)=(p-1)</li>
+<li>定理     设p和q是素数，对n=pq，有Φ(n)=Φ(p)Φ(q)=p-1)·(q-1)</li>
+</ul>
+</blockquote>
+<p>（4）随机选择加密密钥e(公钥)，使 gcd(Φ(n),e)=1; 1&lt;e&lt;Φ(n)<br>（5）最后，利用Euclid（欧几里得）算法计算解密密钥d，使其满足ed=1（mod Φ(n)）。</p>
+<blockquote>
+<p>后来自己重新敲代码的时候对这一步产生了误解，因为书上给的公式是d=e^(-1)modΦ(n),我把e^(-1)理解成-1次幂了。后来重新看书和查资料，这里描述的应该是e和d是互逆的关系，e^(-1)指的是e是d关于模Φ(n)的乘法逆元</p>
+<p><strong>乘法逆元</strong>    设a是整数，若存在x使得ax≡1(mod n),则称a与x互逆，x是a关于模n的乘法逆元(inverse),记为x=a^(-1)</p>
+</blockquote>
+<p>​    然后将（e，n）公开，即为公钥PK，私人保存好d，即为私钥SK。</p>
+<p>2.加密与解密</p>
+<p>加密公式为<br>$$<br>C=M^e  mod n<br>$$<br>解密公式为<br>$$<br>M^`=C^d  mod n<br>$$<br>一般在计算M^e modn的时候都是计算M mod n然后累乘 e次，这是按模计算原理的推论。</p>
+<h4 id="重新敲的代码"><a href="#重新敲的代码" class="headerlink" title="重新敲的代码"></a>重新敲的代码</h4><blockquote>
+<p>针对之前代码中出现的部分样例解密失败的问题，我认为与未对输入的素数和公钥e与Φ(n)是否互质进行检验有很大关系，于是在新的代码中加入了 JudgePrime 和 IsCoprime 分别进行判断，经过测试，成功解决了之前的解密失败问题（但是对于密文长度较长的情况还是会失败，目前未找到原因:sob:）</p>
+</blockquote>
+<pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+using namespace std;
+int MOD;
+int JudgePrime(int x)
+{
+    if(x == 1) return 1;
+    for(int i=2;i &lt;=x/2;i++)
+    {
+        if(x % i == 0)
+            return 0;  
+    }
+    return 1;
+}
+
+
+bool isCoprime(int x,int y)
+{
+    if(x==1 &amp;&amp; y==1)//1和1互质
+        return true;
+    else if(x&lt;=0 || y&lt;=0 || x==y)//非正整数都不存在互质的说法
+        return false;
+    else if(x==1 || y==1)//1和任何正整数都互质
+        return true;
+    else
+    {
+        int tmp=0;
+        //使用求商判断法，如果输入的x&lt;y，第一次循环会交换x和y的位置
+        while(true)
+        {
+            tmp=x%y;
+            if(tmp==0)
+            {
+                break;
+            }
+            else
+            {
+                x=y;
+                y=tmp;
+            }
+        }
+        if(y==1)          //最大公约数为1,所以互质
+            return true;
+        else              //最大公约数大于1，所以不互质
+            return false;
+ 
+    }
+}
+
+//由公开密钥e和n，求私有密钥d
+int ext_euclid(int a, int b, int &amp;x, int &amp;y) 
+{ 
+    if(b == 0)
+    {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    int gcd = ext_euclid(b, a % b, x, y);
+    int t = x % MOD;
+    x = y % MOD;
+    y = ((t - a / b * x) % MOD + MOD) % MOD;
+    return gcd;
+}
+
+
+int main()
+{
+    int p,q,n,e,d;
+    cout&lt;&lt;"请输入第一个大素数p："&lt;&lt;endl;
+    cin&gt;&gt;p;
+    while(!JudgePrime(p))
+        {
+            cout&lt;&lt;"【 抱歉，您输入的不是素数，请重新输入！】"&lt;&lt;endl;
+             cin&gt;&gt;p;
+        }
+        
+    cout&lt;&lt;"请输入第二个大素数q："&lt;&lt;endl;
+    cin&gt;&gt;q;
+    while(!JudgePrime(q))
+        {
+            cout&lt;&lt;"【 抱歉，您输入的不是素数，请重新输入！】"&lt;&lt;endl;
+             cin&gt;&gt;q;
+        }
+    n=p*q;
+    cout&lt;&lt;"\n乘积 n=p*q= "&lt;&lt;n&lt;&lt;endl;
+    MOD=(p-1)*(q-1);
+    cout&lt;&lt;"φ(n)=(p-1)(q-1)= "&lt;&lt;MOD&lt;&lt;endl;
+    cout&lt;&lt;"\n请输入一个与φ(n)互质的公钥e: "&lt;&lt;endl;
+    cin&gt;&gt;e;
+    while(!isCoprime(e,MOD))
+    {
+        cout&lt;&lt;"【 e与φ(n)不互质，请重新输入！】"&lt;&lt;endl;
+        cin&gt;&gt;e;
+    }
+    //由e和φ(n)生成私钥d
+    int x, y;
+    ext_euclid(e, MOD, d, y);
+    while(d &lt; 0) 
+        d += MOD;
+    cout &lt;&lt; "\n通过调用扩展欧几里德算法，求得密钥d为：" &lt;&lt; d &lt;&lt; endl;
+
+    //利用生成的公钥{e,n}对明文M进行加密
+    int M, C;
+    cout &lt;&lt; "现在公钥{e,n}、私钥{d,n}均已生成完毕。\n\n请输入需要传输的明文内容进行加密:";
+    cin &gt;&gt; M;
+    cout &lt;&lt;endl&lt;&lt; "-------------------- 加解密完成 ----------------------" &lt;&lt; endl&lt;&lt;endl;
+    C = 1;
+    for(int i = 1; i &lt;= e; i++)
+        C = C * M % n;
+    cout &lt;&lt; "明文M= " &lt;&lt; M &lt;&lt; "  经加密后得到密文C=M^e(mod n):  " &lt;&lt; C &lt;&lt; endl;
+
+    //利用生成的私钥私钥{e,n}对密文C进行解密
+    M = 1;
+    for(int i = 1; i &lt;= d; i++)
+        M = M * C % n;
+    cout &lt;&lt; "密文C= " &lt;&lt; C &lt;&lt; "  经解密后得到明文M=C^d(mod n):  " &lt;&lt; M &lt;&lt; endl;
+    return 0;
+
+
+}
 </code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
@@ -4310,6 +4457,589 @@ int main()
         <tag>哈夫曼编码</tag>
         <tag>图</tag>
         <tag>内排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【NJUPT】微机实验（合集）</title>
+    <url>/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/</url>
+    <content><![CDATA[<h2 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h2><h3 id="1-修改一个有语法错误的汇编语言源程序"><a href="#1-修改一个有语法错误的汇编语言源程序" class="headerlink" title="1.修改一个有语法错误的汇编语言源程序"></a>1.修改一个有语法错误的汇编语言源程序</h3><h4 id="原来有错误的代码："><a href="#原来有错误的代码：" class="headerlink" title="原来有错误的代码："></a>原来有错误的代码：</h4><pre><code>.486
+DATA SEGMENT USE16
+     SUM DB ?,?,
+     MESG DB '25+9=' 
+     DB 0,0
+     N1 DB 9,F0H
+     N2 DW 25
+DATA ENDS
+
+CODE SEGMENT USE16
+    ASSUME CS:CODE,DS:DATA
+BEG:
+    MOV AX,DATA
+    MOV DS,AX
+    MOV BX,OFFSET SUM
+    MOV AH,N1
+    MOV AL,N2
+    ADD AH,AL
+    MOV [BX],AH
+    CALL CHANG
+    MOV AH,9
+    MOV DX,OFFSET MEST
+    INT 21H
+    MOV AH,4CH
+    INT 21H
+
+CHANG: PROC
+LAST:
+    CMP [BX],10
+    JC  NEXT
+    SUB [BX],10
+    INC [BX+7]
+    JMP LAST
+NEXT:
+    ADD [BX+8],SUM
+    ADD [BX+7],30H
+    ADD [BX+8],30H
+    RET
+CHANG: ENDP
+
+CODE ENDS
+    END BEG
+
+</code></pre>
+<h4 id="修改后的代码："><a href="#修改后的代码：" class="headerlink" title="修改后的代码："></a>修改后的代码：</h4><pre><code>.586
+DATA SEGMENT USE16
+     SUM DB ?,?  ;改动
+     MESG DB '25+9=' 
+          DB 0,0,'$';结束标志
+     N1 DB 9,0F0H  ;前面加0
+     N2 DB 25  ;DW改成DB
+DATA ENDS
+
+CODE SEGMENT USE16
+    ASSUME CS:CODE,DS:DATA
+BEG:
+    MOV AX,DATA
+    MOV DS,AX
+    MOV BX,OFFSET SUM
+    MOV AH,N1
+    MOV AL,N2
+    ADD AH,AL
+    MOV [BX],AH
+
+    CALL CHANG
+    
+    MOV AH,9
+    MOV DX,OFFSET MESG
+    INT 21H
+    MOV AH,4CH
+    INT 21H
+
+CHANG PROC
+LAST:
+    CMP BYTE PTR [BX],10   ;34
+    JC  NEXT              ;小于10跳转到NEXT
+    SUB BYTE PTR [BX],10  ;减10
+    INC BYTE PTR [BX+7]   ;十位加1
+    JMP LAST
+NEXT:
+    MOV AH,SUM
+    ADD [BX+8],AH
+    ;ADD [BX+8],SUM  ;源操作数和目的操作数不能同时为寄存器
+    ADD BYTE PTR [BX+7],30H  ;长度不相同，[BX+7]对应十位，加30H便是0~9的ASCII码
+    ADD BYTE PTR [BX+8],30H  ;[Bx+8]对应个位
+    RET
+CHANG ENDP
+
+CODE ENDS
+    END BEG
+
+</code></pre>
+<h3 id="2-设计汇编程序实现数据的查找、统计，代码转换及屏幕显示等功能"><a href="#2-设计汇编程序实现数据的查找、统计，代码转换及屏幕显示等功能" class="headerlink" title="2.设计汇编程序实现数据的查找、统计，代码转换及屏幕显示等功能"></a>2.设计汇编程序实现数据的查找、统计，代码转换及屏幕显示等功能</h3><blockquote>
+<p>【实验2.9】从BUF单元开始存有一字符串（长度&lt;255）,编程实现统计该字符串中的ASCII码在42H~45H之间的字符个数，并将统计结果以二进制形式显示在屏幕上。</p>
+</blockquote>
+<pre><code>三、实验原理及内容
+○1【实验1.2】排除语法错误
+原来有错误的代码：
+.486
+DATA SEGMENT USE16
+     SUM DB ?,?,
+     MESG DB '25+9=' 
+     DB 0,0
+     N1 DB 9,F0H
+     N2 DW 25
+DATA ENDS
+
+CODE SEGMENT USE16
+    ASSUME CS:CODE,DS:DATA
+BEG:
+    MOV AX,DATA
+    MOV DS,AX
+    MOV BX,OFFSET SUM
+    MOV AH,N1
+    MOV AL,N2
+    ADD AH,AL
+    MOV [BX],AH
+    CALL CHANG
+    MOV AH,9
+    MOV DX,OFFSET MEST
+    INT 21H
+    MOV AH,4CH
+    INT 21H
+
+CHANG: PROC
+LAST:
+    CMP [BX],10
+    JC  NEXT
+    SUB [BX],10
+    INC [BX+7]
+    JMP LAST
+NEXT:
+    ADD [BX+8],SUM
+    ADD [BX+7],30H
+    ADD [BX+8],30H
+    RET
+CHANG: ENDP
+
+CODE ENDS
+    END BEG
+
+
+修改后的代码：
+
+.586
+DATA SEGMENT USE16
+     SUM DB ?,?  ;改动
+     MESG DB '25+9=' 
+          DB 0,0,'$';结束标志
+     N1 DB 9,0F0H  ;前面加0
+     N2 DB 25  ;DW改成DB
+DATA ENDS
+
+CODE SEGMENT USE16
+    ASSUME CS:CODE,DS:DATA
+BEG:
+    MOV AX,DATA
+    MOV DS,AX
+    MOV BX,OFFSET SUM
+    MOV AH,N1
+    MOV AL,N2
+    ADD AH,AL
+    MOV [BX],AH
+
+    CALL CHANG
+    
+    MOV AH,9
+    MOV DX,OFFSET MESG
+    INT 21H
+    MOV AH,4CH
+    INT 21H
+
+CHANG PROC
+LAST:
+    CMP BYTE PTR [BX],10   ;34
+    JC  NEXT              ;小于10跳转到NEXT
+    SUB BYTE PTR [BX],10  ;减10
+    INC BYTE PTR [BX+7]   ;十位加1
+    JMP LAST
+NEXT:
+    MOV AH,SUM
+    ADD [BX+8],AH
+    ;ADD [BX+8],SUM  ;源操作数和目的操作数不能同时为寄存器
+    ADD BYTE PTR [BX+7],30H  ;长度不相同，[BX+7]对应十位，加30H便是0~9的ASCII码
+    ADD BYTE PTR [BX+8],30H  ;[Bx+8]对应个位
+    RET
+CHANG ENDP
+
+CODE ENDS
+    END BEG
+
+
+○2【实验2.9】从BUF单元开始存有一字符串（长度&lt;255）,编程实现统计该字符串中的ASCII码在42H~45H之间的字符个数，并将统计结果以二进制形式显示在屏幕上。
+.486
+DATA SEGMENT USE16
+BUF DB 'ABCDEFGEB'
+COUNT EQU $-BUF 
+DATA ENDS
+CODE SEGMENT USE16
+    ASSUME CS:CODE,DS:DATA
+
+BEG:    MOV AX,DATA
+        MOV DS,AX          ;DS而不是DX ！！！！
+        MOV BX,OFFSET BUF
+        MOV CX,COUNT
+        MOV DL,0
+
+LAST:   CMP BYTE PTR[BX],42H  ;小于42H跳转
+        JC NEXT
+        CMP BYTE PTR[BX],45H  ;大于45H跳转
+        JA NEXT
+        INC DL
+        
+NEXT:   INC BX
+        LOOP LAST
+
+        CALL DISP
+        ; ADD DL,30H        ;显示十进制
+        ; MOV AH,2
+        ; INT 21H
+EXIT:   MOV AH,4CH
+        INT 21H
+     ;-------------------------
+DISP    PROC
+        MOV CX,8
+        MOV BL,DL
+A0:     
+        RCL BL,1
+        JNC A1        ;若进位标志为0，则跳转到A1
+        MOV DL,'1'    ;进位标志不为0，将DL赋'1'
+        JMP NEXT2     ;无条件跳转
+A1:     MOV DL,'0'    ;将DL赋'0'
+NEXT2:  
+        MOV AH,2      ;每次循环显示一次DL里的字符
+        INT 21H
+        LOOP A0
+        RET
+DISP ENDP
+    
+CODE ENDS
+     END BEG
+</code></pre>
+<h2 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h2><blockquote>
+<p>实验要求</p>
+<ul>
+<li><p>程序执行后，给出操作提示，请用户键入用户名和密码。</p>
+</li>
+<li><p>用户在键入密码时，程序不回显键入字符。</p>
+</li>
+<li><p>只有当用户键入的用户和密码字符串和程序内定的字符串相同时，显示欢迎界面，并返回DOS。</p>
+</li>
+<li><p>可对密码进行加密和解密；动画显示欢迎界面。（选做）</p>
+</li>
+</ul>
+</blockquote>
+<h5 id="源码"><a href="#源码" class="headerlink" title="源码"></a>源码</h5><pre><code>三、实验原理及内容
+1.源代码：
+.586
+DATA SEGMENT USE16
+MESG1 DB 'Please enter username:'
+COUNT1 EQU $-MESG1     ;获取长度
+USER  DB 'NJUPT'
+COUNT2 EQU $-USER
+PASS  DB '122333'
+COUNT3 EQU $-PASS
+ERROR  DB '                               Wrong!try again!$';为了显得居中
+COUNT4 EQU $-ERROR
+MESG2 DB 'Please enter password:'
+COUNT5 EQU $-MESG2
+MESG3 DB '---- WELCOME! ----'
+COUNT6 EQU $-MESG3
+
+BUF1 DB 30         ;数据缓冲区
+     DB ?
+     DB 30 DUP(?)
+BUF2 DB 30         ;数据缓冲区
+     DB ?
+     DB 30 DUP(?)
+    
+DATA ENDS
+CODE SEGMENT USE16
+    ASSUME CS:CODE,DS:DATA,ES:DATA 
+BEG: MOV AX,DATA
+     MOV DS,AX
+     MOV ES,AX
+     MOV AX,0003H   ;80列x25行彩色文本方式
+     INT 10H
+USERNAME:   MOV AX,1301H  ;显示彩色字符串"Please enter username:"
+            MOV BH,0
+            MOV BL,0AH
+            MOV CX,COUNT1
+            MOV DH,2
+            MOV DL,(80-COUNT1)/2  ;居中显示
+            MOV BP,OFFSET MESG1
+            INT 10H
+RUSER: MOV CX,COUNT2           ;键盘读入用户名
+       MOV AH,0AH
+       MOV DX,OFFSET BUF1
+       INT 21H
+       MOV CL,BUF1+1
+       MOV CH,0
+       CMP CX,COUNT2
+       JNZ WRONGUSER
+       MOV SI,OFFSET BUF1+2
+       MOV DI,OFFSET USER
+       CLD
+
+       MOV AX,2H    ;清屏
+       MOV BH,0
+       MOV DH,0
+       MOV DL,0
+
+LOAD:  REPE CMPSB      ;两字符串比较
+       JZ PASSWORD     ;相等的话跳转到password
+       
+WRONGUSER: 
+     MOV AH,2
+     MOV DL,0AH
+     INT 21H  
+      
+     MOV AH,2
+     MOV DL,0AH
+     INT 21H
+     MOV AX,2H           ;清屏  
+     MOV BH,0
+     MOV DH,0
+     MOV DL,0
+     INT 10H  
+     MOV AH,9             ;黑白显示
+     MOV DX,OFFSET ERROR
+     INT 21H
+  
+
+     JMP USERNAME         ;跳转到USERNAME，让用户重新输入用户名
+     
+     
+PASSWORD:          ;与用户名代码类似
+     INT 10H  
+     MOV AX,1301H
+            MOV BH,0
+            MOV BL,0AH
+            MOV CX,COUNT5
+            MOV DH,2
+            MOV DL,(80-COUNT5)/2
+            MOV BP,OFFSET MESG2
+            INT 10H
+            MOV BX,OFFSET BUF2
+            MOV CX,0
+
+LAST2:
+     MOV AH,07H  ;不回显字符
+     INT 21H     ;光标下移一行
+     MOV [BX],AL ;低位传给BX
+     MOV DH,AL    ;提前把AL寄存器里的字符备份，否则用了02H会破坏掉AL寄存器里的内容
+     MOV AH,02H  ;显示 *
+     MOV DL,'*'  
+     INT 21H
+     INC BX      ;BX后移一位,一共移CX次
+     INC CX
+     CMP DH,0DH
+     JNZ LAST2
+     DEC CX      ;减一是因为回车使CX+1了，实际CX值应该减掉1
+     
+     MOV DI,OFFSET BUF2
+     MOV SI,OFFSET PASS
+     CLD
+     
+     REPE CMPSB  ;字符串比较
+     JZ WELCOME    ;ZF=1，表示一样，跳到WELCOME
+
+       
+WRONGPASS:
+     MOV AH,2
+     MOV DL,0AH
+     INT 21H
+     MOV AH,2
+     MOV DL,0AH
+     INT 21H
+     MOV AX,2H       ;清屏
+     MOV BH,0
+     MOV DH,0
+     MOV DL,0
+     INT 10H  
+     MOV AH,9             ;黑白显示  
+     MOV DX,OFFSET ERROR
+     INT 21H
+     JMP PASSWORD
+WELCOME:
+     MOV  AX,0007H    ;输入字符
+     INT  10H
+     MOV AX,1301H
+     MOV BH,0
+     MOV BL,0BAH  ;对照p156改了一下颜色,能闪烁了
+     MOV CX,COUNT6
+     MOV DH,2
+     MOV DL,(80-COUNT6)/2
+     MOV BP,OFFSET MESG3
+     INT 10H
+     
+
+EXIT:MOV AH,4CH
+     INT 21H
+     CODE ENDS
+        END BEG
+
+</code></pre>
+<h4 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h4><p><img src="/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/clip_image002.png" alt="img"></p>
+<p>测试输入错误的情况：</p>
+<p><img src="/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/clip_image002-1625826094599.png" alt="img"></p>
+<p><img src="/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/clip_image004.png" alt="img"></p>
+<p>输入错误会回显<code>“Wrong！try again!”</code>，并让用户重新输入用户名。</p>
+<p>测试输入正确的情况：</p>
+<p><img src="/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/clip_image002-1625826125460.png" alt="img"></p>
+<p><img src="/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/clip_image004-1625826125461.png" alt="img"></p>
+<p>用户名输入正确会提示用户输入密码</p>
+<p>下面测试密码错误情形：<strong>（密码不直接显示，以*<em>*</em>*代替）</strong></p>
+<p><img src="/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/clip_image002-1625826133174.png" alt="img"></p>
+<p><img src="/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/clip_image002-1625826145499.png" alt="img"></p>
+<p>下面测试密码正确的情形：</p>
+<p><img src="/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/clip_image002-1625826156551.png" alt="img"></p>
+<h2 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a>实验三</h2><blockquote>
+<p>运用微机系统串行口知识，进行微机系统串行口的测试；完成硬件测试环境；编写程序对微机系统的串口进行自收自发外环测试；数据发送从键盘输入，接收数据时在屏幕显示。</p>
+</blockquote>
+<pre><code>.586
+DATA SEGMENT USE16
+BUF DB 30 DUP(?)
+DATA ENDS
+
+CODE SEGMENT USE16
+    ASSUME CS:CODE, DS:DATA
+START:
+    MOV AX, DATA
+    MOV DS, AX
+    CALL I8250          ; 8250初始化 
+    MOV BX, OFFSET BUF
+SEND:
+    MOV DX, 2FDH    ;通信状态寄存器
+    IN AL, DX
+    TEST AL, 20H   ;0010 0000 B 检查发送保持寄存器是否为空，D5为1 空闲，为0继续循环等待
+    JZ SEND        ;不空闲
+    MOV DX, 2F8H   ; 发送保持寄存器
+    MOV AH, 1    ;1号功能调用，键盘输入字符
+    INT 21H
+    CMP AL, 0DH  ;接收到回车表明发送结束，0DH是回车
+    JZ DISP
+    OUT DX, AL   ;写数据
+RECE:
+    MOV DX, 2FDH
+    IN AL, DX
+    TEST AL, 01H
+    JZ RECE             ; 判断一帧数据接收完整
+    MOV DX, 2F8H
+    IN AL, DX
+    MOV [BX], AL
+    INC BX
+    JMP SEND
+    
+DISP:
+    MOV BYTE PTR [BX+1], '$'
+    MOV AH, 09H         ; 09号功能调用，显示字符串
+    MOV DX, OFFSET BUF
+    INT 21H             
+    
+EXIT:
+    MOV AH,4CH
+    INT 21H             ; 结束程序
+    
+I8250 PROC
+    MOV DX, 2FBH    ;通信控制寄存器
+    MOV AL, 80H     ; 1000 0000B  D7=1，访问除数寄存器
+    OUT DX, AL
+
+    MOV DX, 2F9H    ;设置分频系数
+    MOV AL, 0
+    OUT DX, AL
+    MOV DX, 2F8H
+    MOV AL, 60H     ;1200波特
+    OUT DX, AL
+
+    MOV DX, 2FBH    ;定义一帧数据格式（8个数据位，一个停止位，无校验）
+    MOV AL, 03H
+    OUT DX, AL
+
+    MOV DX, 2F9H    ;设置中断允许寄存器，此处使用查询方式，即禁止中断
+    MOV AL, 0
+    OUT DX, AL
+
+    MOV DX, 2FCH    ;设置MODEM控制寄存器
+    MOV AL, 0     ;D3=0采用查询方式
+    OUT DX, AL
+    RET         
+I8250 ENDP
+    
+CODE ENDS
+    END START
+</code></pre>
+<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><blockquote>
+<p>在开放式微机实验装置上完成相应硬件电路连接；编写程序实现：8254的三个计数器输出不同周期的信号，控制发光二极管，达到流光效果。</p>
+<p>注：</p>
+<p>实验时所用的外扩8254的OUT0,OUT1,OUT2分别接到LED显示区L7，L6，L5，其中OUT0为计数器0的输出，通过公式 <strong>N = fclk/fout = Tout/Tclk</strong>（N为计数器初值） 可计算得到输出信号的频率与周期。以计数器0为例，我们选用的CLK0,CLK1,CLK2均为1kHz,即周期为1ms，想使L7的闪烁周期为1s，即Tout=1s,则N=1s/1ms=1000。数制选择使用二进制，则在向计数器0写初值时可以直接写1000，或者写1000的16进制。</p>
+</blockquote>
+<pre><code>.486
+CODE SEGMENT USE16
+     ASSUME CS:CODE
+BEG: JMP START
+
+CCONBIT1  EQU 00110110B ; 0号计数器初始化控制字
+CCONBIT2  EQU 01110110B ; 1号计数器初始化控制字
+CCONBIT3  EQU 10110110B ; 2号计数器初始化控制字
+
+CDPORT1   EQU 210H      ; 0号计数器口地址 
+CDPORT2   EQU 211H      ; 1号计数器口地址 
+CDPORT3   EQU 212H      ; 2号计数器口地址
+CCONPORT  EQU 213H      ;控制口地址
+        
+CHDBIT1   EQU 1000      ;计数器0初值 T_OUT=1S
+CHDBIT2   EQU 2000      ;计数器1初值 T_out=2s
+CHDBIT3   EQU 4000      ;计数器2初值 T_out=4s
+
+START:    NOP              ;启动延时
+          MOV DX,CCONPORT  ;写入控制字_计数器0
+          MOV AL,CCONBIT1
+          OUT DX,AL
+          MOV AX,CHDBIT1   ;写入初值_计数器0
+          MOV DX,CDPORT1   
+          OUT DX,AL
+          MOV AL,AH
+          OUT DX,AL
+          MOV DX,CCONPORT  ;写入控制字_计数器1
+          MOV AL,CCONBIT2
+          OUT DX,AL
+          MOV AX,CHDBIT2   ;写入初值_计数器1
+          MOV DX,CDPORT2   
+          OUT DX,AL
+          MOV AL,AH
+          OUT DX,AL
+          MOV DX,CCONPORT  ;写入控制字_计数器2
+          MOV AL,CCONBIT3
+          OUT DX,AL
+          MOV AX,CHDBIT3   ;写入初值_计数器2
+          MOV DX,CDPORT3   
+          OUT DX,AL
+          MOV AL,AH
+          OUT DX,AL
+WT:       NOP
+          JMP WT
+            
+CODE      ENDS
+          END BEG
+</code></pre>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>微机原理</category>
+      </categories>
+      <tags>
+        <tag>80x86</tag>
+        <tag>8250</tag>
+        <tag>8259A</tag>
+        <tag>8255</tag>
+        <tag>8254</tag>
       </tags>
   </entry>
 </search>

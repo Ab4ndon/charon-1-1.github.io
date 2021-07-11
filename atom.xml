@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2021-07-08T03:12:45.182Z</updated>
+  <updated>2021-07-09T10:31:00.795Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -15,6 +15,41 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【NJUPT】微机实验（合集）</title>
+    <link href="http://kongcm.cn/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/"/>
+    <id>http://kongcm.cn/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/</id>
+    <published>2021-07-09T10:09:52.000Z</published>
+    <updated>2021-07-09T10:31:00.795Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;实验一&quot;&gt;&lt;a href=&quot;#实验一&quot; class=&quot;headerlink&quot; title=&quot;实验一&quot;&gt;&lt;/a&gt;实验一&lt;/h2&gt;&lt;h3 id=&quot;1-修改一个有语法错误的汇编语言源程序&quot;&gt;&lt;a href=&quot;#1-修改一个有语法错误的汇编语言源程序&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="微机原理" scheme="http://kongcm.cn/categories/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+    
+      <category term="80x86" scheme="http://kongcm.cn/tags/80x86/"/>
+    
+      <category term="8250" scheme="http://kongcm.cn/tags/8250/"/>
+    
+      <category term="8259A" scheme="http://kongcm.cn/tags/8259A/"/>
+    
+      <category term="8255" scheme="http://kongcm.cn/tags/8255/"/>
+    
+      <category term="8254" scheme="http://kongcm.cn/tags/8254/"/>
+    
+  </entry>
   
   <entry>
     <title>【NJUPT】数据结构实验(合集)</title>
@@ -56,7 +91,7 @@
     <link href="http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/"/>
     <id>http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</id>
     <published>2021-07-06T08:56:05.000Z</published>
-    <updated>2021-07-08T08:01:02.699Z</updated>
+    <updated>2021-07-11T16:47:26.355Z</updated>
     
     <summary type="html">
     
