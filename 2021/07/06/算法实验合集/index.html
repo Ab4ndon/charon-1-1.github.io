@@ -393,22 +393,6 @@
                                 <span class="chip bg-color">算法设计与分析</span>
                             </a>
                         
-                            <a href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/">
-                                <span class="chip bg-color">分治法</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B3%95/">
-                                <span class="chip bg-color">动态规划法</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%9B%9E%E6%BA%AF%E6%B3%95/">
-                                <span class="chip bg-color">回溯法</span>
-                            </a>
-                        
-                            <a href="/tags/%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95/">
-                                <span class="chip bg-color">密码算法</span>
-                            </a>
-                        
                     </div>
                     
                 </div>
@@ -437,7 +421,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2021-07-12
+                    2022-04-29
                 </div>
                 
 
@@ -466,7 +450,8 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h2 id="实验一："><a href="#实验一：" class="headerlink" title="实验一："></a>实验一：</h2><p>1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。 </p>
+                <p> 简单记录一下大二下做的四次算法实验。</p>
+<h2 id="实验一："><a href="#实验一：" class="headerlink" title="实验一："></a>实验一：</h2><p>1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。 </p>
 <p>2采用基于“五元中值组取中值分割法”（median-of-median-of-five partitioning） 的线性<br> 时间选择算法，找出 N 个元素集合 S 中的第 k 个最小的元素，使其在线性时间内解决。（参<br> 考教材 5.5.3 节）</p>
 <p>​        <strong>分治法</strong>采用将一个难以直接求解的复杂问题分解成若干个规模较小、相互独立，但类型相同的子问题，直到子问题足够小，能够直接求解为止，然后求解这些子问题，并且将子问题的解合成原始问题的一个完整解的策略。基于这样一种策略，我们可以用它来解决一系列复杂的问题。对于排序问题，将原来的序列分成一个个子序列后分别进行排序，再将已排序的子序列合成一个有序序列是可行的，所以符合分治法策略。不过，合并排序和快速排序虽然都运用分治策略，但两者的角度不同，得到的排序算法也不相同。合并排序的问题分解过程十分简单，只需将序列一分为二即可：而快速排序的问题分解方法相对较困难，需调用Partition函数将一个序列划分为子序列。然而，从子问题解得到原问题解的过程对于快速排序来说异常简单，几乎无须额外的工作；但对于合并排序，则需要调用Merge函数来实现。所以，其实Partition函数和Merge函数是这两种排序算法的核心。而线性时间选择第k小元素这个算法我觉得也是受到了快速排序中的分划方法的启迪，采用分治法策略去求。</p>
 <h3 id="1-合并排序与快速排序"><a href="#1-合并排序与快速排序" class="headerlink" title="1.合并排序与快速排序"></a>1.合并排序与快速排序</h3><pre><code class="line-numbers language-c++">#include&lt;iostream&gt;
@@ -1674,22 +1659,6 @@ int main()
                                     <span class="chip bg-color">算法设计与分析</span>
                                 </a>
                             
-                                <a href="/tags/%E5%88%86%E6%B2%BB%E6%B3%95/">
-                                    <span class="chip bg-color">分治法</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E6%B3%95/">
-                                    <span class="chip bg-color">动态规划法</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%9B%9E%E6%BA%AF%E6%B3%95/">
-                                    <span class="chip bg-color">回溯法</span>
-                                </a>
-                            
-                                <a href="/tags/%E5%AF%86%E7%A0%81%E7%AE%97%E6%B3%95/">
-                                    <span class="chip bg-color">密码算法</span>
-                                </a>
-                            
                         </div>
                     
                 </div>
@@ -2145,6 +2114,11 @@ int main()
                     <div class="summary block-with-text">
                         
                             简单记录一下数据结构四次实验
+实验一1.顺序表的初始化、查找、插入、删除、输出、撤销等操作#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+#define ERROR 0
+#define
                         
                     </div>
                     <div class="publish-info">
@@ -2165,10 +2139,6 @@ int main()
                 </div>
                 
                 <div class="card-action article-tags">
-                    
-                    <a href="/tags/%E7%BA%BF%E6%80%A7%E8%A1%A8/">
-                        <span class="chip bg-color">线性表</span>
-                    </a>
                     
                     <a href="/tags/%E9%93%BE%E8%A1%A8/">
                         <span class="chip bg-color">链表</span>
@@ -2209,6 +2179,9 @@ int main()
                     <div class="summary block-with-text">
                         
                             今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。
+1.边框圆角化&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape
+    xmlns:android="http:
                         
                     </div>
                     <div class="publish-info">
@@ -2387,7 +2360,7 @@ int main()
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">33.3k</span>&nbsp;字
+                class="white-color">33.4k</span>&nbsp;字
             
             
             
