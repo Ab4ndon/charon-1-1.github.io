@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2022-04-29T08:07:15.933Z</updated>
+  <updated>2022-04-04T16:00:00.000Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -18,10 +18,10 @@
   
   <entry>
     <title>test</title>
-    <link href="http://kongcm.cn/2022/04/29/test/"/>
-    <id>http://kongcm.cn/2022/04/29/test/</id>
-    <published>2022-04-29T08:06:17.000Z</published>
-    <updated>2022-04-29T08:07:15.933Z</updated>
+    <link href="http://kongcm.cn/2022/03/29/test/"/>
+    <id>http://kongcm.cn/2022/03/29/test/</id>
+    <published>2022-03-29T08:06:17.000Z</published>
+    <updated>2022-04-04T16:00:00.000Z</updated>
     
     <summary type="html">
     
@@ -41,6 +41,18 @@
     </summary>
     
     
+      <category term="日常" scheme="http://kongcm.cn/categories/%E6%97%A5%E5%B8%B8/"/>
+    
+      <category term="生活" scheme="http://kongcm.cn/categories/%E6%97%A5%E5%B8%B8/%E7%94%9F%E6%B4%BB/"/>
+    
+      <category term="随想" scheme="http://kongcm.cn/categories/%E6%97%A5%E5%B8%B8/%E9%9A%8F%E6%83%B3/"/>
+    
+      <category term="日记" scheme="http://kongcm.cn/categories/%E6%97%A5%E8%AE%B0/"/>
+    
+    
+      <category term="hexo" scheme="http://kongcm.cn/tags/hexo/"/>
+    
+      <category term="博客" scheme="http://kongcm.cn/tags/%E5%8D%9A%E5%AE%A2/"/>
     
   </entry>
   

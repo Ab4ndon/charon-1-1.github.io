@@ -641,7 +641,7 @@ int main()
   </entry>
   <entry>
     <title>test</title>
-    <url>/2022/04/29/test/</url>
+    <url>/2022/03/29/test/</url>
     <content><![CDATA[<p>111111</p>
 <p>测试</p>
 <script>
@@ -663,6 +663,16 @@ int main()
             document.body.appendChild(img);
           });
       </script>]]></content>
+      <categories>
+        <category>日常</category>
+        <category>生活</category>
+        <category>随想</category>
+        <category>日记</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>博客</tag>
+      </tags>
   </entry>
   <entry>
     <title>【NJUPT】微机实验（合集）</title>
