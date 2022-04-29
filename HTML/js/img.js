@@ -5,7 +5,7 @@ $(function () {
     let i = 0;
 
     function feiru() {
-        if ((leng - 1) &gt; i) {
+        if ((leng - 1) > i) {
             setTimeout(function () {
                 let a = new animateFct(i);
                 feiru();
@@ -31,16 +31,16 @@ $(function () {
         li.eq(i).css({transform: "rotate(" + n + "deg)"})
         li.eq(i).find('img').css({width: '250px', height: '350px'})
         li.eq(i).show();
-        if (parseInt(li.eq(i).css('top')) &lt; 0) {
+        if (parseInt(li.eq(i).css('top')) < 0) {
             data.top = parseInt(Math.random() * 20 + 5) + "%";
         }
-        if (parseInt(li.eq(i).css('left')) &lt; 0) {
+        if (parseInt(li.eq(i).css('left')) < 0) {
             data.left = parseInt(Math.random() * 15 + 5) + "%";
         }
-        if (parseInt(li.eq(i).css('right')) &lt; 0) {
+        if (parseInt(li.eq(i).css('right')) < 0) {
             data.right = parseInt(Math.random() * 15 + 5) + "%";
         }
-        if (parseInt(li.eq(i).css('bottom')) &lt; 0) {
+        if (parseInt(li.eq(i).css('bottom')) < 0) {
             data.bottom = parseInt(Math.random() * 30 + 15) + "%";
         }
         li.eq(i).stop().animate(data, 3000);
@@ -52,22 +52,4 @@ $(function () {
         $('audio')[0].play();
         feiru();
     });
-})<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>
+})
