@@ -5046,4 +5046,156 @@ int main()
         <tag>内排序</tag>
       </tags>
   </entry>
+  <entry>
+    <title>ROBOCUP RESCUE 示例代码演示</title>
+    <url>/2022/03/20/Apollo/</url>
+    <content><![CDATA[<p>用于记录给学弟学妹们讲解简单的运行服务器和挂载智能体的知识</p>
+<h3 id="一、VMware的安装"><a href="#一、VMware的安装" class="headerlink" title="一、VMware的安装"></a>一、VMware的安装</h3><p>方法一：去官网下载，然后去网上找相关的许可证</p>
+<p>方法二：<a href="http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd">http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd</a></p>
+<p>（微信公众号里的资源）</p>
+<h3 id="二、Ubuntu的安装"><a href="#二、Ubuntu的安装" class="headerlink" title="二、Ubuntu的安装"></a>二、Ubuntu的安装</h3><blockquote>
+<p>建议直接使用我发在群里的迅雷链接下，那样会快很多。</p>
+</blockquote>
+<p>下面两个方法只是给出作为参考，不建议使用，如果使用记得看好版本，下载<strong>Ubuntu18.04</strong>.</p>
+<p>方法一：Ubuntu官网：</p>
+<p><a href="https://cn.ubuntu.com/?_ga=2.176887340.845118543.1645454480-1361094071.1630542545">企业开源和Linux | Ubuntu</a>（中文站）</p>
+<img src="/2022/03/20/Apollo/image-20220222144723106.png" alt="image-20220222144723106" style="zoom:33%;">
+
+<blockquote>
+<p>切记选择桌面系统，不要去选服务器版，服务器版没有图形界面</p>
+</blockquote>
+<p>方法二：清华镜像源</p>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<img src="/2022/03/20/Apollo/image-20220222144944607.png" alt="image-20220222144944607" style="zoom:33%;">
+
+<img src="/2022/03/20/Apollo/image-20220222145131330.png" alt="image-20220222145131330" style="zoom: 33%;">
+
+<h3 id="三、Ubuntu虚拟机的创建"><a href="#三、Ubuntu虚拟机的创建" class="headerlink" title="三、Ubuntu虚拟机的创建"></a>三、Ubuntu虚拟机的创建</h3><p>相关的教程网上有许多，可相互参考着来，找了几篇供大家参考(18.04与20.04的安装过程差不多，也可以作为参考)</p>
+<p><a href="https://www.jb51.net/article/187313.htm">VMware15虚拟机安装Ubuntu18.04的图文教程_VMware_脚本之家 (jb51.net)</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/355314438">史上最全最新Ubuntu20.04安装教程（图文） - 知乎 (zhihu.com)</a></p>
+<p><a href="https://www.cnblogs.com/ubuntuanzhuang/p/12934044.html">ubuntu20.04安装教程,ubuntu详细安装教程20.04 - ubuntu安装配置教程 - 博客园 (cnblogs.com)</a></p>
+<p><strong>【注意】</strong>:<font color="red">考虑到以后运行服务器时的速度，建议在安装时将内存尽量选大一点，电脑允许的话选择4096MB或者更高吧。磁盘大小的话选择40G或者更大。</font></p>
+<img src="/2022/03/20/Apollo/image-20220318203527795-16512372663262.png" alt="image-20220318203527795" style="zoom: 50%;">
+
+<img src="/2022/03/20/Apollo/image-20220318203601453-16512372663261.png" alt="image-20220318203601453" style="zoom: 50%;">
+
+<p>安装完成后进入Ubuntu（我这里演示用的是Ubuntu２１，所以界面看起来可能不太一样）</p>
+<img src="/2022/03/20/Apollo/image-20220222150520871.png" alt="image-20220222150520871" style="zoom:33%;">
+
+<blockquote>
+<p>为了操作便捷，建议再安装一下vmware tools，可以参考下面那个链接中的方式安装，也可以自己百度一些其他的博客。关于如何知道是否安装成功vmware tools，可以尝试将自己主机中的一个txt文档拖拽进 Ubuntu中（拖进某个文件夹，直接拖到桌面好像不行），如果可以的话说明vmware tools已经安装好了。</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/VagueCheung/p/13535687.html">VMware虚拟机安装Ubuntu18.04教程（图文） - VagueCheung - 博客园 (cnblogs.com)</a></p>
+<h3 id="四、配置相关环境"><a href="#四、配置相关环境" class="headerlink" title="四、配置相关环境"></a>四、配置相关环境</h3><h4 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h4><p>桌面右键，选择打开终端，使用命令<code>sudo apt install openjdk-17-jdk</code>安装JDK１７</p>
+<img src="/2022/03/20/Apollo/image-20220318204516525-16512372663263.png" alt="image-20220318204516525" style="zoom: 67%;">
+
+<blockquote>
+<p>如果这里下载的速度很慢，只有十几kb/s，那么建议<strong>换源</strong></p>
+<p>一篇讲的很清楚的换源教程：</p>
+<p><a href="https://blog.csdn.net/wangyijieonline/article/details/105360138">Linux]Ubuntu 20.04换阿里源_wangyijieonline的博客-CSDN博客_ubuntu 阿里源</a></p>
+</blockquote>
+<p>在安装完成后再次输入 <code>java -version</code> 和 <code>javac -version</code>，出现相应的版本号即安装成功</p>
+<img src="/2022/03/20/Apollo/image-20220318204617743-16512372663264.png" alt="image-20220318204617743" style="zoom:67%;">
+
+<h4 id="Git与Gradle的安装："><a href="#Git与Gradle的安装：" class="headerlink" title="Git与Gradle的安装："></a>Git与Gradle的安装：</h4><p>在终端输入 <code>gradle -version</code>尝试查看gradle版本，未安装的情况下会提示命令找不到，然后会提示你相关的安装命令（类似这种 <code>sudo apt-get install gradle</code> ），复制下来回车安装即可（因为我在演示前已经安装了，此处直接显示的就是gradle版本号了，你们按照提示安装即可）。</p>
+<p>git的安装与gradle类似，都是先尝试查看版本号，然后根据提示安装。</p>
+<img src="/2022/03/20/Apollo/image-20220318212528084-16512372663265.png" alt="image-20220318212528084" style="zoom: 67%;">
+
+<h3 id="五、服务器的运行"><a href="#五、服务器的运行" class="headerlink" title="五、服务器的运行"></a>五、服务器的运行</h3><h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1.下载压缩包"></a>1.下载压缩包</h4><p>在Home目录下（或者其他位置）新建一个文件夹Apollo，然后将服务器和示例代码压缩包复制进来，压缩包没有的可以去下面这个链接自取</p>
+<p>链接：<a href="https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA">https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA</a><br>提取码：rcrs</p>
+<img src="/2022/03/20/Apollo/image-20220318205716154-16512372663266.png" alt="image-20220318205716154" style="zoom:67%;">
+
+<p>可以先下载到windows主机，然后将整个压缩包复制到虚拟机中。</p>
+<p>然后右键“提取到此处”进行解压缩</p>
+<img src="/2022/03/20/Apollo/image-20220318210150116-16512372663267.png" alt="image-20220318210150116" style="zoom:67%;">
+
+<p>继续将里面的两个压缩包解压缩，得到如下两个文件夹。</p>
+<img src="/2022/03/20/Apollo/image-20220318210259946-16512372663268.png" alt="image-20220318210259946" style="zoom:67%;">
+
+<h4 id="2-服务器的运行"><a href="#2-服务器的运行" class="headerlink" title="2.服务器的运行"></a>2.服务器的运行</h4><p>首先进入rcrs-server-master文件夹，右键打开终端，输入指令进行编译：</p>
+<pre><code>./gradlew completeBuild
+</code></pre>
+<img src="/2022/03/20/Apollo/image-20220318210442941-16512372663279.png" alt="image-20220318210442941" style="zoom: 50%;">
+
+<p>编译成功后终端会显示 BUILD SUCESSFULLY</p>
+<img src="/2022/03/20/Apollo/image-20220318210624211-165123726632710.png" alt="image-20220318210624211" style="zoom:50%;">
+
+<p>接着输入以下指令来进入scripts文件夹：(cd是进入某个文件夹的命令，可以自己去了解了解<strong>Linux常用命令</strong>)</p>
+<pre><code>cd scripts
+</code></pre>
+<p>然后使用以下指令启动服务器：</p>
+<pre><code>bash start.sh -m ../maps/test/map -c ../maps/test/config
+</code></pre>
+<blockquote>
+<p>start.sh是一个用来启动的脚本，bash是执行这个脚本的命令</p>
+<p><strong>-m</strong> 用来指定地图  ..是指的父目录（上一级目录，即rcrs-server-master文件夹，因为前面用 cd scripts命令进入了该目录下的scripts文件夹） ../maps/test/map 指的就是上一级目录中的maps、test/map,大家可以自己在文件夹里点进去看看，确实存在的</p>
+<p><strong>-c</strong> 用来指定地图配置文件 ../maps/test/config 大家也可以自己去找一下看看，也确实存在</p>
+</blockquote>
+<img src="/2022/03/20/Apollo/image-20220318210755610-165123726632711.png" alt="image-20220318210755610" style="zoom:50%;">
+
+<p>命令执行后等待一会儿服务器就会成功启动，如下图所示：</p>
+<img src="/2022/03/20/Apollo/image-20220318210936867-165123726632712.png" alt="image-20220318210936867" style="zoom:50%;">
+
+
+
+<h4 id="3-智能体的挂载"><a href="#3-智能体的挂载" class="headerlink" title="3.智能体的挂载"></a>3.智能体的挂载</h4><p>服务器启动成功后就要把相关的智能体挂载上去，可以理解为把我们写好的代码连接上服务器，让它能够去控制智能体的行动。</p>
+<p>首先不要关闭之前的终端，也不要关闭服务器。Ctrl+D回到桌面，进入之前解压缩好的adf-sample-agent-java文件夹，然后右键进入终端，输入以下命令：</p>
+<pre><code>./gradlew clean
+</code></pre>
+<pre><code>./gradlew build
+</code></pre>
+<p>然后就会对代码进行编译，编译成功后的界面如下图所示：</p>
+<img src="/2022/03/20/Apollo/image-20220318211123118-165123726632714.png" alt="image-20220318211123118" style="zoom:50%;">
+
+<p>然后使用以下命令挂载智能体：</p>
+<pre><code>bash launch.sh -all
+</code></pre>
+<img src="/2022/03/20/Apollo/image-20220318211226261-165123726632713.png" alt="image-20220318211226261" style="zoom: 67%;">
+
+<p>终端会显示成功挂载的智能体数量，如下图所示则为挂载成功：</p>
+<img src="/2022/03/20/Apollo/image-20220318211409355-165123726632717.png" alt="image-20220318211409355" style="zoom: 67%;">
+
+<p>进度条会一直卡在75%，这时去之前开启的服务器，可以直接点击左侧的图标，进到服务器后直接点Run，然后就能开始跑图。</p>
+<img src="/2022/03/20/Apollo/image-20220318211530508-165123726632716.png" alt="image-20220318211530508" style="zoom: 50%;">
+
+<p>如下图所示，Time指的是回合数，Score指的是分数。</p>
+<img src="/2022/03/20/Apollo/image-20220318211704356-165123726632715.png" alt="image-20220318211704356" style="zoom: 67%;">
+
+<p>运行后的两个终端状况如下图所示</p>
+<img src="/2022/03/20/Apollo/image-20220318211754595-165123726632718.png" alt="image-20220318211754595" style="zoom:50%;">
+
+<p>等到图跑结束后进到服务器那个终端，按<code>Ctrl+C</code>结束运行，并执行 <code>bash kill.sh</code> 彻底杀死进程。</p>
+<img src="/2022/03/20/Apollo/image-20220318211856078-165123726632719.png" alt="image-20220318211856078" style="zoom:67%;">
+
+<p>然后在adf-sample-agent-java文件夹中用Ctrl+C结束智能体的挂载，结束后的两个终端如下图所示：</p>
+<img src="/2022/03/20/Apollo/image-20220318211925792-165123726632720.png" alt="image-20220318211925792" style="zoom:67%;">
+
+<p>到此结束！</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>技术学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
 </search>

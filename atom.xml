@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2022-04-29T12:32:13.108Z</updated>
+  <updated>2022-03-20T16:00:00.000Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>ROBOCUP RESCUE 示例代码演示</title>
+    <link href="http://kongcm.cn/2022/03/20/Apollo/"/>
+    <id>http://kongcm.cn/2022/03/20/Apollo/</id>
+    <published>2022-03-20T12:58:17.000Z</published>
+    <updated>2022-03-20T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;用于记录给学弟学妹们讲解简单的运行服务器和挂载智能体的知识&lt;/p&gt;
+&lt;h3 id=&quot;一、VMware的安装&quot;&gt;&lt;a href=&quot;#一、VMware的安装&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术学习" scheme="http://kongcm.cn/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Java" scheme="http://kongcm.cn/tags/Java/"/>
+    
+      <category term="Linux" scheme="http://kongcm.cn/tags/Linux/"/>
+    
+  </entry>
   
   <entry>
     <title>【NJUPT】微机实验（合集）</title>
