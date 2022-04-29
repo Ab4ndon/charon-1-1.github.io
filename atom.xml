@@ -234,6 +234,88 @@
   </entry>
   
   <entry>
+    <title>PHP反序列化漏洞学习</title>
+    <link href="http://kongcm.cn/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/"/>
+    <id>http://kongcm.cn/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/</id>
+    <published>2020-10-28T15:19:44.000Z</published>
+    <updated>2020-11-22T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;首先，什么是序列化？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;序列化就是将一个对象转换成字符串。字符串包括，属性名，属性值，属性类型和该对象对应的类名。&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;反序列化则相反将字符串重新恢复成对象&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thea
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
+    
+    
+      <category term="Web" scheme="http://kongcm.cn/tags/Web/"/>
+    
+      <category term="PHP反序列化" scheme="http://kongcm.cn/tags/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sqli-labs-master 刷题记录</title>
+    <link href="http://kongcm.cn/2020/10/18/sqlilab/"/>
+    <id>http://kongcm.cn/2020/10/18/sqlilab/</id>
+    <published>2020-10-18T15:16:38.000Z</published>
+    <updated>2020-10-24T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;注入的分类&quot;&gt;&lt;a href=&quot;#注入的分类&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
+    
+    
+      <category term="Web" scheme="http://kongcm.cn/tags/Web/"/>
+    
+      <category term="SQL注入" scheme="http://kongcm.cn/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CTFShow刷题小结(信息搜集)</title>
+    <link href="http://kongcm.cn/2020/10/15/CTFShow%E5%88%B7%E9%A2%98%E5%B0%8F%E7%BB%93(%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86)/"/>
+    <id>http://kongcm.cn/2020/10/15/CTFShow%E5%88%B7%E9%A2%98%E5%B0%8F%E7%BB%93(%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86)/</id>
+    <published>2020-10-15T15:12:32.000Z</published>
+    <updated>2020-10-19T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;划了好久的水了，恰巧最近空余时间还算多，就开始刷CTFshow 上的web入门&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
+    
+    
+      <category term="web" scheme="http://kongcm.cn/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
     <title>阿里云CDN加速域名解析冲突问题</title>
     <link href="http://kongcm.cn/2020/10/11/ALi/"/>
     <id>http://kongcm.cn/2020/10/11/ALi/</id>

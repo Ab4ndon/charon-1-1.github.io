@@ -33,6 +33,23 @@
     }
 }
 
+/* body {
+     background-color: #eaeaea; 
+    background: linear-gradient(60deg, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35) ) 0% 0% /     cover, url("http://kongcm.cn/medias/featureimages/1.jpg"), url("https://x.jpg") 0px 0px;
+    background-attachment: fixed;
+    margin: 0;
+    color: #7F95D1;
+    overflow-x: hidden;
+    overflow-y: auto;
+} */
+
+/* body {
+     background-color: #eaeaea; 
+    background: linear-gradient(60deg, rgba(255, 255, 255) , rgba(255, 255, 255)) ;
+    background-attachment: fixed;
+    margin: 0;
+    color: #7F95D1;
+} */
 body {
     background-color: #eaeaea;
     margin: 0;
@@ -40,6 +57,7 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
 }
+
 
 h1 {
     margin: 48px 0 22px -5px;
@@ -268,11 +286,12 @@ mark {
 }
 
 .bg-color {
-    background-image: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background-image: linear-gradient(to right, rgb(117, 147, 164) 0%, rgb(28, 43, 52) 100%);
+    opacity: 0.8; 
 }
 
 .text-color {
-    color: #0f9d58 !important;
+    color: #1cbbb4 !important;
 }
 
 .white-color {
@@ -284,7 +303,7 @@ mark {
     position: fixed;
     bottom: 0;
     z-index: 300;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
+    background: linear-gradient(to right, rgba(255, 165, 150, 0.5) 5%, rgba(0, 228, 255, 0.35));
     opacity: 0.8;
 }
 
@@ -578,10 +597,10 @@ header .go-back i {
     height: 40vh !important;
 }
 
-.bg-cover:after {
+/*.bg-cover:after {
     -webkit-animation: rainbow 60s infinite;
     animation: rainbow 60s infinite;
-}
+}*/
 
 .bg-cover:before,
 .bg-cover:after {
@@ -592,7 +611,7 @@ header .go-back i {
     display: block;
     left: 0;
     top: 0;
-    /* content: ""; */
+    content: "";
 }
 
 .bg-cover .container {
@@ -1345,7 +1364,7 @@ thead {
 
 .chip-container .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%) !important;
+    background: linear-gradient(to right, #FFB6C1 0%, #1cbbb4 100%) !important;
 }
 
 .chip .tag-length {
@@ -1421,7 +1440,7 @@ thead {
     left: 18px;
     height: 100%;
     width: 4px;
-    background: #0f9d58;
+    background: #1cbbb4;
 }
 
 @media only screen and (min-width: 900px) {
@@ -1657,8 +1676,8 @@ thead {
     margin: 0 0.5rem;
     padding: 0;
     color: #fff;
-    border: 1px solid #0f9d58;
-    background: radial-gradient(#4cbf30, #0f9d58);
+    border: 1px solid #1cbbb4;
+    background: radial-gradient(#FFB6C1, #1cbbb4);
     font-size: 0.9rem;
     border-radius: 50%;
     box-shadow: 0 4px 6px rgba(50, 50, 93, .21), 0 2px 3px rgba(0, 0, 0, .1);
@@ -1834,8 +1853,8 @@ thead {
 
 .other-skills .chip:hover {
     color: #fff;
-    background: linear-gradient(to right, #4cbf30 0%, #0f9d58 100%);
-    border: 1px solid #4cbf30;
+    background: linear-gradient(to right, #FFB6C1 0%, #1cbbb4 100%);
+    border: 1px solid #FFB6C1;
     box-shadow: 0 5px 5px rgba(0, 0, 0, .25)
 }
 
@@ -1991,7 +2010,7 @@ footer .copy-right {
 }
 
 .center-caption {
-    color: #525f7f;
+    color: #7F95D1;
     padding: 5px;
     border-bottom: 1px solid #d9d9d9;
 }
@@ -2168,4 +2187,186 @@ footer .copy-right {
     height: 50px;
     padding: 0px;
     margin: 0px;
+}
+
+/*直达评论按钮样式*/
+.comment-scroll {
+    position: fixed;
+    right: 15px;
+    bottom: 135px;
+    padding-top: 15px;
+    margin-bottom: 0;
+    z-index: 998;
+}
+
+/*直达评论*/
+.comment-scroll .btn-floating {
+    background: linear-gradient(to bottom right, #FFB6C1 0%, #1cbbb4 100%);
+    width: 48px;
+    height: 48px;
+}
+
+.comment-scroll .btn-floating i {
+    line-height: 48px;
+    font-size: 1.8rem;
+}
+
+
+/* 滚动条 */
+/* ::-webkit-scrollbar-thumb {
+    background-color: #00CED1;
+    background-image: -webkit-linear-gradient(45deg,rgba(255,255,255,.4) 25%,transparent 25%,transparent 50%,rgba(255,255,255,.4) 50%,rgba(255,255,255,.4) 75%,transparent 75%,transparent);
+    border-radius: 3em;
+}
+::-webkit-scrollbar-track {
+    background-color: #1cbbb4;
+    border-radius: 3em;
+}
+::-webkit-scrollbar {
+    width: 1px;
+    height: 15px;
+} */
+
+/*诗*/
+/* .poem-wrap {
+    position: relative;
+    width: 730px;
+    max-width: 80%;
+    border: 2px solid #797979;
+    border-top: none;
+    text-align: center;
+    margin: 80px auto;
+}
+ 
+.poem-wrap h1 {
+    font-size: 30px;
+    position: relative;
+    margin-top: -20px;
+    display: inline-block;
+    letter-spacing: 4px;
+    color: #797979
+}
+ 
+.poem-wrap p {
+    width: 70%;
+    margin: auto;
+    line-height: 30px;
+    color: #797979;
+}
+ 
+.poem-wrap p#poem {
+    font-size: 25px;
+}
+ 
+.poem-wrap p#info {
+    font-size: 15px;
+    margin: 15px auto;
+}
+ 
+.poem-border {
+    position: absolute;
+    height: 2px;
+    width: 27%;
+    background-color: #797979;
+}
+ 
+.poem-right {
+    right: 0;
+}
+ 
+.poem-left {
+    left: 0;
+}
+ 
+@media (max-width: 685px) {
+    .poem-border {
+        width: 18%;
+    }
+}
+ 
+@media (max-width: 500px) {
+    .poem-wrap {
+        margin-top: 60px;
+        margin-bottom: 20px;
+        border-top: 2px solid #797979;
+    }
+ 
+    .poem-wrap h1 {
+        margin: 20px 6px;
+    }
+ 
+    .poem-border {
+        display: none;
+    }
+} */
+
+
+
+/* 增加每日一言模块 */
+.poem-wrap {
+    position: relative;
+    width: 730px;
+    max-width: 80%;
+    border: 2px solid #797979;
+    border-top: 0;
+    text-align: center;
+    margin: 80px auto;
+}
+.poem-left {
+    left: 0;
+}
+.poem-border {
+    position: absolute;
+    height: 2px;
+    width: 27%;
+    background-color: #797979;
+}
+.poem-right {
+    right: 0;
+}
+.poem-wrap h1 {
+    position: relative;
+    margin-top: -20px;
+    display: inline-block;
+    letter-spacing: 4px;
+    color: #797979;
+}
+.poem-wrap p:nth-of-type(1) {
+    font-size: 25px;
+    text-align: center;
+    margin: 0 auto;
+}
+.poem-wrap p {
+    width: 70%;
+    margin: auto;
+    line-height: 30px;
+    color: #797979;
+    font-family: "Linux Biolinum", "Noto Serif SC", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+}
+.poem-wrap p:nth-of-type(2) {
+    font-size: 18px;
+    margin: 15px auto;
+}
+.bozhushuo {
+    text-align: center;
+    font-size: 19px!important;
+    margin: 0 0 12px!important;
+    line-height: 1.9rem;
+    font-family: "Linux Biolinum", "Noto Serif SC", Helvetica, Arial, Menlo, Monaco, monospace, sans-serif;
+}
+.notice {
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px dashed #e6e6e6;
+    color: #969696;
+    position: relative;
+    display: inline-block;
+    width: 95%;
+    background: #fbfbfb50;
+    border-radius: 10px;
+    font-size: 16px;
+}
+.notice-content {
+    display: initial;
+    vertical-align: middle;
 }

