@@ -421,14 +421,14 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
-                    2022-04-29
+                    2023-08-06
                 </div>
                 
 
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    372
+                    435
                 </div>
                 
 
@@ -461,6 +461,16 @@
 <p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
 <p><a target="_blank" rel="noopener" href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
 <p>加油，打工人！</p>
+<p>更新：</p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000018624911?utm_source=tag-newest">https://segmentfault.com/a/1190000018624911?utm_source=tag-newest</a></p>
+<p>按照这篇文章中说的方法一也可以解决该问题：</p>
+<p>取消http代理：</p>
+<pre><code class="line-numbers language-shell">$ git config --global --unset http.proxy
+$ git config --global --unset https.proxy
+</code></pre>
+<p>设置env <code>GIT_SSL_NO_VERIFY</code>为<code>true</code>然后再次部署：</p>
+<pre><code class="line-numbers language-shell">$ env GIT_SSL_NO_VERIFY=true hexo d
+</code></pre>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -1004,10 +1014,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            今天做了几个简单页面的布局设计，学到了一些新的东西，在此记录一下。
-1.边框圆角化&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;shape
-    xmlns:android="http:
+                            今天做了几个简单页面的布局设计，学到了一些新的东西
                         
                     </div>
                     <div class="publish-info">
@@ -1056,11 +1063,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            记录《数据结构》中的一些问题
-1.时间复杂度O(1)与O(n)的区别？
-
-2.随机存取根据存储位置是否可计算（是否有一个计算地址的公式）来判断该数据结构是否具备随机存取的特性，如数组知道首地址就可计算后面所有元素的地址
-第四章  数组和特殊
+                            数据结构课程答疑
                         
                     </div>
                     <div class="publish-info">
