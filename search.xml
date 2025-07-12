@@ -460,6 +460,168 @@
       </tags>
   </entry>
   <entry>
+    <title>CTFShow刷题小结(信息搜集)</title>
+    <url>/2020/10/15/CTFShow%E5%88%B7%E9%A2%98%E5%B0%8F%E7%BB%93(%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86)/</url>
+    <content><![CDATA[<p>划了好久的水了，恰巧最近空余时间还算多，就开始刷CTFshow 上的web入门</p>
+<span id="more"></span>
+
+<h3 id="web源码泄露"><a href="#web源码泄露" class="headerlink" title="web源码泄露"></a>web源码泄露</h3><p>印象比较深的是源码泄露的几道题，之前偶尔碰到过，今天才知道是源码泄露。</p>
+<p>搬运自：<a href="https://blog.csdn.net/Fly_hps/article/details/82821857?utm_source=blogxgwz7">https://blog.csdn.net/Fly_hps/article/details/82821857?utm_source=blogxgwz7</a></p>
+<h4 id="vim临时文件"><a href="#vim临时文件" class="headerlink" title="vim临时文件"></a>vim临时文件</h4><p> 程序员使用vim编辑器编写一个<code>index.php</code>文件时，会有一个<code>.index.php.swp</code>文件，如果文件正常退出，则该文件被删除，如果异常退出，该文件则会保存下来，该文件可以用来恢复异常退出的index.php，同时多次意外退出并不会覆盖旧的<code>.swp</code>文件，而是会生成一个新的，例如<code>.swo</code>文件。</p>
+<h4 id="恢复文件"><a href="#恢复文件" class="headerlink" title="恢复文件"></a>恢复文件</h4><blockquote>
+<p>vim -r 恢复的文件名<br>前提是.index.php.swp存在于该目录下</p>
+</blockquote>
+<h4 id="vim备份文件"><a href="#vim备份文件" class="headerlink" title="vim备份文件"></a>vim备份文件</h4><p>默认情况下使用Vim编程，在修改文件后系统会自动生成一个带<code>~</code>的备份文件，某些情况下可以对其下载进行查看；</p>
+<blockquote>
+<p>以 index.php 为例 第一次产生的缓存文件名为 .index.php.swp<br>第二次意外退出后，文件名为.index.php.swo<br>第三次产生的缓存文件则为 .index.php.swn<br>注意：index前有 “ . “</p>
+</blockquote>
+<p><strong>漏洞利用</strong>：直接访问.swp文件，下载回来后删掉末尾的.swp，获得源码文件。</p>
+<h4 id="PHPSTORM"><a href="#PHPSTORM" class="headerlink" title="PHPSTORM"></a>PHPSTORM</h4><p>使用phpstorm新建项目时，会生成一个<code>.idea</code>文件夹，这个文件夹有一个<code>workspace.xml</code>，访问可以得到一些信息。</p>
+<h4 id="网站备份压缩文件"><a href="#网站备份压缩文件" class="headerlink" title="网站备份压缩文件"></a>网站备份压缩文件</h4><p>在网站的使用过程中，往往需要对网站中的文件进行修改、升级。此时就需要对网站整站或者其中某一页面进行备份。当备份文件或者修改过程中的缓存文件因为各种原因而被留在网站web目录下，而该目录又没有设置访问权限时，便有可能导致备份文件或者编辑器的缓存文件被下载，导致敏感信息泄露，给服务器的安全埋下隐患。</p>
+<p><strong>漏洞成因及危害</strong></p>
+<p>该漏洞的成因主要有以下两种：</p>
+<blockquote>
+<p>服务器管理员错误地将网站或者网页的备份文件放置到服务器web目录下。<br>编辑器在使用过程中自动保存的备份文件或者临时文件因为各种原因没有被删除而保存在web目录下。</p>
+</blockquote>
+<p><strong>漏洞检测</strong></p>
+<p>该漏洞往往会导致服务器整站源代码或者部分页面的源代码被下载，利用。源代码中所包含的各类敏感信息，如服务器数据库连接信息，服务器配置信息等会因此而泄露，造成巨大的损失。被泄露的源代码还可能会被用于代码审计，进一步利用而对整个系统的安全埋下隐患。</p>
+<p><strong>常见备份压缩文件</strong></p>
+<blockquote>
+<p>.rar<br>.zip<br>.7z<br>.tar.gz<br>.bak<br>.swp<br>.txt<br>.html</p>
+</blockquote>
+<p><strong>常见备份文件后缀：</strong></p>
+<pre><code>.index.php.swp
+index.php.swp
+index.php.bak
+.index.php~
+index.php.bak_Edietplus
+index.php.~
+index.php.~1~
+index.php
+index.php~
+index.php.rar
+index.php.zip
+index.php.7z
+index.php.tar.gz
+www.zip
+www.rar
+www.zip
+www.7z
+www.tar.gz
+www.tar
+web.zip
+web.rar
+web.zip
+web.7z
+web.tar.gz
+web.tar
+wwwroot.rar
+web.rar
+</code></pre>
+<p><strong>漏洞利用</strong>：使用disearch扫描</p>
+<blockquote>
+<p>python dirsearch.py -u url -e *</p>
+</blockquote>
+<h4 id="git源码泄漏"><a href="#git源码泄漏" class="headerlink" title="git源码泄漏"></a>git源码泄漏</h4><p>git在初始化项目的时候, 会在项目的根目录(可用<code>git rev-parse --show-toplevel</code>查看)创建一个名为<code>.git</code>的隐藏文件夹, 里面包含了本地所有commit的历史记录. 如果无意间将这个目录置于WEB的路径下让用户可以访问,那么这也就泄露了几乎所有的源代码和其他其他敏感信息.</p>
+<p>该文件可以来恢复源代码</p>
+<p><strong>fuzz：</strong></p>
+<pre><code>http://url/.git/config
+</code></pre>
+<p>若存在该页面，可以看到配置信息，说明存在该漏洞</p>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/lijiejie/GitHack">GitHack</a></p>
+<pre><code>python GitHack.py http://url/.git/
+</code></pre>
+<blockquote>
+<p>git log可以查看提交历史<br>git diff查看git提交的不同处<br>stash命令可用于临时保存和恢复修改，可跨分支<br>git stash list查看所有保存的记录列表<br>git stash pop，从 git 栈中弹出来一个文件</p>
+</blockquote>
+<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
+<pre><code>rip-hg.pl -v -u http://url/.git
+</code></pre>
+<h4 id="hg泄露"><a href="#hg泄露" class="headerlink" title="hg泄露"></a>hg泄露</h4><p>与git类似, hg在初始化项目时, 会在项目的根目录下创建一个名为<code>.hg</code>的隐藏文件夹,里面包含了代码和分支的修改记录和开发人员的相关信息. 当开发人员使用 Mercurial 进行版本控制，对站点自动部署。如果配置不当,可能会将.hg 文件夹直接部署到线上环境。这就引起了 hg 泄露漏洞。</p>
+<pre><code>http://www.example.com/.hg/
+</code></pre>
+<p><strong>fuzz：</strong></p>
+<pre><code>http://url/.hg/
+</code></pre>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
+<pre><code>rip-hg.pl -v -u http://url/.hg
+</code></pre>
+<h4 id="SVN泄露"><a href="#SVN泄露" class="headerlink" title="SVN泄露"></a>SVN泄露</h4><p>svn同样在项目根目录下会创建一个名为<code>.svn</code>的<strong>隐藏文件夹</strong>, 包含了所有分支commit信息和代码记录.</p>
+<h4 id="fuzz："><a href="#fuzz：" class="headerlink" title="fuzz："></a>fuzz：</h4><pre><code>http://url/.svn/entries
+</code></pre>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
+<pre><code>rip-svn.pl -v -u http://www.example.com/.svn/
+</code></pre>
+<h4 id="bzr-Bazaar泄露"><a href="#bzr-Bazaar泄露" class="headerlink" title="bzr/Bazaar泄露"></a>bzr/Bazaar泄露</h4><p>bzr在初始化项目时(bzr init/init-repo), 会在项目根目录产生名为<code>.bzr</code>的<strong>隐藏目录</strong>, 同样暴露了源代码和用户信息.</p>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
+<pre><code>rip-bzr.pl -v -u http://www.example.com/.bzr/
+</code></pre>
+<h4 id="CVS泄漏"><a href="#CVS泄漏" class="headerlink" title="CVS泄漏"></a><strong>CVS泄漏</strong></h4><p>cvs项目在初始化(cvs checkout <code>project</code>)的时候, 会在<code>project</code>目录下创建一个名为<code>CVS</code>的目录,<br>其中保存了各个文件的修改和commit记录. 通过此目录可以获取代码的历史版本. 其中两个关键文件为:<br><code>CVS/Root</code>和<code>CVS/Entries</code>, 分别记录了项目的根信息和所有文件的结构</p>
+<p><strong>fuzz</strong></p>
+<pre><code>http://url/CVS/Root 返回根信息
+http://url/CVS/Entries 返回所有文件的结构
+</code></pre>
+<p><strong>漏洞利用</strong></p>
+<p>取回源码的命令，这个命令的意思就是把远端一个名为name的repo clone到本地名为dir的目录下。</p>
+<pre><code>bk clone http://url/name dir
+</code></pre>
+<p>查看所有的改变的命令，转到download的目录</p>
+<pre><code>bk changes
+</code></pre>
+<h4 id="DS-Store文件泄漏"><a href="#DS-Store文件泄漏" class="headerlink" title=".DS_Store文件泄漏"></a>.DS_Store文件泄漏</h4><p>.DS_Store是Mac下Finder用来保存如何展示 文件/文件夹 的数据文件，每个文件夹下对应一个。如果开发/设计人员在发布代码时未删除文件夹中隐藏的.DS_store，则有可能会造成文件泄露</p>
+<p><strong>fuzz：</strong></p>
+<pre><code>http://url/.DS_Store
+</code></pre>
+<p><strong>漏洞利用：</strong></p>
+<p>工具：<a href="https://github.com/lijiejie/ds_store_exp">dsstoreexp</a></p>
+<pre><code>python ds_store_exp.py http://url/.DS_Store
+</code></pre>
+<h4 id="WEB-INF-web-xml泄露"><a href="#WEB-INF-web-xml泄露" class="headerlink" title="WEB-INF/web.xml泄露"></a>WEB-INF/web.xml泄露</h4><p>WEB-INF是Java的WEB应用的安全目录。如果想在页面中直接访问其中的文件，必须通过web.xml文件对要访问的文件进行相应映射才能访问。</p>
+<p>通常一些web应用我们会使用多个web服务器搭配使用，解决其中的一个web服务器的性能缺陷以及做均衡负载的优点和完成一些分层结构的安全策略等。在使用这种架构的时候，由于对静态资源的目录或文件的映射配置不当，可能会引发一些的安全问题，导致web.xml等文件能够被读取。</p>
+<p>WEB-INF主要包含一下文件或目录：</p>
+<ul>
+<li><code>/WEB-INF/web.xml</code>：Web应用程序配置文件，描述了 servlet 和其他的应用组件配置及命名规则。</li>
+<li><code>/WEB-INF/classes/</code>：含了站点所有用的 class 文件，包括 servlet class 和非servlet class，他们不能包含在 .jar文件中</li>
+<li><code>/WEB-INF/lib/</code>：存放web应用需要的各种JAR文件，放置仅在这个应用中要求使用的jar文件,如数据库驱动jar文件</li>
+<li><code>/WEB-INF/src/</code>：源码目录，按照包名结构放置各个java文件。</li>
+<li><code>/WEB-INF/database.properties</code>：数据库配置文件漏洞检测以及利用方法</li>
+</ul>
+<h4 id="漏洞检测以及利用方法"><a href="#漏洞检测以及利用方法" class="headerlink" title="漏洞检测以及利用方法"></a>漏洞检测以及利用方法</h4><p>通过找到web.xml文件，推断class文件的路径，最后直接class文件，在通过反编译class文件，得到网站源码。</p>
+<pre><code>http://url/WEB-INF/web.xml
+</code></pre>
+<h4 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h4><p><a href="https://0clickjacking0.github.io/2019/04/17/web%E5%B8%B8%E8%A7%81%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2/">https://0clickjacking0.github.io/2019/04/17/web常见源码泄露/</a><br><a href="https://www.secpulse.com/archives/55286.html">https://www.secpulse.com/archives/55286.html</a><br><a href="https://www.cnblogs.com/pannengzhi/p/2017-09-23-web-file-disclosure.html">WEB中的敏感文件泄漏</a></p>
+<h3 id="Unicode编码"><a href="#Unicode编码" class="headerlink" title="Unicode编码"></a>Unicode编码</h3><p>web18中新接触到了一种新的编码，unicode，其特征为：\uxxxx</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ROBOCUP RESCUE 示例代码演示</title>
     <url>/2022/03/20/Apollo/</url>
     <content><![CDATA[<p>用于记录给学弟学妹们讲解简单的运行服务器和挂载智能体的知识</p>
@@ -678,141 +840,29 @@
       </tags>
   </entry>
   <entry>
-    <title>CTFShow刷题小结(信息搜集)</title>
-    <url>/2020/10/15/CTFShow%E5%88%B7%E9%A2%98%E5%B0%8F%E7%BB%93(%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86)/</url>
-    <content><![CDATA[<p>划了好久的水了，恰巧最近空余时间还算多，就开始刷CTFshow 上的web入门</p>
-<span id="more"></span>
-
-<h3 id="web源码泄露"><a href="#web源码泄露" class="headerlink" title="web源码泄露"></a>web源码泄露</h3><p>印象比较深的是源码泄露的几道题，之前偶尔碰到过，今天才知道是源码泄露。</p>
-<p>搬运自：<a href="https://blog.csdn.net/Fly_hps/article/details/82821857?utm_source=blogxgwz7">https://blog.csdn.net/Fly_hps/article/details/82821857?utm_source=blogxgwz7</a></p>
-<h4 id="vim临时文件"><a href="#vim临时文件" class="headerlink" title="vim临时文件"></a>vim临时文件</h4><p> 程序员使用vim编辑器编写一个<code>index.php</code>文件时，会有一个<code>.index.php.swp</code>文件，如果文件正常退出，则该文件被删除，如果异常退出，该文件则会保存下来，该文件可以用来恢复异常退出的index.php，同时多次意外退出并不会覆盖旧的<code>.swp</code>文件，而是会生成一个新的，例如<code>.swo</code>文件。</p>
-<h4 id="恢复文件"><a href="#恢复文件" class="headerlink" title="恢复文件"></a>恢复文件</h4><blockquote>
-<p>vim -r 恢复的文件名<br>前提是.index.php.swp存在于该目录下</p>
-</blockquote>
-<h4 id="vim备份文件"><a href="#vim备份文件" class="headerlink" title="vim备份文件"></a>vim备份文件</h4><p>默认情况下使用Vim编程，在修改文件后系统会自动生成一个带<code>~</code>的备份文件，某些情况下可以对其下载进行查看；</p>
-<blockquote>
-<p>以 index.php 为例 第一次产生的缓存文件名为 .index.php.swp<br>第二次意外退出后，文件名为.index.php.swo<br>第三次产生的缓存文件则为 .index.php.swn<br>注意：index前有 “ . “</p>
-</blockquote>
-<p><strong>漏洞利用</strong>：直接访问.swp文件，下载回来后删掉末尾的.swp，获得源码文件。</p>
-<h4 id="PHPSTORM"><a href="#PHPSTORM" class="headerlink" title="PHPSTORM"></a>PHPSTORM</h4><p>使用phpstorm新建项目时，会生成一个<code>.idea</code>文件夹，这个文件夹有一个<code>workspace.xml</code>，访问可以得到一些信息。</p>
-<h4 id="网站备份压缩文件"><a href="#网站备份压缩文件" class="headerlink" title="网站备份压缩文件"></a>网站备份压缩文件</h4><p>在网站的使用过程中，往往需要对网站中的文件进行修改、升级。此时就需要对网站整站或者其中某一页面进行备份。当备份文件或者修改过程中的缓存文件因为各种原因而被留在网站web目录下，而该目录又没有设置访问权限时，便有可能导致备份文件或者编辑器的缓存文件被下载，导致敏感信息泄露，给服务器的安全埋下隐患。</p>
-<p><strong>漏洞成因及危害</strong></p>
-<p>该漏洞的成因主要有以下两种：</p>
-<blockquote>
-<p>服务器管理员错误地将网站或者网页的备份文件放置到服务器web目录下。<br>编辑器在使用过程中自动保存的备份文件或者临时文件因为各种原因没有被删除而保存在web目录下。</p>
-</blockquote>
-<p><strong>漏洞检测</strong></p>
-<p>该漏洞往往会导致服务器整站源代码或者部分页面的源代码被下载，利用。源代码中所包含的各类敏感信息，如服务器数据库连接信息，服务器配置信息等会因此而泄露，造成巨大的损失。被泄露的源代码还可能会被用于代码审计，进一步利用而对整个系统的安全埋下隐患。</p>
-<p><strong>常见备份压缩文件</strong></p>
-<blockquote>
-<p>.rar<br>.zip<br>.7z<br>.tar.gz<br>.bak<br>.swp<br>.txt<br>.html</p>
-</blockquote>
-<p><strong>常见备份文件后缀：</strong></p>
-<pre><code>.index.php.swp
-index.php.swp
-index.php.bak
-.index.php~
-index.php.bak_Edietplus
-index.php.~
-index.php.~1~
-index.php
-index.php~
-index.php.rar
-index.php.zip
-index.php.7z
-index.php.tar.gz
-www.zip
-www.rar
-www.zip
-www.7z
-www.tar.gz
-www.tar
-web.zip
-web.rar
-web.zip
-web.7z
-web.tar.gz
-web.tar
-wwwroot.rar
-web.rar
+    <title>博客发布时 hexo d 命令报错</title>
+    <url>/2021/03/17/GitQues/</url>
+    <content><![CDATA[<p>hexo 博客在hexo d 部署时报错</p>
+<p>问题描述：</p>
+<p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
+<p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
+<p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
+<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control">针对github权限导致hexo部署失败的解决方案</a></p>
+<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
+<hr>
+<p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
+<p><a href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
+<p>加油，打工人！</p>
+<p>更新：</p>
+<p><a href="https://segmentfault.com/a/1190000018624911?utm_source=tag-newest">https://segmentfault.com/a/1190000018624911?utm_source=tag-newest</a></p>
+<p>按照这篇文章中说的方法一也可以解决该问题：</p>
+<p>取消http代理：</p>
+<pre><code class="line-numbers language-shell">$ git config --global --unset http.proxy
+$ git config --global --unset https.proxy
 </code></pre>
-<p><strong>漏洞利用</strong>：使用disearch扫描</p>
-<blockquote>
-<p>python dirsearch.py -u url -e *</p>
-</blockquote>
-<h4 id="git源码泄漏"><a href="#git源码泄漏" class="headerlink" title="git源码泄漏"></a>git源码泄漏</h4><p>git在初始化项目的时候, 会在项目的根目录(可用<code>git rev-parse --show-toplevel</code>查看)创建一个名为<code>.git</code>的隐藏文件夹, 里面包含了本地所有commit的历史记录. 如果无意间将这个目录置于WEB的路径下让用户可以访问,那么这也就泄露了几乎所有的源代码和其他其他敏感信息.</p>
-<p>该文件可以来恢复源代码</p>
-<p><strong>fuzz：</strong></p>
-<pre><code>http://url/.git/config
+<p>设置env <code>GIT_SSL_NO_VERIFY</code>为<code>true</code>然后再次部署：</p>
+<pre><code class="line-numbers language-shell">$ env GIT_SSL_NO_VERIFY=true hexo d
 </code></pre>
-<p>若存在该页面，可以看到配置信息，说明存在该漏洞</p>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/lijiejie/GitHack">GitHack</a></p>
-<pre><code>python GitHack.py http://url/.git/
-</code></pre>
-<blockquote>
-<p>git log可以查看提交历史<br>git diff查看git提交的不同处<br>stash命令可用于临时保存和恢复修改，可跨分支<br>git stash list查看所有保存的记录列表<br>git stash pop，从 git 栈中弹出来一个文件</p>
-</blockquote>
-<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
-<pre><code>rip-hg.pl -v -u http://url/.git
-</code></pre>
-<h4 id="hg泄露"><a href="#hg泄露" class="headerlink" title="hg泄露"></a>hg泄露</h4><p>与git类似, hg在初始化项目时, 会在项目的根目录下创建一个名为<code>.hg</code>的隐藏文件夹,里面包含了代码和分支的修改记录和开发人员的相关信息. 当开发人员使用 Mercurial 进行版本控制，对站点自动部署。如果配置不当,可能会将.hg 文件夹直接部署到线上环境。这就引起了 hg 泄露漏洞。</p>
-<pre><code>http://www.example.com/.hg/
-</code></pre>
-<p><strong>fuzz：</strong></p>
-<pre><code>http://url/.hg/
-</code></pre>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
-<pre><code>rip-hg.pl -v -u http://url/.hg
-</code></pre>
-<h4 id="SVN泄露"><a href="#SVN泄露" class="headerlink" title="SVN泄露"></a>SVN泄露</h4><p>svn同样在项目根目录下会创建一个名为<code>.svn</code>的<strong>隐藏文件夹</strong>, 包含了所有分支commit信息和代码记录.</p>
-<h4 id="fuzz："><a href="#fuzz：" class="headerlink" title="fuzz："></a>fuzz：</h4><pre><code>http://url/.svn/entries
-</code></pre>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
-<pre><code>rip-svn.pl -v -u http://www.example.com/.svn/
-</code></pre>
-<h4 id="bzr-Bazaar泄露"><a href="#bzr-Bazaar泄露" class="headerlink" title="bzr/Bazaar泄露"></a>bzr/Bazaar泄露</h4><p>bzr在初始化项目时(bzr init/init-repo), 会在项目根目录产生名为<code>.bzr</code>的<strong>隐藏目录</strong>, 同样暴露了源代码和用户信息.</p>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
-<pre><code>rip-bzr.pl -v -u http://www.example.com/.bzr/
-</code></pre>
-<h4 id="CVS泄漏"><a href="#CVS泄漏" class="headerlink" title="CVS泄漏"></a><strong>CVS泄漏</strong></h4><p>cvs项目在初始化(cvs checkout <code>project</code>)的时候, 会在<code>project</code>目录下创建一个名为<code>CVS</code>的目录,<br>其中保存了各个文件的修改和commit记录. 通过此目录可以获取代码的历史版本. 其中两个关键文件为:<br><code>CVS/Root</code>和<code>CVS/Entries</code>, 分别记录了项目的根信息和所有文件的结构</p>
-<p><strong>fuzz</strong></p>
-<pre><code>http://url/CVS/Root 返回根信息
-http://url/CVS/Entries 返回所有文件的结构
-</code></pre>
-<p><strong>漏洞利用</strong></p>
-<p>取回源码的命令，这个命令的意思就是把远端一个名为name的repo clone到本地名为dir的目录下。</p>
-<pre><code>bk clone http://url/name dir
-</code></pre>
-<p>查看所有的改变的命令，转到download的目录</p>
-<pre><code>bk changes
-</code></pre>
-<h4 id="DS-Store文件泄漏"><a href="#DS-Store文件泄漏" class="headerlink" title=".DS_Store文件泄漏"></a>.DS_Store文件泄漏</h4><p>.DS_Store是Mac下Finder用来保存如何展示 文件/文件夹 的数据文件，每个文件夹下对应一个。如果开发/设计人员在发布代码时未删除文件夹中隐藏的.DS_store，则有可能会造成文件泄露</p>
-<p><strong>fuzz：</strong></p>
-<pre><code>http://url/.DS_Store
-</code></pre>
-<p><strong>漏洞利用：</strong></p>
-<p>工具：<a href="https://github.com/lijiejie/ds_store_exp">dsstoreexp</a></p>
-<pre><code>python ds_store_exp.py http://url/.DS_Store
-</code></pre>
-<h4 id="WEB-INF-web-xml泄露"><a href="#WEB-INF-web-xml泄露" class="headerlink" title="WEB-INF/web.xml泄露"></a>WEB-INF/web.xml泄露</h4><p>WEB-INF是Java的WEB应用的安全目录。如果想在页面中直接访问其中的文件，必须通过web.xml文件对要访问的文件进行相应映射才能访问。</p>
-<p>通常一些web应用我们会使用多个web服务器搭配使用，解决其中的一个web服务器的性能缺陷以及做均衡负载的优点和完成一些分层结构的安全策略等。在使用这种架构的时候，由于对静态资源的目录或文件的映射配置不当，可能会引发一些的安全问题，导致web.xml等文件能够被读取。</p>
-<p>WEB-INF主要包含一下文件或目录：</p>
-<ul>
-<li><code>/WEB-INF/web.xml</code>：Web应用程序配置文件，描述了 servlet 和其他的应用组件配置及命名规则。</li>
-<li><code>/WEB-INF/classes/</code>：含了站点所有用的 class 文件，包括 servlet class 和非servlet class，他们不能包含在 .jar文件中</li>
-<li><code>/WEB-INF/lib/</code>：存放web应用需要的各种JAR文件，放置仅在这个应用中要求使用的jar文件,如数据库驱动jar文件</li>
-<li><code>/WEB-INF/src/</code>：源码目录，按照包名结构放置各个java文件。</li>
-<li><code>/WEB-INF/database.properties</code>：数据库配置文件漏洞检测以及利用方法</li>
-</ul>
-<h4 id="漏洞检测以及利用方法"><a href="#漏洞检测以及利用方法" class="headerlink" title="漏洞检测以及利用方法"></a>漏洞检测以及利用方法</h4><p>通过找到web.xml文件，推断class文件的路径，最后直接class文件，在通过反编译class文件，得到网站源码。</p>
-<pre><code>http://url/WEB-INF/web.xml
-</code></pre>
-<h4 id="reference"><a href="#reference" class="headerlink" title="reference"></a>reference</h4><p><a href="https://0clickjacking0.github.io/2019/04/17/web%E5%B8%B8%E8%A7%81%E6%BA%90%E7%A0%81%E6%B3%84%E9%9C%B2/">https://0clickjacking0.github.io/2019/04/17/web常见源码泄露/</a><br><a href="https://www.secpulse.com/archives/55286.html">https://www.secpulse.com/archives/55286.html</a><br><a href="https://www.cnblogs.com/pannengzhi/p/2017-09-23-web-file-disclosure.html">WEB中的敏感文件泄漏</a></p>
-<h3 id="Unicode编码"><a href="#Unicode编码" class="headerlink" title="Unicode编码"></a>Unicode编码</h3><p>web18中新接触到了一种新的编码，unicode，其特征为：\uxxxx</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -833,10 +883,11 @@ http://url/CVS/Entries 返回所有文件的结构
           });
       </script>]]></content>
       <categories>
-        <category>CTF</category>
+        <category>Hexo</category>
       </categories>
       <tags>
-        <tag>web</tag>
+        <tag>Git</tag>
+        <tag>Hexo部署</tag>
       </tags>
   </entry>
   <entry>
@@ -892,29 +943,23 @@ http://url/CVS/Entries 返回所有文件的结构
       </tags>
   </entry>
   <entry>
-    <title>博客发布时 hexo d 命令报错</title>
-    <url>/2021/03/17/GitQues/</url>
-    <content><![CDATA[<p>hexo 博客在hexo d 部署时报错</p>
-<p>问题描述：</p>
-<p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
-<p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
-<p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
-<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control">针对github权限导致hexo部署失败的解决方案</a></p>
-<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
-<hr>
-<p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
-<p><a href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
-<p>加油，打工人！</p>
-<p>更新：</p>
-<p><a href="https://segmentfault.com/a/1190000018624911?utm_source=tag-newest">https://segmentfault.com/a/1190000018624911?utm_source=tag-newest</a></p>
-<p>按照这篇文章中说的方法一也可以解决该问题：</p>
-<p>取消http代理：</p>
-<pre><code class="line-numbers language-shell">$ git config --global --unset http.proxy
-$ git config --global --unset https.proxy
-</code></pre>
-<p>设置env <code>GIT_SSL_NO_VERIFY</code>为<code>true</code>然后再次部署：</p>
-<pre><code class="line-numbers language-shell">$ env GIT_SSL_NO_VERIFY=true hexo d
-</code></pre>
+    <title>YCBCTF wp</title>
+    <url>/2020/09/10/YCBCTF/</url>
+    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
+<span id="more"></span>
+
+<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
+
+
+
+<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
+
+
+
+<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span>。</p>
+<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -935,11 +980,11 @@ $ git config --global --unset https.proxy
           });
       </script>]]></content>
       <categories>
-        <category>Hexo</category>
+        <category>CTF</category>
       </categories>
       <tags>
-        <tag>Git</tag>
-        <tag>Hexo部署</tag>
+        <tag>CTF</tag>
+        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -993,51 +1038,6 @@ $ git config --global --unset https.proxy
       <tags>
         <tag>Vscode</tag>
         <tag>Synology</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>YCBCTF wp</title>
-    <url>/2020/09/10/YCBCTF/</url>
-    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8">😭</span></p>
-<span id="more"></span>
-
-<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
-
-
-
-<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
-
-
-
-<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8">😄</span>。</p>
-<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -1937,6 +1937,46 @@ xctf Object            //$res2
       </tags>
   </entry>
   <entry>
+    <title>新电脑迁移hexo</title>
+    <url>/2025/07/11/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
+<p>主要参考下面这篇文章进行：</p>
+<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
+<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
+<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
+<p>2.Typora配置阿里云OSS存储权限问题</p>
+<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
+<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
+<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
+<p>2.git bash here卡死问题</p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【NJUPT】微机实验（合集）</title>
     <url>/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/</url>
     <content><![CDATA[<h2 id="实验一"><a href="#实验一" class="headerlink" title="实验一"></a>实验一</h2><h3 id="1-修改一个有语法错误的汇编语言源程序"><a href="#1-修改一个有语法错误的汇编语言源程序" class="headerlink" title="1.修改一个有语法错误的汇编语言源程序"></a>1.修改一个有语法错误的汇编语言源程序</h3><h4 id="原来有错误的代码："><a href="#原来有错误的代码：" class="headerlink" title="原来有错误的代码："></a>原来有错误的代码：</h4><pre><code>.486
@@ -2520,19 +2560,14 @@ CODE      ENDS
       </tags>
   </entry>
   <entry>
-    <title>新电脑迁移hexo</title>
-    <url>/2025/07/11/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
-<p>主要参考下面这篇文章进行：</p>
-<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
-<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
-<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
-<p>2.Typora配置阿里云OSS存储权限问题</p>
-<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
-<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
-<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
-<p>2.git bash here卡死问题</p>
+    <title>诗和远方</title>
+    <url>/2020/07/20/%E8%AF%97%E8%AF%8D/</url>
+    <content><![CDATA[<p>迁客骚人，多会于此。我可能是后者​,​h​h​h<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8">😏</span></p>
+<span id="more"></span>
+
+
+
+<h4 id="nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-西湖"><a href="#nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-西湖" class="headerlink" title="&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖"></a>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖</h4><p><strong>&nbsp;六月西湖好，风光小处藏。</strong><br>&nbsp;（仄仄平平仄，平平仄仄平。）<br><strong>&nbsp;苏堤夹岸绿，曲院满池芳。</strong><br>&nbsp;（平平平仄仄，仄仄仄平平。）<br><strong>&nbsp;花港观鱼醉，扁舟水上忙。</strong><br>&nbsp;（平仄平平仄，平平仄仄平。）<br><strong>&nbsp;雷峰夕照晚，自适意悠长。</strong><br>&nbsp;（平平平仄仄，仄仄仄平平。）</p>
 <script>
         document.querySelectorAll('.github-emoji')
           .forEach(el => {
@@ -2553,10 +2588,11 @@ CODE      ENDS
           });
       </script>]]></content>
       <categories>
-        <category>技术</category>
+        <category>文艺的心</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
+        <tag>生活</tag>
+        <tag>诗词</tag>
       </tags>
   </entry>
   <entry>
@@ -5986,42 +6022,6 @@ int main()
         <tag>哈夫曼编码</tag>
         <tag>图</tag>
         <tag>内排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>诗和远方</title>
-    <url>/2020/07/20/%E8%AF%97%E8%AF%8D/</url>
-    <content><![CDATA[<p>迁客骚人，多会于此。我可能是后者​,​h​h​h<span class="github-emoji" style="color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8) center/contain" data-src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8">😏</span></p>
-<span id="more"></span>
-
-
-
-<h4 id="nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-西湖"><a href="#nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-西湖" class="headerlink" title="&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖"></a>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖</h4><p><strong>&nbsp;六月西湖好，风光小处藏。</strong><br>&nbsp;（仄仄平平仄，平平仄仄平。）<br><strong>&nbsp;苏堤夹岸绿，曲院满池芳。</strong><br>&nbsp;（平平平仄仄，仄仄仄平平。）<br><strong>&nbsp;花港观鱼醉，扁舟水上忙。</strong><br>&nbsp;（平仄平平仄，平平仄仄平。）<br><strong>&nbsp;雷峰夕照晚，自适意悠长。</strong><br>&nbsp;（平平平仄仄，仄仄仄平平。）</p>
-<script>
-        document.querySelectorAll('.github-emoji')
-          .forEach(el => {
-            if (!el.dataset.src) { return; }
-            const img = document.createElement('img');
-            img.style = 'display:none !important;';
-            img.src = el.dataset.src;
-            img.addEventListener('error', () => {
-              img.remove();
-              el.style.color = 'inherit';
-              el.style.backgroundImage = 'none';
-              el.style.background = 'none';
-            });
-            img.addEventListener('load', () => {
-              img.remove();
-            });
-            document.body.appendChild(img);
-          });
-      </script>]]></content>
-      <categories>
-        <category>文艺的心</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>诗词</tag>
       </tags>
   </entry>
 </search>
