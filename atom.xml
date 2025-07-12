@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2025-07-11T15:54:41.291Z</updated>
+  <updated>2025-07-12T14:46:11.558Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -15,33 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://kongcm.cn/2025/07/11/test/"/>
-    <id>http://kongcm.cn/2025/07/11/test/</id>
-    <published>2025-07-11T15:54:41.000Z</published>
-    <updated>2025-07-11T15:54:41.291Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;script&gt;
-        document.querySelectorAll(&#39;.github-emoji&#39;)
-          .forEach(el =&gt; {
-            if (!el.dataset.src) { return; }
-       
-        
-      
-    
-    </summary>
-    
-    
-    
-  </entry>
   
   <entry>
     <title>新电脑迁移hexo</title>
@@ -471,9 +444,9 @@
       <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
     
     
-      <category term="CTF" scheme="http://kongcm.cn/tags/CTF/"/>
-    
       <category term="web" scheme="http://kongcm.cn/tags/web/"/>
+    
+      <category term="CTF" scheme="http://kongcm.cn/tags/CTF/"/>
     
   </entry>
   
@@ -574,9 +547,30 @@
       <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
     
     
+      <category term="web" scheme="http://kongcm.cn/tags/web/"/>
+    
       <category term="CTF" scheme="http://kongcm.cn/tags/CTF/"/>
     
-      <category term="web" scheme="http://kongcm.cn/tags/web/"/>
+  </entry>
+  
+  <entry>
+    <title>尝试用typora写博客</title>
+    <link href="http://kongcm.cn/2020/07/03/typora/"/>
+    <id>http://kongcm.cn/2020/07/03/typora/</id>
+    <published>2020-07-03T11:13:45.000Z</published>
+    <updated>2023-08-06T08:26:42.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;​    昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢&lt;span class=&quot;github-emoji&quot; style=&quot;color: transparent;background:no-repeat url(https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8) center/contain&quot; data-src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8&quot;&gt;❓&lt;/span&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://kongcm.cn/categories/Hexo/"/>
+    
+    
+      <category term="Typora" scheme="http://kongcm.cn/tags/Typora/"/>
     
   </entry>
   
