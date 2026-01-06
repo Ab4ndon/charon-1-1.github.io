@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ab4nd0n</title>
+  
+  <subtitle>我习于冷，志于成冰</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://kongcm.cn/"/>
+  <updated>2026-01-06T04:20:33.325Z</updated>
+  <id>http://kongcm.cn/</id>
+  
+  <author>
+    <name>Ab4nd0n</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Google AI Studio部署自己的应用</title>
+    <link href="http://kongcm.cn/2026/01/05/Gemini%E7%94%9F%E6%88%90%E5%B9%B6%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E5%BA%94%E7%94%A8/"/>
+    <id>http://kongcm.cn/2026/01/05/Gemini%E7%94%9F%E6%88%90%E5%B9%B6%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E5%BA%94%E7%94%A8/</id>
+    <published>2026-01-05T04:00:30.000Z</published>
+    <updated>2026-01-06T04:20:33.325Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;引言&quot;&gt;&lt;a href=&quot;#引言&quot; class=&quot;headerlink&quot; title=&quot;引言&quot;&gt;&lt;/a&gt;引言&lt;/h2&gt;&lt;blockquote&gt;
+&lt;p&gt;最近刷到很多用Google AI Studio生成各种好玩的应用的视频，不过这些应用都是依托于AI
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://kongcm.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Gemini" scheme="http://kongcm.cn/tags/Gemini/"/>
+    
+      <category term="Github" scheme="http://kongcm.cn/tags/Github/"/>
+    
+      <category term="EdgeOne，CURSOR" scheme="http://kongcm.cn/tags/EdgeOne%EF%BC%8CCURSOR/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo 添加AI摘要功能</title>
+    <link href="http://kongcm.cn/2025/12/05/AI-summary/"/>
+    <id>http://kongcm.cn/2025/12/05/AI-summary/</id>
+    <published>2025-12-05T03:01:18.000Z</published>
+    <updated>2026-01-06T04:20:33.224Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近浏览技术博客时，发现像CSDN都会有 **AI 摘要 ** 功能，觉得还算是一个实用的功能，所以作为一个热衷于折腾 Hexo 的博主，我也决定动手给自己的博客加上这个功能。&lt;/p&gt;
+&lt;p&gt;本以为写个脚本调用一下 API
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://kongcm.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Hexo" scheme="http://kongcm.cn/tags/Hexo/"/>
+    
+      <category term="AI" scheme="http://kongcm.cn/tags/AI/"/>
+    
+      <category term="DeepSeek" scheme="http://kongcm.cn/tags/DeepSeek/"/>
+    
+      <category term="Node.js" scheme="http://kongcm.cn/tags/Node-js/"/>
+    
+      <category term="教程" scheme="http://kongcm.cn/tags/%E6%95%99%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>LeetCode刷题记录</title>
+    <link href="http://kongcm.cn/2025/08/07/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/"/>
+    <id>http://kongcm.cn/2025/08/07/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</id>
+    <published>2025-08-07T05:38:20.000Z</published>
+    <updated>2026-01-06T04:20:33.326Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;a href=&quot;https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/&quot;&gt;分享｜如何科学刷题？- 讨论 - 力扣（LeetCode）&lt;/a&gt;&lt;/p&gt;
+&lt;h2
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://kongcm.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="LeetCode" scheme="http://kongcm.cn/tags/LeetCode/"/>
+    
+      <category term="数据结构，算法" scheme="http://kongcm.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%8C%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>新电脑迁移hexo</title>
+    <link href="http://kongcm.cn/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/"/>
+    <id>http://kongcm.cn/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</id>
+    <published>2025-07-16T03:50:38.000Z</published>
+    <updated>2026-01-06T04:20:33.446Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://kongcm.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="Git" scheme="http://kongcm.cn/tags/Git/"/>
+    
+      <category term="hexo" scheme="http://kongcm.cn/tags/hexo/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vscode_Error</title>
+    <link href="http://kongcm.cn/2023/08/06/Vscode-Error/"/>
+    <id>http://kongcm.cn/2023/08/06/Vscode-Error/</id>
+    <published>2023-08-06T07:25:39.000Z</published>
+    <updated>2026-01-06T04:20:33.327Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;一、问题概述&quot;&gt;&lt;a href=&quot;#一、问题概述&quot; class=&quot;headerlink&quot; title=&quot;一、问题概述&quot;&gt;&lt;/a&gt;一、问题概述&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;vscode 获取扩展失败，XHR
+        
+      
+    
+    </summary>
+    
+    
+      <category term="报错处理" scheme="http://kongcm.cn/categories/%E6%8A%A5%E9%94%99%E5%A4%84%E7%90%86/"/>
+    
+    
+      <category term="Vscode" scheme="http://kongcm.cn/tags/Vscode/"/>
+    
+      <category term="Synology" scheme="http://kongcm.cn/tags/Synology/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>ROBOCUP RESCUE 示例代码演示</title>
+    <link href="http://kongcm.cn/2022/03/20/Apollo/"/>
+    <id>http://kongcm.cn/2022/03/20/Apollo/</id>
+    <published>2022-03-20T12:58:17.000Z</published>
+    <updated>2022-03-20T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;用于记录给学弟学妹们讲解简单的运行服务器和挂载智能体的知识&lt;/p&gt;
+&lt;h3 id=&quot;一、VMware的安装&quot;&gt;&lt;a href=&quot;#一、VMware的安装&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术学习" scheme="http://kongcm.cn/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Java" scheme="http://kongcm.cn/tags/Java/"/>
+    
+      <category term="Linux" scheme="http://kongcm.cn/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【NJUPT】微机实验（合集）</title>
+    <link href="http://kongcm.cn/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/"/>
+    <id>http://kongcm.cn/2021/07/09/%E5%BE%AE%E6%9C%BA%E5%AE%9E%E9%AA%8C/</id>
+    <published>2021-07-09T10:09:52.000Z</published>
+    <updated>2026-01-06T04:20:33.436Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;实验一&quot;&gt;&lt;a href=&quot;#实验一&quot; class=&quot;headerlink&quot; title=&quot;实验一&quot;&gt;&lt;/a&gt;实验一&lt;/h2&gt;&lt;h3 id=&quot;1-修改一个有语法错误的汇编语言源程序&quot;&gt;&lt;a href=&quot;#1-修改一个有语法错误的汇编语言源程序&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="微机原理" scheme="http://kongcm.cn/categories/%E5%BE%AE%E6%9C%BA%E5%8E%9F%E7%90%86/"/>
+    
+    
+      <category term="80x86" scheme="http://kongcm.cn/tags/80x86/"/>
+    
+      <category term="8250" scheme="http://kongcm.cn/tags/8250/"/>
+    
+      <category term="8259A" scheme="http://kongcm.cn/tags/8259A/"/>
+    
+      <category term="8255" scheme="http://kongcm.cn/tags/8255/"/>
+    
+      <category term="8254" scheme="http://kongcm.cn/tags/8254/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【NJUPT】数据结构实验(合集)</title>
+    <link href="http://kongcm.cn/2021/07/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/"/>
+    <id>http://kongcm.cn/2021/07/08/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</id>
+    <published>2021-07-08T03:02:13.000Z</published>
+    <updated>2026-01-06T04:20:33.444Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;实验一&quot;&gt;&lt;a href=&quot;#实验一&quot; class=&quot;headerlink&quot; title=&quot;实验一&quot;&gt;&lt;/a&gt;实验一&lt;/h2&gt;&lt;h3 id=&quot;1-顺序表的初始化、查找、插入、删除、输出、撤销等操作&quot;&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数据结构" scheme="http://kongcm.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="链表" scheme="http://kongcm.cn/tags/%E9%93%BE%E8%A1%A8/"/>
+    
+      <category term="哈夫曼编码" scheme="http://kongcm.cn/tags/%E5%93%88%E5%A4%AB%E6%9B%BC%E7%BC%96%E7%A0%81/"/>
+    
+      <category term="图" scheme="http://kongcm.cn/tags/%E5%9B%BE/"/>
+    
+      <category term="内排序" scheme="http://kongcm.cn/tags/%E5%86%85%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【NJUPT】 算法实验（合集）</title>
+    <link href="http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/"/>
+    <id>http://kongcm.cn/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</id>
+    <published>2021-07-06T08:56:05.000Z</published>
+    <updated>2026-01-06T04:20:33.447Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h2 id=&quot;实验一：&quot;&gt;&lt;a href=&quot;#实验一：&quot; class=&quot;headerlink&quot; title=&quot;实验一：&quot;&gt;&lt;/a&gt;实验一：&lt;/h2&gt;&lt;p&gt;1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理，
+        
+      
+    
+    </summary>
+    
+    
+      <category term="算法设计与分析" scheme="http://kongcm.cn/categories/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"/>
+    
+    
+      <category term="C++" scheme="http://kongcm.cn/tags/C/"/>
+    
+      <category term="算法设计与分析" scheme="http://kongcm.cn/tags/%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%88%86%E6%9E%90/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Android</title>
+    <link href="http://kongcm.cn/2021/03/17/Android/"/>
+    <id>http://kongcm.cn/2021/03/17/Android/</id>
+    <published>2021-03-17T15:38:15.000Z</published>
+    <updated>2026-01-06T04:20:33.304Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;1-边框圆角化&quot;&gt;&lt;a href=&quot;#1-边框圆角化&quot; class=&quot;headerlink&quot; title=&quot;1.边框圆角化&quot;&gt;&lt;/a&gt;1.边框圆角化&lt;/h4&gt;&lt;pre&gt;&lt;code class=&quot;line-numbers
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术学习" scheme="http://kongcm.cn/categories/%E6%8A%80%E6%9C%AF%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Android UI" scheme="http://kongcm.cn/tags/Android-UI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>博客发布时 hexo d 命令报错</title>
+    <link href="http://kongcm.cn/2021/03/17/GitQues/"/>
+    <id>http://kongcm.cn/2021/03/17/GitQues/</id>
+    <published>2021-03-17T01:40:45.000Z</published>
+    <updated>2026-01-06T04:20:33.325Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;hexo 博客在hexo d 部署时报错&lt;/p&gt;
+&lt;p&gt;问题描述：&lt;/p&gt;
+&lt;p&gt;博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，&lt;code&gt;hexo s&lt;/code&gt;正常，但是&lt;code&gt;hexo g&lt;/code&gt;后进行&lt;code&gt;hexo
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://kongcm.cn/categories/Hexo/"/>
+    
+    
+      <category term="Git" scheme="http://kongcm.cn/tags/Git/"/>
+    
+      <category term="Hexo部署" scheme="http://kongcm.cn/tags/Hexo%E9%83%A8%E7%BD%B2/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据结构疑问</title>
+    <link href="http://kongcm.cn/2021/03/16/DSQuestion/"/>
+    <id>http://kongcm.cn/2021/03/16/DSQuestion/</id>
+    <published>2021-03-16T13:55:54.000Z</published>
+    <updated>2026-01-06T04:20:33.314Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;记录《数据结构》中的一些问题&lt;/p&gt;
+&lt;h4 id=&quot;1-时间复杂度O-1-与O-n-的区别？&quot;&gt;&lt;a href=&quot;#1-时间复杂度O-1-与O-n-的区别？&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数据结构" scheme="http://kongcm.cn/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+    
+      <category term="数据结构" scheme="http://kongcm.cn/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PHP反序列化漏洞学习</title>
+    <link href="http://kongcm.cn/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/"/>
+    <id>http://kongcm.cn/2020/10/28/%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E5%AD%A6%E4%B9%A0-1/</id>
+    <published>2020-10-28T15:19:44.000Z</published>
+    <updated>2020-11-22T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;首先，什么是序列化？&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;序列化就是将一个对象转换成字符串。字符串包括，属性名，属性值，属性类型和该对象对应的类名。&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;反序列化则相反将字符串重新恢复成对象&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thea
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
+    
+    
+      <category term="Web" scheme="http://kongcm.cn/tags/Web/"/>
+    
+      <category term="PHP反序列化" scheme="http://kongcm.cn/tags/PHP%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sqli-labs-master 刷题记录</title>
+    <link href="http://kongcm.cn/2020/10/18/sqlilab/"/>
+    <id>http://kongcm.cn/2020/10/18/sqlilab/</id>
+    <published>2020-10-18T15:16:38.000Z</published>
+    <updated>2020-10-24T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;注入的分类&quot;&gt;&lt;a href=&quot;#注入的分类&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
+    
+    
+      <category term="Web" scheme="http://kongcm.cn/tags/Web/"/>
+    
+      <category term="SQL注入" scheme="http://kongcm.cn/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CTFShow刷题小结(信息搜集)</title>
+    <link href="http://kongcm.cn/2020/10/15/CTFShow%E5%88%B7%E9%A2%98%E5%B0%8F%E7%BB%93(%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86)/"/>
+    <id>http://kongcm.cn/2020/10/15/CTFShow%E5%88%B7%E9%A2%98%E5%B0%8F%E7%BB%93(%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86)/</id>
+    <published>2020-10-15T15:12:32.000Z</published>
+    <updated>2020-10-19T16:00:00.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;划了好久的水了，恰巧最近空余时间还算多，就开始刷CTFshow 上的web入门&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
+    
+    
+      <category term="web" scheme="http://kongcm.cn/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>阿里云CDN加速域名解析冲突问题</title>
+    <link href="http://kongcm.cn/2020/10/11/ALi/"/>
+    <id>http://kongcm.cn/2020/10/11/ALi/</id>
+    <published>2020-10-11T05:35:58.000Z</published>
+    <updated>2026-01-06T04:20:33.224Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。&lt;/p&gt;
+&lt;p&gt;首先，你需要将域名进行备案，备案完成后才能进行后续操作。&lt;/p&gt;
+&lt;p
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://kongcm.cn/categories/Hexo/"/>
+    
+    
+      <category term="CDN 解析冲突" scheme="http://kongcm.cn/tags/CDN-%E8%A7%A3%E6%9E%90%E5%86%B2%E7%AA%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>hexo matery主题代码高亮问题</title>
+    <link href="http://kongcm.cn/2020/09/26/hexo/"/>
+    <id>http://kongcm.cn/2020/09/26/hexo/</id>
+    <published>2020-09-26T03:09:24.000Z</published>
+    <updated>2026-01-06T04:20:33.349Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;关于matery主题代码高亮的问题&lt;/p&gt;
+&lt;p&gt;转载自大佬们的博客:&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.jianshu.com/p/f395d92a1110&quot;&gt;Hexo博客：六、prism代码高亮&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+    
+      <category term="Hexo" scheme="http://kongcm.cn/categories/Hexo/"/>
+    
+    
+      <category term="hexo 代码高亮 matery" scheme="http://kongcm.cn/tags/hexo-%E4%BB%A3%E7%A0%81%E9%AB%98%E4%BA%AE-matery/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>YCBCTF wp</title>
+    <link href="http://kongcm.cn/2020/09/10/YCBCTF/"/>
+    <id>http://kongcm.cn/2020/09/10/YCBCTF/</id>
+    <published>2020-09-10T14:44:54.000Z</published>
+    <updated>2026-01-06T04:20:33.338Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题&lt;span class=&quot;github-emoji&quot;&gt;&lt;span&gt;😭&lt;/span&gt;&lt;img src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8&quot; aria-hidden=&quot;true&quot; onerror=&quot;this.parent.classList.add(&#39;github-emoji-fallback&#39;)&quot;&gt;&lt;/span&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/tags/CTF/"/>
+    
+      <category term="web" scheme="http://kongcm.cn/tags/web/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MoeCTF wp</title>
+    <link href="http://kongcm.cn/2020/08/14/moectf/"/>
+    <id>http://kongcm.cn/2020/08/14/moectf/</id>
+    <published>2020-08-14T05:57:53.000Z</published>
+    <updated>2026-01-06T04:20:33.351Z</updated>
+    
+    <summary type="html">
+    
+      &lt;img src=&quot;/2020/08/14/moectf/image-20200816135721888.png&quot; alt=&quot;image-20200816135721888&quot; style=&quot;zoom:50%;&quot;&gt;
+
+&lt;p&gt;MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中&lt;span class=&quot;github-emoji&quot;&gt;&lt;span&gt;😉&lt;/span&gt;&lt;img src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8&quot; aria-hidden=&quot;true&quot; onerror=&quot;this.parent.classList.add(&#39;github-emoji-fallback&#39;)&quot;&gt;&lt;/span&gt;，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
+    
+    
+      <category term="ctf" scheme="http://kongcm.cn/tags/ctf/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>DASCTF 《Ezfileinclude》 wp</title>
+    <link href="http://kongcm.cn/2020/07/25/DASCTF/"/>
+    <id>http://kongcm.cn/2020/07/25/DASCTF/</id>
+    <published>2020-07-25T08:57:02.000Z</published>
+    <updated>2026-01-06T04:20:33.306Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验&lt;span class=&quot;github-emoji&quot;&gt;&lt;span&gt;😢&lt;/span&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+    
+      <category term="CTF" scheme="http://kongcm.cn/categories/CTF/"/>
+    
+    
+      <category term="web" scheme="http://kongcm.cn/tags/web/"/>
+    
+  </entry>
+  
+</feed>
