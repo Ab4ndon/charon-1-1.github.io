@@ -2659,7 +2659,7 @@ footer .copy-right {
 }
 
 .archive-year {
-    margin: 50px 0 25px 0;
+    margin: 30px 0 15px 0; /* 减少年份分组的间距 */
     position: relative;
 }
 
@@ -2687,12 +2687,12 @@ footer .copy-right {
 }
 
 .archive-month {
-    margin: 35px 0 20px 0;
+    margin: 20px 0 12px 0; /* 减少月份分组的间距 */
     position: relative;
     background: linear-gradient(135deg, rgba(28, 187, 180, 0.08), rgba(38, 208, 206, 0.05));
-    border-radius: 8px;
-    padding: 12px 20px;
-    border-left: 5px solid #1cbbb4;
+    border-radius: 6px; /* 稍微减少圆角 */
+    padding: 8px 16px; /* 减少内边距 */
+    border-left: 4px solid #1cbbb4; /* 稍微减少左边框宽度 */
 }
 
 .archive-month::before {
@@ -2721,7 +2721,7 @@ footer .copy-right {
 }
 
 .archive-item {
-    margin-bottom: 24px;
+    margin-bottom: 16px; /* 减少卡片间距 */
 }
 
 .archive-card-flat {
@@ -2767,8 +2767,8 @@ footer .copy-right {
 }
 
 .archive-image {
-    flex: 0 0 220px;
-    height: 140px;
+    flex: 0 0 200px; /* 稍微压缩图片宽度 */
+    height: 140px; /* 与内容区域高度保持一致 */
     overflow: hidden;
     position: relative;
 }
@@ -2808,20 +2808,20 @@ footer .copy-right {
 
 .archive-content {
     flex: 1;
-    padding: 24px 20px;
+    padding: 20px 18px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    height: 140px; /* 与图片高度保持一致 */
+    justify-content: flex-start;
+    height: 140px; /* 压缩高度，让页面更紧凑 */
     position: relative;
     z-index: 2;
 }
 
 .archive-item-title {
-    font-size: 1.25rem;
+    font-size: 1.15rem; /* 稍微缩小字体 */
     font-weight: 700;
-    margin: 0 0 12px 0;
-    line-height: 1.4;
+    margin: 0 0 8px 0; /* 减少底部边距 */
+    line-height: 1.3;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -2841,10 +2841,11 @@ footer .copy-right {
 }
 
 .archive-item-meta {
-    margin-bottom: 12px;
+    margin-bottom: 8px; /* 减少底部边距 */
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 10px; /* 稍微减少间距 */
+    align-items: center;
 }
 
 .archive-item-date,
@@ -2883,11 +2884,48 @@ footer .copy-right {
     color: #1cbbb4;
 }
 
+.archive-item-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    align-items: center;
+}
+
+.tag-chip {
+    display: inline-block;
+    font-size: 0.75rem;
+    color: #607d8b;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: rgba(96, 125, 139, 0.08);
+    border: 1px solid rgba(96, 125, 139, 0.15);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.tag-chip:hover {
+    background: rgba(28, 187, 180, 0.12);
+    color: #1cbbb4;
+    border-color: rgba(28, 187, 180, 0.3);
+    transform: translateY(-1px);
+}
+
+.tag-more {
+    font-size: 0.75rem;
+    color: #90a4ae;
+    font-weight: 400;
+    padding: 3px 6px;
+    background: rgba(144, 164, 174, 0.1);
+    border-radius: 10px;
+}
+
 .archive-item-summary {
-    font-size: 0.9rem;
+    font-size: 0.85rem; /* 稍微缩小字体 */
     color: #78909c;
-    line-height: 1.6;
-    margin-top: 10px;
+    line-height: 1.5;
+    margin-top: 6px; /* 减少顶部边距 */
     font-weight: 400;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -2909,14 +2947,14 @@ footer .copy-right {
 
     .archive-image {
         flex: none;
-        height: 160px;
+        height: 180px;
         width: 100%;
     }
 
     .archive-content {
-        padding: 20px 16px;
+        padding: 16px 14px; /* 减少内边距 */
         height: auto;
-        min-height: 120px;
+        min-height: 120px; /* 适度减少最小高度 */
     }
 
     .archive-item-title {
@@ -2924,7 +2962,24 @@ footer .copy-right {
     }
 
     .archive-item-meta {
-        gap: 12px;
+        gap: 8px;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .archive-item-date,
+    .archive-item-category {
+        margin-bottom: 6px;
+    }
+
+    .archive-item-tags {
+        margin-bottom: 6px;
+        gap: 4px; /* 移动端减少标签间距 */
+    }
+
+    .tag-chip {
+        font-size: 0.7rem;
+        padding: 2px 6px;
     }
 
     .archive-item-date,

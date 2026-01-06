@@ -1293,41 +1293,6 @@ $ git config --global --unset https.proxy
       </tags>
   </entry>
   <entry>
-    <title>Vscode_Error</title>
-    <url>/2023/08/06/Vscode-Error/</url>
-    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
-<p>vscode 获取扩展失败，XHR failed</p>
-</blockquote>
-<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
-<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
-<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
-<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
-<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
-<p>里面提到：</p>
-<blockquote>
-<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
-</blockquote>
-<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
-<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
-<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
-<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
-<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
-<blockquote>
-<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
-</blockquote>
-<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
-<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vscode</tag>
-        <tag>Synology</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>LeetCode刷题记录</title>
     <url>/2025/08/07/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<p><a href="https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/">分享｜如何科学刷题？- 讨论 - 力扣（LeetCode）</a></p>
@@ -5053,6 +5018,41 @@ class Solution {
       </tags>
   </entry>
   <entry>
+    <title>Vscode_Error</title>
+    <url>/2023/08/06/Vscode-Error/</url>
+    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
+<p>vscode 获取扩展失败，XHR failed</p>
+</blockquote>
+<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
+<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
+<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
+<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
+<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
+<p>里面提到：</p>
+<blockquote>
+<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
+</blockquote>
+<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
+<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
+<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
+<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
+<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
+<blockquote>
+<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
+</blockquote>
+<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
+<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vscode</tag>
+        <tag>Synology</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>YCBCTF wp</title>
     <url>/2020/09/10/YCBCTF/</url>
     <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
@@ -5885,6 +5885,41 @@ xctf Object            //$res2
       <tags>
         <tag>Web</tag>
         <tag>PHP反序列化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新电脑迁移hexo</title>
+    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
+<p>主要参考下面这篇文章进行：</p>
+<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
+<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
+<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
+<p>2.Typora配置阿里云OSS存储权限问题</p>
+<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
+<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
+<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
+<p>2.git bash here卡死问题</p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
+<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
+<pre><code>index.html
+css/
+js/
+images/
+</code></pre>
+<p>没有 <code>source/ themes/ package.json</code></p>
+<p>所以没办法<code>hexo s</code></p>
+<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
+<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
+<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -8708,41 +8743,6 @@ int main()
         <tag>哈夫曼编码</tag>
         <tag>图</tag>
         <tag>内排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新电脑迁移hexo</title>
-    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
-<p>主要参考下面这篇文章进行：</p>
-<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
-<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
-<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
-<p>2.Typora配置阿里云OSS存储权限问题</p>
-<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
-<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
-<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
-<p>2.git bash here卡死问题</p>
-<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
-<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
-<pre><code>index.html
-css/
-js/
-images/
-</code></pre>
-<p>没有 <code>source/ themes/ package.json</code></p>
-<p>所以没办法<code>hexo s</code></p>
-<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
-<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
-<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
