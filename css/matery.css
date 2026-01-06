@@ -1877,6 +1877,18 @@ thead {
 /*尾部样式*/
 footer {
     padding-bottom: 1px;
+    line-height: 1.2;
+}
+
+footer .copy-right {
+    color: #dbdbdb;
+    line-height: 1.2;
+}
+
+footer .copy-right br {
+    display: block;
+    margin: 2px 0;
+    line-height: 0.8;
 }
 
 footer .social-statis {

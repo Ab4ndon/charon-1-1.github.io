@@ -328,8 +328,9 @@
     }
 
     #toc-content {
-        height: calc(100vh - 250px);
-        overflow: auto;
+        max-height: calc(100vh - 250px);
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 
     #toc-content ol {
@@ -1387,31 +1388,31 @@ xctf Object            //$res2
             <div class="article-badge left-badge text-color">
                 <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2021/03/16/DSQuestion/">
+                <a href="/2021/03/17/GitQues/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/46.jpg" class="responsive-img" alt="数据结构疑问">
+                        <img src="/medias/featureimages/27.jpg" class="responsive-img" alt="博客发布时 hexo d 命令报错">
                         
-                        <span class="card-title">数据结构疑问</span>
+                        <span class="card-title">博客发布时 hexo d 命令报错</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            数据结构课程答疑
+                            hexo 博客在hexo d 部署时报错
                         
                     </div>
                     <div class="publish-info">
                         <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-16
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-17
                         </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" class="post-category">
-                                    数据结构
+                            <a href="/categories/Hexo/" class="post-category">
+                                    Hexo
                                 </a>
                             
                             
@@ -1421,8 +1422,12 @@ xctf Object            //$res2
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
-                        <span class="chip bg-color">数据结构</span>
+                    <a href="/tags/Git/">
+                        <span class="chip bg-color">Git</span>
+                    </a>
+                    
+                    <a href="/tags/Hexo%E9%83%A8%E7%BD%B2/">
+                        <span class="chip bg-color">Hexo部署</span>
                     </a>
                     
                 </div>
@@ -1622,6 +1627,12 @@ xctf Object            //$res2
     
     <div class="container row center-align" style="margin-bottom: 15px !important;">
         <div class="col s12 m8 l8 copy-right">
+            
+            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
+                <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2020057407号-1</a>
+            </span>
+            
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             Copyright&nbsp;&copy;
             <span id="year">2020</span>
             <a href="/about" target="_blank">Ab4nd0n</a>
@@ -1630,7 +1641,7 @@ xctf Object            //$res2
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">65.5k</span>&nbsp;字
+                class="white-color">64.6k</span>&nbsp;字
             
             
             
@@ -1648,9 +1659,8 @@ xctf Object            //$res2
                     class="white-color"></span>&nbsp;人
             </span>
             
-            <br>
             
-            <span id="sitetime">载入运行时间...</span>
+            |&nbsp;<span id="sitetime">载入运行时间...</span>
             <script>
                 function siteTime() {
                     var seconds = 1000;
@@ -1693,12 +1703,6 @@ xctf Object            //$res2
                 }
                 setInterval(siteTime, 1000);
             </script>
-            
-            <br>
-            
-            <span id="icp"><img src="/medias/icp.png" style="vertical-align: text-bottom;" />
-                <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2020057407号-1</a>
-            </span>
             
         </div>
         <div class="col s12 m4 l4 social-link social-statis">

