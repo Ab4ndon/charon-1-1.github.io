@@ -286,11 +286,34 @@ mark {
 
 .bg-color {
     background-image: linear-gradient(to right, rgb(117, 147, 164) 0%, rgb(28, 43, 52) 100%);
-    opacity: 0.8; 
+    opacity: 0.8;
 }
 
 .text-color {
-    color: #1cbbb4 !important;
+    color: #1cbbb4 !important; /* 原版青绿强调色 */
+
+    /* 🎯 对应主题色的强调色选项： */
+
+    /* 对应紫粉主题：粉红 */
+    /* color: #e91e63 !important; */
+
+    /* 对应蓝绿主题：青绿 */
+    /* color: #00bcd4 !important; */
+
+    /* 对应深蓝主题：亮蓝 */
+    /* color: #2196f3 !important; */
+
+    /* 对应橙黄主题：橙色 */
+    /* color: #ff9800 !important; */
+
+    /* 对应翠绿主题：翠绿 */
+    /* color: #4caf50 !important; */
+
+    /* 对应红橙主题：深红 */
+    /* color: #f44336 !important; */
+
+    /* 对应灰紫主题：深紫 */
+    /* color: #9c27b0 !important; */
 }
 
 .white-color {
@@ -878,20 +901,6 @@ header .go-back i {
     z-index: 2;
 }
 
-.index-card .article .card .card-action .chip {
-    background: linear-gradient(135deg, #607d8b, #78909c) !important;
-    color: white !important;
-    font-weight: 500;
-    box-shadow: 0 2px 8px rgba(96, 125, 139, 0.3);
-    transition: all 0.3s ease;
-    border: none;
-}
-
-.index-card .article .card .card-action .chip:hover {
-    background: linear-gradient(135deg, #546e7a, #6a7b85) !important;
-    box-shadow: 0 4px 12px rgba(96, 125, 139, 0.4);
-    transform: translateY(-1px);
-}
 
 /* 微妙的呼吸效果 */
 @keyframes subtleGlow {
