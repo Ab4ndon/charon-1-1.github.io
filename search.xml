@@ -367,60 +367,6 @@ ${cleanContent}
       </tags>
   </entry>
   <entry>
-    <title>Android UI效果实现</title>
-    <url>/2021/03/17/Android/</url>
-    <content><![CDATA[<h4 id="1-边框圆角化"><a href="#1-边框圆角化" class="headerlink" title="1.边框圆角化"></a>1.边框圆角化</h4><pre><code class="line-numbers language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;shape
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle"&gt;
-    &lt;!-- 填充的颜色 --&gt;
-    &lt;solid android:color="#EEB422" /&gt;
-    &lt;!-- android:radius 弧形的半径 --&gt;
-    &lt;!-- 设置按钮的四个角为弧形 --&gt;
-    &lt;corners
-        android:radius="20dip" /&gt;
-    &lt;!--也可单独设置--&gt;
-    &lt;!-- &lt;corners --&gt;
-    &lt;!-- android:topLeftRadius="10dp"--&gt;
-    &lt;!-- android:topRightRadius="10dp"--&gt;
-    &lt;!-- android:bottomRightRadius="10dp"--&gt;
-    &lt;!--  android:bottomLeftRadius="10dp"--&gt;
-    &lt;!--   /&gt;  --&gt;
-    **设置文字padding**
-    &lt;!-- padding：Button里面的文字与Button边界的间隔 --&gt;
-    &lt;padding
-        android:left="5dp"
-        android:top="3dp"
-        android:right="5dp"
-        android:bottom="3dp"
-        /&gt;
-&lt;/shape&gt;
-</code></pre>
-<h4 id="2-背景颜色渐变"><a href="#2-背景颜色渐变" class="headerlink" title="2.背景颜色渐变"></a>2.背景颜色渐变</h4><pre><code class="line-numbers language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
-&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"&gt;
-    &lt;!--实现应用背景颜色渐变--&gt;
-    &lt;gradient
-        android:startColor="#FFF8DC"
-        android:endColor="#FFE1FF"
-        android:angle="270"/&gt;
-    &lt;corners
-        android:radius="20dip"
-        android:topLeftRadius="0dp"
-        android:topRightRadius="0dp"/&gt;
-&lt;/shape&gt;
-</code></pre>
-<h4 id="3-Button背景色修改无效"><a href="#3-Button背景色修改无效" class="headerlink" title="3.Button背景色修改无效"></a>3.Button背景色修改无效</h4><p>找到main/res/values/themes.xml文件</p>
-<p>将其中的<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar"&gt;</code></p>
-<p>修改为<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge"&gt;</code>即可</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Android UI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>0xCTF web题 writeup</title>
     <url>/2020/07/05/0xctf/</url>
     <content><![CDATA[<p>最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.</p>
@@ -754,6 +700,79 @@ ${cleanContent}
       </tags>
   </entry>
   <entry>
+    <title>阿里云CDN加速域名解析冲突问题</title>
+    <url>/2020/10/11/ALi/</url>
+    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
+<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
+<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
+<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
+<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
+<hr>
+<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>CDN</tag>
+        <tag>解析冲突</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Android UI效果实现</title>
+    <url>/2021/03/17/Android/</url>
+    <content><![CDATA[<h4 id="1-边框圆角化"><a href="#1-边框圆角化" class="headerlink" title="1.边框圆角化"></a>1.边框圆角化</h4><pre><code class="line-numbers language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle"&gt;
+    &lt;!-- 填充的颜色 --&gt;
+    &lt;solid android:color="#EEB422" /&gt;
+    &lt;!-- android:radius 弧形的半径 --&gt;
+    &lt;!-- 设置按钮的四个角为弧形 --&gt;
+    &lt;corners
+        android:radius="20dip" /&gt;
+    &lt;!--也可单独设置--&gt;
+    &lt;!-- &lt;corners --&gt;
+    &lt;!-- android:topLeftRadius="10dp"--&gt;
+    &lt;!-- android:topRightRadius="10dp"--&gt;
+    &lt;!-- android:bottomRightRadius="10dp"--&gt;
+    &lt;!--  android:bottomLeftRadius="10dp"--&gt;
+    &lt;!--   /&gt;  --&gt;
+    **设置文字padding**
+    &lt;!-- padding：Button里面的文字与Button边界的间隔 --&gt;
+    &lt;padding
+        android:left="5dp"
+        android:top="3dp"
+        android:right="5dp"
+        android:bottom="3dp"
+        /&gt;
+&lt;/shape&gt;
+</code></pre>
+<h4 id="2-背景颜色渐变"><a href="#2-背景颜色渐变" class="headerlink" title="2.背景颜色渐变"></a>2.背景颜色渐变</h4><pre><code class="line-numbers language-java">&lt;?xml version="1.0" encoding="utf-8"?&gt;
+&lt;shape xmlns:android="http://schemas.android.com/apk/res/android"&gt;
+    &lt;!--实现应用背景颜色渐变--&gt;
+    &lt;gradient
+        android:startColor="#FFF8DC"
+        android:endColor="#FFE1FF"
+        android:angle="270"/&gt;
+    &lt;corners
+        android:radius="20dip"
+        android:topLeftRadius="0dp"
+        android:topRightRadius="0dp"/&gt;
+&lt;/shape&gt;
+</code></pre>
+<h4 id="3-Button背景色修改无效"><a href="#3-Button背景色修改无效" class="headerlink" title="3.Button背景色修改无效"></a>3.Button背景色修改无效</h4><p>找到main/res/values/themes.xml文件</p>
+<p>将其中的<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar"&gt;</code></p>
+<p>修改为<code>&lt;style name="Theme.MyRegistration" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge"&gt;</code>即可</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Android UI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ROBOCUP RESCUE 示例代码演示</title>
     <url>/2022/03/20/Apollo/</url>
     <content><![CDATA[<p>用于记录给学弟学妹们讲解简单的运行服务器和挂载智能体的知识</p>
@@ -1033,25 +1052,6 @@ http://url/CVS/Entries 返回所有文件的结构
       </tags>
   </entry>
   <entry>
-    <title>阿里云CDN加速域名解析冲突问题</title>
-    <url>/2020/10/11/ALi/</url>
-    <content><![CDATA[<p>自己的个人博客搭建了也有一段时间了，以前部署在Gitee上访问速度还行，后来部署到GitHub后速度是一天不如一天了，于是想看看能不能加速一下，看了看网上的做法，我选择采用CDN加速域名。</p>
-<p>首先，你需要将域名进行备案，备案完成后才能进行后续操作。</p>
-<p>然后我选择的是阿里云的CDN（腾讯云貌似有6个月的免费试用，但是由于我是阿里云的域名，去腾讯云搞又得在那边域名备案，就放弃了）</p>
-<p>前面按照网上的步骤走都没啥问题，但当进行到向域名解析中添加一条CNAME记录时显示与A解析冲突（<strong>A解析是当初绑定域名的时候添加的</strong>），我看了看阿里云提供的Tip，但是我还是不太明白怎么操作，尝试将原来的A解析删除，换成CNAME，换完发现我的博客直接502了。后来联系阿里云客服才将问题解决。</p>
-<p>如果你也出现了同样的问题，首先，你检查一下你将顶级域名添加到CDN时设置的源站IP是不是A解析记录里的那个IP（我犯的错是将源站IP设置成了阿里云服务器的IP），如果不是，改过来，然后删除A解析，添加CNAME解析（CNAME解析的添加根据提示做就行了），然后就大功告成了。</p>
-<hr>
-<p>u1s1,阿里云的客服态度蛮好的，晚上10点多了还为我耐心解答问题，在此致谢！</p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>CDN</tag>
-        <tag>解析冲突</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>DASCTF 《Ezfileinclude》 wp</title>
     <url>/2020/07/25/DASCTF/</url>
     <content><![CDATA[<p>今天第一次参加CTF比赛，对于我这个菜鸡来说，简直毫无比赛体验<span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，遭受了五个小时的吊打。</p>
@@ -1097,6 +1097,39 @@ http://url/CVS/Entries 返回所有文件的结构
       </categories>
       <tags>
         <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客发布时 hexo d 命令报错</title>
+    <url>/2021/03/17/GitQues/</url>
+    <content><![CDATA[<p>hexo 博客在hexo d 部署时报错</p>
+<p>问题描述：</p>
+<p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
+<p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
+<p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
+<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control">针对github权限导致hexo部署失败的解决方案</a></p>
+<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
+<hr>
+<p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
+<p><a href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
+<p>加油，打工人！</p>
+<p>更新：</p>
+<p><a href="https://segmentfault.com/a/1190000018624911?utm_source=tag-newest">https://segmentfault.com/a/1190000018624911?utm_source=tag-newest</a></p>
+<p>按照这篇文章中说的方法一也可以解决该问题：</p>
+<p>取消http代理：</p>
+<pre><code class="line-numbers language-shell">$ git config --global --unset http.proxy
+$ git config --global --unset https.proxy
+</code></pre>
+<p>设置env <code>GIT_SSL_NO_VERIFY</code>为<code>true</code>然后再次部署：</p>
+<pre><code class="line-numbers language-shell">$ env GIT_SSL_NO_VERIFY=true hexo d
+</code></pre>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>Hexo部署</tag>
       </tags>
   </entry>
   <entry>
@@ -1260,39 +1293,6 @@ npm run dev
       </tags>
   </entry>
   <entry>
-    <title>博客发布时 hexo d 命令报错</title>
-    <url>/2021/03/17/GitQues/</url>
-    <content><![CDATA[<p>hexo 博客在hexo d 部署时报错</p>
-<p>问题描述：</p>
-<p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
-<p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
-<p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
-<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control">针对github权限导致hexo部署失败的解决方案</a></p>
-<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
-<hr>
-<p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
-<p><a href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
-<p>加油，打工人！</p>
-<p>更新：</p>
-<p><a href="https://segmentfault.com/a/1190000018624911?utm_source=tag-newest">https://segmentfault.com/a/1190000018624911?utm_source=tag-newest</a></p>
-<p>按照这篇文章中说的方法一也可以解决该问题：</p>
-<p>取消http代理：</p>
-<pre><code class="line-numbers language-shell">$ git config --global --unset http.proxy
-$ git config --global --unset https.proxy
-</code></pre>
-<p>设置env <code>GIT_SSL_NO_VERIFY</code>为<code>true</code>然后再次部署：</p>
-<pre><code class="line-numbers language-shell">$ env GIT_SSL_NO_VERIFY=true hexo d
-</code></pre>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>Hexo部署</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Vscode_Error</title>
     <url>/2023/08/06/Vscode-Error/</url>
     <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
@@ -1325,6 +1325,50 @@ $ git config --global --unset https.proxy
       <tags>
         <tag>Vscode</tag>
         <tag>Synology</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>YCBCTF wp</title>
+    <url>/2020/09/10/YCBCTF/</url>
+    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<span id="more"></span>
+
+<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
+
+
+
+<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
+
+
+
+<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>。</p>
+<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo matery主题代码高亮问题</title>
+    <url>/2020/09/26/hexo/</url>
+    <content><![CDATA[<p>关于matery主题代码高亮的问题</p>
+<p>转载自大佬们的博客:</p>
+<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
+<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记—-hexo主题代码高亮</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>代码高亮</tag>
+        <tag>matery</tag>
       </tags>
   </entry>
   <entry>
@@ -5053,50 +5097,6 @@ class Solution {
       </tags>
   </entry>
   <entry>
-    <title>YCBCTF wp</title>
-    <url>/2020/09/10/YCBCTF/</url>
-    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<span id="more"></span>
-
-<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
-
-
-
-<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
-
-
-
-<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>。</p>
-<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo matery主题代码高亮问题</title>
-    <url>/2020/09/26/hexo/</url>
-    <content><![CDATA[<p>关于matery主题代码高亮的问题</p>
-<p>转载自大佬们的博客:</p>
-<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
-<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记—-hexo主题代码高亮</a></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>代码高亮</tag>
-        <tag>matery</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MoeCTF wp</title>
     <url>/2020/08/14/moectf/</url>
     <content><![CDATA[<img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
@@ -6446,41 +6446,6 @@ CODE      ENDS
       </categories>
       <tags>
         <tag>微机原理</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>新电脑迁移hexo</title>
-    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
-<p>主要参考下面这篇文章进行：</p>
-<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
-<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
-<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
-<p>2.Typora配置阿里云OSS存储权限问题</p>
-<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
-<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
-<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
-<p>2.git bash here卡死问题</p>
-<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
-<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
-<pre><code>index.html
-css/
-js/
-images/
-</code></pre>
-<p>没有 <code>source/ themes/ package.json</code></p>
-<p>所以没办法<code>hexo s</code></p>
-<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
-<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
-<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -8743,6 +8708,41 @@ int main()
         <tag>哈夫曼编码</tag>
         <tag>图</tag>
         <tag>内排序</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新电脑迁移hexo</title>
+    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
+<p>主要参考下面这篇文章进行：</p>
+<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
+<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
+<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
+<p>2.Typora配置阿里云OSS存储权限问题</p>
+<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
+<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
+<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
+<p>2.git bash here卡死问题</p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
+<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
+<pre><code>index.html
+css/
+js/
+images/
+</code></pre>
+<p>没有 <code>source/ themes/ package.json</code></p>
+<p>所以没办法<code>hexo s</code></p>
+<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
+<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
+<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
