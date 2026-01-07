@@ -1100,74 +1100,6 @@ http://url/CVS/Entries 返回所有文件的结构
       </tags>
   </entry>
   <entry>
-    <title>博客发布时 hexo d 命令报错</title>
-    <url>/2021/03/17/GitQues/</url>
-    <content><![CDATA[<p>hexo 博客在hexo d 部署时报错</p>
-<p>问题描述：</p>
-<p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
-<p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
-<p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
-<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control">针对github权限导致hexo部署失败的解决方案</a></p>
-<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
-<hr>
-<p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
-<p><a href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
-<p>加油，打工人！</p>
-<p>更新：</p>
-<p><a href="https://segmentfault.com/a/1190000018624911?utm_source=tag-newest">https://segmentfault.com/a/1190000018624911?utm_source=tag-newest</a></p>
-<p>按照这篇文章中说的方法一也可以解决该问题：</p>
-<p>取消http代理：</p>
-<pre><code class="line-numbers language-shell">$ git config --global --unset http.proxy
-$ git config --global --unset https.proxy
-</code></pre>
-<p>设置env <code>GIT_SSL_NO_VERIFY</code>为<code>true</code>然后再次部署：</p>
-<pre><code class="line-numbers language-shell">$ env GIT_SSL_NO_VERIFY=true hexo d
-</code></pre>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>Hexo部署</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vscode_Error</title>
-    <url>/2023/08/06/Vscode-Error/</url>
-    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
-<p>vscode 获取扩展失败，XHR failed</p>
-</blockquote>
-<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
-<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
-<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
-<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
-<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
-<p>里面提到：</p>
-<blockquote>
-<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
-</blockquote>
-<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
-<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
-<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
-<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
-<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
-<blockquote>
-<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
-</blockquote>
-<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
-<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vscode</tag>
-        <tag>Synology</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Google AI Studio部署自己的应用</title>
     <url>/2026/01/05/Gemini%E7%94%9F%E6%88%90%E5%B9%B6%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E5%BA%94%E7%94%A8/</url>
     <content><![CDATA[<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
@@ -1325,6 +1257,39 @@ npm run dev
         <tag>Github</tag>
         <tag>EdgeOne</tag>
         <tag>CURSOR</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>博客发布时 hexo d 命令报错</title>
+    <url>/2021/03/17/GitQues/</url>
+    <content><![CDATA[<p>hexo 博客在hexo d 部署时报错</p>
+<p>问题描述：</p>
+<p>博客闲置了一段时间，最近想在上面记录一些自己遇到的问题和学习上的一些东西，<code>hexo s</code>正常，但是<code>hexo g</code>后进行<code>hexo d</code>时报错：</p>
+<p><code>fatal: unable to access ‘https: [//github.com/***](https://github.com/***)’: Failed to connect to [github.com](http://github.com/) port 443:Timed out</code></p>
+<p>起初我再执行几次<code>hexo d</code>就可以正常部署了，我也没有在意。但昨天晚上怎么试都不行，就想彻底解决一下。去网上找了很多方法试了都不太行，后来通过下面这两篇博客里的方法进行尝试成功将问题解决，在此记录一下。其实就是将我们的博客重新部署到Github上。（当然，方法不一定适用与每一个人，但应该是一种解决方法）</p>
+<p><a href="https://blog.csdn.net/weixin_30940783/article/details/99581061?utm_medium=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control&amp;dist_request_id=&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-searchFromBaidu-4.control">针对github权限导致hexo部署失败的解决方案</a></p>
+<p><a href="https://blog.csdn.net/qq_43768946/article/details/90411154">Git使用出现git@github.com: Permission denied (publickey). 处理</a></p>
+<hr>
+<p>emmm,在准备把这篇博客部署的时候hexo d 又报错了，无语了。上面的方法仅供参考吧，今天我找到一种可行的方法。（至少暂时还没翻车）</p>
+<p><a href="https://sevencho.github.io/archives/8e3becb8.html">记一次Hexo博客部署缓慢的解决办法</a></p>
+<p>加油，打工人！</p>
+<p>更新：</p>
+<p><a href="https://segmentfault.com/a/1190000018624911?utm_source=tag-newest">https://segmentfault.com/a/1190000018624911?utm_source=tag-newest</a></p>
+<p>按照这篇文章中说的方法一也可以解决该问题：</p>
+<p>取消http代理：</p>
+<pre><code class="line-numbers language-shell">$ git config --global --unset http.proxy
+$ git config --global --unset https.proxy
+</code></pre>
+<p>设置env <code>GIT_SSL_NO_VERIFY</code>为<code>true</code>然后再次部署：</p>
+<pre><code class="line-numbers language-shell">$ env GIT_SSL_NO_VERIFY=true hexo d
+</code></pre>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>Hexo部署</tag>
       </tags>
   </entry>
   <entry>
@@ -5053,20 +5018,38 @@ class Solution {
       </tags>
   </entry>
   <entry>
-    <title>hexo matery主题代码高亮问题</title>
-    <url>/2020/09/26/hexo/</url>
-    <content><![CDATA[<p>关于matery主题代码高亮的问题</p>
-<p>转载自大佬们的博客:</p>
-<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
-<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记—-hexo主题代码高亮</a></p>
+    <title>Vscode_Error</title>
+    <url>/2023/08/06/Vscode-Error/</url>
+    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
+<p>vscode 获取扩展失败，XHR failed</p>
+</blockquote>
+<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
+<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
+<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
+<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
+<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
+<p>里面提到：</p>
+<blockquote>
+<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
+</blockquote>
+<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
+<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
+<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
+<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
+<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
+<blockquote>
+<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
+</blockquote>
+<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
+<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
 ]]></content>
       <categories>
-        <category>Hexo</category>
+        <category>技术</category>
       </categories>
       <tags>
-        <tag>hexo</tag>
-        <tag>代码高亮</tag>
-        <tag>matery</tag>
+        <tag>Vscode</tag>
+        <tag>Synology</tag>
       </tags>
   </entry>
   <entry>
@@ -5094,6 +5077,23 @@ class Solution {
       <tags>
         <tag>CTF</tag>
         <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo matery主题代码高亮问题</title>
+    <url>/2020/09/26/hexo/</url>
+    <content><![CDATA[<p>关于matery主题代码高亮的问题</p>
+<p>转载自大佬们的博客:</p>
+<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
+<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记—-hexo主题代码高亮</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>代码高亮</tag>
+        <tag>matery</tag>
       </tags>
   </entry>
   <entry>
