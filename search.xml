@@ -1,339 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>0xCTF web题 writeup</title>
-    <url>/2020/07/05/0xctf/</url>
-    <content><![CDATA[<p>最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.</p>
-<h4 id="1-soeasy"><a href="#1-soeasy" class="headerlink" title="1.soeasy"></a>1.soeasy</h4><p><img src="/2020/07/05/0xctf/image-20200705164040950.jpg" alt="1"></p>
-<p>这个题还是蛮简单的，查看源码,稍微找找就能得到flag</p>
-<p>稍微总结一下查看源码的方法吧：</p>
-<p>a.鼠标右键，点查看源代码</p>
-<p>b.<code>F12</code></p>
-<p>c.<code>Ctrl+shift+I</code></p>
-<p>d.<code>ctrl+U</code></p>
-<p>e.在网址前面加上<code>view-source:</code>(火狐反正支持这种方式)</p>
-<hr>
-<h4 id="2-GET"><a href="#2-GET" class="headerlink" title="2.GET"></a>2.GET</h4><p><img src="/2020/07/05/0xctf/image-20200705165429119.jpg" alt="image-20200705165429119"></p>
-<p>稍微判断一下这是一个通过Get方式传参的问题（如果不了解的话提前去了解一下PHP语言，熟悉一下基本语法）</p>
-<p>Get方式传参直接在URL后面写上参数并为其赋值即可，本题要传的的参数为0x,值为0xfxxker,故在网址栏应该这么写：</p>
-<p><img src="/2020/07/05/0xctf/image-20200705165907235.png" alt="image-20200705165907235"></p>
-<p>回车一下就得到了flag.</p>
-<hr>
-<h4 id="3-POST"><a href="#3-POST" class="headerlink" title="3.POST"></a>3.POST</h4><p><img src="/2020/07/05/0xctf/image-20200705170036059.png" alt="image-20200705170036059"></p>
-<p>本题考察的是POST方式传参，我是用火狐插件hackbar来解的（关于hackbar的下载安装并不难，不必装最新版，最新版需要付费，下个旧版就行了，然后关闭自动更新。具体去百度一下）</p>
-<p>F12查看源码，然后点Hackbar, <code>laod URL</code>,勾选<code>post date</code>，在下面的框里输入参数并为其赋值，点击<code>Execute</code>就能成功传参，然后flag就有了</p>
-<p>当然，用Burpsuit也一样能做，在这不赘述了</p>
-<img src="/2020/07/05/0xctf/image-20200705170922230.png" alt="image-20200705170922230" style="zoom: 33%;">
-
-
-
-<hr>
-<h4 id="4-XFF-amp-Referer"><a href="#4-XFF-amp-Referer" class="headerlink" title="4.XFF&amp;Referer"></a>4.XFF&amp;Referer</h4><p>打开页面只有一句话“只有本地IP才能访问”，刷过攻防世界的新手区的题的话应该会有印象，其实就是伪造一个Ip，然后就可以了</p>
-<p>首先利用Burpsuit抓个包，右击发送到repeater,然后在header里面Add一个新的头：<code>X-Forwarded-For</code> , 值为127.0.0.1</p>
-<img src="/2020/07/05/0xctf/image-20200705171807465.png" alt="image-20200705171807465" style="zoom:50%;">
-
-<p>点击send（貌似大部分版本是go,小事小事），这时候看右边的响应，多出来一句话“<code>必须来自于：http://0xctf.ctf</code>”</p>
-<p>这时同样的方法，在headers中再添加一个名为<code>Refere</code>r的头，值为<code>http://0xctf.ctf</code>,send一下，响应中就出现了flag</p>
-<img src="/2020/07/05/0xctf/image-20200705172430570.png" alt="image-20200705172430570" style="zoom: 50%;">
-
-<hr>
-<h4 id="5-ezmd5"><a href="#5-ezmd5" class="headerlink" title="5.ezmd5"></a>5.ezmd5</h4><img src="/2020/07/05/0xctf/image-20200705173020907.png" alt="image-20200705173020907" style="zoom: 80%;">
-
-<p>核心是那个if 语句，它要求参数a,b 的值相同但是MD5相同，这里可以利用绕过。（绕过蛮有意思的，当时做这题的时候查了查，觉得有篇博文讲的还蛮好的，在这安利一下：<a href="https://blog.csdn.net/qq_19980431/article/details/83018232">CTF中常见php-MD5()函数漏洞</a>）</p>
-<blockquote>
-<p>PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以“0E”开头的，那么PHP将会认为他们相同，都是0。</p>
-<p><strong>以下值在md5加密后以0E开头：</strong></p>
-<ul>
-<li>QNKCDZO</li>
-<li>240610708</li>
-<li>s878926199a</li>
-<li>s155964671a</li>
-<li>s214587387a</li>
-<li>s214587387a</li>
-</ul>
-<p><strong>以下值在sha1加密后以0E开头：</strong></p>
-<ul>
-<li>sha1(‘aaroZmOk’)</li>
-<li>sha1(‘aaK1STfY’)</li>
-<li>sha1(‘aaO8zKZF’)</li>
-<li>sha1(‘aa3OFF9m’)</li>
-</ul>
-</blockquote>
-<p>所以可以将a,b赋值成上面所列的由md5加密后以OE开头的两个不同的值，再采用get方式传参即可。</p>
-<p><img src="/2020/07/05/0xctf/image-20200705173943800.png" alt="image-20200705173943800"></p>
-<hr>
-<h4 id="6-ezmd5-2"><a href="#6-ezmd5-2" class="headerlink" title="6.ezmd5-2"></a>6.ezmd5-2</h4><img src="/2020/07/05/0xctf/image-20200705182529614.png" alt="image-20200705182529614" style="zoom:80%;">
-
-<p>与上一题其实蛮类似的，只不过它的限制又变大了，这次是“===”严格相等，不仅值要相等，类型也要相同</p>
-<p><strong>PHP中md5的函数特性</strong></p>
-<pre><code class="line-numbers language-php">md5([1,2,3]) == md5([4,5,6]) == NULL
-</code></pre>
-<p>[1] !== [2] &amp;&amp; md5([1]) === md5([2])<br>所以GET传入<code>a[]=1&amp;b[]=2</code>就能够绕过了。</p>
-<hr>
-<h4 id="7-跳转"><a href="#7-跳转" class="headerlink" title="7.跳转"></a>7.跳转</h4><p>点开页面只有一句话“flag is not here”,抓一下包看一下响应，发现有个比较特别的响应头,<code>location: youcanfindme.php</code>,</p>
-<p>虽然有所发现，但是一开始不知道怎么用，尝试在原来的URL后加了个<code>youcanfindme.php</code>,发现页面没变化，一筹莫展。</p>
-<p>后来向大佬求助，我应该再抓一次包的，加了<code>youcanfindme.php</code>后的页面抓包后状态码变成了302（暂时性转移），响应里多了个<code>0xctf: MHhDVEZ7MWY5NGIwMzZiY2NkOTA5Nzg2Yzc3MTVkZTg1NGJmMTh9</code>的头，很可疑，很像flag，但是一般flag不是这种形式啊。原来他用了Base64编码，需要先解码（百度上有很多在线解码的）。解码后就出来一个flag。</p>
-<p>稍微总结一下：</p>
-<p>​    首先，抓包，send to repeater后观察响应头，在原来的URL后面添加发现的<code>youcanfindme.php</code>,再抓一次包，同样观察响应，发现可疑字符串，利用base64编码进行解码即可</p>
-<p><img src="/2020/07/05/0xctf/image-20200705184218489.png" alt="image-20200705184218489" style="zoom:50%;"><img src="/2020/07/05/0xctf/image-20200705184247594.png" alt="image-20200705184247594"></p>
-<img src="/2020/07/05/0xctf/image-20200705184247594.png" alt="image-20200705184247594" style="zoom:50%;">
-
-<hr>
-<h4 id="8-我爱吃饼干"><a href="#8-我爱吃饼干" class="headerlink" title="8.我爱吃饼干"></a>8.我爱吃饼干</h4><p>点进页面，也是只有一句话<code>You are guest now, only admin can see flag</code></p>
-<p>抓个包看看吧</p>
-<p>抓包后发现响应头里有这样一个头<code>Set-Cookie: Cookie=eyJ1c2VybmFtZSI6Imd1ZXN0In0%3D</code></p>
-<p>首先我尝试的是在请求头里添加一个名为<code>cookie</code>的请求头，并把值赋为<code>eyJ1c2VybmFtZSI6Imd1ZXN0In0%3D</code>,失败！</p>
-<p>经过上一道题的毒打，我去试了一下这串字符串是不是又是base64编码，结果如下：</p>
-<p><img src="/2020/07/05/0xctf/image-20200705185303601.png" alt="image-20200705185303601"></p>
-<p>能看出个大概，但是后面出现了乱码，这时候我尝试了一下在请求头里加了一个名为<code>username</code>的请求头，值为<code>guest</code>,失败！又试了一下把值改成<code>admin</code>依旧不行</p>
-<p>这时候就得求助了，大佬告诉我%3D这类字符其实是经过特殊编码的，就像%20代表空格一样</p>
-<p>比如在网址栏里输入%3D：</p>
-<img src="/2020/07/05/0xctf/image-20200705185957749.png" alt="image-20200705185957749" style="zoom:80%;">
-
-<p>这里的%3D其实就相当于=</p>
-<p>我实在太菜了，大佬提示到这我还是没能领略，我尝试将原来的%3D替换成=再解码看看，得到<code>{"username":"guest"}</code></p>
-<p>虽然解码正常了。但还是不知道怎么利用这个信息，想想题目那句话“only the admin can see the flag”,我试了一下将<code>{"username":"guest"}</code>中的<code>guest</code> 换成<code>admin</code>，获得一串字符，把这串字符作为请求头cookie 的值，send一波，失败!</p>
-<p>此时大佬缓缓打出一个<span class="github-emoji"><span>❓</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>方法对了，但是居然解不出来？</p>
-<p>我又重新试了一遍，不行，发现我的base64编码出来的字符串和大佬的不一样，我换了一个在线解码的网站，再解了一次，把字符串作为cookie的值，成功解出flag。（什么？我居然被在线解码网站给克制了<span class="github-emoji"><span>😠</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f620.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
-<hr>
-<h4 id="9-eztrick"><a href="#9-eztrick" class="headerlink" title="9.eztrick"></a>9.eztrick</h4><img src="/2020/07/05/0xctf/image-20200706183947270.png" alt="image-20200706183947270">
-
-<p>起初我是把它当绕过来做的，试了试绕过空格的一些方法，都失败了。</p>
-<p>后来大佬告诉我不是空格，而是URL编码显示空字符，让我试试<code>？%E%280%AC=xxx</code>的形式，我试了一下<code>？%E%280%AC=%E%280%AC</code>，成功得到flag</p>
-<p><img src="/2020/07/05/0xctf/image-20200706184647653.png" alt="image-20200706184647653"></p>
-<hr>
-<h4 id="10"><a href="#10" class="headerlink" title="10.$$"></a>10.$$</h4><p><img src="/2020/07/05/0xctf/image-20200706184747544.png" alt="image-20200706184747544"></p>
-<p>这题考察变量覆盖   此处安利一篇博客：<a href="https://www.jianshu.com/p/a4d782e91852">变量覆盖漏洞</a></p>
-<p>准确说是考察由$$引起的变量覆盖，根据题意，在url后面加上<code>？ctf=0xctf</code>,使其满足if 条件语句即可</p>
-<hr>
-<h4 id="11-extract"><a href="#11-extract" class="headerlink" title="11.extract"></a>11.extract</h4><p><img src="/2020/07/05/0xctf/image-20200706185409318.png" alt="image-20200706185409318"></p>
-<p>这题考察由extract（）函数引起的变量覆盖问题，（关于extract（）函数，可自行百度或者阅读上面的博文<span class="github-emoji"><span>⬆</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2b06.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）直接在url后面加上<code>？ctf=0xctf</code>,使其满足if 条件语句即可</p>
-<hr>
-<h4 id="12-parse-str"><a href="#12-parse-str" class="headerlink" title="12.parse_str"></a>12.parse_str</h4><p><img src="/2020/07/05/0xctf/image-20200706185724337.png" alt="image-20200706185724337"></p>
-<p>这题考察的是由parse_str()函数引起的变量覆盖，主要是通过变量覆盖使得Leon1===Leon2</p>
-<p>之前在学习变量覆盖的时候见过几道这方面的例题，这道题中的<code>$_SERVER["QUERY_STRING"]</code>是我没见到过的，去百度了一下：</p>
-<blockquote>
-<p>实例：</p>
-<p>1，<a href="http://localhost/aaa/">http://localhost/aaa/</a>** (打开aaa中的index.php)<br>结果：<br>$_SERVER[‘QUERY_STRING’] = “”;<br>$_SERVER[‘REQUEST_URI’] = “/aaa/“;<br>$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
-<p><strong>2，</strong><a href="http://localhost/aaa/?p=222">http://localhost/aaa/?p=222</a> (附带查询)<br>结果：<br>$_SERVER[‘QUERY_STRING’] = “p=222”;<br>$_SERVER[‘REQUEST_URI’] = “/aaa/?p=222”;<br>$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
-<p><strong>3，<a href="http://localhost/aaa/index.php?p=222&amp;q=333">http://localhost/aaa/index.php?p=222&amp;q=333</a></strong><br>结果：<br>$$_SERVER[‘REQUEST_URI’] = “/aaa/index.php?p=222&amp;q=333”;<br>$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
-<p>由实例可知：<br>$_SERVER[“QUERY_STRING”] 获取查询 语句，实例中可知，获取的是?后面的值<br>$</p>
-<p>_$SERVER[“REQUEST_URI”]  获取 <a href="http://localhost/">http://localhost</a> 后面的值，包括/<br>$_SERVER[“SCRIPT_NAME”]  获取当前脚本的路径，如：index.php<br>$_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
-</blockquote>
-<p>其实对于解题来说并没有太大影响</p>
-<p>所以直接在url后面添加<code>？Leon1=abc&amp;Leon2=abc</code>即可</p>
-<hr>
-<h4 id="13-ezupload"><a href="#13-ezupload" class="headerlink" title="13.ezupload"></a>13.ezupload</h4><p><img src="/2020/07/05/0xctf/image-20200708184237017.png" alt="image-20200708184237017"></p>
-<p>页面很简单，易得这是一道考察文件上传的题</p>
-<p>上传了一张图片，得到一句话</p>
-<p><code>you file: ./sandbox/3a64ab0e3d4f435a3ba6e69810dbcd01/wallhaven-0q6qw7.jpg</code></p>
-<p>尝试上传一个.php文件，发现没有提示文件格式不对或者一些其他报错，依旧得到一句话：</p>
-<p><code>you file: ./sandbox/e5e655202a8c03687b43d65e6351159b/shell3.php</code></p>
-<p>尝试了一下分别把这两段话加到url后面，发现图片能够正常显示，而.php回显的是一个空白页面</p>
-<p><img src="/2020/07/05/0xctf/image-20200708191734385.png" alt="image-20200708191734385"></p>
-<p>后来去找了找这方面的例题，发现一道和这个有点类似的，它说页面回显的是一个空白页面说明一句话木马成功了（对了，上面用的那个.php文件是一句话木马，如<!--?php @eval($_POST['aaa'])?-->，新建一个空白文档，然后输入这句话，另存为.php文件即可生成）</p>
-<p>按照网上的解法，接下来把空白页面的url 复制到中国菜刀链接一下即可，我去网上找了找中国菜刀，试了好多次都不行。（当时我十分怀疑我遇到了假的菜刀<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
-<p>继而去求助大佬，这才知道原来像上面用的那句一句话木马在用菜刀时要输入密码，密码为aaa（密码是一句话木马中post或者get的值，上面那个一句话木马的post的值为aaa,故密码为aaa）.大喜<span class="github-emoji"><span>😁</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，以为问题解决了，一试发现还是不行，连接不上。大佬说我可能装了个假菜刀<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>此处附上大佬提供的中国菜刀与中国蚁剑的官网网址：</p>
-<p><em>中国菜刀</em>：<a href="http://www.maicaidao.co/">http://www.maicaidao.co/</a></p>
-<p><em>中国蚁剑</em>：<a href="https://github.com/AntSwordProject/antSword">https://github.com/AntSwordProject/antSword</a></p>
-<p>一番波折之后，装上了真·<span class="github-emoji"><span>🔪</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f52a.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>,一点添加，依旧没得到想要的结果。大佬建议换成蚁剑试试，成功了！</p>
-<p>下面把正确的解题过程重新梳理一下：</p>
-<p>首先，准备一个一句话木马（.php文件），然后上传，得到一串类似URL的东西，将它添加到原URL 后面，若回显空页面则说明一句话木马已经成功上传（如果404啥的检查一下URL，多试几次）</p>
-<p>准备好中国蚁剑，在空白处右击添加数据，将空页面的URL复制进去，输入密码aaa，点击左上角的添加即可（因为我已经添加过了，所以左上角显示的是保存）</p>
-<img src="/2020/07/05/0xctf/image-20200708194242532.png" alt="image-20200708194242532" style="zoom: 67%;">
-
-<p>连接成功后双击打开：</p>
-<img src="/2020/07/05/0xctf/image-20200708194638547.png" alt="image-20200708194638547" style="zoom:67%;">
-
-<p>找了找也没找到flag，，，，实在是菜啊<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>问了大佬，<strong>flag一般在根目录下</strong>，点开那个<code>/</code>文件夹，在最下面发现了flag文件，点开即可得到flag。</p>
-<hr>
-<h4 id="14-一键getflag"><a href="#14-一键getflag" class="headerlink" title="14.一键getflag"></a>14.一键getflag</h4><img src="/2020/07/05/0xctf/image-20200709215614854.png" alt="image-20200709215614854" style="zoom:67%;">
-
-<p>点进去，它提示你输入0xCTF网站的IP即可得到flag，菜鸡的我还去百度了一下什么是网站的IP<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>其实就类似127.0.0.1这类的，我查了一下有没有能查询某个指定网站IP的工具，找了一个在线查询的，输入网站的URL后得到网站的IP：<code>39.106.164.8</code></p>
-<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required=""></p>
-<p><strong>maxlength=“4”</strong>说明输入的字符串最大长度为4，而我们的IP地址显然超过了，所以输不进去。想了一下利用Burpsuite抓一波包再改包：</p>
-<p>先输入一个4个字符以内的IP。如我输入的是1234，抓包后将IP改为<code>39.106.164.8</code>，再发包即可</p>
-<hr>
-<h4 id="15-未完成的留言板"><a href="#15-未完成的留言板" class="headerlink" title="15.未完成的留言板"></a>15.未完成的留言板</h4><img src="/2020/07/05/0xctf/image-20200711132555655.png" alt="image-20200711132555655" style="zoom:80%;">
-
-<p>点进去，看一下，是一个留言板</p>
-<img src="/2020/07/05/0xctf/image-20200711132711291.png" alt="image-20200711132711291" style="zoom: 33%;">
-
-<p>随便输入一句留言，点击回复</p>
-<img src="/2020/07/05/0xctf/image-20200711132823635.png" alt="image-20200711132823635" style="zoom:33%;">
-
-<p>因为题目说flag在fl4g.php，所以我把这个放到URL后面试了一下，跳转出来的还是留言板界面。</p>
-<p>查看了一下源码，再抓包看了看，并没有看出什么端倪。于是我查看了提示，提示为：LFI，即本地文件包含，所以本题考查PHP伪协议与本地文件包含漏洞。通过对知识与例题的学习，我尝试了一下用php://filter去读取一下fl4g.php文件，构造如下payload:</p>
-<pre><code class="line-numbers language-php">http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
-</code></pre>
-<p>失败，后来又尝试了一下用php://input的方式写入一句话木马，也失败了（可能是我姿势不对吧<span class="github-emoji"><span>😂</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
-<p>继而求助大佬，大佬一针见血地指出了我的问题，上面那个payload里的file参数在本题中并不存在</p>
-<p>（的确，由于我是模仿的其他题目的解法，并没完全理解，此处就照搬了file参数</p>
-<pre><code class="line-numbers language-php">include($_GET['file']);
-</code></pre>
-<p>这样的php语句说明file是参数，而本题是action为参数</p>
-<pre><code class="line-numbers language-php">include($_GET['action']);
-</code></pre>
-<p>从点击回复后的url中便可看出<img src="/2020/07/05/0xctf/image-20200711135546090.png" alt="image-20200711135546090" style="zoom:80%;"></p>
-<p>所以将上述payload中的file参数修改为action 即可，不不不，事情没有这么简单，我尝试了一下，直接404，好吧，貌似是index.php中并没有action 这个参数，所以应该在action.php 的基础上再去使用php://filter语句，故修改payload为：</p>
-<pre><code class="line-numbers language-php">http://ctf.caoyi.site:30002/web8/action.php?action=php://filter/read=convert.base64-encode/resource=fl4g.php
-</code></pre>
-<p>访问一下，一串base64编码后的字符串一闪而过，然后页面又变成了留言板界面，此时想到的是抓包，使用Burpsuite抓包后发现可疑字符串</p>
-<img src="/2020/07/05/0xctf/image-20200711140844022.png" alt="image-20200711140844022" style="zoom: 33%;">
-
-<p>base64解码后即可得到flag</p>
-<hr>
-<h4 id="16-RCE-bypass"><a href="#16-RCE-bypass" class="headerlink" title="16.RCE bypass"></a>16.RCE bypass</h4><img src="/2020/07/05/0xctf/image-20200716214515665.png" alt="image-20200716214515665" style="zoom:67%;">
-
-<p>这道题前前后后花了些时间，一开始无从下手，题目标题是RCE绕过，关于RCE绕过的姿势也了解了一些（此处安利一篇博客：<a href="https://cloud.tencent.com/developer/article/1599149">《RCE的Bypass与骚姿势总结》</a>），但完全无从下手。前期试了试get方式传一个cmd参数，我试了一下<code>？cmd=1</code>,并没有什么用。后来大佬建议我去了解一下php system 函数，了解了一波后，再结合刚学的Linux命令，想起来攻防世界里的一句话木马那道题当时有个wp就是采用system+cat来解决的。我踌躇满志地打开hackbar, load Url,post date:<code>shell=system('ls');</code>，然而又是啥都没。一番挣扎尝试后再次求助大佬，经过大佬的点播与提示，上述php语句中有两句话应该好好理解：</p>
-<pre><code class="line-numbers language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
-</code></pre>
-<p>这句话y中用到了三目运算符？：，如果问号前面的条件成立的话，那么它就执行问号与冒号之间的语句，否则执行冒号后面的语句.</p>
-<p>那么这句话的意思就是如果以get方式传入了参数的话，那么他就把这个传入的cmd参数赋值给 $cmd,如果没有传入cmd这个参数的话，那么 cmd就为空。</p>
-<pre><code class="line-numbers language-php">if($cmd)
-{   system("$cmd"); }
-</code></pre>
-<p>这个语句表明php用system 函数把cmd这个参数当做系统命令执行，所以其实之前尝试的<code>shell=system('ls');</code>可以以在url 里将cmd 赋值为ls 来代替实现，</p>
-<img src="/2020/07/05/0xctf/image-20200716221117992.png" alt="image-20200716221117992" style="zoom:67%;">
-
-<p>此时页面中出现了flag.php和index.php的提示，此时想到利用cmd=cat flag.php的方式来读取文件，但是cat,flag被禁用了，第一时间想到的是用姿势绕过，但大佬说duck不必，<strong>cat被ban了可以用tac，tac被ban 了可以用head，head被ban了还可以用其他的</strong>。一语惊醒梦中人呐，之前在学习Linux命令的时候，的确很多命令都可以完成文件的读取工作。</p>
-<blockquote>
-<p><strong>小小整理一下，若cat被ban,可以采用以下命令代替：</strong></p>
-<p>(1)more:一页一页的显示档案内容 </p>
-<p>(2)less:与 more 类似，但是比 more 更好的是，他可以[pg dn][pg up]翻页 （补充一下，如果想退出less，按q键就可以了）</p>
-<p>(3)head:查看头几行 (默认是前10行)</p>
-<p>(4)tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 </p>
-<p>(5)tail:查看尾几行 （默认是后10行）</p>
-<p>(6)nl：显示的时候，顺便输出行号 </p>
-<p>(7)od:以二进制的方式读取档案内容 </p>
-<p>(8)vi:一种编辑器，这个也可以查看</p>
-<p>(9)vim:一种编辑器，这个也可以查看</p>
-<p>(10)sort:可以查看 </p>
-<p>(11)uniq:可以查看</p>
-<p>(12)file -f:报错出具体内容   For example:<img src="/2020/07/05/0xctf/image-20200717092841793.png" alt="image-20200717092841793"></p>
-<p>关于如何退出vim（命令模式下）</p>
-<p>:q，退出(:quit的缩写)</p>
-<p>:qL,退出且不保存(:quit的缩写)</p>
-<p>:wq,保存并退出</p>
-<p>:wq!，保存并退出即使文件没有写入权限(强制保存退出)</p>
-<p>:x,保存并退出(类似:wq，但是只有在有更改的情况下才保存):exit,保存并退出(和:x相同)</p>
-<p>:qa，退出所有(:quitall的缩写)</p>
-<p>:cq，退出且不保存(即便有错误)</p>
-</blockquote>
-<p>尝试采用tail代替cat，下面应该把flag绕过就ok了，构造如下payload：<code>?cmd=tail fl''ag.php</code>,发现页面没有出现<strong>爪巴</strong>，估计是成功绕过了。</p>
-<p>大佬友情提醒，文件内容含有&lt;??&gt;的不会在前端输出，需要查看源码。（由于&lt;??&gt;在前端并不显示，所以此处采用的是编码来让其显示，&lt;在html中可用<code>&amp;lt</code>加上<code>；</code>来显示，同理，&gt;用<code>&amp;gt</code>加<code>；</code>来显示，一定别忘了<code>；</code><span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，更多的这样的转义符可以去百度一下）</p>
-<p>查看一波源码，成功得到flag</p>
-<p>（这里再插几句，关于那个flag的绕过方式，其实fl*这种也很常见,即通配符绕过</p>
-<p>此处再安利一篇博文：<a href="https://www.cnblogs.com/SpouseLJ/p/13223967.html#xcjwjDZd">《CTF下的命令执行漏洞利用及绕过方法总结》</a>。</p>
-<p>但是让我很苦恼的是那种拼接方式去构造payload的方式我可能还不太理解，在本题中尝试了好多次也没成功，这个坑先留着，以后来填，或者大佬们评论区指点一波</p>
-<p>）</p>
-<hr>
-<h4 id="17-RCE-bypass-pro"><a href="#17-RCE-bypass-pro" class="headerlink" title="17.RCE_bypass_pro"></a><strong>17.RCE_bypass_pro</strong></h4><img src="/2020/07/05/0xctf/image-20200720210307946.png" alt="image-20200720210307946" style="zoom:50%;">
-
-<p>这道题是RCE的pro版本，料到了绕过有难度。点进去一看，我敲！这么多过滤条件！（手动滑稽_）</p>
-<p>稍微理解一下源码：首先要以<code>GET</code>方式传一个<code>ip</code>参数，然后那一长串用于过滤的令人头皮发麻的正则表达式，emmm，怎么说呢，没能完全看懂，但大致能晓得它过滤掉了哪些东西。</p>
-<p>先稍微试一试水，我构造了这样一个<code>payload:?ip=d;sort${IFS}fl\ag.php</code></p>
-<p>失败，回显  <strong>fxck your symbol!</strong></p>
-<p>又仔细看了看，好吧，疏忽了，<code>{}</code>、<code>/</code>貌似都被过滤了，额，<code>{}</code>好解决，空格用<code>$IFS</code>也可以替代，但是flag咋搞呢？</p>
-<p>百度了一波，大概要么编码解决，要么用拼接（哎，终究逃不过拼接<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
-<p>尝试一波拼接 <img src="/2020/07/05/0xctf/image-20200720214759811.png" alt="image-20200720214759811" style="zoom:67%;"></p>
-<p>再次失败，不过这次回显的是  <strong>no flag</strong>,对照源码，应该是咱们的flag没成功绕过，还是被过滤了。</p>
-<p>继续百度，我恰巧看到一篇博客里提到了<code>if(preg_match("/.*f.*l.*a.*g.*/", $ip)</code>这个正则表达式，他说这个过滤的话采用一般的拼接不起作用，得换换顺序，因为一旦 f l a g顺序显示，就歇菜了。</p>
-<p>OK,那将a,b换换吧，重新构造payload:<img src="/2020/07/05/0xctf/image-20200720215305374.png" alt="image-20200720215305374" style="zoom: 67%;"></p>
-<p>成功！！<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>然后我又尝试了一下其他的payload，应该不止这一种解法。继续逛百度，居然发现一道和这道题很像的题<span class="github-emoji"><span>😲</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>去找了找它的wp，由于题目还是有点差异，有些wp中的解法并没成功（也可能是我太菜了<span class="github-emoji"><span>😵</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>），但是经过我的尝试，还是发现了几种骚姿势：</p>
-<ul>
-<li><img src="/2020/07/05/0xctf/image-20200720220319905.png" alt="image-20200720220319905"></li>
-</ul>
-<ul>
-<li><img src="/2020/07/05/0xctf/image-20200720220434968.png" alt="image-20200720220434968"></li>
-</ul>
-<p>第二个实在是太骚了，运行后：</p>
-<img src="/2020/07/05/0xctf/image-20200720220938545.png" alt="image-20200720220938545" style="zoom:80%;">
-
-<p>菜鸡的我流下了伤心的泪水<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<hr>
-<h4 id="18-EZupload-2"><a href="#18-EZupload-2" class="headerlink" title="18.EZupload-2"></a>18.EZupload-2</h4><img src="/2020/07/05/0xctf/image-20200731115817516.png" alt="image-20200731115817516" style="zoom:67%;">
-
-<p>依旧是一道文件上传，首先尝试一波上传shell.php,(让自己死心），回显不允许的文件类型。</p>
-<p>又尝试了一波双写绕过，加.绕过，都不行，想了一下可能是得上传图片马，首先制作一个图片马：</p>
-<p>首先桌面新建一个shell.php文件，写入一句话木马。</p>
-<p>然后打开cmd,用<code>cd desktop</code>定位到桌面,<code>copy 1.jpg/b+shell.php/a 3.jpg</code>（前提是你桌面上有1.jpg这张图和shell.php）</p>
-<p>用记事本打开3.jpg，将乱码拉倒最后，如果最后有一句话木马就说明制作成功了。（必要的情况下可以把乱码删掉，乱码太多后续可能解析不了）</p>
-<p>图片马制作成功，然后也上传成功，但是菜刀和蚁剑都连不上，几番百度，也没发现问题。后来去问大佬，大佬说图片马没办法像php那样被解析，有两种方法：</p>
-<ul>
-<li><p>文件包含            </p>
-</li>
-<li><p>.htaccess</p>
-<p>似乎豁然开朗，但是我之前上传.htaccess文件的时候它显示不允许的文件类型，大佬说抓包改一下文件类型就可以了（奥，我想起来，之前做那个靶场训练的时候好像遇到过这种题）</p>
-<p>此处我当时踩了一个大坑，我的.htaccess文件命名成了1.htaccess，但是其实是不能有文件名的，那个文件直接命名成.htaccess就可</p>
-<p>然后关于.htaccess的内容，第一种写法：<code>SetHandler application/x-httpd-php</code></p>
-<p>然后还有一种更精准的写法：</p>
-<pre><code> &lt;FilesMatch "shell.jpg"&gt;
-  SetHandler application/x-httpd-php
- &lt;/FilesMatch&gt;
-</code></pre>
-<p>（当然这种写法你的图片马的文件名得是shell.jpg）</p>
-<img src="/2020/07/05/0xctf/image-20200731122831238.png" alt="image-20200731122831238" style="zoom:67%;"></li>
-</ul>
-<p>把上面那个文件类型改成<code>image/jpeg</code> 再发包就可了</p>
-<img src="/2020/07/05/0xctf/image-20200731123111676.png" alt="image-20200731123111676" style="zoom:67%;">
-
-<p>上传成功！</p>
-<p>接着再上传之前的图片木马，上传成功后回显一个地址，访问一波。</p>
-<img src="/2020/07/05/0xctf/image-20200731124839807.png" alt="image-20200731124839807" style="zoom:50%;">
-
-<p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.<span class="github-emoji"><span>😙</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<hr>
-<h4 id="19-SQL-injection"><a href="#19-SQL-injection" class="headerlink" title="19.SQL_injection"></a>19.SQL_injection</h4><p>这是一道SQL注入的问题，应该不是很难。之前刷过几道sqllib的题，有空一定好好刷.</p>
-<p>之前我采用的一直是手工注入，这次一开始也是采用的手工注入，但是出了些问题，后来转向sqlmap,由于我之前的sqlmap文件夹貌似又双叒叕被我误删了，这次使用的是kali自带的sqlmap。</p>
-<ul>
-<li>第一步，看是否存在注入点：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' "</code></li>
-</ul>
-<img src="/2020/07/05/0xctf/image-20200928161245282.png" alt="image-20200928161245282" style="zoom: 67%;">
-
-<p>提示“id”可能是注入点。</p>
-<ul>
-<li>第二步查看数据库名称：<code>kcm@kali:~$ sqlmap -u"http://59.110.157.4:30010/?id=1' " --dbs</code></li>
-</ul>
-<img src="/2020/07/05/0xctf/image-20200928161505584.png" alt="image-20200928161505584" style="zoom:67%;">
-
-<p>显示有两个可用的数据库，一个名为 <strong>information_schema</strong>(信息模式？)，另一个名为<strong>user</strong>.</p>
-<ul>
-<li><p>知道了数据库的名称，接下来就是去查看数据库中的表：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
-<img src="/2020/07/05/0xctf/image-20200928161847157.png" alt="image-20200928161847157" style="zoom:67%;"></li>
-</ul>
-<p>自上而下看了半天，没发现flag字眼，暂且搁置，去另一个库康康：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
-<img src="/2020/07/05/0xctf/image-20200928162050230.png" alt="image-20200928162050230" style="zoom:67%;">
-
-<p>只有简简单单的一个表，很可疑啊，觉得有必要深究一下。</p>
-<ul>
-<li><p>查看user数据库中user表的列信息：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user  --columns</code></p>
-<img src="/2020/07/05/0xctf/image-20200928162328554.png" alt="image-20200928162328554" style="zoom:67%;">
-
-<ul>
-<li>最后查看你想看的东西就行了，falg应该是字符串，所以我首先查看的是password里的东西：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user -C password  --dump</code></li>
-</ul>
-<img src="/2020/07/05/0xctf/Users/28294/Desktop/无标题.png" alt="无标题" style="zoom:67%;">
-
-<p>flag手动打码<span class="github-emoji"><span>😜</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-</li>
-</ul>
-<hr>
-<p>未完待续<span class="github-emoji"><span>😜</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>hexo 添加AI摘要功能</title>
     <url>/2025/12/05/AI-summary/</url>
     <content><![CDATA[<p>最近浏览技术博客时，发现像CSDN都会有 **AI 摘要 ** 功能，觉得还算是一个实用的功能，所以作为一个热衷于折腾 Hexo 的博主，我也决定动手给自己的博客加上这个功能。</p>
@@ -716,6 +383,339 @@ ${cleanContent}
       <tags>
         <tag>CDN</tag>
         <tag>解析冲突</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>0xCTF web题 writeup</title>
+    <url>/2020/07/05/0xctf/</url>
+    <content><![CDATA[<p>最近开始接触CTF，主要是web方向，作为一个小白，遭受了各种社会的毒打,好在有大佬指路，勉强能解出些题来，这篇博文主要写写0xCTF中题目的writeup.</p>
+<h4 id="1-soeasy"><a href="#1-soeasy" class="headerlink" title="1.soeasy"></a>1.soeasy</h4><p><img src="/2020/07/05/0xctf/image-20200705164040950.jpg" alt="1"></p>
+<p>这个题还是蛮简单的，查看源码,稍微找找就能得到flag</p>
+<p>稍微总结一下查看源码的方法吧：</p>
+<p>a.鼠标右键，点查看源代码</p>
+<p>b.<code>F12</code></p>
+<p>c.<code>Ctrl+shift+I</code></p>
+<p>d.<code>ctrl+U</code></p>
+<p>e.在网址前面加上<code>view-source:</code>(火狐反正支持这种方式)</p>
+<hr>
+<h4 id="2-GET"><a href="#2-GET" class="headerlink" title="2.GET"></a>2.GET</h4><p><img src="/2020/07/05/0xctf/image-20200705165429119.jpg" alt="image-20200705165429119"></p>
+<p>稍微判断一下这是一个通过Get方式传参的问题（如果不了解的话提前去了解一下PHP语言，熟悉一下基本语法）</p>
+<p>Get方式传参直接在URL后面写上参数并为其赋值即可，本题要传的的参数为0x,值为0xfxxker,故在网址栏应该这么写：</p>
+<p><img src="/2020/07/05/0xctf/image-20200705165907235.png" alt="image-20200705165907235"></p>
+<p>回车一下就得到了flag.</p>
+<hr>
+<h4 id="3-POST"><a href="#3-POST" class="headerlink" title="3.POST"></a>3.POST</h4><p><img src="/2020/07/05/0xctf/image-20200705170036059.png" alt="image-20200705170036059"></p>
+<p>本题考察的是POST方式传参，我是用火狐插件hackbar来解的（关于hackbar的下载安装并不难，不必装最新版，最新版需要付费，下个旧版就行了，然后关闭自动更新。具体去百度一下）</p>
+<p>F12查看源码，然后点Hackbar, <code>laod URL</code>,勾选<code>post date</code>，在下面的框里输入参数并为其赋值，点击<code>Execute</code>就能成功传参，然后flag就有了</p>
+<p>当然，用Burpsuit也一样能做，在这不赘述了</p>
+<img src="/2020/07/05/0xctf/image-20200705170922230.png" alt="image-20200705170922230" style="zoom: 33%;">
+
+
+
+<hr>
+<h4 id="4-XFF-amp-Referer"><a href="#4-XFF-amp-Referer" class="headerlink" title="4.XFF&amp;Referer"></a>4.XFF&amp;Referer</h4><p>打开页面只有一句话“只有本地IP才能访问”，刷过攻防世界的新手区的题的话应该会有印象，其实就是伪造一个Ip，然后就可以了</p>
+<p>首先利用Burpsuit抓个包，右击发送到repeater,然后在header里面Add一个新的头：<code>X-Forwarded-For</code> , 值为127.0.0.1</p>
+<img src="/2020/07/05/0xctf/image-20200705171807465.png" alt="image-20200705171807465" style="zoom:50%;">
+
+<p>点击send（貌似大部分版本是go,小事小事），这时候看右边的响应，多出来一句话“<code>必须来自于：http://0xctf.ctf</code>”</p>
+<p>这时同样的方法，在headers中再添加一个名为<code>Refere</code>r的头，值为<code>http://0xctf.ctf</code>,send一下，响应中就出现了flag</p>
+<img src="/2020/07/05/0xctf/image-20200705172430570.png" alt="image-20200705172430570" style="zoom: 50%;">
+
+<hr>
+<h4 id="5-ezmd5"><a href="#5-ezmd5" class="headerlink" title="5.ezmd5"></a>5.ezmd5</h4><img src="/2020/07/05/0xctf/image-20200705173020907.png" alt="image-20200705173020907" style="zoom: 80%;">
+
+<p>核心是那个if 语句，它要求参数a,b 的值相同但是MD5相同，这里可以利用绕过。（绕过蛮有意思的，当时做这题的时候查了查，觉得有篇博文讲的还蛮好的，在这安利一下：<a href="https://blog.csdn.net/qq_19980431/article/details/83018232">CTF中常见php-MD5()函数漏洞</a>）</p>
+<blockquote>
+<p>PHP在处理哈希字符串时，它把每一个以“0E”开头的哈希值都解释为0，所以如果两个不同的密码经过哈希以后，其哈希值都是以“0E”开头的，那么PHP将会认为他们相同，都是0。</p>
+<p><strong>以下值在md5加密后以0E开头：</strong></p>
+<ul>
+<li>QNKCDZO</li>
+<li>240610708</li>
+<li>s878926199a</li>
+<li>s155964671a</li>
+<li>s214587387a</li>
+<li>s214587387a</li>
+</ul>
+<p><strong>以下值在sha1加密后以0E开头：</strong></p>
+<ul>
+<li>sha1(‘aaroZmOk’)</li>
+<li>sha1(‘aaK1STfY’)</li>
+<li>sha1(‘aaO8zKZF’)</li>
+<li>sha1(‘aa3OFF9m’)</li>
+</ul>
+</blockquote>
+<p>所以可以将a,b赋值成上面所列的由md5加密后以OE开头的两个不同的值，再采用get方式传参即可。</p>
+<p><img src="/2020/07/05/0xctf/image-20200705173943800.png" alt="image-20200705173943800"></p>
+<hr>
+<h4 id="6-ezmd5-2"><a href="#6-ezmd5-2" class="headerlink" title="6.ezmd5-2"></a>6.ezmd5-2</h4><img src="/2020/07/05/0xctf/image-20200705182529614.png" alt="image-20200705182529614" style="zoom:80%;">
+
+<p>与上一题其实蛮类似的，只不过它的限制又变大了，这次是“===”严格相等，不仅值要相等，类型也要相同</p>
+<p><strong>PHP中md5的函数特性</strong></p>
+<pre><code class="line-numbers language-php">md5([1,2,3]) == md5([4,5,6]) == NULL
+</code></pre>
+<p>[1] !== [2] &amp;&amp; md5([1]) === md5([2])<br>所以GET传入<code>a[]=1&amp;b[]=2</code>就能够绕过了。</p>
+<hr>
+<h4 id="7-跳转"><a href="#7-跳转" class="headerlink" title="7.跳转"></a>7.跳转</h4><p>点开页面只有一句话“flag is not here”,抓一下包看一下响应，发现有个比较特别的响应头,<code>location: youcanfindme.php</code>,</p>
+<p>虽然有所发现，但是一开始不知道怎么用，尝试在原来的URL后加了个<code>youcanfindme.php</code>,发现页面没变化，一筹莫展。</p>
+<p>后来向大佬求助，我应该再抓一次包的，加了<code>youcanfindme.php</code>后的页面抓包后状态码变成了302（暂时性转移），响应里多了个<code>0xctf: MHhDVEZ7MWY5NGIwMzZiY2NkOTA5Nzg2Yzc3MTVkZTg1NGJmMTh9</code>的头，很可疑，很像flag，但是一般flag不是这种形式啊。原来他用了Base64编码，需要先解码（百度上有很多在线解码的）。解码后就出来一个flag。</p>
+<p>稍微总结一下：</p>
+<p>​    首先，抓包，send to repeater后观察响应头，在原来的URL后面添加发现的<code>youcanfindme.php</code>,再抓一次包，同样观察响应，发现可疑字符串，利用base64编码进行解码即可</p>
+<p><img src="/2020/07/05/0xctf/image-20200705184218489.png" alt="image-20200705184218489" style="zoom:50%;"><img src="/2020/07/05/0xctf/image-20200705184247594.png" alt="image-20200705184247594"></p>
+<img src="/2020/07/05/0xctf/image-20200705184247594.png" alt="image-20200705184247594" style="zoom:50%;">
+
+<hr>
+<h4 id="8-我爱吃饼干"><a href="#8-我爱吃饼干" class="headerlink" title="8.我爱吃饼干"></a>8.我爱吃饼干</h4><p>点进页面，也是只有一句话<code>You are guest now, only admin can see flag</code></p>
+<p>抓个包看看吧</p>
+<p>抓包后发现响应头里有这样一个头<code>Set-Cookie: Cookie=eyJ1c2VybmFtZSI6Imd1ZXN0In0%3D</code></p>
+<p>首先我尝试的是在请求头里添加一个名为<code>cookie</code>的请求头，并把值赋为<code>eyJ1c2VybmFtZSI6Imd1ZXN0In0%3D</code>,失败！</p>
+<p>经过上一道题的毒打，我去试了一下这串字符串是不是又是base64编码，结果如下：</p>
+<p><img src="/2020/07/05/0xctf/image-20200705185303601.png" alt="image-20200705185303601"></p>
+<p>能看出个大概，但是后面出现了乱码，这时候我尝试了一下在请求头里加了一个名为<code>username</code>的请求头，值为<code>guest</code>,失败！又试了一下把值改成<code>admin</code>依旧不行</p>
+<p>这时候就得求助了，大佬告诉我%3D这类字符其实是经过特殊编码的，就像%20代表空格一样</p>
+<p>比如在网址栏里输入%3D：</p>
+<img src="/2020/07/05/0xctf/image-20200705185957749.png" alt="image-20200705185957749" style="zoom:80%;">
+
+<p>这里的%3D其实就相当于=</p>
+<p>我实在太菜了，大佬提示到这我还是没能领略，我尝试将原来的%3D替换成=再解码看看，得到<code>{"username":"guest"}</code></p>
+<p>虽然解码正常了。但还是不知道怎么利用这个信息，想想题目那句话“only the admin can see the flag”,我试了一下将<code>{"username":"guest"}</code>中的<code>guest</code> 换成<code>admin</code>，获得一串字符，把这串字符作为请求头cookie 的值，send一波，失败!</p>
+<p>此时大佬缓缓打出一个<span class="github-emoji"><span>❓</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2753.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>方法对了，但是居然解不出来？</p>
+<p>我又重新试了一遍，不行，发现我的base64编码出来的字符串和大佬的不一样，我换了一个在线解码的网站，再解了一次，把字符串作为cookie的值，成功解出flag。（什么？我居然被在线解码网站给克制了<span class="github-emoji"><span>😠</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f620.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
+<hr>
+<h4 id="9-eztrick"><a href="#9-eztrick" class="headerlink" title="9.eztrick"></a>9.eztrick</h4><img src="/2020/07/05/0xctf/image-20200706183947270.png" alt="image-20200706183947270">
+
+<p>起初我是把它当绕过来做的，试了试绕过空格的一些方法，都失败了。</p>
+<p>后来大佬告诉我不是空格，而是URL编码显示空字符，让我试试<code>？%E%280%AC=xxx</code>的形式，我试了一下<code>？%E%280%AC=%E%280%AC</code>，成功得到flag</p>
+<p><img src="/2020/07/05/0xctf/image-20200706184647653.png" alt="image-20200706184647653"></p>
+<hr>
+<h4 id="10"><a href="#10" class="headerlink" title="10.$$"></a>10.$$</h4><p><img src="/2020/07/05/0xctf/image-20200706184747544.png" alt="image-20200706184747544"></p>
+<p>这题考察变量覆盖   此处安利一篇博客：<a href="https://www.jianshu.com/p/a4d782e91852">变量覆盖漏洞</a></p>
+<p>准确说是考察由$$引起的变量覆盖，根据题意，在url后面加上<code>？ctf=0xctf</code>,使其满足if 条件语句即可</p>
+<hr>
+<h4 id="11-extract"><a href="#11-extract" class="headerlink" title="11.extract"></a>11.extract</h4><p><img src="/2020/07/05/0xctf/image-20200706185409318.png" alt="image-20200706185409318"></p>
+<p>这题考察由extract（）函数引起的变量覆盖问题，（关于extract（）函数，可自行百度或者阅读上面的博文<span class="github-emoji"><span>⬆</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/2b06.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）直接在url后面加上<code>？ctf=0xctf</code>,使其满足if 条件语句即可</p>
+<hr>
+<h4 id="12-parse-str"><a href="#12-parse-str" class="headerlink" title="12.parse_str"></a>12.parse_str</h4><p><img src="/2020/07/05/0xctf/image-20200706185724337.png" alt="image-20200706185724337"></p>
+<p>这题考察的是由parse_str()函数引起的变量覆盖，主要是通过变量覆盖使得Leon1===Leon2</p>
+<p>之前在学习变量覆盖的时候见过几道这方面的例题，这道题中的<code>$_SERVER["QUERY_STRING"]</code>是我没见到过的，去百度了一下：</p>
+<blockquote>
+<p>实例：</p>
+<p>1，<a href="http://localhost/aaa/">http://localhost/aaa/</a>** (打开aaa中的index.php)<br>结果：<br>$_SERVER[‘QUERY_STRING’] = “”;<br>$_SERVER[‘REQUEST_URI’] = “/aaa/“;<br>$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
+<p><strong>2，</strong><a href="http://localhost/aaa/?p=222">http://localhost/aaa/?p=222</a> (附带查询)<br>结果：<br>$_SERVER[‘QUERY_STRING’] = “p=222”;<br>$_SERVER[‘REQUEST_URI’] = “/aaa/?p=222”;<br>$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
+<p><strong>3，<a href="http://localhost/aaa/index.php?p=222&amp;q=333">http://localhost/aaa/index.php?p=222&amp;q=333</a></strong><br>结果：<br>$$_SERVER[‘REQUEST_URI’] = “/aaa/index.php?p=222&amp;q=333”;<br>$_SERVER[‘SCRIPT_NAME’] = “/aaa/index.php”;<br>$_SERVER[‘PHP_SELF’]   = “/aaa/index.php”;</p>
+<p>由实例可知：<br>$_SERVER[“QUERY_STRING”] 获取查询 语句，实例中可知，获取的是?后面的值<br>$</p>
+<p>_$SERVER[“REQUEST_URI”]  获取 <a href="http://localhost/">http://localhost</a> 后面的值，包括/<br>$_SERVER[“SCRIPT_NAME”]  获取当前脚本的路径，如：index.php<br>$_SERVER[“PHP_SELF”]   当前正在执行脚本的文件名</p>
+</blockquote>
+<p>其实对于解题来说并没有太大影响</p>
+<p>所以直接在url后面添加<code>？Leon1=abc&amp;Leon2=abc</code>即可</p>
+<hr>
+<h4 id="13-ezupload"><a href="#13-ezupload" class="headerlink" title="13.ezupload"></a>13.ezupload</h4><p><img src="/2020/07/05/0xctf/image-20200708184237017.png" alt="image-20200708184237017"></p>
+<p>页面很简单，易得这是一道考察文件上传的题</p>
+<p>上传了一张图片，得到一句话</p>
+<p><code>you file: ./sandbox/3a64ab0e3d4f435a3ba6e69810dbcd01/wallhaven-0q6qw7.jpg</code></p>
+<p>尝试上传一个.php文件，发现没有提示文件格式不对或者一些其他报错，依旧得到一句话：</p>
+<p><code>you file: ./sandbox/e5e655202a8c03687b43d65e6351159b/shell3.php</code></p>
+<p>尝试了一下分别把这两段话加到url后面，发现图片能够正常显示，而.php回显的是一个空白页面</p>
+<p><img src="/2020/07/05/0xctf/image-20200708191734385.png" alt="image-20200708191734385"></p>
+<p>后来去找了找这方面的例题，发现一道和这个有点类似的，它说页面回显的是一个空白页面说明一句话木马成功了（对了，上面用的那个.php文件是一句话木马，如<!--?php @eval($_POST['aaa'])?-->，新建一个空白文档，然后输入这句话，另存为.php文件即可生成）</p>
+<p>按照网上的解法，接下来把空白页面的url 复制到中国菜刀链接一下即可，我去网上找了找中国菜刀，试了好多次都不行。（当时我十分怀疑我遇到了假的菜刀<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
+<p>继而去求助大佬，这才知道原来像上面用的那句一句话木马在用菜刀时要输入密码，密码为aaa（密码是一句话木马中post或者get的值，上面那个一句话木马的post的值为aaa,故密码为aaa）.大喜<span class="github-emoji"><span>😁</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f601.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，以为问题解决了，一试发现还是不行，连接不上。大佬说我可能装了个假菜刀<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>此处附上大佬提供的中国菜刀与中国蚁剑的官网网址：</p>
+<p><em>中国菜刀</em>：<a href="http://www.maicaidao.co/">http://www.maicaidao.co/</a></p>
+<p><em>中国蚁剑</em>：<a href="https://github.com/AntSwordProject/antSword">https://github.com/AntSwordProject/antSword</a></p>
+<p>一番波折之后，装上了真·<span class="github-emoji"><span>🔪</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f52a.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>,一点添加，依旧没得到想要的结果。大佬建议换成蚁剑试试，成功了！</p>
+<p>下面把正确的解题过程重新梳理一下：</p>
+<p>首先，准备一个一句话木马（.php文件），然后上传，得到一串类似URL的东西，将它添加到原URL 后面，若回显空页面则说明一句话木马已经成功上传（如果404啥的检查一下URL，多试几次）</p>
+<p>准备好中国蚁剑，在空白处右击添加数据，将空页面的URL复制进去，输入密码aaa，点击左上角的添加即可（因为我已经添加过了，所以左上角显示的是保存）</p>
+<img src="/2020/07/05/0xctf/image-20200708194242532.png" alt="image-20200708194242532" style="zoom: 67%;">
+
+<p>连接成功后双击打开：</p>
+<img src="/2020/07/05/0xctf/image-20200708194638547.png" alt="image-20200708194638547" style="zoom:67%;">
+
+<p>找了找也没找到flag，，，，实在是菜啊<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>问了大佬，<strong>flag一般在根目录下</strong>，点开那个<code>/</code>文件夹，在最下面发现了flag文件，点开即可得到flag。</p>
+<hr>
+<h4 id="14-一键getflag"><a href="#14-一键getflag" class="headerlink" title="14.一键getflag"></a>14.一键getflag</h4><img src="/2020/07/05/0xctf/image-20200709215614854.png" alt="image-20200709215614854" style="zoom:67%;">
+
+<p>点进去，它提示你输入0xCTF网站的IP即可得到flag，菜鸡的我还去百度了一下什么是网站的IP<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>其实就类似127.0.0.1这类的，我查了一下有没有能查询某个指定网站IP的工具，找了一个在线查询的，输入网站的URL后得到网站的IP：<code>39.106.164.8</code></p>
+<p>然后一波复制粘贴，发现粘贴不进去，查看源码，发现这样一句话：<input type="text" name="ip" class="form-control" maxlength="4" required=""></p>
+<p><strong>maxlength=“4”</strong>说明输入的字符串最大长度为4，而我们的IP地址显然超过了，所以输不进去。想了一下利用Burpsuite抓一波包再改包：</p>
+<p>先输入一个4个字符以内的IP。如我输入的是1234，抓包后将IP改为<code>39.106.164.8</code>，再发包即可</p>
+<hr>
+<h4 id="15-未完成的留言板"><a href="#15-未完成的留言板" class="headerlink" title="15.未完成的留言板"></a>15.未完成的留言板</h4><img src="/2020/07/05/0xctf/image-20200711132555655.png" alt="image-20200711132555655" style="zoom:80%;">
+
+<p>点进去，看一下，是一个留言板</p>
+<img src="/2020/07/05/0xctf/image-20200711132711291.png" alt="image-20200711132711291" style="zoom: 33%;">
+
+<p>随便输入一句留言，点击回复</p>
+<img src="/2020/07/05/0xctf/image-20200711132823635.png" alt="image-20200711132823635" style="zoom:33%;">
+
+<p>因为题目说flag在fl4g.php，所以我把这个放到URL后面试了一下，跳转出来的还是留言板界面。</p>
+<p>查看了一下源码，再抓包看了看，并没有看出什么端倪。于是我查看了提示，提示为：LFI，即本地文件包含，所以本题考查PHP伪协议与本地文件包含漏洞。通过对知识与例题的学习，我尝试了一下用php://filter去读取一下fl4g.php文件，构造如下payload:</p>
+<pre><code class="line-numbers language-php">http://ctf.caoyi.site:30002/web8/index.php?file=php://filter/read=convert.base64-encode/resource=fl4g.php
+</code></pre>
+<p>失败，后来又尝试了一下用php://input的方式写入一句话木马，也失败了（可能是我姿势不对吧<span class="github-emoji"><span>😂</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f602.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
+<p>继而求助大佬，大佬一针见血地指出了我的问题，上面那个payload里的file参数在本题中并不存在</p>
+<p>（的确，由于我是模仿的其他题目的解法，并没完全理解，此处就照搬了file参数</p>
+<pre><code class="line-numbers language-php">include($_GET['file']);
+</code></pre>
+<p>这样的php语句说明file是参数，而本题是action为参数</p>
+<pre><code class="line-numbers language-php">include($_GET['action']);
+</code></pre>
+<p>从点击回复后的url中便可看出<img src="/2020/07/05/0xctf/image-20200711135546090.png" alt="image-20200711135546090" style="zoom:80%;"></p>
+<p>所以将上述payload中的file参数修改为action 即可，不不不，事情没有这么简单，我尝试了一下，直接404，好吧，貌似是index.php中并没有action 这个参数，所以应该在action.php 的基础上再去使用php://filter语句，故修改payload为：</p>
+<pre><code class="line-numbers language-php">http://ctf.caoyi.site:30002/web8/action.php?action=php://filter/read=convert.base64-encode/resource=fl4g.php
+</code></pre>
+<p>访问一下，一串base64编码后的字符串一闪而过，然后页面又变成了留言板界面，此时想到的是抓包，使用Burpsuite抓包后发现可疑字符串</p>
+<img src="/2020/07/05/0xctf/image-20200711140844022.png" alt="image-20200711140844022" style="zoom: 33%;">
+
+<p>base64解码后即可得到flag</p>
+<hr>
+<h4 id="16-RCE-bypass"><a href="#16-RCE-bypass" class="headerlink" title="16.RCE bypass"></a>16.RCE bypass</h4><img src="/2020/07/05/0xctf/image-20200716214515665.png" alt="image-20200716214515665" style="zoom:67%;">
+
+<p>这道题前前后后花了些时间，一开始无从下手，题目标题是RCE绕过，关于RCE绕过的姿势也了解了一些（此处安利一篇博客：<a href="https://cloud.tencent.com/developer/article/1599149">《RCE的Bypass与骚姿势总结》</a>），但完全无从下手。前期试了试get方式传一个cmd参数，我试了一下<code>？cmd=1</code>,并没有什么用。后来大佬建议我去了解一下php system 函数，了解了一波后，再结合刚学的Linux命令，想起来攻防世界里的一句话木马那道题当时有个wp就是采用system+cat来解决的。我踌躇满志地打开hackbar, load Url,post date:<code>shell=system('ls');</code>，然而又是啥都没。一番挣扎尝试后再次求助大佬，经过大佬的点播与提示，上述php语句中有两句话应该好好理解：</p>
+<pre><code class="line-numbers language-php">$cmd = $_GET['cmd']?$_GET['cmd']:'';
+</code></pre>
+<p>这句话y中用到了三目运算符？：，如果问号前面的条件成立的话，那么它就执行问号与冒号之间的语句，否则执行冒号后面的语句.</p>
+<p>那么这句话的意思就是如果以get方式传入了参数的话，那么他就把这个传入的cmd参数赋值给 $cmd,如果没有传入cmd这个参数的话，那么 cmd就为空。</p>
+<pre><code class="line-numbers language-php">if($cmd)
+{   system("$cmd"); }
+</code></pre>
+<p>这个语句表明php用system 函数把cmd这个参数当做系统命令执行，所以其实之前尝试的<code>shell=system('ls');</code>可以以在url 里将cmd 赋值为ls 来代替实现，</p>
+<img src="/2020/07/05/0xctf/image-20200716221117992.png" alt="image-20200716221117992" style="zoom:67%;">
+
+<p>此时页面中出现了flag.php和index.php的提示，此时想到利用cmd=cat flag.php的方式来读取文件，但是cat,flag被禁用了，第一时间想到的是用姿势绕过，但大佬说duck不必，<strong>cat被ban了可以用tac，tac被ban 了可以用head，head被ban了还可以用其他的</strong>。一语惊醒梦中人呐，之前在学习Linux命令的时候，的确很多命令都可以完成文件的读取工作。</p>
+<blockquote>
+<p><strong>小小整理一下，若cat被ban,可以采用以下命令代替：</strong></p>
+<p>(1)more:一页一页的显示档案内容 </p>
+<p>(2)less:与 more 类似，但是比 more 更好的是，他可以[pg dn][pg up]翻页 （补充一下，如果想退出less，按q键就可以了）</p>
+<p>(3)head:查看头几行 (默认是前10行)</p>
+<p>(4)tac:从最后一行开始显示，可以看出 tac 是 cat 的反向显示 </p>
+<p>(5)tail:查看尾几行 （默认是后10行）</p>
+<p>(6)nl：显示的时候，顺便输出行号 </p>
+<p>(7)od:以二进制的方式读取档案内容 </p>
+<p>(8)vi:一种编辑器，这个也可以查看</p>
+<p>(9)vim:一种编辑器，这个也可以查看</p>
+<p>(10)sort:可以查看 </p>
+<p>(11)uniq:可以查看</p>
+<p>(12)file -f:报错出具体内容   For example:<img src="/2020/07/05/0xctf/image-20200717092841793.png" alt="image-20200717092841793"></p>
+<p>关于如何退出vim（命令模式下）</p>
+<p>:q，退出(:quit的缩写)</p>
+<p>:qL,退出且不保存(:quit的缩写)</p>
+<p>:wq,保存并退出</p>
+<p>:wq!，保存并退出即使文件没有写入权限(强制保存退出)</p>
+<p>:x,保存并退出(类似:wq，但是只有在有更改的情况下才保存):exit,保存并退出(和:x相同)</p>
+<p>:qa，退出所有(:quitall的缩写)</p>
+<p>:cq，退出且不保存(即便有错误)</p>
+</blockquote>
+<p>尝试采用tail代替cat，下面应该把flag绕过就ok了，构造如下payload：<code>?cmd=tail fl''ag.php</code>,发现页面没有出现<strong>爪巴</strong>，估计是成功绕过了。</p>
+<p>大佬友情提醒，文件内容含有&lt;??&gt;的不会在前端输出，需要查看源码。（由于&lt;??&gt;在前端并不显示，所以此处采用的是编码来让其显示，&lt;在html中可用<code>&amp;lt</code>加上<code>；</code>来显示，同理，&gt;用<code>&amp;gt</code>加<code>；</code>来显示，一定别忘了<code>；</code><span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，更多的这样的转义符可以去百度一下）</p>
+<p>查看一波源码，成功得到flag</p>
+<p>（这里再插几句，关于那个flag的绕过方式，其实fl*这种也很常见,即通配符绕过</p>
+<p>此处再安利一篇博文：<a href="https://www.cnblogs.com/SpouseLJ/p/13223967.html#xcjwjDZd">《CTF下的命令执行漏洞利用及绕过方法总结》</a>。</p>
+<p>但是让我很苦恼的是那种拼接方式去构造payload的方式我可能还不太理解，在本题中尝试了好多次也没成功，这个坑先留着，以后来填，或者大佬们评论区指点一波</p>
+<p>）</p>
+<hr>
+<h4 id="17-RCE-bypass-pro"><a href="#17-RCE-bypass-pro" class="headerlink" title="17.RCE_bypass_pro"></a><strong>17.RCE_bypass_pro</strong></h4><img src="/2020/07/05/0xctf/image-20200720210307946.png" alt="image-20200720210307946" style="zoom:50%;">
+
+<p>这道题是RCE的pro版本，料到了绕过有难度。点进去一看，我敲！这么多过滤条件！（手动滑稽_）</p>
+<p>稍微理解一下源码：首先要以<code>GET</code>方式传一个<code>ip</code>参数，然后那一长串用于过滤的令人头皮发麻的正则表达式，emmm，怎么说呢，没能完全看懂，但大致能晓得它过滤掉了哪些东西。</p>
+<p>先稍微试一试水，我构造了这样一个<code>payload:?ip=d;sort${IFS}fl\ag.php</code></p>
+<p>失败，回显  <strong>fxck your symbol!</strong></p>
+<p>又仔细看了看，好吧，疏忽了，<code>{}</code>、<code>/</code>貌似都被过滤了，额，<code>{}</code>好解决，空格用<code>$IFS</code>也可以替代，但是flag咋搞呢？</p>
+<p>百度了一波，大概要么编码解决，要么用拼接（哎，终究逃不过拼接<span class="github-emoji"><span>😰</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f630.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>）</p>
+<p>尝试一波拼接 <img src="/2020/07/05/0xctf/image-20200720214759811.png" alt="image-20200720214759811" style="zoom:67%;"></p>
+<p>再次失败，不过这次回显的是  <strong>no flag</strong>,对照源码，应该是咱们的flag没成功绕过，还是被过滤了。</p>
+<p>继续百度，我恰巧看到一篇博客里提到了<code>if(preg_match("/.*f.*l.*a.*g.*/", $ip)</code>这个正则表达式，他说这个过滤的话采用一般的拼接不起作用，得换换顺序，因为一旦 f l a g顺序显示，就歇菜了。</p>
+<p>OK,那将a,b换换吧，重新构造payload:<img src="/2020/07/05/0xctf/image-20200720215305374.png" alt="image-20200720215305374" style="zoom: 67%;"></p>
+<p>成功！！<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>然后我又尝试了一下其他的payload，应该不止这一种解法。继续逛百度，居然发现一道和这道题很像的题<span class="github-emoji"><span>😲</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f632.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>去找了找它的wp，由于题目还是有点差异，有些wp中的解法并没成功（也可能是我太菜了<span class="github-emoji"><span>😵</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f635.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>），但是经过我的尝试，还是发现了几种骚姿势：</p>
+<ul>
+<li><img src="/2020/07/05/0xctf/image-20200720220319905.png" alt="image-20200720220319905"></li>
+</ul>
+<ul>
+<li><img src="/2020/07/05/0xctf/image-20200720220434968.png" alt="image-20200720220434968"></li>
+</ul>
+<p>第二个实在是太骚了，运行后：</p>
+<img src="/2020/07/05/0xctf/image-20200720220938545.png" alt="image-20200720220938545" style="zoom:80%;">
+
+<p>菜鸡的我流下了伤心的泪水<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span><span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<hr>
+<h4 id="18-EZupload-2"><a href="#18-EZupload-2" class="headerlink" title="18.EZupload-2"></a>18.EZupload-2</h4><img src="/2020/07/05/0xctf/image-20200731115817516.png" alt="image-20200731115817516" style="zoom:67%;">
+
+<p>依旧是一道文件上传，首先尝试一波上传shell.php,(让自己死心），回显不允许的文件类型。</p>
+<p>又尝试了一波双写绕过，加.绕过，都不行，想了一下可能是得上传图片马，首先制作一个图片马：</p>
+<p>首先桌面新建一个shell.php文件，写入一句话木马。</p>
+<p>然后打开cmd,用<code>cd desktop</code>定位到桌面,<code>copy 1.jpg/b+shell.php/a 3.jpg</code>（前提是你桌面上有1.jpg这张图和shell.php）</p>
+<p>用记事本打开3.jpg，将乱码拉倒最后，如果最后有一句话木马就说明制作成功了。（必要的情况下可以把乱码删掉，乱码太多后续可能解析不了）</p>
+<p>图片马制作成功，然后也上传成功，但是菜刀和蚁剑都连不上，几番百度，也没发现问题。后来去问大佬，大佬说图片马没办法像php那样被解析，有两种方法：</p>
+<ul>
+<li><p>文件包含            </p>
+</li>
+<li><p>.htaccess</p>
+<p>似乎豁然开朗，但是我之前上传.htaccess文件的时候它显示不允许的文件类型，大佬说抓包改一下文件类型就可以了（奥，我想起来，之前做那个靶场训练的时候好像遇到过这种题）</p>
+<p>此处我当时踩了一个大坑，我的.htaccess文件命名成了1.htaccess，但是其实是不能有文件名的，那个文件直接命名成.htaccess就可</p>
+<p>然后关于.htaccess的内容，第一种写法：<code>SetHandler application/x-httpd-php</code></p>
+<p>然后还有一种更精准的写法：</p>
+<pre><code> &lt;FilesMatch "shell.jpg"&gt;
+  SetHandler application/x-httpd-php
+ &lt;/FilesMatch&gt;
+</code></pre>
+<p>（当然这种写法你的图片马的文件名得是shell.jpg）</p>
+<img src="/2020/07/05/0xctf/image-20200731122831238.png" alt="image-20200731122831238" style="zoom:67%;"></li>
+</ul>
+<p>把上面那个文件类型改成<code>image/jpeg</code> 再发包就可了</p>
+<img src="/2020/07/05/0xctf/image-20200731123111676.png" alt="image-20200731123111676" style="zoom:67%;">
+
+<p>上传成功！</p>
+<p>接着再上传之前的图片木马，上传成功后回显一个地址，访问一波。</p>
+<img src="/2020/07/05/0xctf/image-20200731124839807.png" alt="image-20200731124839807" style="zoom:50%;">
+
+<p>应该是成功解析了，这时候将url用蚁剑链接一波，成功链接，然后成功在根目录下找到flag.<span class="github-emoji"><span>😙</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f619.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<hr>
+<h4 id="19-SQL-injection"><a href="#19-SQL-injection" class="headerlink" title="19.SQL_injection"></a>19.SQL_injection</h4><p>这是一道SQL注入的问题，应该不是很难。之前刷过几道sqllib的题，有空一定好好刷.</p>
+<p>之前我采用的一直是手工注入，这次一开始也是采用的手工注入，但是出了些问题，后来转向sqlmap,由于我之前的sqlmap文件夹貌似又双叒叕被我误删了，这次使用的是kali自带的sqlmap。</p>
+<ul>
+<li>第一步，看是否存在注入点：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' "</code></li>
+</ul>
+<img src="/2020/07/05/0xctf/image-20200928161245282.png" alt="image-20200928161245282" style="zoom: 67%;">
+
+<p>提示“id”可能是注入点。</p>
+<ul>
+<li>第二步查看数据库名称：<code>kcm@kali:~$ sqlmap -u"http://59.110.157.4:30010/?id=1' " --dbs</code></li>
+</ul>
+<img src="/2020/07/05/0xctf/image-20200928161505584.png" alt="image-20200928161505584" style="zoom:67%;">
+
+<p>显示有两个可用的数据库，一个名为 <strong>information_schema</strong>(信息模式？)，另一个名为<strong>user</strong>.</p>
+<ul>
+<li><p>知道了数据库的名称，接下来就是去查看数据库中的表：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
+<img src="/2020/07/05/0xctf/image-20200928161847157.png" alt="image-20200928161847157" style="zoom:67%;"></li>
+</ul>
+<p>自上而下看了半天，没发现flag字眼，暂且搁置，去另一个库康康：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1' " -D information_schema --tables</code></p>
+<img src="/2020/07/05/0xctf/image-20200928162050230.png" alt="image-20200928162050230" style="zoom:67%;">
+
+<p>只有简简单单的一个表，很可疑啊，觉得有必要深究一下。</p>
+<ul>
+<li><p>查看user数据库中user表的列信息：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user  --columns</code></p>
+<img src="/2020/07/05/0xctf/image-20200928162328554.png" alt="image-20200928162328554" style="zoom:67%;">
+
+<ul>
+<li>最后查看你想看的东西就行了，falg应该是字符串，所以我首先查看的是password里的东西：<code>kcm@kali:~$ sqlmap -u "http://59.110.157.4:30010/?id=1'" -D user -T user -C password  --dump</code></li>
+</ul>
+<img src="/2020/07/05/0xctf/Users/28294/Desktop/无标题.png" alt="无标题" style="zoom:67%;">
+
+<p>flag手动打码<span class="github-emoji"><span>😜</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+</li>
+</ul>
+<hr>
+<p>未完待续<span class="github-emoji"><span>😜</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f61c.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>web</tag>
       </tags>
   </entry>
   <entry>
@@ -1290,268 +1290,6 @@ $ git config --global --unset https.proxy
       <tags>
         <tag>Git</tag>
         <tag>Hexo部署</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Vscode_Error</title>
-    <url>/2023/08/06/Vscode-Error/</url>
-    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
-<p>vscode 获取扩展失败，XHR failed</p>
-</blockquote>
-<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
-<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
-<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
-<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
-<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
-<p>里面提到：</p>
-<blockquote>
-<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
-</blockquote>
-<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
-<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
-<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
-<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
-<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
-<blockquote>
-<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
-</blockquote>
-<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
-<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vscode</tag>
-        <tag>Synology</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>YCBCTF wp</title>
-    <url>/2020/09/10/YCBCTF/</url>
-    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<span id="more"></span>
-
-<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
-
-
-
-<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
-<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
-
-
-
-<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>。</p>
-<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>CTF</tag>
-        <tag>web</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>hexo matery主题代码高亮问题</title>
-    <url>/2020/09/26/hexo/</url>
-    <content><![CDATA[<p>关于matery主题代码高亮的问题</p>
-<p>转载自大佬们的博客:</p>
-<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
-<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记—-hexo主题代码高亮</a></p>
-]]></content>
-      <categories>
-        <category>Hexo</category>
-      </categories>
-      <tags>
-        <tag>hexo</tag>
-        <tag>代码高亮</tag>
-        <tag>matery</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MoeCTF wp</title>
-    <url>/2020/08/14/moectf/</url>
-    <content><![CDATA[<img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
-
-<p>MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中<span class="github-emoji"><span>😉</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！</p>
-<span id="more"></span>
-
-<h4 id="1-GET"><a href="#1-GET" class="headerlink" title="1.GET"></a>1.GET</h4><p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
-<hr>
-<h4 id="2-POST"><a href="#2-POST" class="headerlink" title="2.POST"></a>2.POST</h4><p>这是一道简单的post传参的题，利用hackbar（火狐浏览器的插件，不了解的话可自行百度一下，安装啥的不难的）即可传参，或者利用bp应该也是一样的。</p>
-<img src="/2020/08/14/moectf/image-20200814140353992.png" alt="image-20200814140353992" style="zoom:50%;">
-
-<hr>
-<h4 id="3-小饼干"><a href="#3-小饼干" class="headerlink" title="3.小饼干"></a>3.小饼干</h4><p>进入页面发现是一个空页面，这时候想到利用bp抓包，观察</p>
-<img src="/2020/08/14/moectf/image-20200814140801922.png" alt="image-20200814140801922" style="zoom: 67%;">
-
-<p>发现类似flag的东西。复制提交，发现就是正确的flag</p>
-<hr>
-<h4 id="4-Introduction"><a href="#4-Introduction" class="headerlink" title="4.Introduction"></a>4.Introduction</h4><p>这个题点进去的话就是很正常的对<strong>moectf</strong>的介绍，点进去源码也没看到flag     (好吧，是我眼瞎，后来才发现flag就在源码里)  尝试抓包，也没找到</p>
-<img src="/2020/08/14/moectf/image-20200814142428514.png" alt="image-20200814142428514" style="zoom: 67%;">
-
-<p>考的是眼力<span class="github-emoji"><span>👿</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f47f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<hr>
-<h4 id="5-一句话木马"><a href="#5-一句话木马" class="headerlink" title="5.一句话木马"></a>5.一句话木马</h4><p>进入题目，发现源码就是一句话木马</p>
-<img src="/2020/08/14/moectf/image-20200814142846791.png" alt="image-20200814142846791">
-
-<p>话不多说，直接掏出俺的<strong>蚁剑</strong></p>
-<img src="/2020/08/14/moectf/image-20200814143147631.png" alt="image-20200814143147631" style="zoom: 50%;">
-
-<p>这边的话要注意的就是连接密码一定别忘记，<strong>密码就是post后面单引号里的内容</strong>。</p>
-<img src="/2020/08/14/moectf/image-20200814143913525.png" alt="image-20200814143913525" style="zoom: 50%;">
-
-<p>连接成功！一般情况下flag就在根目录/下，去到这道题的根目录下的确发现了flag。</p>
-<hr>
-<h4 id="6-ezmath"><a href="#6-ezmath" class="headerlink" title="6.ezmath"></a>6.ezmath</h4><p>等待填坑</p>
-<hr>
-<h4 id="7-三心二意"><a href="#7-三心二意" class="headerlink" title="7.三心二意"></a>7.三心二意</h4><p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
-<pre><code class="line-numbers language-php">&lt;?php
-$a = $_GET['a'];
-$b = $_POST['b'];
-$c = $_REQUEST['c'];
-$d = $_COOKIE['d'];
-
-if (!isset($a, $b, $c, $d)) {
-    highlight_file(__FILE__);
-} else {
-    if (is_numeric($a) and $a == false) {
-        echo 'A is OK!';
-        echo '&lt;br/&gt;';
-        if (!is_numeric($b) and $b == 0x125e591) {
-            echo 'B is OK!';
-            echo '&lt;br/&gt;';
-            if ($c != 240610708 and md5($c) == md5(240610708)) {
-                echo 'C is OK!';
-                echo '&lt;br/&gt;';
-                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) {
-                    include('/flag');
-                } else {
-                    echo "D is not wanted.&lt;br/&gt;";
-                    highlight_file(__FILE__);
-                }
-            } else {
-                echo "C is not wanted.&lt;br/&gt;";
-                highlight_file(__FILE__);
-            }
-        } else {
-            echo "Too young too simple.&lt;br/&gt;";
-            highlight_file(__FILE__);
-        }
-    } else {
-        echo "A is not wanted.&lt;br/&gt;";
-        highlight_file(__FILE__);
-    }
-} 
-</code></pre>
-<p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧<span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<ul>
-<li><code>is_numeric($a) and $a == false</code></li>
-</ul>
-<p>此处涉及到**is_numeric()**这个php函数,<strong>is_numeric()</strong> 函数用于检测变量是否为数字或数字字符串,如果指定的变量是数字和数字字符串则返回 TRUE，否则返回 FALSE。</p>
-<p>也就是说上面这个语句要求a参数是一个数字或字符串，且==false，那挺简单的，0或者null都可以，尝试?a=0,回车一下发现没反应，仔细看源码才发现他要a,b,c,d四个变量都存在才行。</p>
-<ul>
-<li><p><code>!is_numeric($b) and $b == 0x125e591</code></p>
-<p>这个语句的要求是b变量不是数字或字符串并且b==0x125e591，关于0x125e591，我也不太清楚他是个啥，看起来像16进制，百度一波</p>
-<img src="/2020/08/14/moectf/image-20200921134750652.png" alt="image-20200921134750652" style="zoom:50%;">
-
-<p>好家伙！直接给我转换出来了。没错了，0x125e591是16进制，转成10进制就是19260817。</p>
-<blockquote>
-<p>php有两种比较方式,一种是“= =”一种是“= = =”</p>
-<p>“= =”：会把两端变量类型转换成相同的，再进行比较。</p>
-<p>“= = =”：会先判断两端变量类型是否相同，再进行比较。</p>
-<p>这里明确说明，<strong>在两个相等的符号中，一个字符串与一个数字相比较时，字符串会转换成数值</strong>。</p>
-<p>当一个字符串被当作一个数值来取值，其结果和类型如下:如果该字符串没有包含’.’,’e’,’E’并且其数值值在整形的范围之内，该字符串被当作int来取值。其他所有情况下都被作为float来取值，<strong>该字符串的 开始部分 决定了它的值，如果该字符串以合法的数值开始，则使用该数值， 否则其值为0 。</strong></p>
-<p>在进行比较运算时，如果遇到了 0e 这类字符串，PHP会将它解析为 科学计数法</p>
-<p>在进行比较运算时，如果遇到了 0x 这类字符串，PHP会将它解析为 十六进制 。</p>
-</blockquote>
-<p>然后经过大佬指点和我的测试，我发现只需要在19260817后面加上字母就行了<span class="github-emoji"><span>😸</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-</li>
-<li><p><code>$c != 240610708 and md5($c) == md5(240610708)</code></p>
-<p>这个的话主要是md5值的知识，上网一查，md5(‘240610708’)等于md5(‘QNKCDZO’)，于是直接吧c赋值成后面那个字符串。</p>
-</li>
-<li><p><code>strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0</code></p>
-<p>这个一开始是真的不会，后来还是一个学弟教我的，害。</p>
-<p>考点应该是<strong>md5()函数无法处理数组，如果传入的为数组，会返回NULL</strong>（之前应该遇到过，忘记了。。。）</p>
-<p>所以此处将d赋值成<code>d[]=0</code>,妙啊。</p>
-<p>所以最终传参如下：</p>
-<img src="/2020/08/14/moectf/image-20200921143630484.png" alt="image-20200921143630484" style="zoom:67%;"></li>
-</ul>
-<p>再贴一道与这道题很像的题：（来自CNSS）</p>
-<pre><code class="line-numbers language-php">&lt;?php
-highlight_file(__FILE__);
-$a = $_GET['a'];
-$b = $_POST['b'];
-$c = $_REQUEST['c'];
-$d = $_COOKIE['d'];
-
-if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
-    echo "A is ok!";
-    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) {
-        echo "B is ok!";
-        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {
-            echo "C is ok!";
-            echo "Here is your flag:";
-            include('/flag');
-        } else {
-            die((isset($c) &amp;&amp; isset($d)) ? "Try to search something?" : "C and D is wanted.");
-        }
-    } else {
-        die(isset($b) ? "You need to try again." : "B is wanted.");
-    }
-} else {
-    die(isset($a) ? "Please try another a." : "A is wanted.");
-} 
-</code></pre>
-<hr>
-<h4 id="8-俄罗斯头套"><a href="#8-俄罗斯头套" class="headerlink" title="8.俄罗斯头套"></a>8.俄罗斯头套</h4><img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
-
-<p>点进去后发现这样一句话，觉得应该得<strong>burpsuits</strong>伪造一波ip地址</p>
-<p><img src="/2020/08/14/moectf/image-20200814145154603.png" alt="image-20200814145154603"></p>
-<p>抓包后添加 <strong>X-Forwarded-For</strong>头，伪造一波ip地址，send一下，得到如下页面</p>
-<img src="/2020/08/14/moectf/image-20200814145736400.png" alt="image-20200814145736400" style="zoom:50%;">
-
-<p>然后注意到response里说我得是从<a href="https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：">https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：</a></p>
-<img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
-
-<p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
-<img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
-
-<p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
-<p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
-<img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
-
-<p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
-<hr>
-<h4 id="9-Moe-include"><a href="#9-Moe-include" class="headerlink" title="9.Moe include"></a>9.Moe include</h4><p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
-<p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
-<p>让我别点，那一定得点一下了<span class="github-emoji"><span>😝</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
-
-<p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
-<p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
-<img src="/2020/08/14/moectf/image-20200816141033076.png" alt="image-20200816141033076" style="zoom:67%;">
-
-<p>看到注释：<strong>你知道php伪协议吗？</strong></p>
-<p>不知道的话可以参考参考这篇博客：<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html"></a><a href="https://www.cnblogs.com/zzjdbk/p/13030717.html">php伪协议总结</a></p>
-<p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
-<p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
-<img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
-
-<p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<hr>
-<h4 id="10-Moe-unserialize"><a href="#10-Moe-unserialize" class="headerlink" title="10.Moe unserialize"></a>10.Moe unserialize</h4><p>等待填坑</p>
-<hr>
-<h4 id="11-EzXXE"><a href="#11-EzXXE" class="headerlink" title="11.EzXXE"></a>11.EzXXE</h4><p>等待填坑</p>
-]]></content>
-      <categories>
-        <category>CTF</category>
-      </categories>
-      <tags>
-        <tag>ctf</tag>
       </tags>
   </entry>
   <entry>
@@ -5277,6 +5015,268 @@ class Solution {
       <tags>
         <tag>LeetCode</tag>
         <tag>数据结构，算法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Vscode_Error</title>
+    <url>/2023/08/06/Vscode-Error/</url>
+    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
+<p>vscode 获取扩展失败，XHR failed</p>
+</blockquote>
+<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
+<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
+<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
+<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
+<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
+<p>里面提到：</p>
+<blockquote>
+<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
+</blockquote>
+<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
+<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
+<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
+<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
+<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
+<blockquote>
+<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
+</blockquote>
+<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
+<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vscode</tag>
+        <tag>Synology</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>YCBCTF wp</title>
+    <url>/2020/09/10/YCBCTF/</url>
+    <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<span id="more"></span>
+
+<p>尝试访问一波index.php，页面出现<code>eval post cmd</code>,貌似是一句话木马。</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224747632.png" alt="image-20200910224747632" style="zoom:50%;">
+
+
+
+<p>尝试用蚁剑连接一下，密码试一下cmd,连接成功！</p>
+<img src="/2020/09/10/YCBCTF/image-20200910224833992.png" alt="image-20200910224833992" style="zoom:50%;">
+
+
+
+<p>并没有找到flag.php或者含flag字样的东西，倒是发现一个bbbbbbbbb.txt，十分可疑，下载后打开发现是一堆奇奇怪怪的字符。想到可能是图片编码，尝试反向解码。找一个解码网站，将txt中的内容复制进去，显示格式错误。后来了解到要解码还得在前面加上一小串东西：<strong>data:image/jpg;base64,</strong>    解码成功！flag就在图片中，奇怪的知识又增加了<span class="github-emoji"><span>😄</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f604.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>。</p>
+<p><img src="/2020/09/10/YCBCTF/image-20200910224632204.png" alt="image-20200910224632204"></p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>CTF</tag>
+        <tag>web</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo matery主题代码高亮问题</title>
+    <url>/2020/09/26/hexo/</url>
+    <content><![CDATA[<p>关于matery主题代码高亮的问题</p>
+<p>转载自大佬们的博客:</p>
+<p><a href="https://www.jianshu.com/p/f395d92a1110">Hexo博客：六、prism代码高亮</a></p>
+<p><a href="https://blog.csdn.net/zemprogram/article/details/104421008">个人博客搭建笔记—-hexo主题代码高亮</a></p>
+]]></content>
+      <categories>
+        <category>Hexo</category>
+      </categories>
+      <tags>
+        <tag>hexo</tag>
+        <tag>代码高亮</tag>
+        <tag>matery</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MoeCTF wp</title>
+    <url>/2020/08/14/moectf/</url>
+    <content><![CDATA[<img src="/2020/08/14/moectf/image-20200816135721888.png" alt="image-20200816135721888" style="zoom:50%;">
+
+<p>MoeCTF，西安电子科技大学的新生赛，作为一个南邮的小菜鸡，成功通过wh1sper师傅提供的后门混入其中<span class="github-emoji"><span>😉</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f609.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>，借此锻炼锻炼自己的能力，同时也为0xGame做准备。冲冲冲！</p>
+<span id="more"></span>
+
+<h4 id="1-GET"><a href="#1-GET" class="headerlink" title="1.GET"></a>1.GET</h4><p>这是一道简单的get传参的题，直接在url里传a这个参数<code>?a=flag</code>，即可得到flag</p>
+<hr>
+<h4 id="2-POST"><a href="#2-POST" class="headerlink" title="2.POST"></a>2.POST</h4><p>这是一道简单的post传参的题，利用hackbar（火狐浏览器的插件，不了解的话可自行百度一下，安装啥的不难的）即可传参，或者利用bp应该也是一样的。</p>
+<img src="/2020/08/14/moectf/image-20200814140353992.png" alt="image-20200814140353992" style="zoom:50%;">
+
+<hr>
+<h4 id="3-小饼干"><a href="#3-小饼干" class="headerlink" title="3.小饼干"></a>3.小饼干</h4><p>进入页面发现是一个空页面，这时候想到利用bp抓包，观察</p>
+<img src="/2020/08/14/moectf/image-20200814140801922.png" alt="image-20200814140801922" style="zoom: 67%;">
+
+<p>发现类似flag的东西。复制提交，发现就是正确的flag</p>
+<hr>
+<h4 id="4-Introduction"><a href="#4-Introduction" class="headerlink" title="4.Introduction"></a>4.Introduction</h4><p>这个题点进去的话就是很正常的对<strong>moectf</strong>的介绍，点进去源码也没看到flag     (好吧，是我眼瞎，后来才发现flag就在源码里)  尝试抓包，也没找到</p>
+<img src="/2020/08/14/moectf/image-20200814142428514.png" alt="image-20200814142428514" style="zoom: 67%;">
+
+<p>考的是眼力<span class="github-emoji"><span>👿</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f47f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<hr>
+<h4 id="5-一句话木马"><a href="#5-一句话木马" class="headerlink" title="5.一句话木马"></a>5.一句话木马</h4><p>进入题目，发现源码就是一句话木马</p>
+<img src="/2020/08/14/moectf/image-20200814142846791.png" alt="image-20200814142846791">
+
+<p>话不多说，直接掏出俺的<strong>蚁剑</strong></p>
+<img src="/2020/08/14/moectf/image-20200814143147631.png" alt="image-20200814143147631" style="zoom: 50%;">
+
+<p>这边的话要注意的就是连接密码一定别忘记，<strong>密码就是post后面单引号里的内容</strong>。</p>
+<img src="/2020/08/14/moectf/image-20200814143913525.png" alt="image-20200814143913525" style="zoom: 50%;">
+
+<p>连接成功！一般情况下flag就在根目录/下，去到这道题的根目录下的确发现了flag。</p>
+<hr>
+<h4 id="6-ezmath"><a href="#6-ezmath" class="headerlink" title="6.ezmath"></a>6.ezmath</h4><p>等待填坑</p>
+<hr>
+<h4 id="7-三心二意"><a href="#7-三心二意" class="headerlink" title="7.三心二意"></a>7.三心二意</h4><p>根据hint及观察代码，这应该是一道考察php弱类型相等的题。</p>
+<pre><code class="line-numbers language-php">&lt;?php
+$a = $_GET['a'];
+$b = $_POST['b'];
+$c = $_REQUEST['c'];
+$d = $_COOKIE['d'];
+
+if (!isset($a, $b, $c, $d)) {
+    highlight_file(__FILE__);
+} else {
+    if (is_numeric($a) and $a == false) {
+        echo 'A is OK!';
+        echo '&lt;br/&gt;';
+        if (!is_numeric($b) and $b == 0x125e591) {
+            echo 'B is OK!';
+            echo '&lt;br/&gt;';
+            if ($c != 240610708 and md5($c) == md5(240610708)) {
+                echo 'C is OK!';
+                echo '&lt;br/&gt;';
+                if (strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0) {
+                    include('/flag');
+                } else {
+                    echo "D is not wanted.&lt;br/&gt;";
+                    highlight_file(__FILE__);
+                }
+            } else {
+                echo "C is not wanted.&lt;br/&gt;";
+                highlight_file(__FILE__);
+            }
+        } else {
+            echo "Too young too simple.&lt;br/&gt;";
+            highlight_file(__FILE__);
+        }
+    } else {
+        echo "A is not wanted.&lt;br/&gt;";
+        highlight_file(__FILE__);
+    }
+} 
+</code></pre>
+<p>u1s1,我刷题的确太少了，对于题目中的几个判断都不是很熟悉，不知道怎么去绕过，一个一个做解释吧<span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<ul>
+<li><code>is_numeric($a) and $a == false</code></li>
+</ul>
+<p>此处涉及到**is_numeric()**这个php函数,<strong>is_numeric()</strong> 函数用于检测变量是否为数字或数字字符串,如果指定的变量是数字和数字字符串则返回 TRUE，否则返回 FALSE。</p>
+<p>也就是说上面这个语句要求a参数是一个数字或字符串，且==false，那挺简单的，0或者null都可以，尝试?a=0,回车一下发现没反应，仔细看源码才发现他要a,b,c,d四个变量都存在才行。</p>
+<ul>
+<li><p><code>!is_numeric($b) and $b == 0x125e591</code></p>
+<p>这个语句的要求是b变量不是数字或字符串并且b==0x125e591，关于0x125e591，我也不太清楚他是个啥，看起来像16进制，百度一波</p>
+<img src="/2020/08/14/moectf/image-20200921134750652.png" alt="image-20200921134750652" style="zoom:50%;">
+
+<p>好家伙！直接给我转换出来了。没错了，0x125e591是16进制，转成10进制就是19260817。</p>
+<blockquote>
+<p>php有两种比较方式,一种是“= =”一种是“= = =”</p>
+<p>“= =”：会把两端变量类型转换成相同的，再进行比较。</p>
+<p>“= = =”：会先判断两端变量类型是否相同，再进行比较。</p>
+<p>这里明确说明，<strong>在两个相等的符号中，一个字符串与一个数字相比较时，字符串会转换成数值</strong>。</p>
+<p>当一个字符串被当作一个数值来取值，其结果和类型如下:如果该字符串没有包含’.’,’e’,’E’并且其数值值在整形的范围之内，该字符串被当作int来取值。其他所有情况下都被作为float来取值，<strong>该字符串的 开始部分 决定了它的值，如果该字符串以合法的数值开始，则使用该数值， 否则其值为0 。</strong></p>
+<p>在进行比较运算时，如果遇到了 0e 这类字符串，PHP会将它解析为 科学计数法</p>
+<p>在进行比较运算时，如果遇到了 0x 这类字符串，PHP会将它解析为 十六进制 。</p>
+</blockquote>
+<p>然后经过大佬指点和我的测试，我发现只需要在19260817后面加上字母就行了<span class="github-emoji"><span>😸</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f638.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+</li>
+<li><p><code>$c != 240610708 and md5($c) == md5(240610708)</code></p>
+<p>这个的话主要是md5值的知识，上网一查，md5(‘240610708’)等于md5(‘QNKCDZO’)，于是直接吧c赋值成后面那个字符串。</p>
+</li>
+<li><p><code>strlen($d) &lt; 7 and $d != 0 and $d ** 2 == 0</code></p>
+<p>这个一开始是真的不会，后来还是一个学弟教我的，害。</p>
+<p>考点应该是<strong>md5()函数无法处理数组，如果传入的为数组，会返回NULL</strong>（之前应该遇到过，忘记了。。。）</p>
+<p>所以此处将d赋值成<code>d[]=0</code>,妙啊。</p>
+<p>所以最终传参如下：</p>
+<img src="/2020/08/14/moectf/image-20200921143630484.png" alt="image-20200921143630484" style="zoom:67%;"></li>
+</ul>
+<p>再贴一道与这道题很像的题：（来自CNSS）</p>
+<pre><code class="line-numbers language-php">&lt;?php
+highlight_file(__FILE__);
+$a = $_GET['a'];
+$b = $_POST['b'];
+$c = $_REQUEST['c'];
+$d = $_COOKIE['d'];
+
+if (isset($a) &amp;&amp; !is_numeric($a) &amp;&amp; $a == 114514) {
+    echo "A is ok!";
+    if (isset($b) &amp;&amp; $b != 0 &amp;&amp; $b ** 2 == 0) {
+        echo "B is ok!";
+        if (isset($c) &amp;&amp; isset($d) &amp;&amp; $c !== $d &amp;&amp; md5($c) === md5($d)) {
+            echo "C is ok!";
+            echo "Here is your flag:";
+            include('/flag');
+        } else {
+            die((isset($c) &amp;&amp; isset($d)) ? "Try to search something?" : "C and D is wanted.");
+        }
+    } else {
+        die(isset($b) ? "You need to try again." : "B is wanted.");
+    }
+} else {
+    die(isset($a) ? "Please try another a." : "A is wanted.");
+} 
+</code></pre>
+<hr>
+<h4 id="8-俄罗斯头套"><a href="#8-俄罗斯头套" class="headerlink" title="8.俄罗斯头套"></a>8.俄罗斯头套</h4><img src="/2020/08/14/moectf/image-20200814145058030.png" alt="image-20200814145058030" style="zoom:67%;">
+
+<p>点进去后发现这样一句话，觉得应该得<strong>burpsuits</strong>伪造一波ip地址</p>
+<p><img src="/2020/08/14/moectf/image-20200814145154603.png" alt="image-20200814145154603"></p>
+<p>抓包后添加 <strong>X-Forwarded-For</strong>头，伪造一波ip地址，send一下，得到如下页面</p>
+<img src="/2020/08/14/moectf/image-20200814145736400.png" alt="image-20200814145736400" style="zoom:50%;">
+
+<p>然后注意到response里说我得是从<a href="https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：">https://www.baidu.com来的，根据之前的做题经验的话，再添加一个**Referer**头即可，如下：</a></p>
+<img src="/2020/08/14/moectf/image-20200814150025874.png" alt="image-20200814150025874" style="zoom:50%;">
+
+<p>发现<strong>response</strong>里又要求使用Post请求，这个之前的确没遇到过，观察了一波现有的头，发现第一个头是Get，尝试将其修改为Post后send一波，得到如下信息：</p>
+<img src="/2020/08/14/moectf/image-20200814150414403.png" alt="image-20200814150414403" style="zoom:50%;">
+
+<p>好吧，没完了，不愧是俄罗斯头套<span class="github-emoji"><span>😢</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f622.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span>  不过supreme浏览器是什么鬼，我去百度了一波，靠，好像还真有这个浏览器，不会吧，不会吧，不会要去用这个浏览器去解题吧，那样还得重新配置<strong>burpsuits</strong>.</p>
+<p>我去百度了一波burpsuits里浏览器是由哪个头去表示的，发现是由user-Agent去决定的，</p>
+<img src="/2020/08/14/moectf/image-20200814150944737.png" alt="image-20200814150944737" style="zoom:50%;">
+
+<p>仔细看了看burpsuits里那个头的内容，发现了一个Firefox，盲猜指的是所用的firefox浏览器，尝试将它改为题目中要求的supreme浏览器， 成功！</p>
+<hr>
+<h4 id="9-Moe-include"><a href="#9-Moe-include" class="headerlink" title="9.Moe include"></a>9.Moe include</h4><p>看这题目标题，应该和文件包含漏洞有关，点进去看一下：</p>
+<p><img src="/2020/08/14/moectf/image-20200816140535894.png" alt="image-20200816140535894"></p>
+<p>让我别点，那一定得点一下了<span class="github-emoji"><span>😝</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f61d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<img src="/2020/08/14/moectf/image-20200816140646912.png" alt="image-20200816140646912" style="zoom: 67%;">
+
+<p>发现回显的页面为空，但是注意到url里多了一个<code>?file=hint.php</code></p>
+<p>hint是提示的意思，访问hint.php试试，回显的依旧是空页面，抓包看看：</p>
+<img src="/2020/08/14/moectf/image-20200816141033076.png" alt="image-20200816141033076" style="zoom:67%;">
+
+<p>看到注释：<strong>你知道php伪协议吗？</strong></p>
+<p>不知道的话可以参考参考这篇博客：<a href="https://www.cnblogs.com/zzjdbk/p/13030717.html"></a><a href="https://www.cnblogs.com/zzjdbk/p/13030717.html">php伪协议总结</a></p>
+<p>文件包含直接读取的是文件，而不是文件源码，所以要想办法读取源码.结合之前的做题经验，尝试了一下用<code>php://filter</code>去读取文件</p>
+<p>尝试构造如下paylaod:<code>?file=php://filter/read=convert.base64-encode/resource=flag.php</code></p>
+<img src="/2020/08/14/moectf/image-20200816142441015.png" alt="image-20200816142441015" style="zoom:67%;">
+
+<p>然后对得到的字符串进行base64解密即可得到flag.<span class="github-emoji"><span>😎</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60e.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<hr>
+<h4 id="10-Moe-unserialize"><a href="#10-Moe-unserialize" class="headerlink" title="10.Moe unserialize"></a>10.Moe unserialize</h4><p>等待填坑</p>
+<hr>
+<h4 id="11-EzXXE"><a href="#11-EzXXE" class="headerlink" title="11.EzXXE"></a>11.EzXXE</h4><p>等待填坑</p>
+]]></content>
+      <categories>
+        <category>CTF</category>
+      </categories>
+      <tags>
+        <tag>ctf</tag>
       </tags>
   </entry>
   <entry>
