@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://kongcm.cn/"/>
-  <updated>2026-01-06T08:34:26.423Z</updated>
+  <updated>2026-01-14T12:10:48.414Z</updated>
   <id>http://kongcm.cn/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>阿里云CDN加速Hexo博客</title>
+    <link href="http://kongcm.cn/2026/01/09/%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%8A%A0%E9%80%9FHexo%E5%8D%9A%E5%AE%A2/"/>
+    <id>http://kongcm.cn/2026/01/09/%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%8A%A0%E9%80%9FHexo%E5%8D%9A%E5%AE%A2/</id>
+    <published>2026-01-09T02:15:02.000Z</published>
+    <updated>2026-01-14T12:10:48.414Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;之前我曾经给自己的博客简单配置过一次 CDN 加速，但当时对 CDN 的工作机制、回源逻辑以及 GitHub Pages 的域名策略理解并不充分，配置也比较“凭感觉”。虽然名义上接入了
+        
+      
+    
+    </summary>
+    
+    
+      <category term="技术" scheme="http://kongcm.cn/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+      <category term="CDN, Hexo, 自定义域名" scheme="http://kongcm.cn/tags/CDN-Hexo-%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%9F%E5%90%8D/"/>
+    
+  </entry>
   
   <entry>
     <title>Google AI Studio部署自己的应用</title>
@@ -571,27 +598,6 @@
     
     
       <category term="web" scheme="http://kongcm.cn/tags/web/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>诗和远方</title>
-    <link href="http://kongcm.cn/2020/07/20/%E8%AF%97%E8%AF%8D/"/>
-    <id>http://kongcm.cn/2020/07/20/%E8%AF%97%E8%AF%8D/</id>
-    <published>2020-07-20T11:25:19.000Z</published>
-    <updated>2026-01-06T08:36:04.875Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;迁客骚人，多会于此。我可能是后者​,​h​h​h&lt;span class=&quot;github-emoji&quot;&gt;&lt;span&gt;😏&lt;/span&gt;&lt;img src=&quot;https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8&quot; aria-hidden=&quot;true&quot; onerror=&quot;this.parent.classList.add(&#39;github-emoji-fallback&#39;)&quot;&gt;&lt;/span&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="生活" scheme="http://kongcm.cn/categories/%E7%94%9F%E6%B4%BB/"/>
-    
-    
-      <category term="诗词" scheme="http://kongcm.cn/tags/%E8%AF%97%E8%AF%8D/"/>
     
   </entry>
   
