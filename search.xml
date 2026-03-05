@@ -1293,6 +1293,41 @@ $ git config --global --unset https.proxy
       </tags>
   </entry>
   <entry>
+    <title>Vscode_Error</title>
+    <url>/2023/08/06/Vscode-Error/</url>
+    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
+<p>vscode 获取扩展失败，XHR failed</p>
+</blockquote>
+<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
+<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
+<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
+<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
+<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
+<p>里面提到：</p>
+<blockquote>
+<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
+</blockquote>
+<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
+<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
+<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
+<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
+<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
+<blockquote>
+<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
+</blockquote>
+<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
+<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Vscode</tag>
+        <tag>Synology</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>LeetCode刷题记录</title>
     <url>/2025/08/07/LeetCode%E5%88%B7%E9%A2%98%E8%AE%B0%E5%BD%95/</url>
     <content><![CDATA[<p><a href="https://leetcode.cn/discuss/post/3141566/ru-he-ke-xue-shua-ti-by-endlesscheng-q3yd/">分享｜如何科学刷题？- 讨论 - 力扣（LeetCode）</a></p>
@@ -5018,41 +5053,6 @@ class Solution {
       </tags>
   </entry>
   <entry>
-    <title>Vscode_Error</title>
-    <url>/2023/08/06/Vscode-Error/</url>
-    <content><![CDATA[<h3 id="一、问题概述"><a href="#一、问题概述" class="headerlink" title="一、问题概述"></a>一、问题概述</h3><blockquote>
-<p>vscode 获取扩展失败，XHR failed</p>
-</blockquote>
-<p>平时vscode只是用来跑一跑C/C++代码，最近想装一个插件的时候在插件商店搜索的时候却报错XHR failed，然后在网上查了查，似乎是连不上网，可能是代理出了问题。这才想起来似乎vscode好久没有给我推过版本更新或者推荐插件什么的了，可能是无法联网的原因。</p>
-<h3 id="二、解决方法"><a href="#二、解决方法" class="headerlink" title="二、解决方法"></a>二、解决方法</h3><p>网上的解决方法是修改vscode里的设置，将代理移除，但是我按照这种方法并不奏效。</p>
-<p><a href="https://blog.csdn.net/SUDA196/article/details/127104495">Win10解决vscode获取扩展失败，XHR failed（亲测可以解决）_苏打不会碱的博客-CSDN博客</a></p>
-<p>后来在查找解决方法的时候偶然发现了这篇文章：</p>
-<p><a href="https://www.cnblogs.com/joyzen/p/13815384.html">VS Code代理设置错误 - 许你一世煙花 - 博客园 (cnblogs.com)</a></p>
-<p>里面提到：</p>
-<blockquote>
-<p>VS Code会去读取系统变量HTTP_PROXY的值设置为代理地址，去查了下系统环境变量设置里面果真有这个变量，删除后即可解决VS Code商店连不上的问题</p>
-</blockquote>
-<p>按照他的方法我确实在电脑上找到了HTTP＿PROXY（我的是小写）这个系统变量，并且它的值是127.0.0.1:32100(可能是这样，删的果断了点没太记住)。按道理来说我的代理的端口是7890，显然他这里的端口值不太对，我没有去修改而是直接删除了这个变量。</p>
-<p>删除后我尝试重启vscode，试了下发现还是连不上网，发现是因为我的vscode设置中设置了代理<code>http://127.0.0.1:7890</code>，但是我此时并没有开启代理，将代理开启后就可以正常联网了。</p>
-<p><img src="https://aband0n.oss-cn-nanjing.aliyuncs.com/img/image-20230806154211788.png" alt="image-20230806154211788"></p>
-<p>当然，如果不想开代理的话就将上面的<code>http://127.0.0.1:7890</code>删除，这样不开代理的情况下也可以正常联网。</p>
-<h3 id="三、意外收获"><a href="#三、意外收获" class="headerlink" title="三、意外收获"></a>三、意外收获</h3><p>上面那篇文章中还提到了一点：</p>
-<blockquote>
-<p>同时还发现HTTP_PROXY这个环境变量还被被其他软件环境读取作为代理地址，比如yarn，造成依赖下载被代理到指定地址导致失败。</p>
-</blockquote>
-<p>其他软件也会读取HTTP_PROXY这个环境变量作为代理地址，突然想起之前自己电脑在使用群晖chat（Synology chat）的时候客户端一直无法正常登录，但是使用虚拟机或者其他人的电脑就可以正常登录，很奇怪，当时怀疑是自己电脑某个端口或者设置导致的，但是在网上搜索了很久都没有找到解决方案，一直搁置，使用的网页版。</p>
-<p>所以我突然想到会不会当时无法登录也是因为这个环境变量呢？抱着试一试的心态打开客户端登录了一下，发现居然登陆成功了！害人不浅啊这个环境变量！<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<p>所以如果你有某些软件一直登录不成功，不妨也检查一下自己的环境变量。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Vscode</tag>
-        <tag>Synology</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>YCBCTF wp</title>
     <url>/2020/09/10/YCBCTF/</url>
     <content><![CDATA[<p>“羊城杯”，开学后打的一场比赛，由于我实在是太菜了，只会写第一题<span class="github-emoji"><span>😭</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f62d.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
@@ -6446,6 +6446,230 @@ CODE      ENDS
       </categories>
       <tags>
         <tag>微机原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>新电脑迁移hexo</title>
+    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
+    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
+<p>主要参考下面这篇文章进行：</p>
+<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
+<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
+<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
+<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
+<p>2.Typora配置阿里云OSS存储权限问题</p>
+<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
+<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
+<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
+<p>2.git bash here卡死问题</p>
+<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
+<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
+<pre><code>index.html
+css/
+js/
+images/
+</code></pre>
+<p>没有 <code>source/ themes/ package.json</code></p>
+<p>所以没办法<code>hexo s</code></p>
+<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
+<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
+<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
+        <tag>hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>诗和远方</title>
+    <url>/2020/07/20/%E8%AF%97%E8%AF%8D/</url>
+    <content><![CDATA[<p>迁客骚人，多会于此。我可能是后者​,​h​h​h<span class="github-emoji"><span>😏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
+<span id="more"></span>
+
+
+
+<h4 id="nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-西湖"><a href="#nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-西湖" class="headerlink" title="&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖"></a>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖</h4><p><strong>&nbsp;六月西湖好，风光小处藏。</strong><br>&nbsp;（仄仄平平仄，平平仄仄平。）<br><strong>&nbsp;苏堤夹岸绿，曲院满池芳。</strong><br>&nbsp;（平平平仄仄，仄仄仄平平。）<br><strong>&nbsp;花港观鱼醉，扁舟水上忙。</strong><br>&nbsp;（平仄平平仄，平平仄仄平。）<br><strong>&nbsp;雷峰夕照晚，自适意悠长。</strong><br>&nbsp;（平平平仄仄，仄仄仄平平。）</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>诗词</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>阿里云CDN加速Hexo博客</title>
+    <url>/2026/01/09/%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%8A%A0%E9%80%9FHexo%E5%8D%9A%E5%AE%A2/</url>
+    <content><![CDATA[<p>之前我曾经给自己的博客简单配置过一次 CDN 加速，但当时对 CDN 的工作机制、回源逻辑以及 GitHub Pages 的域名策略理解并不充分，配置也比较“凭感觉”。虽然名义上接入了 CDN，但实际访问体验并没有明显改善，博客在国内访问时依然偏慢，这件事也一直被我搁置了下来。</p>
+<p>最近刚好有一段相对完整的时间，于是决定重新系统地梳理一遍整个配置过程，从 <strong>DNS → CDN → GitHub Pages → HTTPS → 缓存策略</strong> 逐层检查，而不是简单地“把域名丢进 CDN 就完事”。</p>
+<p>目前博客的基本情况是：<br> 博客部署在 GitHub Pages 上，原始访问地址为 <code>ab4ndon.github.io</code>，并且已经绑定了自定义域名 <code>kongcm.cn</code>，访问会从 <code>ab4ndon.github.io</code> 自动跳转到 <code>kongcm.cn</code>。在此基础上，我希望 <strong>以 <code>kongcm.cn</code> 作为唯一对外入口，引入阿里云 CDN 对博客进行加速</strong>，同时保证访问路径清晰、HTTPS 正常、且不会引入额外的重定向问题。</p>
+<p>在重新配置的过程中，实际踩了不少坑，网上相关教程较少，并且我在使用AI辅助的过程中也踩了一些坑，尤其是 <strong>回源 Host、GitHub Pages 的 canonical 域名机制</strong> 这一块，非常容易配置错误。本文将完整记录这次重新配置 CDN 的过程，以及中间遇到的问题和对应的解决方案。</p>
+<h2 id="阿里云-CDN-添加加速域名"><a href="#阿里云-CDN-添加加速域名" class="headerlink" title="阿里云 CDN 添加加速域名"></a>阿里云 CDN 添加加速域名</h2><p>在使用 CDN 之前，需要明确一点：<br><strong>CDN 并不是“替代源站”，而是“站在用户和源站之间的缓存与调度层”</strong>。<br>因此第一步并不是修改博客部署方式，而是让 CDN 成为访问入口。</p>
+<p>进入阿里云控制台：</p>
+<pre><code>阿里云 CDN → 域名管理 → 添加域名
+</code></pre>
+<p>填写以下信息：</p>
+<ul>
+<li><strong>加速域名</strong>：<code>yourdomain.com</code><br>这是用户实际访问的域名，也是 CDN 对外提供服务的入口。</li>
+<li><strong>业务类型</strong>：图片小文件 / 全站加速<br>对于静态博客而言，两者都可以，区别不大。</li>
+<li><strong>加速区域</strong>：全球（或仅中国大陆）<br>如果博客主要面向国内访问，可以选择中国大陆。</li>
+</ul>
+<p>这一步的本质是：<br><strong>告诉阿里云 CDN：“以后所有访问 <code>yourdomain.com</code> 的请求，都由你来接管。”</strong></p>
+<p>可以在性能优化那边把一些优化手段都开启：</p>
+<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20260109120155509.png" alt="image-20260109120155509"></p>
+<h2 id="配置源站"><a href="#配置源站" class="headerlink" title="配置源站"></a>配置源站</h2><p>CDN 接管流量之后，仍然需要知道：<br><strong>当缓存中没有内容时，该去哪里取原始数据</strong>，这就是“源站”。</p>
+<p>在 CDN 域名配置中设置：</p>
+<ul>
+<li><strong>源站类型</strong>：IP</li>
+<li><strong>源站地址</strong>（GitHub Pages 的固定 IP）：</li>
+</ul>
+<pre><code>185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+</code></pre>
+<p>建议全部填写，CDN 会自动进行负载与容错。</p>
+<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20260109110056616.png" alt="image-20260109110056616"></p>
+<p>这里选择 IP 而不是域名，是为了避免 DNS 再次解析带来的不确定性，也能减少一层潜在的重定向问题。</p>
+<p>此时可以理解为：</p>
+<blockquote>
+<p>CDN 已经知道“内容放在哪里”，<br>但它还不知道“应该以谁的身份去访问这些内容”。</p>
+</blockquote>
+<h2 id="配置“回源-Host”"><a href="#配置“回源-Host”" class="headerlink" title="配置“回源 Host”"></a>配置“回源 Host”</h2><p>回源 Host 是整个配置过程中<strong>最容易被忽略、但影响最大的参数</strong>。</p>
+<p><strong>定义先行：</strong></p>
+<blockquote>
+<p>回源 Host = CDN 向源站发起 HTTP 请求时，在请求头中携带的 <code>Host</code> 字段。<br>它决定了源站“认为自己是通过哪个域名被访问的”。</p>
+</blockquote>
+<p>进入：</p>
+<pre><code>CDN → 域名管理 → yourdomain.com → 回源配置
+</code></pre>
+<p>设置：</p>
+<ul>
+<li><strong>回源协议</strong>：HTTPS<br>保证回源链路加密，避免混合内容和协议降级。</li>
+<li><strong>回源 Host</strong>：<code>yourdomain.com</code></li>
+</ul>
+<p>这一项并不是“随便填一个能访问源站的地址”，而是<strong>必须与对外访问域名保持一致</strong>。</p>
+<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20260109110158594.png" alt="image-20260109110158594"></p>
+<h3 id="踩坑一：回源-Host-填成-xxx-github-io-导致死循环"><a href="#踩坑一：回源-Host-填成-xxx-github-io-导致死循环" class="headerlink" title="踩坑一：回源 Host 填成 xxx.github.io 导致死循环"></a>踩坑一：回源 Host 填成 <code>xxx.github.io</code> 导致死循环</h3><p>一开始由于对回源 Host 的理解不清晰，按照 Qwen 的建议，将回源 Host 填成了 GitHub Pages 的地址 <code>ab4ndon.github.io</code>，结果页面无法正常访问，浏览器提示重定向次数过多。</p>
+<p>此时实际发生的访问流程是：</p>
+<pre><code>浏览器
+ → https://kongcm.cn
+   → CDN
+     → ab4ndon.github.io（回源）
+       → 301 到 https://kongcm.cn
+         → CDN
+           → 浏览器
+             → https://kongcm.cn
+               → ……
+</code></pre>
+<p>问题的根源在于：</p>
+<ul>
+<li>GitHub Pages <strong>已经认定 <code>kongcm.cn</code> 是该站点的主域名</strong></li>
+<li>当它收到 <code>Host: ab4ndon.github.io</code> 的请求时</li>
+<li>会主动返回 301，把访问“纠正”回 <code>kongcm.cn</code></li>
+</ul>
+<p>而 CDN 又会把这个 301 原样转发给浏览器，最终形成闭环。</p>
+<p>表现出来的症状就是：</p>
+<ul>
+<li>页面一直加载</li>
+<li><code>curl -IL</code> 看到连续的 301</li>
+<li>浏览器报 <code>ERR_TOO_MANY_REDIRECTS</code></li>
+</ul>
+<hr>
+<h3 id="踩坑二：删除-CNAME-后被重定向回-github-io"><a href="#踩坑二：删除-CNAME-后被重定向回-github-io" class="headerlink" title="踩坑二：删除 CNAME 后被重定向回 github.io"></a>踩坑二：删除 CNAME 后被重定向回 github.io</h3><p>为了解决踩坑一中的重定向循环，Qwen 给出的建议是：<br><strong>取消 GitHub Pages 对自定义域名的绑定</strong>，也就是删除 <code>source/CNAME</code>，或在 Pages 设置中移除自定义域名。</p>
+<p>这样做之后，页面确实可以访问了，但新的问题出现了：<br><strong>访问 <code>kongcm.cn</code> 会被重定向到 <code>ab4ndon.github.io</code>。</strong></p>
+<p>此时系统状态是：</p>
+<ul>
+<li>GitHub Pages：<ul>
+<li>已删除 <code>CNAME</code></li>
+<li>不再绑定 <code>kongcm.cn</code></li>
+<li>canonical domain 回退为 <code>ab4ndon.github.io</code></li>
+</ul>
+</li>
+<li>CDN：<ul>
+<li>对外访问域名：<code>kongcm.cn</code></li>
+<li>回源 Host：<code>ab4ndon.github.io</code>（或默认）</li>
+</ul>
+</li>
+</ul>
+<p>真实访问路径如下：</p>
+<pre><code>浏览器
+ → https://kongcm.cn
+   → CDN
+     → ab4ndon.github.io（回源）
+       → 301 到 https://ab4ndon.github.io
+         → 浏览器
+           → https://ab4ndon.github.io
+             → GitHub Pages（200）
+</code></pre>
+<p>在这个状态下：</p>
+<ul>
+<li>GitHub Pages <strong>不再承认 <code>kongcm.cn</code> 是合法主域名</strong></li>
+<li>它会把所有访问统一规范化到 <code>ab4ndon.github.io</code></li>
+<li>CDN 只是中转者，并不会阻止这一行为</li>
+</ul>
+<p>页面能访问，但自定义域名“失去了主权”。</p>
+<p>这两个坑看似相反，实则指向同一个结论：</p>
+<blockquote>
+<p><strong>GitHub Pages 的 canonical 域名<br>与 CDN 的回源 Host 必须保持一致。</strong></p>
+</blockquote>
+<ul>
+<li>GitHub Pages 认谁是主域名</li>
+<li>CDN 回源时就必须“以谁的身份”访问源站</li>
+</ul>
+<p>一旦两者不一致，就一定会出现 301 重定向问题。</p>
+<h2 id="配置-DNS"><a href="#配置-DNS" class="headerlink" title="配置 DNS"></a>配置 DNS</h2><p>在 CDN 配置完成后，还需要让 DNS 层把请求导向 CDN。</p>
+<p>阿里云 CDN 会提供一个 CNAME，例如：</p>
+<pre><code>yourdomain.com.w.kunlungr.com
+</code></pre>
+<p>在域名解析中添加：</p>
+<pre><code>主机记录：@
+记录类型：CNAME
+记录值：yourdomain.com.w.kunlungr.com
+</code></pre>
+<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20260109111802884.png" alt="image-20260109111802884"></p>
+<p>图中下面这条解析记录是之前绑定自定义域名的时候添加的，这里可以忽略。这样做之后：</p>
+<ul>
+<li>所有访问 <code>yourdomain.com</code> 的请求</li>
+<li>都会先到达 CDN 节点</li>
+<li>再由 CDN 决定是否回源</li>
+</ul>
+<h2 id="验证-CDN-是否真正生效"><a href="#验证-CDN-是否真正生效" class="headerlink" title="验证 CDN 是否真正生效"></a>验证 CDN 是否真正生效</h2><h3 id="使用-curl-验证"><a href="#使用-curl-验证" class="headerlink" title="使用 curl 验证"></a>使用 curl 验证</h3><pre><code class="line-numbers language-bash">curl -I https://yourdomain.com
+</code></pre>
+<p>关键关注响应头中的信息：</p>
+<ul>
+<li><code>Server: Tengine</code><br>表示请求已经由阿里云 CDN 接管。</li>
+<li><code>Via: cache*.l2cn****</code><br>表示请求经过了国内 CDN 节点。</li>
+<li><code>X-Cache: HIT / MISS</code><br>表示是否命中缓存。</li>
+</ul>
+<p>只要出现以上任意两项，就可以确认 CDN 已经生效。</p>
+<h3 id="验证缓存命中情况"><a href="#验证缓存命中情况" class="headerlink" title="验证缓存命中情况"></a>验证缓存命中情况</h3><p>再次访问同一地址：</p>
+<pre><code class="line-numbers language-bash">curl -I https://yourdomain.com
+</code></pre>
+<p>如果看到：</p>
+<pre><code>X-Cache: HIT TCP_MEM_HIT
+Age: &gt;0
+</code></pre>
+<p>说明：</p>
+<ul>
+<li>内容已经缓存在 CDN 节点内存中</li>
+<li>后续访问不再回源 GitHub Pages</li>
+<li>实际访问速度会明显提升</li>
+</ul>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>整个配置过程中，真正决定成败的并不是 DNS，也不是证书，而是：</p>
+<ul>
+<li>是否理解 <strong>CDN 回源与源站之间的 Host 关系</strong></li>
+<li>是否让 <strong>GitHub Pages 的 canonical 域名 与 CDN 回源 Host 完全一致</strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>CDN, Hexo, 自定义域名</tag>
       </tags>
   </entry>
   <entry>
@@ -8711,41 +8935,6 @@ int main()
       </tags>
   </entry>
   <entry>
-    <title>新电脑迁移hexo</title>
-    <url>/2025/07/16/%E6%96%B0%E7%94%B5%E8%84%91%E8%BF%81%E7%A7%BBhexo/</url>
-    <content><![CDATA[<h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>换电脑有段时间了，但是一直没有将hexo博客给迁移到新电脑上，最近研究了一下如何迁移，在这里做一个记录，也作为迁移后的第一篇博客</p>
-<p>主要参考下面这篇文章进行：</p>
-<p><a href="https://blog.csdn.net/qq_36667170/article/details/118163563">换电脑后怎么迁移hexo博客？_hexo换电脑了怎么办-CSDN博客</a></p>
-<h3 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h3><p>1.<code>git bash here</code>卡死</p>
-<p>尝试过重装、降低git版本、装在C盘等方法都没有解决，后面直接用<code>cmd</code>执行相关命令</p>
-<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20250712224330583.png" alt="image-20250712224330583"></p>
-<p>2.Typora配置阿里云OSS存储权限问题</p>
-<p>参考<a href="https://blog.csdn.net/mayuxin1314/article/details/125911299">Typora+阿里云OSS实现图片自动上传（不需要安装软件）_typora oss-CSDN博客</a></p>
-<p>不过需要注意创建RAM用户后需要为用户分配相应的权限，例如<code>AliyunOSSFullAccess</code>，否则测试上传的实现会报错权限问题。</p>
-<h3 id="待解决的问题"><a href="#待解决的问题" class="headerlink" title="待解决的问题"></a>待解决的问题</h3><p>1.深入学习一下git，后续应该是可以通过git在不同的电脑上进行提交</p>
-<p>2.git bash here卡死问题</p>
-<h3 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h3><p>最近在折腾博客的时候cursor误删了hexo本地文件夹，我想着GitHub上反正有备份，应该没有问题，结果clone下来一看和hexo本地文件夹并不太一样，还好之前U盘里有老的备份。</p>
-<p>其实，Github上存的只是生成后的静态文件，其实是源码文件夹下的public文件夹的内容</p>
-<pre><code>index.html
-css/
-js/
-images/
-</code></pre>
-<p>没有 <code>source/ themes/ package.json</code></p>
-<p>所以没办法<code>hexo s</code></p>
-<p>所以为了以后换电脑之后更好备份，也为了多台电脑之间可以协作，可以再创建一个仓库存储源码</p>
-<p>仓库 1：<code>blog-source</code>（存 Hexo 源码，纯存档/协作）</p>
-<p>仓库 2：现在这个（存部署产物，给 GitHub Pages 用）</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-        <tag>hexo</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>【NJUPT】 算法实验（合集）</title>
     <url>/2021/07/06/%E7%AE%97%E6%B3%95%E5%AE%9E%E9%AA%8C%E5%90%88%E9%9B%86/</url>
     <content><![CDATA[<h2 id="实验一："><a href="#实验一：" class="headerlink" title="实验一："></a>实验一：</h2><p>1用分治法实现一组无序序列的两路合并排序和快速排序。 要求清楚合并排序及快速排 序的基本原理， 编程实现分别用这两种方法将输入的一组无序序列排序为有序序列后输出。 </p>
@@ -9874,195 +10063,6 @@ int main()
       <tags>
         <tag>C++</tag>
         <tag>算法设计与分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>诗和远方</title>
-    <url>/2020/07/20/%E8%AF%97%E8%AF%8D/</url>
-    <content><![CDATA[<p>迁客骚人，多会于此。我可能是后者​,​h​h​h<span class="github-emoji"><span>😏</span><img src="https://github.githubassets.com/images/icons/emoji/unicode/1f60f.png?v8" aria-hidden="true" onerror="this.parent.classList.add('github-emoji-fallback')"></span></p>
-<span id="more"></span>
-
-
-
-<h4 id="nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-西湖"><a href="#nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-nbsp-西湖" class="headerlink" title="&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖"></a>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;&nbsp; 西湖</h4><p><strong>&nbsp;六月西湖好，风光小处藏。</strong><br>&nbsp;（仄仄平平仄，平平仄仄平。）<br><strong>&nbsp;苏堤夹岸绿，曲院满池芳。</strong><br>&nbsp;（平平平仄仄，仄仄仄平平。）<br><strong>&nbsp;花港观鱼醉，扁舟水上忙。</strong><br>&nbsp;（平仄平平仄，平平仄仄平。）<br><strong>&nbsp;雷峰夕照晚，自适意悠长。</strong><br>&nbsp;（平平平仄仄，仄仄仄平平。）</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>诗词</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>阿里云CDN加速Hexo博客</title>
-    <url>/2026/01/09/%E9%98%BF%E9%87%8C%E4%BA%91CDN%E5%8A%A0%E9%80%9FHexo%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<p>之前我曾经给自己的博客简单配置过一次 CDN 加速，但当时对 CDN 的工作机制、回源逻辑以及 GitHub Pages 的域名策略理解并不充分，配置也比较“凭感觉”。虽然名义上接入了 CDN，但实际访问体验并没有明显改善，博客在国内访问时依然偏慢，这件事也一直被我搁置了下来。</p>
-<p>最近刚好有一段相对完整的时间，于是决定重新系统地梳理一遍整个配置过程，从 <strong>DNS → CDN → GitHub Pages → HTTPS → 缓存策略</strong> 逐层检查，而不是简单地“把域名丢进 CDN 就完事”。</p>
-<p>目前博客的基本情况是：<br> 博客部署在 GitHub Pages 上，原始访问地址为 <code>ab4ndon.github.io</code>，并且已经绑定了自定义域名 <code>kongcm.cn</code>，访问会从 <code>ab4ndon.github.io</code> 自动跳转到 <code>kongcm.cn</code>。在此基础上，我希望 <strong>以 <code>kongcm.cn</code> 作为唯一对外入口，引入阿里云 CDN 对博客进行加速</strong>，同时保证访问路径清晰、HTTPS 正常、且不会引入额外的重定向问题。</p>
-<p>在重新配置的过程中，实际踩了不少坑，网上相关教程较少，并且我在使用AI辅助的过程中也踩了一些坑，尤其是 <strong>回源 Host、GitHub Pages 的 canonical 域名机制</strong> 这一块，非常容易配置错误。本文将完整记录这次重新配置 CDN 的过程，以及中间遇到的问题和对应的解决方案。</p>
-<h2 id="阿里云-CDN-添加加速域名"><a href="#阿里云-CDN-添加加速域名" class="headerlink" title="阿里云 CDN 添加加速域名"></a>阿里云 CDN 添加加速域名</h2><p>在使用 CDN 之前，需要明确一点：<br><strong>CDN 并不是“替代源站”，而是“站在用户和源站之间的缓存与调度层”</strong>。<br>因此第一步并不是修改博客部署方式，而是让 CDN 成为访问入口。</p>
-<p>进入阿里云控制台：</p>
-<pre><code>阿里云 CDN → 域名管理 → 添加域名
-</code></pre>
-<p>填写以下信息：</p>
-<ul>
-<li><strong>加速域名</strong>：<code>yourdomain.com</code><br>这是用户实际访问的域名，也是 CDN 对外提供服务的入口。</li>
-<li><strong>业务类型</strong>：图片小文件 / 全站加速<br>对于静态博客而言，两者都可以，区别不大。</li>
-<li><strong>加速区域</strong>：全球（或仅中国大陆）<br>如果博客主要面向国内访问，可以选择中国大陆。</li>
-</ul>
-<p>这一步的本质是：<br><strong>告诉阿里云 CDN：“以后所有访问 <code>yourdomain.com</code> 的请求，都由你来接管。”</strong></p>
-<p>可以在性能优化那边把一些优化手段都开启：</p>
-<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20260109120155509.png" alt="image-20260109120155509"></p>
-<h2 id="配置源站"><a href="#配置源站" class="headerlink" title="配置源站"></a>配置源站</h2><p>CDN 接管流量之后，仍然需要知道：<br><strong>当缓存中没有内容时，该去哪里取原始数据</strong>，这就是“源站”。</p>
-<p>在 CDN 域名配置中设置：</p>
-<ul>
-<li><strong>源站类型</strong>：IP</li>
-<li><strong>源站地址</strong>（GitHub Pages 的固定 IP）：</li>
-</ul>
-<pre><code>185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
-</code></pre>
-<p>建议全部填写，CDN 会自动进行负载与容错。</p>
-<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20260109110056616.png" alt="image-20260109110056616"></p>
-<p>这里选择 IP 而不是域名，是为了避免 DNS 再次解析带来的不确定性，也能减少一层潜在的重定向问题。</p>
-<p>此时可以理解为：</p>
-<blockquote>
-<p>CDN 已经知道“内容放在哪里”，<br>但它还不知道“应该以谁的身份去访问这些内容”。</p>
-</blockquote>
-<h2 id="配置“回源-Host”"><a href="#配置“回源-Host”" class="headerlink" title="配置“回源 Host”"></a>配置“回源 Host”</h2><p>回源 Host 是整个配置过程中<strong>最容易被忽略、但影响最大的参数</strong>。</p>
-<p><strong>定义先行：</strong></p>
-<blockquote>
-<p>回源 Host = CDN 向源站发起 HTTP 请求时，在请求头中携带的 <code>Host</code> 字段。<br>它决定了源站“认为自己是通过哪个域名被访问的”。</p>
-</blockquote>
-<p>进入：</p>
-<pre><code>CDN → 域名管理 → yourdomain.com → 回源配置
-</code></pre>
-<p>设置：</p>
-<ul>
-<li><strong>回源协议</strong>：HTTPS<br>保证回源链路加密，避免混合内容和协议降级。</li>
-<li><strong>回源 Host</strong>：<code>yourdomain.com</code></li>
-</ul>
-<p>这一项并不是“随便填一个能访问源站的地址”，而是<strong>必须与对外访问域名保持一致</strong>。</p>
-<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20260109110158594.png" alt="image-20260109110158594"></p>
-<h3 id="踩坑一：回源-Host-填成-xxx-github-io-导致死循环"><a href="#踩坑一：回源-Host-填成-xxx-github-io-导致死循环" class="headerlink" title="踩坑一：回源 Host 填成 xxx.github.io 导致死循环"></a>踩坑一：回源 Host 填成 <code>xxx.github.io</code> 导致死循环</h3><p>一开始由于对回源 Host 的理解不清晰，按照 Qwen 的建议，将回源 Host 填成了 GitHub Pages 的地址 <code>ab4ndon.github.io</code>，结果页面无法正常访问，浏览器提示重定向次数过多。</p>
-<p>此时实际发生的访问流程是：</p>
-<pre><code>浏览器
- → https://kongcm.cn
-   → CDN
-     → ab4ndon.github.io（回源）
-       → 301 到 https://kongcm.cn
-         → CDN
-           → 浏览器
-             → https://kongcm.cn
-               → ……
-</code></pre>
-<p>问题的根源在于：</p>
-<ul>
-<li>GitHub Pages <strong>已经认定 <code>kongcm.cn</code> 是该站点的主域名</strong></li>
-<li>当它收到 <code>Host: ab4ndon.github.io</code> 的请求时</li>
-<li>会主动返回 301，把访问“纠正”回 <code>kongcm.cn</code></li>
-</ul>
-<p>而 CDN 又会把这个 301 原样转发给浏览器，最终形成闭环。</p>
-<p>表现出来的症状就是：</p>
-<ul>
-<li>页面一直加载</li>
-<li><code>curl -IL</code> 看到连续的 301</li>
-<li>浏览器报 <code>ERR_TOO_MANY_REDIRECTS</code></li>
-</ul>
-<hr>
-<h3 id="踩坑二：删除-CNAME-后被重定向回-github-io"><a href="#踩坑二：删除-CNAME-后被重定向回-github-io" class="headerlink" title="踩坑二：删除 CNAME 后被重定向回 github.io"></a>踩坑二：删除 CNAME 后被重定向回 github.io</h3><p>为了解决踩坑一中的重定向循环，Qwen 给出的建议是：<br><strong>取消 GitHub Pages 对自定义域名的绑定</strong>，也就是删除 <code>source/CNAME</code>，或在 Pages 设置中移除自定义域名。</p>
-<p>这样做之后，页面确实可以访问了，但新的问题出现了：<br><strong>访问 <code>kongcm.cn</code> 会被重定向到 <code>ab4ndon.github.io</code>。</strong></p>
-<p>此时系统状态是：</p>
-<ul>
-<li>GitHub Pages：<ul>
-<li>已删除 <code>CNAME</code></li>
-<li>不再绑定 <code>kongcm.cn</code></li>
-<li>canonical domain 回退为 <code>ab4ndon.github.io</code></li>
-</ul>
-</li>
-<li>CDN：<ul>
-<li>对外访问域名：<code>kongcm.cn</code></li>
-<li>回源 Host：<code>ab4ndon.github.io</code>（或默认）</li>
-</ul>
-</li>
-</ul>
-<p>真实访问路径如下：</p>
-<pre><code>浏览器
- → https://kongcm.cn
-   → CDN
-     → ab4ndon.github.io（回源）
-       → 301 到 https://ab4ndon.github.io
-         → 浏览器
-           → https://ab4ndon.github.io
-             → GitHub Pages（200）
-</code></pre>
-<p>在这个状态下：</p>
-<ul>
-<li>GitHub Pages <strong>不再承认 <code>kongcm.cn</code> 是合法主域名</strong></li>
-<li>它会把所有访问统一规范化到 <code>ab4ndon.github.io</code></li>
-<li>CDN 只是中转者，并不会阻止这一行为</li>
-</ul>
-<p>页面能访问，但自定义域名“失去了主权”。</p>
-<p>这两个坑看似相反，实则指向同一个结论：</p>
-<blockquote>
-<p><strong>GitHub Pages 的 canonical 域名<br>与 CDN 的回源 Host 必须保持一致。</strong></p>
-</blockquote>
-<ul>
-<li>GitHub Pages 认谁是主域名</li>
-<li>CDN 回源时就必须“以谁的身份”访问源站</li>
-</ul>
-<p>一旦两者不一致，就一定会出现 301 重定向问题。</p>
-<h2 id="配置-DNS"><a href="#配置-DNS" class="headerlink" title="配置 DNS"></a>配置 DNS</h2><p>在 CDN 配置完成后，还需要让 DNS 层把请求导向 CDN。</p>
-<p>阿里云 CDN 会提供一个 CNAME，例如：</p>
-<pre><code>yourdomain.com.w.kunlungr.com
-</code></pre>
-<p>在域名解析中添加：</p>
-<pre><code>主机记录：@
-记录类型：CNAME
-记录值：yourdomain.com.w.kunlungr.com
-</code></pre>
-<p><img src="https://typics.oss-cn-hangzhou.aliyuncs.com/img/image-20260109111802884.png" alt="image-20260109111802884"></p>
-<p>图中下面这条解析记录是之前绑定自定义域名的时候添加的，这里可以忽略。这样做之后：</p>
-<ul>
-<li>所有访问 <code>yourdomain.com</code> 的请求</li>
-<li>都会先到达 CDN 节点</li>
-<li>再由 CDN 决定是否回源</li>
-</ul>
-<h2 id="验证-CDN-是否真正生效"><a href="#验证-CDN-是否真正生效" class="headerlink" title="验证 CDN 是否真正生效"></a>验证 CDN 是否真正生效</h2><h3 id="使用-curl-验证"><a href="#使用-curl-验证" class="headerlink" title="使用 curl 验证"></a>使用 curl 验证</h3><pre><code class="line-numbers language-bash">curl -I https://yourdomain.com
-</code></pre>
-<p>关键关注响应头中的信息：</p>
-<ul>
-<li><code>Server: Tengine</code><br>表示请求已经由阿里云 CDN 接管。</li>
-<li><code>Via: cache*.l2cn****</code><br>表示请求经过了国内 CDN 节点。</li>
-<li><code>X-Cache: HIT / MISS</code><br>表示是否命中缓存。</li>
-</ul>
-<p>只要出现以上任意两项，就可以确认 CDN 已经生效。</p>
-<h3 id="验证缓存命中情况"><a href="#验证缓存命中情况" class="headerlink" title="验证缓存命中情况"></a>验证缓存命中情况</h3><p>再次访问同一地址：</p>
-<pre><code class="line-numbers language-bash">curl -I https://yourdomain.com
-</code></pre>
-<p>如果看到：</p>
-<pre><code>X-Cache: HIT TCP_MEM_HIT
-Age: &gt;0
-</code></pre>
-<p>说明：</p>
-<ul>
-<li>内容已经缓存在 CDN 节点内存中</li>
-<li>后续访问不再回源 GitHub Pages</li>
-<li>实际访问速度会明显提升</li>
-</ul>
-<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>整个配置过程中，真正决定成败的并不是 DNS，也不是证书，而是：</p>
-<ul>
-<li>是否理解 <strong>CDN 回源与源站之间的 Host 关系</strong></li>
-<li>是否让 <strong>GitHub Pages 的 canonical 域名 与 CDN 回源 Host 完全一致</strong></li>
-</ul>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>CDN, Hexo, 自定义域名</tag>
       </tags>
   </entry>
 </search>
